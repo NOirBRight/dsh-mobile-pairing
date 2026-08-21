@@ -1,0 +1,35 @@
+/** Host-owned Public Endpoint and bounded loopback Gateway plugin. */
+import type { Context } from '@deepseek-ai/cordis';
+import { Config } from './config.ts';
+export declare const name = "dsh-mobile-pairing";
+export declare const inject: string[];
+export { Config, resolveConfig } from './config.ts';
+export { loadOrCreateKeypair } from './keys.ts';
+export type { DaemonKeypair } from './keys.ts';
+export { DeviceTokenStore, DeviceLimitError, MAX_LIVE_DEVICES } from './tokens.ts';
+export type { DeviceClientType, DeviceRecord } from './tokens.ts';
+export { PairingOfferManager, buildCompactPublicOfferUrl, buildOfferUrl, parseOfferUrl } from './pairing.ts';
+export type { MintPublicOfferOptions, PairingOfferPayload, PublicEndpointCapabilities, PublicPairingOfferPayload } from './pairing.ts';
+export { createAuthProxy, WS_AUTH_PREFIX } from './proxy.ts';
+export type { AuthProxy, AuthProxyOptions } from './proxy.ts';
+export { hostHandshake } from './handshake.ts';
+export type { HandshakeDeps, HandshakeOutcome } from './handshake.ts';
+/** Legacy compatibility export only; product runtime never instantiates it. */
+export { createRelayConnector } from './relay-connector.ts';
+export type { RelayConnector, RelayConnectorOptions } from './relay-connector.ts';
+export { attachHandshakeTransport, attachRelaySocket } from './tunnel-server.ts';
+export type { RelaySocketGate, TunnelEndpointOptions } from './tunnel-server.ts';
+export { attachDirectSignaling, encodeSignalDescription } from './direct-signaling.ts';
+export type { DirectSignalingGate, DirectSignalingOptions } from './direct-signaling.ts';
+export { WeriftDataChannelTransport } from './webrtc-transport.ts';
+export { createHostGateway } from './gateway.ts';
+export type { GatewayAsset, GatewayEndpoint, HostGateway, HostGatewayOptions } from './gateway.ts';
+export { QuickTunnelController, CLOUDFLARED_QUICK_PROVIDER } from './quick-tunnel.ts';
+export type { QuickTunnelChild, QuickTunnelOptions, QuickTunnelProvider, QuickTunnelStatus } from './quick-tunnel.ts';
+export { checkCustomEndpoint, createNodeCustomEndpointAdapters, validateCustomEndpoint } from './public-endpoint.ts';
+export type { CustomEndpointAdapters, CustomEndpointCheck } from './public-endpoint.ts';
+export { applyPublicEndpointSelection, loadPublicEndpointOverlay, parseEndpointSelection, savePublicEndpointOverlay } from './endpoint-settings.ts';
+export type { PublicEndpointApplyResult, PublicEndpointSelection } from './endpoint-settings.ts';
+export { renderPairingSettingsPage } from './settings-page.ts';
+export type { PairingSettingsPageOptions } from './settings-page.ts';
+export declare function apply(ctx: Context, config: Config): void;
