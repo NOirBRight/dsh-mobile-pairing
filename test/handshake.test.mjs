@@ -21,7 +21,7 @@ before(() => {
   keypair = loadOrCreateKeypair(join(dir, 'kp.json'))
   offers = new PairingOfferManager(60_000)
   store = new DeviceTokenStore(join(dir, 'devices.json'))
-  deps = { keypair, offers, devices: store, room: ROOM }
+  deps = { keypair, offers, devices: store, room: ROOM, hostName: 'Noirbright Workstation' }
 })
 after(() => rmSync(dir, { recursive: true, force: true }))
 
@@ -55,6 +55,7 @@ test('code handshake pairs a new device: ack carries a device token bound to the
   const { frame, clientKeys } = makeClientFrame({ code: offer.code, label: 'Pixel 9', clientType: 'android' })
   const ack = openAck(hostHandshake(frame, deps), clientKeys)
   assert.equal(ack.ok, true)
+  assert.equal(ack.hostName, 'Noirbright PC')
   assert.equal(typeof ack.deviceToken, 'string')
   const device = store.authenticate(ack.deviceToken)
   assert.notEqual(device, null)

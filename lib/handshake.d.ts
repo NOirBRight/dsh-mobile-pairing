@@ -8,6 +8,8 @@ export interface HandshakeDeps {
     keypair: DaemonKeypair;
     offers: PairingOfferManager;
     devices: DeviceTokenStore;
+    /** Human-facing Host name returned inside every sealed acknowledgement. */
+    hostName?: string;
     /** Room of the relay campaign this handshake arrived on; bound to newly issued device records. */
     room?: string;
 }

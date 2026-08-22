@@ -7,6 +7,8 @@ export interface LegacyPairingOfferPayload {
     pubkey: string;
     code: string;
     exp: number;
+    /** Human-facing Host Display Name; never endpoint or Room identity. */
+    hostName?: string;
     /** STUN discovery URLs; TURN is deliberately forbidden in direct mode. */
     ice?: string[];
 }
@@ -28,6 +30,8 @@ export interface PublicPairingOfferPayload {
     code: string;
     exp: number;
     capabilities: PublicEndpointCapabilities;
+    /** Human-facing Host Display Name available immediately after scanning. */
+    hostName?: string;
     ice?: string[];
 }
 export type PairingOfferPayload = LegacyPairingOfferPayload | PublicPairingOfferPayload;
@@ -36,6 +40,7 @@ export interface MintPublicOfferOptions {
     endpointKind: 'temporary' | 'custom';
     room: string;
     pubkey: string;
+    hostName?: string;
     ice?: string[];
     capabilities?: Partial<PublicEndpointCapabilities>;
 }
@@ -59,7 +64,7 @@ export declare class PairingOfferManager {
      * @param pubkey - daemon Curve25519 public key, base64url.
      * @returns the payload to embed in the QR.
      */
-    mint(mode: 'lan' | 'relay' | 'direct', addr: string, room: string | null, pubkey: string, ice?: string[]): PairingOfferPayload;
+    mint(mode: 'lan' | 'relay' | 'direct', addr: string, room: string | null, pubkey: string, ice?: string[], hostName?: string): PairingOfferPayload;
     /** Mint the current Host-owned Public Endpoint offer. */
     mintPublic(options: MintPublicOfferOptions): PublicPairingOfferPayload;
     /**

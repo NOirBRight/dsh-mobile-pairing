@@ -4,11 +4,13 @@
  * resolve step — no hidden `?? default` inside run paths.
  */
 import { join } from 'node:path'
-import { homedir } from 'node:os'
+import { homedir, hostname } from 'node:os'
 import z from '@deepseek-ai/schemastery'
 
 /** Plugin config as parsed from cordis.yml (defaults already applied). */
 export interface Config {
+  /** Human-facing Host Display Name; never endpoint or Room identity. */
+  hostName: string
   /** Base URL the QR points the phone at (the mobile shell PWA, M2+). */
   appUrl: string
   /** Advertised `addr` override; unset derives http://<first LAN IPv4>:<proxy port> per request. */
@@ -54,6 +56,7 @@ export interface Config {
 }
 
 export const Config: z<Config> = z.object({
+  hostName: z.string().default(hostname()),
   appUrl: z.string().default('dsh-mobile://pair'),
   advertiseUrl: z.string(),
   bind: z.string().default('0.0.0.0'),
@@ -90,6 +93,7 @@ export interface ResolvedConfig extends Config {
  * @returns config with every field concrete.
  */
 export function resolveConfig(config: Config): ResolvedConfig {
+  if (config.hostName.replace(/[\u0000-\u001f\u007f]/g, '').trim() === '') throw new Error('dsh-mobile-pairing: hostName must not be blank')
   if (config.advertiseUrl !== undefined && !/^(https?|wss?):\/\//.test(config.advertiseUrl)) {
     throw new Error(`dsh-mobile-pairing: advertiseUrl must be an http(s)/ws(s) URL, got "${config.advertiseUrl}"`)
   }

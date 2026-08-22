@@ -1,6 +1,8 @@
 import z from '@deepseek-ai/schemastery';
 /** Plugin config as parsed from cordis.yml (defaults already applied). */
 export interface Config {
+    /** Human-facing Host Display Name; never endpoint or Room identity. */
+    hostName: string;
     /** Base URL the QR points the phone at (the mobile shell PWA, M2+). */
     appUrl: string;
     /** Advertised `addr` override; unset derives http://<first LAN IPv4>:<proxy port> per request. */

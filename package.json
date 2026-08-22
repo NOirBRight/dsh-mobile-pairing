@@ -1,6 +1,6 @@
 {
   "name": "@dsh-mobile/pairing",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "description": "DSH Mobile Remote plugin: Host Gateway, Public Endpoint pairing, WebRTC Direct, encrypted Tunnel Fallback",
   "license": "MIT",
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@deepseek-ai/schemastery": "^3.18.1",
-    "@dsh-mobile/e2e-tunnel": "github:NOirBRight/dsh-e2e-tunnel#v0.1.0",
+    "@dsh-mobile/e2e-tunnel": "github:NOirBRight/dsh-e2e-tunnel#v0.1.1",
     "qrcode": "^1.5.4",
     "tweetnacl": "^1.0.3",
     "werift": "^0.24.4",

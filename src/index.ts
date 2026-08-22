@@ -7,6 +7,7 @@ import { join } from 'node:path'
 import { spawn } from 'node:child_process'
 import { renderPairingQrSvg } from './qr.js'
 import z from '@deepseek-ai/schemastery'
+import { compactDisplayName } from '@dsh-mobile/e2e-tunnel'
 import { Config, resolveConfig } from './config.ts'
 import { loadOrCreateKeypair } from './keys.ts'
 import { DeviceTokenStore } from './tokens.ts'
@@ -47,6 +48,7 @@ export function apply(ctx: Context, config: Config): void {
   const settings = (ctx as unknown as { settings?: { register(ns: string, schema: unknown): unknown } }).settings
   settings?.register('dsh-mobile', z.object({}))
   const resolved = resolveConfig(config)
+  const displayName = compactDisplayName(resolved.hostName, 'Host')
   const overlayPath = join(resolved.dshHome, 'mobile', 'public-endpoint.json')
   const overlay = loadPublicEndpointOverlay(overlayPath)
   const live = {
@@ -58,7 +60,7 @@ export function apply(ctx: Context, config: Config): void {
   const offers = new PairingOfferManager(resolved.codeTtlMs)
   let endpoint: GatewayEndpoint | null = live.mode === 'custom' ? { url: validateCustomEndpoint(live.customUrl as string), kind: 'custom' } : null
   let localGateway: string | null = null
-  function tunnelOptions(room: string) { return { upstreamHost: resolved.dshHost, upstreamPort: resolved.dshPort, handshake: { keypair, offers, devices: store, room }, logger: (message: string) => ctx.logger.info('dsh-mobile-pairing: ' + message) } }
+  function tunnelOptions(room: string) { return { upstreamHost: resolved.dshHost, upstreamPort: resolved.dshPort, handshake: { keypair, offers, devices: store, room, hostName: displayName }, logger: (message: string) => ctx.logger.info('dsh-mobile-pairing: ' + message) } }
   const gateway = createHostGateway({
     bind: resolved.gatewayBind, port: resolved.gatewayPort, hostIdentity: keypair.publicKeyBase64Url,
     isPersistentRoom: room => store.hasLiveForRoom(room),
@@ -140,19 +142,19 @@ export function apply(ctx: Context, config: Config): void {
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/ui', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' }); res.end(renderPairingSettingsPage({ hostIdentity: keypair.publicKeyBase64Url, endpoint, endpointMode: live.mode, customEndpointUrl: live.customUrl })) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/status', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { endpoint, endpointMode: live.mode, customEndpointUrl: live.customUrl ?? null, hostIdentity: keypair.publicKeyBase64Url, configuration: { file: 'cordis.patch.yml', entryId: 'dsh-mobile-pairing', customEndpointField: 'customEndpointUrl', legacyRelayConfigured: resolved.signalingUrl !== undefined } }) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/endpoint', handler: (req, res) => { void handleEndpointSave(req, res) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair', handler: (req, res) => handleLocalPair(req, res, endpoint, keypair.publicKeyBase64Url, resolved.appUrl, resolved.stunUrls, offers, store, gateway) }))
+  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair', handler: (req, res) => handleLocalPair(req, res, endpoint, keypair.publicKeyBase64Url, resolved.appUrl, displayName, resolved.stunUrls, offers, store, gateway) }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/devices', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { devices: store.list() }) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/revoke', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const id = (body as Record<string, unknown>).id; const revoked = typeof id === 'string' && store.revoke(id); json(res, revoked ? 200 : 404, { ok: revoked }) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/label', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const record = body as Record<string, unknown>; const renamed = typeof record.id === 'string' && typeof record.label === 'string' && store.rename(record.id, record.label); json(res, renamed ? 200 : 404, { ok: renamed }) } }))
 }
-async function handleLocalPair(req: IncomingMessage, res: ServerResponse, endpoint: GatewayEndpoint | null, pubkey: string, appUrl: string, stunUrls: string[], offers: PairingOfferManager, store: Pick<DeviceTokenStore, 'hasLiveForRoom'>, gateway: { authorizeRoom(room: string, expiresAtMs?: number): void }): Promise<void> {
+async function handleLocalPair(req: IncomingMessage, res: ServerResponse, endpoint: GatewayEndpoint | null, pubkey: string, appUrl: string, hostName: string, stunUrls: string[], offers: PairingOfferManager, store: Pick<DeviceTokenStore, 'hasLiveForRoom'>, gateway: { authorizeRoom(room: string, expiresAtMs?: number): void }): Promise<void> {
   if (req.method !== 'GET') return methodNotAllowed(res)
   if (endpoint === null) { json(res, 503, { error: 'Public Endpoint is not ready' }); return }
   const params = new URL(req.url ?? '/', 'http://loopback').searchParams
   const requestedRoom = params.get('room')
   if (requestedRoom !== null && !store.hasLiveForRoom(requestedRoom)) { json(res, 404, { error: 'unknown authorized device room' }); return }
   const room = requestedRoom ?? randomBytes(16).toString('hex')
-  const offer = offers.mintPublic({ endpoint: endpoint.url, endpointKind: endpoint.kind, room, pubkey, ice: stunUrls })
+  const offer = offers.mintPublic({ endpoint: endpoint.url, endpointKind: endpoint.kind, room, pubkey, hostName, ice: stunUrls })
   gateway.authorizeRoom(room, offer.exp * 1000)
   const nativeOfferUrl = buildOfferUrl(appUrl, offer)
   const offerUrl = nativeOfferUrl
