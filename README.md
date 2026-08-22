@@ -2,7 +2,7 @@
 
 DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082` web profile 中；每个 DSH 进程独立提供配对管理、回环 Host Gateway、WebRTC Direct 与加密 Tunnel Fallback。
 
-正式安装：`pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.1`。两个 DSH 可以同时安装，但必须使用独立的 Host Identity、Gateway 端口和 Public Endpoint。
+正式安装：`pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.2`。两个 DSH 可以同时安装，但必须使用独立的 Host Identity、Gateway 端口和 Public Endpoint。
 
 ## 数据路径
 
