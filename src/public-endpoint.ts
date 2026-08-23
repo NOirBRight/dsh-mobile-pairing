@@ -9,7 +9,7 @@ export interface CustomEndpointAdapters {
   openWebSocket(url: string): Promise<EndpointWebSocket>
 }
 export type CustomEndpointCheck =
-  | { ok: true; stage: 'ready'; hostIdentity: string; capabilities: PublicEndpointCapabilities }
+  | { ok: true; stage: 'ready'; hostIdentity: string; hostIdentities: string[]; capabilities: PublicEndpointCapabilities }
   | { ok: false; stage: 'endpoint' | 'tls' | 'identity' | 'protocol' | 'capabilities' | 'websocket'; error: string }
 
 export function validateCustomEndpoint(value: string): string {
@@ -19,6 +19,39 @@ export function validateCustomEndpoint(value: string): string {
   if (url.username !== '' || url.password !== '') throw new Error('Custom Endpoint must not contain credentials')
   if (url.search !== '' || url.hash !== '') throw new Error('Custom Endpoint must not contain query or fragment data')
   return url.toString().replace(/\/$/, '')
+}
+
+/** Validate an opaque Relay WSS base; the Relay never represents a Host identity. */
+export function validateRelayEndpoint(value: string): string {
+  let url: URL
+  try { url = new URL(value) } catch { throw new Error('Relay Endpoint must be a WSS URL') }
+  if (url.protocol !== 'wss:') throw new Error('Relay Endpoint must use WSS')
+  if (url.username !== '' || url.password !== '' || url.search !== '' || url.hash !== '') {
+    throw new Error('Relay Endpoint must not contain credentials, query, or fragment data')
+  }
+  return url.toString().replace(/\/$/, '')
+}
+
+export type RelayEndpointCheck =
+  | { ok: true; stage: 'ready' }
+  | { ok: false; stage: 'endpoint' | 'relay'; error: string }
+
+/** Probe a Relay health endpoint without treating it as a Host Gateway. */
+export async function checkRelayEndpoint(value: string, adapters: CustomEndpointAdapters): Promise<RelayEndpointCheck> {
+  let endpoint: string
+  try { endpoint = validateRelayEndpoint(value) } catch (error) { return { ok: false, stage: 'endpoint', error: (error as Error).message } }
+  const health = new URL(endpoint)
+  health.protocol = 'https:'
+  health.pathname = health.pathname.replace(/\/$/, '') + '/healthz'
+  health.search = ''
+  health.hash = ''
+  try {
+    const response = await adapters.fetch(health.toString())
+    if (!response.ok) return { ok: false, stage: 'relay', error: 'Relay health returned HTTP ' + response.status }
+  } catch (error) {
+    return { ok: false, stage: 'relay', error: String((error as Error).message ?? error) }
+  }
+  return { ok: true, stage: 'ready' }
 }
 
 function capabilities(value: unknown): PublicEndpointCapabilities | null {
@@ -40,6 +73,8 @@ export async function checkCustomEndpoint(value: string, adapters: CustomEndpoin
   const record = body as Record<string, unknown>
   if (record.protocol !== 1) return { ok: false, stage: 'protocol', error: 'unsupported Gateway protocol ' + String(record.protocol) }
   if (typeof record.hostIdentity !== 'string') return { ok: false, stage: 'identity', error: 'Gateway identity is missing' }
+  const listed = Array.isArray(record.hostIdentities) ? record.hostIdentities.filter((value): value is string => typeof value === 'string' && value !== '') : []
+  const hostIdentities = [record.hostIdentity, ...listed.filter(identity => identity !== record.hostIdentity)]
   const caps = capabilities(record.capabilities)
   if (caps === null) return { ok: false, stage: 'capabilities', error: 'Gateway capabilities are invalid' }
   if (caps.browser !== false || caps.tunnel !== true || caps.endpointRefresh !== true) {
@@ -51,7 +86,7 @@ export async function checkCustomEndpoint(value: string, adapters: CustomEndpoin
   let socket: EndpointWebSocket
   try { socket = await adapters.openWebSocket(wsUrl.toString()) } catch (error) { return { ok: false, stage: 'websocket', error: String((error as Error).message ?? error) } }
   socket.close()
-  return { ok: true, stage: 'ready', hostIdentity: record.hostIdentity, capabilities: caps }
+  return { ok: true, stage: 'ready', hostIdentity: record.hostIdentity, hostIdentities, capabilities: caps }
 }
 
 /** Production adapters for Host-side Custom Endpoint checks. Tests inject their own. */

@@ -24,10 +24,12 @@ export type { DirectSignalingGate, DirectSignalingOptions } from './direct-signa
 export { WeriftDataChannelTransport } from './webrtc-transport.ts';
 export { createHostGateway } from './gateway.ts';
 export type { GatewayAsset, GatewayEndpoint, HostGateway, HostGatewayOptions } from './gateway.ts';
+export { createEndpointMux } from './endpoint-mux.ts';
+export type { EndpointMux, EndpointMuxOptions } from './endpoint-mux.ts';
 export { QuickTunnelController, CLOUDFLARED_QUICK_PROVIDER } from './quick-tunnel.ts';
 export type { QuickTunnelChild, QuickTunnelOptions, QuickTunnelProvider, QuickTunnelStatus } from './quick-tunnel.ts';
-export { checkCustomEndpoint, createNodeCustomEndpointAdapters, validateCustomEndpoint } from './public-endpoint.ts';
-export type { CustomEndpointAdapters, CustomEndpointCheck } from './public-endpoint.ts';
+export { checkCustomEndpoint, checkRelayEndpoint, createNodeCustomEndpointAdapters, validateCustomEndpoint, validateRelayEndpoint } from './public-endpoint.ts';
+export type { CustomEndpointAdapters, CustomEndpointCheck, RelayEndpointCheck } from './public-endpoint.ts';
 export { applyPublicEndpointSelection, loadPublicEndpointOverlay, parseEndpointSelection, savePublicEndpointOverlay } from './endpoint-settings.ts';
 export type { PublicEndpointApplyResult, PublicEndpointSelection } from './endpoint-settings.ts';
 export { renderPairingSettingsPage } from './settings-page.ts';

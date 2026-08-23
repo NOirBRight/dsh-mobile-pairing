@@ -21,7 +21,8 @@ test('parseEndpointSelection accepts quick and custom payloads', () => {
     endpointMode: 'custom', customEndpointUrl: 'https://host.example',
   })
   assert.equal(parseEndpointSelection({ endpointMode: 'custom' }).error, 'customEndpointUrl is required in custom mode')
-  assert.equal(parseEndpointSelection({ endpointMode: 'relay' }).error, 'endpointMode must be quick or custom')
+  assert.equal(parseEndpointSelection({ endpointMode: 'relay' }).error, 'relayUrl is required in relay mode')
+  assert.deepEqual(parseEndpointSelection({ endpointMode: 'relay', relayUrl: ' wss://relay.example ' }), { endpointMode: 'relay', relayUrl: 'wss://relay.example' })
 })
 
 test('custom save runs staged check and rejects a foreign Host Identity', async () => {
@@ -32,7 +33,7 @@ test('custom save runs staged check and rejects a foreign Host Identity', async 
   assert.deepEqual(passed, {
     ok: true, endpointMode: 'custom',
     endpoint: { url: 'https://host.example', kind: 'custom' },
-    check: { ok: true, stage: 'ready', hostIdentity: 'host-key', capabilities: { browser: false, direct: true, tunnel: true, endpointRefresh: true } },
+    check: { ok: true, stage: 'ready', hostIdentity: 'host-key', hostIdentities: ['host-key'], capabilities: { browser: false, direct: true, tunnel: true, endpointRefresh: true } },
   })
 
   const foreign = await applyPublicEndpointSelection(
@@ -47,6 +48,32 @@ test('custom save runs staged check and rejects a foreign Host Identity', async 
   )
   assert.equal(failed.ok, false)
   assert.equal(failed.stage, 'tls')
+})
+
+test('custom save accepts a shared endpoint that lists this Host among its identities', async () => {
+  const shared = {
+    fetch: async () => ({
+      ok: true, status: 200,
+      json: async () => ({
+        protocol: 1,
+        hostIdentity: 'daily-host',
+        hostIdentities: ['daily-host', 'lab-host'],
+        capabilities: { browser: false, direct: true, tunnel: true, endpointRefresh: true },
+      }),
+    }),
+    openWebSocket: async () => ({ close() {} }),
+  }
+  const lab = await applyPublicEndpointSelection(
+    { endpointMode: 'custom', customEndpointUrl: 'https://pair.example' },
+    { hostIdentity: 'lab-host', adapters: shared },
+  )
+  assert.equal(lab.ok, true)
+  if (lab.ok && lab.endpointMode === 'custom') assert.equal(lab.endpoint.url, 'https://pair.example')
+})
+
+test('official Relay save checks health without requiring a Host Identity', async () => {
+  const result = await applyPublicEndpointSelection({ endpointMode: 'relay', relayUrl: 'wss://relay.example' }, { hostIdentity: 'host-key', adapters: ready })
+  assert.deepEqual(result, { ok: true, endpointMode: 'relay', endpoint: { url: 'wss://relay.example', kind: 'relay' } })
 })
 
 test('quick save skips the custom endpoint probe', async () => {

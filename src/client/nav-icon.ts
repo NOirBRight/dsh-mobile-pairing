@@ -1,4 +1,5 @@
-/** Use the official 16px link glyph so Remote matches other settings-nav icons. */
+/** Official settings.section slot has no icon field (label/order/locale only).
+ *  Swap the gear for the Remote glyph. Missing nav buttons stay silent. */
 
 const LABELS = new Set(['Remote', '远程'])
 const MARK = 'data-dsh-remote-icon'

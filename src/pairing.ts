@@ -16,7 +16,7 @@ export interface LegacyPairingOfferPayload {
   pubkey: string
   code: string
   exp: number
-  /** Human-facing Host Display Name; never endpoint or Room identity. */
+  /** Human-facing Host Display Name. */
   hostName?: string
   /** STUN discovery URLs; TURN is deliberately forbidden in direct mode. */
   ice?: string[]
@@ -41,7 +41,6 @@ export interface PublicPairingOfferPayload {
   code: string
   exp: number
   capabilities: PublicEndpointCapabilities
-  /** Human-facing Host Display Name available immediately after scanning. */
   hostName?: string
   ice?: string[]
 }
@@ -224,7 +223,9 @@ export function buildCompactPublicOfferUrl(appUrl: string, offer: PublicPairingO
   const payload = [
     4, offer.endpoint, offer.endpointKind === 'custom' ? 1 : 0, offer.room,
     offer.pubkey, offer.code, offer.exp, mask,
-    ...(offer.hostName === undefined ? (offer.ice === undefined ? [] : [offer.ice]) : [offer.ice ?? null, offer.hostName]),
+    ...(offer.hostName === undefined
+      ? (offer.ice === undefined ? [] : [offer.ice])
+      : [offer.ice ?? null, offer.hostName]),
   ]
   return `${appUrl.split('#')[0]}#offer=${Buffer.from(JSON.stringify(payload)).toString('base64url')}`
 }

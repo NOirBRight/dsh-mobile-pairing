@@ -1,7 +1,7 @@
 import { type WebSocket } from 'ws';
 export interface GatewayEndpoint {
     url: string;
-    kind: 'temporary' | 'custom';
+    kind: 'temporary' | 'custom' | 'relay';
 }
 export interface GatewayAsset {
     body: Uint8Array;

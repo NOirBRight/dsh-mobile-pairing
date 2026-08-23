@@ -2,8 +2,6 @@
 
 DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082` web profile 中；每个 DSH 进程独立提供配对管理、回环 Host Gateway、WebRTC Direct 与加密 Tunnel Fallback。
 
-正式安装：`pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.2`。两个 DSH 可以同时安装，但必须使用独立的 Host Identity、Gateway 端口和 Public Endpoint。
-
 ## 数据路径
 
 1. Host Gateway 只监听回环地址，提供信令和加密 Tunnel 入口。产品 UI 在 APK 里，Gateway 不提供浏览器 Shell。
@@ -12,7 +10,7 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 4. Automatic 立刻走加密 Tunnel；同网 Direct 只在短宽限内可以抢赢，迟到的 Direct 不得抢走已打开的 Tunnel。
 5. 首配签发的 Device Token 持续有效，直到 Host 侧撤销。
 
-没有 TURN、公共应用数据 Relay、运行时 CDN 或维护者域名依赖。Tunnel Fallback 由用户自己的 Host Public Endpoint 承载。
+没有 TURN、运行时 CDN 或维护者域名依赖。Tunnel Fallback 可以走用户自己的 Host Public Endpoint，也可以显式选择官方或自托管的加密 Relay。Relay 只转发密文帧。
 
 ## 在 GUI 中配对
 
@@ -25,31 +23,31 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 
 ## 配置位置
 
-编辑正在运行的 profile 的 cordis.patch.yml，找到：
+正式版安装：
+
+~~~sh
+pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.1
+~~~
+
+然后把 `@dsh-mobile/pairing` 加入 profile 的 `dsh.profile.bundles`。包内的 `cordis.patch.yml` 会插入 Remote loader；默认配置面向日常 `:3080`：
 
 ~~~yaml
 - id: dsh-mobile-pairing
-  name: '@dsh-mobile/pairing'
   config:
-    appUrl: dsh-mobile://pair
-    endpointMode: quick
+    dshHost: 127.0.0.1
+    dshPort: 3080
     gatewayBind: 127.0.0.1
     gatewayPort: 0
-    dshHost: 127.0.0.1
-    dshPort: 3082
-    cloudflaredPath: /home/USER/.dsh-lab/mobile/bin/cloudflared
-    stunUrls:
-      - stun:stun.cloudflare.com:3478
-    enableDirect: true
 ~~~
 
-本机验收走 lab profile：`~/.dsh-lab/profiles/web/cordis.patch.yml`（DSH `:3082`）。不要把 pairing 挂到 `:3080`。
+lab profile 使用 `:3082` 时，将该 profile 的配置覆盖为 `dshPort: 3082` 和独立的 `gatewayPort`。产品默认是一台 Host 一个 Gateway（`gatewayPort: 0`）；手机只连接二维码里的 Public Endpoint，不会连到维护者机器。可选的 `dsh-pair-mux` 只跑在操作者自己的 Host 上回环，后端端口必须由环境变量显式给出。
 
 | 键 | 默认 | 说明 |
 |---|---|---|
 | appUrl | dsh-mobile://pair | Android QR / Deep Link 入口 |
-| endpointMode | quick | quick 使用临时 Cloudflare Quick Tunnel；custom 使用手工 Endpoint |
-| customEndpointUrl | 无 | custom 模式下必填，必须是无凭据的 HTTPS URL |
+| endpointMode | quick | GUI 只显示 quick（临时地址）和 relay（Relay）；custom 仅作为旧配置兼容模式保留 |
+| customEndpointUrl | 无 | 旧 operator overlay 兼容字段；不在当前 GUI 选项中显示 |
+| relayUrl | 无 | relay 模式下必填，必须是无凭据的 WSS URL |
 | gatewayBind / gatewayPort | 127.0.0.1 / 0 | Host Gateway 始终只允许回环绑定 |
 | cloudflaredPath | cloudflared | 默认 Quick Tunnel 可执行文件 |
 | quickTunnelCommand / quickTunnelArgs | cloudflared 默认 argv | 可换成 natapp / cpolar / frpc 等能打印 HTTPS URL 的命令 |
@@ -73,7 +71,7 @@ quickTunnelCommand: cpolar
 quickTunnelArgs: ['http', '{gateway}']
 quickTunnelEndpointPattern: 'https://[a-z0-9-]+\\.cpolar\\.(?:cn|top)\\b'
 
-# frpc（固定域名时更适合直接用 custom endpointMode）
+# frpc（仅旧 operator overlay 兼容；新用户使用 Relay）
 quickTunnelCommand: frpc
 quickTunnelArgs: ['-c', '/etc/frp/frpc.toml']
 quickTunnelEndpointPattern: 'https://mobile\\.example\\.com\\b'
@@ -82,8 +80,8 @@ quickTunnelEndpointPattern: 'https://mobile\\.example\\.com\\b'
 ### 域名与 Relay
 
 - **临时域名**：endpointMode: quick 自动生成，不能手工固定。
-- **自定义域名**：在 Host 设置里选择 Custom Endpoint 并保存；保存前会做分阶段检查。也可手写 endpointMode: custom 和 customEndpointUrl。运行时选择写在 `$DSH_HOME/mobile/public-endpoint.json`，会覆盖 YAML 默认值。
-- **Relay**：当前产品没有公共 Relay 设置。旧的 signalingUrl 仅保留在类型中用于历史兼容，不应写入生产 profile，也不是 Tunnel Fallback。
+- **旧 Custom Endpoint**：仅为已有 operator overlay 保留兼容，不在当前 GUI 选项中展示；Relay 用户只选择两个预置 Relay 区域。
+- **Relay**：选择 endpointMode: relay 并填写 relayUrl。官方区域和 Docker 自托管部署见 [relay/deploy/README.md](../../relay/deploy/README.md)。每个 Client Instance 使用独立 Room。
 - dsh.noirbright.top、dshweb.noirbright.top、dshapp.noirbright.top 等个人域名只能作为个人恢复基础设施，不是产品默认值或依赖。
 
 严禁启动共享同一 DSH_HOME 的第二个 DSH 进程来承载本插件。

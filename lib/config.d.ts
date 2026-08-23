@@ -1,7 +1,7 @@
 import z from '@deepseek-ai/schemastery';
 /** Plugin config as parsed from cordis.yml (defaults already applied). */
 export interface Config {
-    /** Human-facing Host Display Name; never endpoint or Room identity. */
+    /** Human-facing Host Display Name returned inside the sealed pairing handshake. */
     hostName: string;
     /** Base URL the QR points the phone at (the mobile shell PWA, M2+). */
     appUrl: string;
@@ -24,9 +24,11 @@ export interface Config {
     /** One-time pairing-code lifetime in milliseconds. */
     codeTtlMs: number;
     /** Product Public Endpoint mode. Quick Tunnel is the zero-configuration default. */
-    endpointMode: 'quick' | 'custom';
+    endpointMode: 'quick' | 'custom' | 'relay';
     /** Operator-provisioned URL, required only in custom mode. */
     customEndpointUrl?: string;
+    /** Official or self-hosted opaque sealed-frame Relay WSS base. */
+    relayUrl?: string;
     /** Standalone Host Gateway is always loopback-bound. */
     gatewayBind: '127.0.0.1' | '::1' | 'localhost';
     /** Standalone Host Gateway listen port; 0 asks the OS. */

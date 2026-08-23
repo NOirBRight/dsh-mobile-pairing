@@ -12,6 +12,7 @@ test('schema fills defaults', () => {
   assert.equal(c.codeTtlMs, 300_000)
   assert.deepEqual(c.quickTunnelArgs, ['tunnel', '--url', '{gateway}', '--no-autoupdate'])
   assert.equal(c.advertiseUrl, undefined)
+  assert.ok(c.hostName.length > 0)
 })
 
 
@@ -33,6 +34,11 @@ test('schema rejects out-of-range values at load', () => {
   assert.throws(() => Config({ codeTtlMs: '5min' }))
 })
 
+test('Host Display Name is configurable and normalized independently of endpoints', () => {
+  assert.equal(resolveConfig(Config({ hostName: '  Noir Workstation  ' })).hostName, 'Noir Workstation')
+  assert.throws(() => resolveConfig(Config({ hostName: '   ' })), /hostName/)
+})
+
 test('resolveConfig derives store paths from dshHome', () => {
   const r = resolveConfig(Config({ dshHome: '/tmp/x-dsh-home' }))
   assert.equal(r.keyStorePath, '/tmp/x-dsh-home/mobile/daemon-keypair.json')
@@ -50,6 +56,8 @@ test('resolveConfig rejects malformed URLs (fail loud)', () => {
   assert.throws(() => resolveConfig(Config({ appUrl: 'ftp://x' })), /appUrl/)
   assert.throws(() => resolveConfig(Config({ endpointMode: 'custom' })), /customEndpointUrl/)
   assert.throws(() => resolveConfig(Config({ endpointMode: 'custom', customEndpointUrl: 'http://x' })), /HTTPS/)
+  assert.throws(() => resolveConfig(Config({ endpointMode: 'relay' })), /relayUrl/)
+  assert.throws(() => resolveConfig(Config({ endpointMode: 'relay', relayUrl: 'https://relay.example' })), /WSS/)
   assert.throws(() => resolveConfig(Config({ signalingUrl: 'https://x' })), /signalingUrl/)
   assert.throws(() => resolveConfig(Config({ stunUrls: ['turn:relay.example.com'] })), /STUN-only/)
   assert.throws(() => resolveConfig(Config({ codeTtlMs: 0 })), /codeTtlMs/)
@@ -58,6 +66,12 @@ test('resolveConfig rejects malformed URLs (fail loud)', () => {
 
 test('resolveConfig rejects an invalid Quick Tunnel endpoint pattern', () => {
   assert.throws(() => resolveConfig(Config({ quickTunnelEndpointPattern: '(' })), /quickTunnelEndpointPattern/)
+})
+
+test('resolveConfig accepts a credential-free WSS Relay endpoint', () => {
+  const r = resolveConfig(Config({ endpointMode: 'relay', relayUrl: 'wss://relay.example.com' }))
+  assert.equal(r.endpointMode, 'relay')
+  assert.equal(r.relayUrl, 'wss://relay.example.com')
 })
 
 test('resolveConfig accepts ws(s) advertiseUrl for relay mode', () => {

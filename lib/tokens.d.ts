@@ -33,6 +33,15 @@ export declare class DeviceTokenStore {
         id: string;
         token: string;
     };
+    /**
+     * Re-pair an existing Client Instance without creating a second device row.
+     * A deliberate scan with a new code rotates the bearer token on the same
+     * record and moves that record to the newly advertised room.
+     */
+    issueOrUpdate(label?: string, room?: string, claimantPublicKey?: string, clientType?: DeviceClientType): {
+        id: string;
+        token: string;
+    };
     /** @returns live (non-revoked) device count. */
     liveCount(): number;
     /** @returns whether any live (non-revoked) device is bound to the room. */
@@ -60,5 +69,7 @@ export declare class DeviceTokenStore {
     rename(id: string, label: string): boolean;
     /** @returns all devices (including revoked), with token hashes stripped. */
     list(): DeviceRecord[];
+    /** Collapse historical duplicate live rows created by older pairing flows. */
+    private mergeLiveClaimants;
     private save;
 }
