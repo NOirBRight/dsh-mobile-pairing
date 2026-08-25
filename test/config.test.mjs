@@ -1,7 +1,7 @@
 // Config schema + resolve step: defaults, derivation, and fail-loud rejection.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { Config, resolveConfig } from '../src/config.ts'
+import { Config, deviceHostName, resolveConfig } from '../src/config.ts'
 
 test('schema fills defaults', () => {
   const c = Config({})
@@ -12,7 +12,7 @@ test('schema fills defaults', () => {
   assert.equal(c.codeTtlMs, 300_000)
   assert.deepEqual(c.quickTunnelArgs, ['tunnel', '--url', '{gateway}', '--no-autoupdate'])
   assert.equal(c.advertiseUrl, undefined)
-  assert.ok(c.hostName.length > 0)
+  assert.equal(c.hostName, undefined)
 })
 
 
@@ -34,8 +34,16 @@ test('schema rejects out-of-range values at load', () => {
   assert.throws(() => Config({ codeTtlMs: '5min' }))
 })
 
+test('Host Display Name removes the login prefix from the device hostname', () => {
+  assert.equal(deviceHostName('noirbright-AM01S', 'noirbright'), 'AM01S')
+  assert.equal(deviceHostName('NoirBright_AM01S', 'noirbright'), 'AM01S')
+  assert.equal(deviceHostName('AM01S', 'noirbright'), 'AM01S')
+  assert.equal(deviceHostName('noirbright', 'noirbright'), 'noirbright')
+})
+
 test('Host Display Name is configurable and normalized independently of endpoints', () => {
   assert.equal(resolveConfig(Config({ hostName: '  Noir Workstation  ' })).hostName, 'Noir Workstation')
+  assert.match(resolveConfig(Config({ dshPort: 3082 })).hostName, /^3082 · /)
   assert.throws(() => resolveConfig(Config({ hostName: '   ' })), /hostName/)
 })
 

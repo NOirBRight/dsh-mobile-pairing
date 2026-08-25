@@ -1,8 +1,8 @@
 import z from '@deepseek-ai/schemastery';
 /** Plugin config as parsed from cordis.yml (defaults already applied). */
 export interface Config {
-    /** Human-facing Host Display Name returned inside the sealed pairing handshake. */
-    hostName: string;
+    /** Optional user-facing Host name; absent falls back to the DSH port plus system hostname. */
+    hostName?: string;
     /** Base URL the QR points the phone at (the mobile shell PWA, M2+). */
     appUrl: string;
     /** Advertised `addr` override; unset derives http://<first LAN IPv4>:<proxy port> per request. */
@@ -49,8 +49,11 @@ export interface Config {
     enableDirect: boolean;
 }
 export declare const Config: z<Config>;
+/** Keep the machine name while removing a login-name prefix such as user-AM01S. */
+export declare function deviceHostName(systemHostname: string, username: string): string;
 /** The config after the resolve step: every derivable field is concrete and checked. */
 export interface ResolvedConfig extends Config {
+    hostName: string;
     keyStorePath: string;
     tokenStorePath: string;
 }
