@@ -246,7 +246,7 @@ export function apply(ctx: Context, config: Config): void {
     void acquirer.refresh().then(
       (cookie) => {
         upstreamCookie = cookie
-        ctx.logger.warn('dsh-mobile-pairing: DSH loopback cookie acquired')
+        ctx.logger.info('dsh-mobile-pairing: DSH loopback cookie acquired')
       },
       (error: unknown) => { ctx.logger.warn('dsh-mobile-pairing: DSH cookie acquisition deferred: ' + String(error)) },
     ).catch(() => {})

@@ -15,7 +15,8 @@
  * one Client Instance key; retries from that key receive the same token while
  * every other key is rejected. A valid deviceToken reconnects only that same
  * Client Instance key: ack is { ok, hostName }. A stolen token presented by another key
- * is bad-token. Token reconnect does not move the device's room.
+ * is bad-token. Token reconnect moves the device to the connection's room
+ * (Quick Tunnel rotation / Endpoint refresh semantics).
  */
 import nacl from 'tweetnacl'
 import { compactDisplayName } from '@dsh-mobile/e2e-tunnel'

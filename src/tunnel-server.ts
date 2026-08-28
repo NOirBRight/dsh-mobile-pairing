@@ -34,8 +34,8 @@
  *    complete; any other method without body waits for http-data frames up to
  *    last:true. Responses mirror the rule: body inline when it fits one
  *    frame, else http-res without body followed by http-data chunks.
- *  - ws-msg to the loopback is always sent as a binary frame (the protocol
- *    carries no type flag; /api/events.* downlinks never read client data).
+ *  - ws-msg preserves the WebSocket text/binary bit in both directions;
+ *    alpha.1 /api/remote.mux requires client JSON as text frames.
  *  - Late ws-msg/ws-close naming an already-closed bridge id are dropped
  *    (normal close race); any other unknown id closes with 4400.
  *  - Close codes (the protocol mandates closing, not codes): 4400 malformed
@@ -351,8 +351,8 @@ function startHostSession(
       opened = true
       sendMsg({ t: 'ws-ack', id })
     })
-    upstream.on('message', (data: Buffer) => {
-      sendMsg({ t: 'ws-msg', id, data: data.toString('base64') })
+    upstream.on('message', (data: Buffer, isBinary: boolean) => {
+      sendMsg({ t: 'ws-msg', id, data: data.toString('base64'), binary: isBinary })
     })
     upstream.on('error', (error: Error) => {
       if (!opened) {
@@ -369,11 +369,12 @@ function startHostSession(
     })
   }
 
-  function onWsMsg(msg: { id?: unknown; data?: unknown }): void {
-    if (typeof msg.id !== 'string' || typeof msg.data !== 'string') return closeTransport(CLOSE_BAD_FRAME, 'bad ws-msg')
+  function onWsMsg(msg: { id?: unknown; data?: unknown; binary?: unknown }): void {
+    if (typeof msg.id !== 'string' || typeof msg.data !== 'string' || (msg.binary !== undefined && typeof msg.binary !== 'boolean')) return closeTransport(CLOSE_BAD_FRAME, 'bad ws-msg')
     const bridge = state.bridges.get(msg.id)
     if (bridge !== undefined) {
-      if (bridge.readyState === WebSocket.OPEN) bridge.send(Buffer.from(msg.data, 'base64'))
+      const data = Buffer.from(msg.data, 'base64')
+      if (bridge.readyState === WebSocket.OPEN) bridge.send(msg.binary === true ? data : data.toString('utf8'))
       return
     }
     if (state.closedBridges.has(msg.id)) return // late frame for a closed bridge: normal race

@@ -124,7 +124,7 @@ test('deviceToken handshake reconnects only the claiming Client Instance; revoke
   assert.equal(errorOf(hostHandshake(third.frame, roomDeps)), 'bad-token')
 })
 
-test('a code minted for room A cannot pair on room B; a token cannot reconnect on another room', () => {
+test('a code minted for room A cannot pair on room B; a token reconnects on another room and follows it', () => {
   const roomA = '1'.repeat(32)
   const roomB = '2'.repeat(32)
   const offer = offers.mintPublic({
@@ -136,7 +136,12 @@ test('a code minted for room A cannot pair on room B; a token cannot reconnect o
   const outcome = hostHandshake(paired.frame, { ...deps, room: roomA })
   assert.equal(outcome.ok, true)
   const token = openAck(outcome, first.clientKeys).deviceToken
-  assert.equal(errorOf(hostHandshake(makeClientFrame({ deviceToken: token }, first.clientKeys).frame, { ...deps, room: roomB })), 'bad-token')
+  // Quick Tunnel rotation / Endpoint refresh: the device token plus the
+  // claimant key already prove ownership, so reconnecting on a new room
+  // moves the device there instead of rejecting it as a new device.
+  const moved = hostHandshake(makeClientFrame({ deviceToken: token }, first.clientKeys).frame, { ...deps, room: roomB })
+  assert.equal(moved.ok, true)
+  assert.equal(store.authenticate(token)?.room, roomB)
 })
 
 test('a pairing hello at the live-device ceiling returns limit', () => {

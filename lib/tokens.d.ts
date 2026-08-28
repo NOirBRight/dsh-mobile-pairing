@@ -52,7 +52,10 @@ export declare class DeviceTokenStore {
      * Authenticate a presented token.
      * @param token - plaintext bearer/subprotocol token.
      * @param claimantPublicKey - when set, must match the Client Instance that claimed the token.
-     * @param room - when set, must match the device's bound room (legacy unbound devices are bound here).
+     * @param room - when set, the device follows the connection to this room
+     *   (legacy unbound devices are bound here). The token plus claimant key
+     *   already prove device ownership; a room change is a Quick Tunnel
+     *   rotation or an Endpoint refresh, never a new device.
      * @returns the device record, or null for unknown/revoked/mismatched tokens.
      */
     authenticate(token: string, claimantPublicKey?: string, room?: string): DeviceRecord | null;
