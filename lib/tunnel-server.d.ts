@@ -7,6 +7,12 @@ export interface TunnelEndpointOptions {
     upstreamHost: string;
     /** Upstream dsh web port. */
     upstreamPort: number;
+    /**
+     * DSH browser-session cookie (name=value) minted for the loopback
+     * authority, injected on every upstream request/WebSocket. alpha.1
+     * requires a cookie even on loopback; the phone never sees this value.
+     */
+    upstreamCookie?: string;
     /** Handshake inputs (keypair, offers, resume tokens). */
     handshake: HandshakeDeps;
     /** Optional status logger. */
@@ -20,6 +26,8 @@ export interface AuthenticatedTunnelOptions {
     upstreamHost: string;
     /** Upstream dsh web port. */
     upstreamPort: number;
+    /** DSH browser-session cookie (name=value) for the loopback authority. */
+    upstreamCookie?: string;
     /** Host X25519 secret key (keypair.secretKeyRaw) that seals/opens session frames. */
     hostSecretKey: Uint8Array;
     /** Optional status logger. */

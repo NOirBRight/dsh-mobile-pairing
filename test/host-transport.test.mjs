@@ -33,6 +33,7 @@ async function startUpstream() {
         host: req.headers.host,
         authorization: req.headers.authorization ?? null,
         'x-custom': req.headers['x-custom'] ?? null,
+        cookie: req.headers.cookie ?? null,
         body: Buffer.concat(chunks).toString('utf8'),
       }))
     })
@@ -140,7 +141,7 @@ function transportPair() {
 }
 
 /** Attach the host session to the host end; return the client-side session driver. */
-function attachInMemory(upstream) {
+function attachInMemory(upstream, extra = {}) {
   const hostKeys = nacl.box.keyPair()
   const clientKeys = nacl.box.keyPair()
   const { hostEnd, clientEnd } = transportPair()
@@ -152,6 +153,7 @@ function attachInMemory(upstream) {
     upstreamHost: '127.0.0.1',
     upstreamPort: upstream.port,
     hostSecretKey: hostKeys.secretKey,
+    upstreamCookie: extra.upstreamCookie,
     onSessionClose: () => { sessionCloseCount++ },
   })
   const codec = sessionCodec(clientKeys, hostKeys.publicKey)
@@ -192,6 +194,63 @@ test('a sealed HTTP GET flows through an authenticated in-memory transport (no h
   assert.equal(echo.host, '127.0.0.1:' + upstream.port, 'Host rewritten to the loopback authority')
   assert.equal(echo.authorization, null, 'credential headers never cross onto the loopback request')
   assert.equal(echo['x-custom'], 'kept')
+})
+
+test('injects the DSH cookie on upstream requests when configured', async (t) => {
+  const upstream = await startUpstream()
+  t.after(() => upstream.server.close())
+  const { gate, codec, inbox, clientEnd } = attachInMemory(upstream, { upstreamCookie: 'dsh-auth-test=abc123' })
+  t.after(() => gate.close())
+
+  clientEnd.send(codec.seal({
+    t: 'http-req',
+    id: 'c1',
+    method: 'GET',
+    path: '/api/ping',
+    headers: {},
+  }))
+  const res = await inbox.waitFor((m) => m.t === 'http-res' && m.id === 'c1')
+  assert.equal(res.status, 200)
+  const echo = JSON.parse(Buffer.from(res.body, 'base64').toString('utf8'))
+  assert.equal(echo.cookie, 'dsh-auth-test=abc123', 'host cookie injected')
+})
+
+test('strips a client-sent cookie so only the DSH loopback cookie crosses', async (t) => {
+  const upstream = await startUpstream()
+  t.after(() => upstream.server.close())
+  const { gate, codec, inbox, clientEnd } = attachInMemory(upstream, { upstreamCookie: 'dsh-auth-test=abc123' })
+  t.after(() => gate.close())
+
+  clientEnd.send(codec.seal({
+    t: 'http-req',
+    id: 'c2',
+    method: 'GET',
+    path: '/api/ping',
+    headers: { cookie: 'phone-token=xyz' },
+  }))
+  const res = await inbox.waitFor((m) => m.t === 'http-res' && m.id === 'c2')
+  assert.equal(res.status, 200)
+  const echo = JSON.parse(Buffer.from(res.body, 'base64').toString('utf8'))
+  assert.equal(echo.cookie, 'dsh-auth-test=abc123', 'client cookie replaced by host cookie')
+})
+
+test('without upstreamCookie no cookie crosses', async (t) => {
+  const upstream = await startUpstream()
+  t.after(() => upstream.server.close())
+  const { gate, codec, inbox, clientEnd } = attachInMemory(upstream)
+  t.after(() => gate.close())
+
+  clientEnd.send(codec.seal({
+    t: 'http-req',
+    id: 'c3',
+    method: 'GET',
+    path: '/api/ping',
+    headers: { cookie: 'phone-token=xyz' },
+  }))
+  const res = await inbox.waitFor((m) => m.t === 'http-res' && m.id === 'c3')
+  assert.equal(res.status, 200)
+  const echo = JSON.parse(Buffer.from(res.body, 'base64').toString('utf8'))
+  assert.equal(echo.cookie, null, 'phone cookie stripped, no host cookie injected')
 })
 
 test('authenticated sessions cannot reach Host pairing administration paths', async (t) => {

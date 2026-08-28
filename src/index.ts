@@ -14,6 +14,7 @@ import { loadOrCreateKeypair } from './keys.ts'
 import { DeviceTokenStore } from './tokens.ts'
 import { PairingOfferManager, buildCompactPublicOfferUrl, buildOfferUrl } from './pairing.ts'
 import { attachHandshakeTransport, attachRelaySocket } from './tunnel-server.ts'
+import { createDshCookieAcquirer } from './dsh-cookie.ts'
 import { createRelayConnector } from './relay-connector.ts'
 import { attachDirectSignaling } from './direct-signaling.ts'
 import { WeriftDataChannelTransport } from './webrtc-transport.ts'
@@ -22,6 +23,15 @@ import { QuickTunnelController, type QuickTunnelStatus } from './quick-tunnel.ts
 import { validateCustomEndpoint, validateRelayEndpoint, createNodeCustomEndpointAdapters } from './public-endpoint.ts'
 import { applyPublicEndpointSelection, loadPublicEndpointOverlay, parseEndpointSelection, savePublicEndpointOverlay } from './endpoint-settings.ts'
 import { renderPairingSettingsPage } from './settings-page.ts'
+
+declare module '@deepseek-ai/cordis' {
+  interface Context {
+    /** Host Connection transport (alpha.1); present in the web profile. */
+    connection?: {
+      authenticatedUrl(baseUrl: string): string
+    }
+  }
+}
 
 export const name = 'dsh-mobile-pairing'
 export const inject = ['webServer', 'settings']
@@ -69,7 +79,18 @@ export function apply(ctx: Context, config: Config): void {
   let endpointError: string | null = null
   let localGateway: string | null = null
   const relayCampaigns = new Map<string, { relayUrl: string; connector: ReturnType<typeof createRelayConnector> }>()
-  function tunnelOptions(room: string) { return { upstreamHost: resolved.dshHost, upstreamPort: resolved.dshPort, handshake: { keypair, offers, devices: store, room, hostName: displayName }, logger: (message: string) => ctx.logger.info('dsh-mobile-pairing: ' + message) } }
+  // alpha.1 requires the loopback browser-session cookie on every upstream
+  // request/WebSocket; acquired via the Connection launch token.
+  let upstreamCookie: string | undefined = undefined
+  function tunnelOptions(room: string) {
+    return {
+      upstreamHost: resolved.dshHost,
+      upstreamPort: resolved.dshPort,
+      upstreamCookie,
+      handshake: { keypair, offers, devices: store, room, hostName: displayName },
+      logger: (message: string) => ctx.logger.info('dsh-mobile-pairing: ' + message),
+    }
+  }
   function ensureRelayRoom(room: string, code: string): void {
     if (live.mode !== 'relay' || live.relayUrl === undefined) return
     const previous = relayCampaigns.get(room)
@@ -204,6 +225,33 @@ export function apply(ctx: Context, config: Config): void {
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/devices', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { devices: store.list() }) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/revoke', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const id = (body as Record<string, unknown>).id; const room = typeof id === 'string' ? store.list().find(device => device.id === id)?.room : undefined; const revoked = typeof id === 'string' && store.revoke(id); if (revoked && room !== undefined) { relayCampaigns.get(room)?.connector.close(); relayCampaigns.delete(room) } json(res, revoked ? 200 : 404, { ok: revoked }) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/label', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const record = body as Record<string, unknown>; const renamed = typeof record.id === 'string' && typeof record.label === 'string' && store.rename(record.id, record.label); json(res, renamed ? 200 : 404, { ok: renamed }) } }))
+
+  // alpha.1: mint the loopback browser-session cookie once the Connection
+  // service is ready; tunnel sessions reuse it for every upstream hop.
+  let launchUrl: (() => string | undefined) | undefined = undefined
+  const acquirer = createDshCookieAcquirer(
+    () => launchUrl?.(),
+    resolved.dshHost + ':' + String(resolved.dshPort),
+  )
+  ctx.inject(['connection'], (connectionCtx) => {
+    const connection = connectionCtx.connection as {
+      authenticatedUrl(baseUrl: string): string
+    }
+    if (connection === undefined || typeof connection.authenticatedUrl !== 'function') {
+      ctx.logger.warn('dsh-mobile-pairing: connection service unavailable; upstream cookie disabled')
+      return
+    }
+    const baseUrl = 'http://' + resolved.dshHost + ':' + String(resolved.dshPort) + '/'
+    launchUrl = () => connection.authenticatedUrl(baseUrl)
+    void acquirer.refresh().then(
+      (cookie) => {
+        upstreamCookie = cookie
+        ctx.logger.warn('dsh-mobile-pairing: DSH loopback cookie acquired')
+      },
+      (error: unknown) => { ctx.logger.warn('dsh-mobile-pairing: DSH cookie acquisition deferred: ' + String(error)) },
+    ).catch(() => {})
+    return () => {}
+  })
 }
 async function handleLocalPair(req: IncomingMessage, res: ServerResponse, endpoint: GatewayEndpoint | null, pubkey: string, appUrl: string, hostName: string, stunUrls: string[], offers: PairingOfferManager, store: Pick<DeviceTokenStore, 'hasLiveForRoom'>, gateway: { authorizeRoom(room: string, expiresAtMs?: number): void }, ensureRelayRoom: (room: string, code: string) => void): Promise<void> {
   if (req.method !== 'GET') return methodNotAllowed(res)

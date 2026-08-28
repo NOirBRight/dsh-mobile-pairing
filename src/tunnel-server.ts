@@ -97,6 +97,12 @@ export interface TunnelEndpointOptions {
   upstreamHost: string
   /** Upstream dsh web port. */
   upstreamPort: number
+  /**
+   * DSH browser-session cookie (name=value) minted for the loopback
+   * authority, injected on every upstream request/WebSocket. alpha.1
+   * requires a cookie even on loopback; the phone never sees this value.
+   */
+  upstreamCookie?: string
   /** Handshake inputs (keypair, offers, resume tokens). */
   handshake: HandshakeDeps
   /** Optional status logger. */
@@ -111,6 +117,8 @@ export interface AuthenticatedTunnelOptions {
   upstreamHost: string
   /** Upstream dsh web port. */
   upstreamPort: number
+  /** DSH browser-session cookie (name=value) for the loopback authority. */
+  upstreamCookie?: string
   /** Host X25519 secret key (keypair.secretKeyRaw) that seals/opens session frames. */
   hostSecretKey: Uint8Array
   /** Optional status logger. */
@@ -166,7 +174,7 @@ const decoder = new TextDecoder()
 function startHostSession(
   transport: HostFrameTransport,
   peerPub: Uint8Array,
-  options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array },
+  options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array; upstreamCookie?: string },
 ): HostTunnelSession {
   const { ownSec } = options
   const authority = options.upstreamHost + ':' + options.upstreamPort
@@ -257,9 +265,11 @@ function startHostSession(
     const headers: Record<string, string | string[]> = {}
     for (const [key, value] of Object.entries(pending.headers)) {
       if (STRIPPED_REQUEST_HEADERS.has(key.toLowerCase())) continue
+      if (key.toLowerCase() === 'cookie') continue // phone cookie is not the DSH loopback cookie
       headers[key] = value
     }
     headers.host = authority
+    if (options.upstreamCookie !== undefined) headers.cookie = options.upstreamCookie
     const upstreamReq = request(
       { host: options.upstreamHost, port: options.upstreamPort, method: pending.method, path: pending.path, headers, timeout: 60_000, agent: false },
       (upstreamRes) => collectResponse(id, upstreamRes),
@@ -332,7 +342,9 @@ function startHostSession(
       sendMsg({ t: 'ws-err', id, message: 'not found' })
       return
     }
-    const upstream = new WebSocket('ws://' + authority + target.path)
+    const upstream = new WebSocket('ws://' + authority + target.path, {
+      headers: options.upstreamCookie === undefined ? undefined : { cookie: options.upstreamCookie },
+    })
     let opened = false
     state.bridges.set(id, upstream)
     upstream.on('open', () => {
@@ -453,6 +465,7 @@ export function attachAuthenticatedTransport(
     upstreamHost: options.upstreamHost,
     upstreamPort: options.upstreamPort,
     ownSec: options.hostSecretKey,
+    upstreamCookie: options.upstreamCookie,
   })
   log('tunnel session established on authenticated transport')
 
@@ -496,6 +509,7 @@ export function attachHandshakeTransport(
       upstreamHost: options.upstreamHost,
       upstreamPort: options.upstreamPort,
       ownSec: options.handshake.keypair.secretKeyRaw,
+      upstreamCookie: options.upstreamCookie,
     })
     transport.send(ackFrame)
     log(resumed ? 'tunnel session resumed via re-handshake' : 'tunnel session established')
