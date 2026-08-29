@@ -21,6 +21,8 @@ export interface TunnelEndpointOptions {
     onSessionClose?: () => void;
     /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
     onUnauthorized?: () => void;
+    /** Wait for a loopback cookie before opening alpha.1 /api/remote.mux. */
+    waitCookie?: () => Promise<string | undefined>;
 }
 /** Everything attachAuthenticatedTransport needs beyond the carrier and peer key. */
 export interface AuthenticatedTunnelOptions {
@@ -38,6 +40,7 @@ export interface AuthenticatedTunnelOptions {
     onSessionClose?: () => void;
     /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
     onUnauthorized?: () => void;
+    waitCookie?: () => Promise<string | undefined>;
 }
 /** A live gate (pre-handshake) or session (post-handshake) on one carrier. */
 export interface RelaySocketGate {

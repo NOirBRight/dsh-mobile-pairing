@@ -112,6 +112,7 @@ export function apply(ctx: Context, config: Config): void {
       handshake: { keypair, offers, devices: store, room, hostName: displayName, onRoomFollow: followDeviceRoom },
       logger: (message: string) => ctx.logger.info('dsh-mobile-pairing: ' + message),
       onUnauthorized: refreshCookie,
+      waitCookie: () => acquirer.refresh().catch(() => undefined),
     }
   }
   function ensureRelayRoom(room: string, code: string): void {

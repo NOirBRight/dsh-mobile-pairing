@@ -38,8 +38,11 @@ async function startUpstream() {
       }))
     })
   })
+  const wsCookies = []
+  const wss = new WebSocketServer({ server })
+  wss.on('connection', (_socket, req) => { wsCookies.push(req.headers.cookie ?? null) })
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve))
-  return { server, port: server.address().port }
+  return { server, wss, wsCookies, port: server.address().port }
 }
 
 /** Sealed session message codec for one client keypair against the host key. */
@@ -154,6 +157,7 @@ function attachInMemory(upstream, extra = {}) {
     upstreamPort: upstream.port,
     hostSecretKey: hostKeys.secretKey,
     upstreamCookie: extra.upstreamCookie,
+    waitCookie: extra.waitCookie,
     onSessionClose: () => { sessionCloseCount++ },
   })
   const codec = sessionCodec(clientKeys, hostKeys.publicKey)
@@ -339,6 +343,27 @@ test('a large upstream response is gzip-compressed through the seam', async (t) 
   const body = gunzipSync(compressed)
   assert.equal(body.length, LARGE_BYTES)
   assert.ok(body.equals(Buffer.alloc(LARGE_BYTES, 0x61)))
+})
+
+test('waits for the DSH cookie before opening remote.mux', async (t) => {
+  const upstream = await startUpstream()
+  t.after(() => upstream.server.close())
+  let cookie
+  let release
+  const waitCookie = () => new Promise((resolve) => { release = resolve })
+  const { gate, codec, inbox, clientEnd } = attachInMemory(upstream, {
+    upstreamCookie: () => cookie,
+    waitCookie,
+  })
+  t.after(() => gate.close())
+
+  clientEnd.send(codec.seal({ t: 'ws-open', id: 'w1', path: '/api/remote.mux' }))
+  await new Promise((resolve) => setImmediate(resolve))
+  assert.deepEqual(upstream.wsCookies, [], 'loopback WS is not opened before cookie acquisition settles')
+  cookie = 'dsh-auth-test=ready'
+  release(cookie)
+  await inbox.waitFor((m) => m.t === 'ws-ack' && m.id === 'w1')
+  assert.deepEqual(upstream.wsCookies, [cookie])
 })
 
 test('an unsealable frame on an authenticated transport closes 4400 (no handshake fallback)', async (t) => {

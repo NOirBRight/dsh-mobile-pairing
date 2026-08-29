@@ -111,6 +111,8 @@ export interface TunnelEndpointOptions {
   onSessionClose?: () => void
   /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
   onUnauthorized?: () => void
+  /** Wait for a loopback cookie before opening alpha.1 /api/remote.mux. */
+  waitCookie?: () => Promise<string | undefined>
 }
 
 /** Everything attachAuthenticatedTransport needs beyond the carrier and peer key. */
@@ -129,6 +131,7 @@ export interface AuthenticatedTunnelOptions {
   onSessionClose?: () => void
   /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
   onUnauthorized?: () => void
+  waitCookie?: () => Promise<string | undefined>
 }
 
 /** A live gate (pre-handshake) or session (post-handshake) on one carrier. */
@@ -178,7 +181,7 @@ const decoder = new TextDecoder()
 function startHostSession(
   transport: HostFrameTransport,
   peerPub: Uint8Array,
-  options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array; upstreamCookie?: string | (() => string | undefined); onUnauthorized?: () => void },
+  options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array; upstreamCookie?: string | (() => string | undefined); onUnauthorized?: () => void; waitCookie?: () => Promise<string | undefined> },
 ): HostTunnelSession {
   const { ownSec } = options
   const authority = options.upstreamHost + ':' + options.upstreamPort
@@ -208,6 +211,17 @@ function startHostSession(
     frame.set(nonce, 0)
     frame.set(boxed, nacl.box.nonceLength)
     transport.send(frame)
+  }
+
+  function asBuffer(data: Buffer | ArrayBuffer | Buffer[] | string): Buffer {
+    if (Buffer.isBuffer(data)) return data
+    if (typeof data === 'string') return Buffer.from(data, 'utf8')
+    if (Array.isArray(data)) return Buffer.concat(data)
+    return Buffer.from(new Uint8Array(data))
+  }
+
+  function sendWsPayload(id: string, data: Buffer, binary: boolean): void {
+    sendMsg({ t: 'ws-msg', id, data: data.toString('base64'), binary })
   }
 
   function closeTransport(code: number, reason: string): void {
@@ -353,17 +367,18 @@ function startHostSession(
       sendMsg({ t: 'ws-err', id, message: 'not found' })
       return
     }
-    const upstream = new WebSocket('ws://' + authority + target.path, {
-      headers: currentCookie() === undefined ? undefined : { cookie: currentCookie() },
-    })
     let opened = false
+    const start = (cookie: string | undefined): void => {
+    const upstream = new WebSocket('ws://' + authority + target.path, {
+      headers: cookie === undefined ? undefined : { cookie },
+    })
     state.bridges.set(id, upstream)
     upstream.on('open', () => {
       opened = true
       sendMsg({ t: 'ws-ack', id })
     })
-    upstream.on('message', (data: Buffer, isBinary: boolean) => {
-      sendMsg({ t: 'ws-msg', id, data: data.toString('base64'), binary: isBinary })
+    upstream.on('message', (data: Buffer | ArrayBuffer | Buffer[] | string, isBinary: boolean) => {
+      sendWsPayload(id, asBuffer(data), isBinary)
     })
     upstream.on('error', (error: Error) => {
       if (!opened) {
@@ -378,6 +393,16 @@ function startHostSession(
       state.closedBridges.add(id)
       sendMsg({ t: 'ws-close', id, code, reason: reason.toString() })
     })
+    }
+    const cookie = currentCookie()
+    if (cookie !== undefined || options.waitCookie === undefined) {
+      start(cookie)
+      return
+    }
+    void options.waitCookie().then(
+      (next) => { if (active && !state.closedBridges.has(id)) start(next ?? currentCookie()) },
+      () => { if (active && !state.closedBridges.has(id)) start(currentCookie()) },
+    )
   }
 
   function onWsMsg(msg: { id?: unknown; data?: unknown; binary?: unknown }): void {
@@ -479,6 +504,7 @@ export function attachAuthenticatedTransport(
     ownSec: options.hostSecretKey,
     upstreamCookie: options.upstreamCookie,
     onUnauthorized: options.onUnauthorized,
+    waitCookie: options.waitCookie,
   })
   log('tunnel session established on authenticated transport')
 
@@ -524,6 +550,7 @@ export function attachHandshakeTransport(
       ownSec: options.handshake.keypair.secretKeyRaw,
       upstreamCookie: options.upstreamCookie,
       onUnauthorized: options.onUnauthorized,
+    waitCookie: options.waitCookie,
     })
     transport.send(ackFrame)
     log(resumed ? 'tunnel session resumed via re-handshake' : 'tunnel session established')
