@@ -10,7 +10,7 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 4. Automatic 立刻走加密 Tunnel；同网 Direct 只在短宽限内可以抢赢，迟到的 Direct 不得抢走已打开的 Tunnel。
 5. 首配签发的 Device Token 持续有效，直到 Host 侧撤销。
 
-没有 TURN、运行时 CDN 或维护者域名依赖。Tunnel Fallback 可以走用户自己的 Host Public Endpoint，也可以显式选择官方或自托管的加密 Relay。Relay 只转发密文帧。
+没有 TURN、运行时 CDN 或维护者域名依赖。Tunnel Fallback 可以走用户自己的 Host Public Endpoint，也可以显式选择官方或自托管的加密 Relay。Relay 只转发密文消息；超过旧单帧上限的 sealed frame 由 Client/Host transport 透明分片和重组。
 
 ## 在 GUI 中配对
 
@@ -26,7 +26,7 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 正式版安装：
 
 ~~~sh
-pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.6
+pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.11
 ~~~
 
 然后把 `@dsh-mobile/pairing` 加入 profile 的 `dsh.profile.bundles`。包内的 `cordis.patch.yml` 会插入 Remote loader；默认配置面向日常 `:3080`：

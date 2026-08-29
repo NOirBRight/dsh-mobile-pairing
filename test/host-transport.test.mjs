@@ -10,6 +10,8 @@ import { gunzipSync } from 'node:zlib'
 import { WebSocketServer, WebSocket } from 'ws'
 import nacl from 'tweetnacl'
 import { attachAuthenticatedTransport, attachHandshakeTransport, attachRelaySocket } from '../src/tunnel-server.ts'
+import { WsRelayTransport } from '../src/host-transport.ts'
+import { fragmentRelayFrame, RelayFrameReassembler, MAX_RELAY_MESSAGE_BYTES } from '@dsh-mobile/e2e-tunnel'
 
 const LARGE_BYTES = 200 * 1024 // > BODY_CHUNK_BYTES (96 KiB) so responses chunk
 
@@ -103,6 +105,40 @@ function createInbox() {
     },
   }
 }
+
+class FakeRelaySocket {
+  constructor() {
+    this.handlers = { message: [], close: [], error: [] }
+    this.sent = []
+    this.closed = false
+  }
+  on(type, cb) { this.handlers[type].push(cb) }
+  send(frame) { this.sent.push(new Uint8Array(frame).slice()) }
+  close() { this.closed = true; for (const cb of this.handlers.close) cb() }
+  deliver(frame) { for (const cb of this.handlers.message) cb(Buffer.from(frame), true) }
+}
+
+test('Relay host transport fragments and reassembles multi-megabyte sealed frames', () => {
+  const socket = new FakeRelaySocket()
+  const transport = new WsRelayTransport(socket)
+  const big = new Uint8Array(2 * 1024 * 1024 - 123)
+  for (let index = 0; index < big.length; index++) big[index] = (index * 29 + 7) & 0xff
+
+  transport.send(big)
+
+  assert.ok(socket.sent.length > 1)
+  for (const message of socket.sent) assert.ok(message.length <= MAX_RELAY_MESSAGE_BYTES)
+  const clientReassembler = new RelayFrameReassembler()
+  let fromHost = null
+  for (const message of socket.sent) fromHost = clientReassembler.push(message) ?? fromHost
+  assert.deepEqual(fromHost, big)
+
+  const received = []
+  transport.onFrame(frame => received.push(frame))
+  for (const message of fragmentRelayFrame(big, 19)) socket.deliver(message)
+  assert.equal(received.length, 1)
+  assert.deepEqual(received[0], big)
+})
 
 // ── in-memory transport pair (the new seam, no sockets at all) ─────────────
 

@@ -18,11 +18,12 @@
  *    close codes (RTCDataChannel) ignore them.
  *
  * Adapters: WsRelayTransport (relay room WebSocket, the M3 path; constructed
- * by attachRelaySocket). A direct WebRTC DataChannel needs no host-side
- * adapter here: the channel is attached through attachAuthenticatedTransport
- * with any object satisfying HostFrameTransport — fragmentation/chunking of
- * large frames on that carrier is deliberately NOT defined yet.
+ * by attachRelaySocket). It shares the Client codec so large sealed frames
+ * cross the Relay as bounded messages and reassemble behind this interface.
+ * A direct WebRTC DataChannel is attached through attachAuthenticatedTransport
+ * with any object satisfying HostFrameTransport.
  */
+import { fragmentRelayFrame, RelayFrameReassembler } from '@dsh-mobile/e2e-tunnel'
 import type WebSocket from 'ws'
 
 /** The frame pipe a host tunnel session (or relay gate) rides. See the module header for the contract. */
@@ -38,18 +39,35 @@ export class WsRelayTransport implements HostFrameTransport {
   private frameHandler: ((frame: Uint8Array | string) => void) | null = null
   private closeHandler: (() => void) | null = null
   private readonly socket: WebSocket
+  private readonly reassembler = new RelayFrameReassembler()
+  private nextFrameId = 0
 
   constructor(socket: WebSocket) {
     this.socket = socket
     socket.on('message', (data: Buffer, isBinary: boolean) => {
-      this.frameHandler?.(isBinary ? new Uint8Array(data) : data.toString('utf8'))
+      if (!isBinary) {
+        this.frameHandler?.(data.toString('utf8'))
+        return
+      }
+      try {
+        const frame = this.reassembler.push(new Uint8Array(data))
+        if (frame !== null) this.frameHandler?.(frame)
+      } catch {
+        this.close(1008, 'bad Relay fragment')
+      }
     })
     socket.on('close', () => this.closeHandler?.())
     socket.on('error', () => {}) // close always follows; the close handler owns the bookkeeping
   }
 
   send(frame: Uint8Array | string): void {
-    this.socket.send(frame)
+    if (typeof frame === 'string') {
+      this.socket.send(frame)
+      return
+    }
+    const messages = fragmentRelayFrame(frame, this.nextFrameId)
+    if (messages.length > 1) this.nextFrameId = (this.nextFrameId + 1) & 0xffff
+    for (const message of messages) this.socket.send(message)
   }
 
   onFrame(cb: (frame: Uint8Array | string) => void): void {
