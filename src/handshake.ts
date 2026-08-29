@@ -36,6 +36,8 @@ export interface HandshakeDeps {
   hostName?: string
   /** Room of the relay campaign this handshake arrived on; bound to newly issued device records. */
   room?: string
+  /** Device Token reconnect followed a rotated room; close the previous campaign. */
+  onRoomFollow?: (previousRoom: string | undefined, room: string) => void
 }
 
 /** Handshake result: on success the sealed ack frame to send; on failure the plaintext error frame. */
@@ -91,7 +93,7 @@ export function hostHandshake(frame: Uint8Array, deps: HandshakeDeps): Handshake
     }
   } else if (typeof hello.deviceToken === 'string') {
     const claimant = Buffer.from(peerPub).toString('base64url')
-    const device = deps.devices.authenticate(hello.deviceToken, claimant, deps.room)
+    const device = deps.devices.authenticate(hello.deviceToken, claimant, deps.room, deps.onRoomFollow)
     if (device === null) return fail('bad-token')
     const label = sanitizeDeviceLabel(hello.label)
     if (label !== undefined) deps.devices.rename(device.id, label)

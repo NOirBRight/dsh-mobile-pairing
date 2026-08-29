@@ -12,13 +12,15 @@ export interface TunnelEndpointOptions {
      * authority, injected on every upstream request/WebSocket. alpha.1
      * requires a cookie even on loopback; the phone never sees this value.
      */
-    upstreamCookie?: string;
+    upstreamCookie?: string | (() => string | undefined);
     /** Handshake inputs (keypair, offers, resume tokens). */
     handshake: HandshakeDeps;
     /** Optional status logger. */
     logger?: (msg: string) => void;
     /** Called once when the socket (and its session) has fully closed. */
     onSessionClose?: () => void;
+    /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
+    onUnauthorized?: () => void;
 }
 /** Everything attachAuthenticatedTransport needs beyond the carrier and peer key. */
 export interface AuthenticatedTunnelOptions {
@@ -27,13 +29,15 @@ export interface AuthenticatedTunnelOptions {
     /** Upstream dsh web port. */
     upstreamPort: number;
     /** DSH browser-session cookie (name=value) for the loopback authority. */
-    upstreamCookie?: string;
+    upstreamCookie?: string | (() => string | undefined);
     /** Host X25519 secret key (keypair.secretKeyRaw) that seals/opens session frames. */
     hostSecretKey: Uint8Array;
     /** Optional status logger. */
     logger?: (msg: string) => void;
     /** Called once when the transport (and its session) has fully closed. */
     onSessionClose?: () => void;
+    /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
+    onUnauthorized?: () => void;
 }
 /** A live gate (pre-handshake) or session (post-handshake) on one carrier. */
 export interface RelaySocketGate {

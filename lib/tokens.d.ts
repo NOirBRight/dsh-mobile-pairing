@@ -58,7 +58,7 @@ export declare class DeviceTokenStore {
      *   rotation or an Endpoint refresh, never a new device.
      * @returns the device record, or null for unknown/revoked/mismatched tokens.
      */
-    authenticate(token: string, claimantPublicKey?: string, room?: string): DeviceRecord | null;
+    authenticate(token: string, claimantPublicKey?: string, room?: string, onRoomFollow?: (previousRoom: string | undefined, room: string) => void): DeviceRecord | null;
     /**
      * Revoke a device by id.
      * @param id - record id from {@link list}.

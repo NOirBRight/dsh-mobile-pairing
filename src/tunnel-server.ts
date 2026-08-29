@@ -17,7 +17,7 @@
  * Demultiplexing: http-req issues a real request to the loopback dsh web
  * server (Host rewritten to the loopback authority, so the upstream /api
  * trust fence passes); ws-open builds a loopback WebSocket (e.g.
- * /api/events.mux) bridged both ways. Loopback WS needs no subprotocol —
+ * /api/remote.mux) bridged both ways. Loopback WS needs no subprotocol —
  * direct connection (M1's subprotocol dance belongs to the LAN proxy, not
  * the tunnel).
  *
@@ -102,13 +102,15 @@ export interface TunnelEndpointOptions {
    * authority, injected on every upstream request/WebSocket. alpha.1
    * requires a cookie even on loopback; the phone never sees this value.
    */
-  upstreamCookie?: string
+  upstreamCookie?: string | (() => string | undefined)
   /** Handshake inputs (keypair, offers, resume tokens). */
   handshake: HandshakeDeps
   /** Optional status logger. */
   logger?: (msg: string) => void
   /** Called once when the socket (and its session) has fully closed. */
   onSessionClose?: () => void
+  /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
+  onUnauthorized?: () => void
 }
 
 /** Everything attachAuthenticatedTransport needs beyond the carrier and peer key. */
@@ -118,13 +120,15 @@ export interface AuthenticatedTunnelOptions {
   /** Upstream dsh web port. */
   upstreamPort: number
   /** DSH browser-session cookie (name=value) for the loopback authority. */
-  upstreamCookie?: string
+  upstreamCookie?: string | (() => string | undefined)
   /** Host X25519 secret key (keypair.secretKeyRaw) that seals/opens session frames. */
   hostSecretKey: Uint8Array
   /** Optional status logger. */
   logger?: (msg: string) => void
   /** Called once when the transport (and its session) has fully closed. */
   onSessionClose?: () => void
+  /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
+  onUnauthorized?: () => void
 }
 
 /** A live gate (pre-handshake) or session (post-handshake) on one carrier. */
@@ -174,7 +178,7 @@ const decoder = new TextDecoder()
 function startHostSession(
   transport: HostFrameTransport,
   peerPub: Uint8Array,
-  options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array; upstreamCookie?: string },
+  options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array; upstreamCookie?: string | (() => string | undefined); onUnauthorized?: () => void },
 ): HostTunnelSession {
   const { ownSec } = options
   const authority = options.upstreamHost + ':' + options.upstreamPort
@@ -190,6 +194,11 @@ function startHostSession(
   let active = true
 
   /** Seal and send one session message, stamping the outgoing seq. No-op once torn down. */
+  function currentCookie(): string | undefined {
+    const value = options.upstreamCookie
+    return typeof value === 'function' ? value() : value
+  }
+
   function sendMsg(msg: Record<string, unknown>): void {
     if (!active) return
     const plaintext = encoder.encode(JSON.stringify({ ...msg, seq: state.outSeq++ }))
@@ -269,7 +278,8 @@ function startHostSession(
       headers[key] = value
     }
     headers.host = authority
-    if (options.upstreamCookie !== undefined) headers.cookie = options.upstreamCookie
+    const cookie = currentCookie()
+    if (cookie !== undefined) headers.cookie = cookie
     const upstreamReq = request(
       { host: options.upstreamHost, port: options.upstreamPort, method: pending.method, path: pending.path, headers, timeout: 60_000, agent: false },
       (upstreamRes) => collectResponse(id, upstreamRes),
@@ -303,6 +313,7 @@ function startHostSession(
     })
     res.on('end', () => {
       if (overflow) return
+      if ((res.statusCode ?? 0) === 401) options.onUnauthorized?.()
       const headers: Record<string, string | string[]> = {}
       for (const [key, value] of Object.entries(res.headers)) {
         if (value === undefined || STRIPPED_RESPONSE_HEADERS.has(key)) continue
@@ -343,7 +354,7 @@ function startHostSession(
       return
     }
     const upstream = new WebSocket('ws://' + authority + target.path, {
-      headers: options.upstreamCookie === undefined ? undefined : { cookie: options.upstreamCookie },
+      headers: currentCookie() === undefined ? undefined : { cookie: currentCookie() },
     })
     let opened = false
     state.bridges.set(id, upstream)
@@ -467,6 +478,7 @@ export function attachAuthenticatedTransport(
     upstreamPort: options.upstreamPort,
     ownSec: options.hostSecretKey,
     upstreamCookie: options.upstreamCookie,
+    onUnauthorized: options.onUnauthorized,
   })
   log('tunnel session established on authenticated transport')
 
@@ -511,6 +523,7 @@ export function attachHandshakeTransport(
       upstreamPort: options.upstreamPort,
       ownSec: options.handshake.keypair.secretKeyRaw,
       upstreamCookie: options.upstreamCookie,
+      onUnauthorized: options.onUnauthorized,
     })
     transport.send(ackFrame)
     log(resumed ? 'tunnel session resumed via re-handshake' : 'tunnel session established')

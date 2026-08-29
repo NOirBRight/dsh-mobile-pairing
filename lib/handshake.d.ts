@@ -12,6 +12,8 @@ export interface HandshakeDeps {
     hostName?: string;
     /** Room of the relay campaign this handshake arrived on; bound to newly issued device records. */
     room?: string;
+    /** Device Token reconnect followed a rotated room; close the previous campaign. */
+    onRoomFollow?: (previousRoom: string | undefined, room: string) => void;
 }
 /** Handshake result: on success the sealed ack frame to send; on failure the plaintext error frame. */
 export type HandshakeOutcome = {

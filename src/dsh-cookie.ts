@@ -2,11 +2,14 @@
  * DSH browser-session cookie acquisition for the pairing tunnel.
  *
  * alpha.1 requires a signed browser cookie (authority-bound) even on loopback.
- * The phone never sees this value: the plugin mints it once per Host process
- * via the Connection service's launch-token URL, then injects it on every
- * upstream request/WebSocket (see tunnel-server.ts upstreamCookie).
+ * The phone never sees this value: the plugin mints it via the Connection
+ * service's launch-token URL, then injects it on every upstream request /
+ * WebSocket. See docs/seam-gap.md for the Connection.authenticatedUrl seam.
  */
 import { request } from 'node:http'
+
+/** DSH mints a 30-day host-only cookie; refresh before that window elapses. */
+export const DSH_COOKIE_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000
 
 export interface DshCookieAcquirer {
   /** Current cookie header value (name=value), or undefined before first success. */
@@ -15,55 +18,82 @@ export interface DshCookieAcquirer {
   refresh(): Promise<string>
 }
 
+export function parseLoopbackAuthority(authority: string): { host: string; port: number } {
+  const colon = authority.lastIndexOf(':')
+  if (colon <= 0) return { host: authority, port: 80 }
+  const port = Number(authority.slice(colon + 1))
+  return { host: authority.slice(0, colon), port: Number.isFinite(port) && port > 0 ? port : 80 }
+}
+
+function header(headers: NodeJS.Dict<string | string[]>, name: string): string | undefined {
+  const value = headers[name] ?? headers[name.toLowerCase()]
+  if (value === undefined) return undefined
+  return Array.isArray(value) ? value[0] : value
+}
+
+function requestOnce(host: string, port: number, path: string, cookie?: string): Promise<{ status: number; setCookie?: string; location?: string }> {
+  return new Promise((resolve, reject) => {
+    const req = request(
+      {
+        host,
+        port,
+        method: 'GET',
+        path,
+        agent: false,
+        timeout: 10_000,
+        headers: cookie === undefined ? undefined : { cookie },
+      },
+      (res) => {
+        res.resume()
+        const raw = header(res.headers, 'set-cookie')
+        const location = header(res.headers, 'location')
+        resolve({
+          status: res.statusCode ?? 0,
+          ...(raw === undefined ? {} : { setCookie: raw.split(';')[0].trim() }),
+          ...(location === undefined ? {} : { location }),
+        })
+      },
+    )
+    req.on('error', reject)
+    req.on('timeout', () => req.destroy(new Error('cookie acquisition timed out')))
+    req.end()
+  })
+}
+
 /**
  * Create the cookie acquirer.
  * @param authenticatedUrl - the launch-token URL from Connection.authenticatedUrl(base).
  * @param authority - loopback authority host:port the cookie must bind to.
  * @param maxAgeMs - cookie considered stale after this long; re-acquire then.
- * @returns the acquirer.
  */
 export function createDshCookieAcquirer(
   authenticatedUrl: () => string | undefined,
   authority: string,
-  maxAgeMs = 24 * 60 * 60 * 1000,
+  maxAgeMs = DSH_COOKIE_MAX_AGE_MS,
 ): DshCookieAcquirer {
   let cookie: string | undefined = undefined
   let acquiredAt = 0
   let inflight: Promise<string> | null = null
+  const target = parseLoopbackAuthority(authority)
 
   async function fetchCookie(): Promise<string> {
-    const url = authenticatedUrl()
-    if (url === undefined) throw new Error('dsh-mobile-pairing: connection has no launch-token URL yet')
-    const u = new URL(url)
-    const body = await new Promise<string>((resolve, reject) => {
-      const req = request(
-        { host: authority.split(':')[0], port: Number(authority.split(':')[1] ?? 80), method: 'GET', path: u.pathname + u.search, agent: false, timeout: 10_000 },
-        (res) => {
-          try {
-            res.resume()
-            const setCookie = res.headers['set-cookie']
-            const raw = Array.isArray(setCookie) ? setCookie[0] : setCookie
-            if (raw === undefined) {
-              resolve('') // already authenticated (no set-cookie on 303 to /)
-              return
-            }
-            resolve(raw.split(';')[0].trim())
-          } catch (error) {
-            reject(error instanceof Error ? error : new Error(String(error)))
-          }
-        },
-      )
-      req.on('error', reject)
-      req.on('timeout', () => req.destroy(new Error('cookie acquisition timed out')))
-      req.end()
-    })
-    if (body === '') {
-      // No Set-Cookie: the loopback was already cookie-authenticated by an
-      // earlier process in this run; fall back to an anonymous request to learn
-      // whether a cookie exists at all (it cannot: nothing else mints it here).
-      throw new Error('dsh-mobile-pairing: DSH returned no Set-Cookie for launch-token exchange')
+    const launch = authenticatedUrl()
+    if (launch === undefined) throw new Error('dsh-mobile-pairing: connection has no launch-token URL yet')
+    let path = new URL(launch).pathname + new URL(launch).search
+    let hopCookie = cookie
+    for (let hop = 0; hop < 4; hop++) {
+      const res = await requestOnce(target.host, target.port, path, hopCookie)
+      if (res.setCookie !== undefined && res.setCookie !== '') hopCookie = res.setCookie
+      if (res.status >= 300 && res.status < 400 && res.location !== undefined) {
+        const next = new URL(res.location, 'http://' + authority)
+        path = next.pathname + next.search
+        continue
+      }
+      if (hopCookie !== undefined) return hopCookie
+      throw new Error('dsh-mobile-pairing: DSH returned no Set-Cookie for launch-token exchange (status ' + String(res.status) + ')')
     }
-    return body
+    if (hopCookie !== undefined) return hopCookie
+    throw new Error('dsh-mobile-pairing: DSH launch-token exchange exceeded redirect hop limit')
   }
 
   return {

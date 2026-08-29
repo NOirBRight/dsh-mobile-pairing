@@ -141,7 +141,7 @@ export class DeviceTokenStore {
    *   rotation or an Endpoint refresh, never a new device.
    * @returns the device record, or null for unknown/revoked/mismatched tokens.
    */
-  authenticate(token: string, claimantPublicKey?: string, room?: string): DeviceRecord | null {
+  authenticate(token: string, claimantPublicKey?: string, room?: string, onRoomFollow?: (previousRoom: string | undefined, room: string) => void): DeviceRecord | null {
     const presented = Buffer.from(hash(token))
     for (const device of this.devices) {
       if (device.revokedAt !== null) continue
@@ -151,17 +151,15 @@ export class DeviceTokenStore {
         if (device.claimantPublicKey === undefined) {
           if (!CLAIMANT.test(claimantPublicKey)) return null
           device.claimantPublicKey = claimantPublicKey
-          this.save()
         } else if (!sameText(device.claimantPublicKey, claimantPublicKey)) {
           return null
         }
       }
-      if (room !== undefined) {
-        device.room = room
-        this.save()
-      }
+      const previousRoom = device.room
+      if (room !== undefined) device.room = room
       device.lastSeenAt = Date.now()
       this.save()
+      if (room !== undefined && previousRoom !== room) onRoomFollow?.(previousRoom, room)
       return publicRecord(device)
     }
     return null

@@ -139,9 +139,15 @@ test('a code minted for room A cannot pair on room B; a token reconnects on anot
   // Quick Tunnel rotation / Endpoint refresh: the device token plus the
   // claimant key already prove ownership, so reconnecting on a new room
   // moves the device there instead of rejecting it as a new device.
-  const moved = hostHandshake(makeClientFrame({ deviceToken: token }, first.clientKeys).frame, { ...deps, room: roomB })
+  const follows = []
+  const moved = hostHandshake(makeClientFrame({ deviceToken: token }, first.clientKeys).frame, {
+    ...deps,
+    room: roomB,
+    onRoomFollow: (previous, room) => follows.push([previous, room]),
+  })
   assert.equal(moved.ok, true)
   assert.equal(store.authenticate(token)?.room, roomB)
+  assert.deepEqual(follows, [[roomA, roomB]])
 })
 
 test('a pairing hello at the live-device ceiling returns limit', () => {
