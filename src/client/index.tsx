@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import type { Context as ClientContext } from '@deepseek-ai/cordis'
 import { installRemoteNavIcon } from './nav-icon.ts'
 import {
   buildEndpointSaveRequest,
@@ -21,13 +22,17 @@ export const name = 'dsh-mobile-pairing-client'
 export const inject = ['slots', 'locale']
 
 type Translate = (key: string) => string
-interface ClientContext {
-  locale: { register(namespace: string, dictionaries: Record<string, Record<string, string>>): () => void; bind(namespace: string): Translate }
-  slots: {
-    inject(name: string, factory: () => unknown): void
-    register(options: Record<string, unknown>, render: (props: { t: Translate }) => JSX.Element): unknown
+
+// Published client service packages are not available in the rc.1 dev matrix;
+// augment the official Cordis Context rather than inventing a parallel Context type.
+declare module '@deepseek-ai/cordis' {
+  interface Context {
+    locale: { register(namespace: string, dictionaries: Record<string, Record<string, string>>): () => void; bind(namespace: string): Translate }
+    slots: {
+      inject(name: string, factory: () => unknown): void
+      register(options: Record<string, unknown>, render: (props: { t: Translate }) => JSX.Element): unknown
+    }
   }
-  effect(effect: () => void | (() => void), label: string): void
 }
 
 const zh = {
