@@ -114,3 +114,41 @@ test('WS with a valid subprotocol token connects, pipes, and hides auth from the
   assert.ok(!String(lastUpgradeHeaders['sec-websocket-protocol'] ?? '').includes('dsh-mobile.')) // consumed by the proxy
   ws.close()
 })
+
+test('rewrites HTTP and WS Host with brackets for an IPv6 upstream', async () => {
+  const ipv6Wss = new WebSocketServer({ noServer: true })
+  const ipv6Upstream = createServer((req, res) => {
+    res.writeHead(200, { 'content-type': 'text/plain' })
+    res.end(req.headers.host ?? '')
+  })
+  ipv6Upstream.on('upgrade', (req, socket, head) => {
+    ipv6Wss.handleUpgrade(req, socket, head, (ws) => ws.send(req.headers.host ?? ''))
+  })
+  let ipv6Proxy
+  let ws
+  try {
+    await new Promise((resolve, reject) => {
+      ipv6Upstream.once('error', reject)
+      ipv6Upstream.listen(0, '::1', resolve)
+    })
+    const address = ipv6Upstream.address()
+    assert.ok(address && typeof address === 'object')
+    const expectedHost = '[::1]:' + address.port
+    ipv6Proxy = createAuthProxy({ bind: '127.0.0.1', port: 0, upstreamHost: '::1', upstreamPort: address.port, tokenStore: store })
+    const ipv6ProxyPort = await ipv6Proxy.listen()
+
+    const httpResponse = await fetch('http://127.0.0.1:' + ipv6ProxyPort + '/api/describe', { headers: { authorization: 'Bearer ' + token } })
+    assert.equal(httpResponse.status, 200)
+    assert.equal(await httpResponse.text(), expectedHost)
+
+    ws = new WebSocket('ws://127.0.0.1:' + ipv6ProxyPort + '/api/events.mux', ['dsh-mobile.' + token])
+    const hostMessage = once(ws, 'message')
+    await once(ws, 'open')
+    assert.equal(String((await hostMessage)[0]), expectedHost)
+  } finally {
+    ws?.terminate()
+    if (ipv6Proxy !== undefined) await ipv6Proxy.close()
+    await new Promise((resolve) => ipv6Wss.close(() => resolve()))
+    if (ipv6Upstream.listening) await new Promise((resolve) => ipv6Upstream.close(() => resolve()))
+  }
+})

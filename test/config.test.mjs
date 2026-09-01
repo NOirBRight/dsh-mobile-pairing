@@ -10,6 +10,7 @@ test('schema fills defaults', () => {
   assert.equal(c.dshHost, '127.0.0.1')
   assert.equal(c.dshPort, 3080)
   assert.equal(c.codeTtlMs, 300_000)
+  assert.equal(c.cookieRetryDelayMs, 3_000)
   assert.deepEqual(c.quickTunnelArgs, ['tunnel', '--url', '{gateway}', '--no-autoupdate'])
   assert.equal(c.advertiseUrl, undefined)
   assert.equal(c.hostName, undefined)
@@ -30,8 +31,11 @@ test('defaults to a loopback Gateway with a Quick Public Endpoint', () => {
 
 test('schema rejects out-of-range values at load', () => {
   assert.throws(() => Config({ port: 70000 }))
+  assert.throws(() => Config({ dshPort: 0 }))
   assert.throws(() => Config({ dshPort: -1 }))
   assert.throws(() => Config({ codeTtlMs: '5min' }))
+  assert.throws(() => Config({ cookieRetryDelayMs: 0 }))
+  assert.equal(Config({ cookieRetryDelayMs: 1250 }).cookieRetryDelayMs, 1250)
 })
 
 test('Host Display Name removes the login prefix from the device hostname', () => {

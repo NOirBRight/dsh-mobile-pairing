@@ -46,6 +46,7 @@
 import { request } from 'node:http'
 import type { IncomingMessage } from 'node:http'
 import { gzipSync } from 'node:zlib'
+import { formatLoopbackAuthority, redactCookieDiagnostic } from './dsh-cookie.ts'
 import WebSocket from 'ws'
 import nacl from 'tweetnacl'
 import { hostHandshake } from './handshake.ts'
@@ -109,9 +110,9 @@ export interface TunnelEndpointOptions {
   logger?: (msg: string) => void
   /** Called once when the socket (and its session) has fully closed. */
   onSessionClose?: () => void
-  /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
+  /** Fired when upstream HTTP or WebSocket returns 401 so the cookie can be reminted. */
   onUnauthorized?: () => void
-  /** Wait for a loopback cookie before opening alpha.1 /api/remote.mux. */
+  /** Wait for a loopback cookie before every upstream HTTP request or WebSocket. */
   waitCookie?: () => Promise<string | undefined>
 }
 
@@ -129,8 +130,9 @@ export interface AuthenticatedTunnelOptions {
   logger?: (msg: string) => void
   /** Called once when the transport (and its session) has fully closed. */
   onSessionClose?: () => void
-  /** Fired when loopback HTTP returns 401 so the cookie can be reminted. */
+  /** Fired when upstream HTTP or WebSocket returns 401 so the cookie can be reminted. */
   onUnauthorized?: () => void
+  /** Wait for a loopback cookie before every upstream HTTP request or WebSocket. */
   waitCookie?: () => Promise<string | undefined>
 }
 
@@ -181,10 +183,10 @@ const decoder = new TextDecoder()
 function startHostSession(
   transport: HostFrameTransport,
   peerPub: Uint8Array,
-  options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array; upstreamCookie?: string | (() => string | undefined); onUnauthorized?: () => void; waitCookie?: () => Promise<string | undefined> },
+  options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array; upstreamCookie?: string | (() => string | undefined); logger?: (msg: string) => void; onUnauthorized?: () => void; waitCookie?: () => Promise<string | undefined> },
 ): HostTunnelSession {
   const { ownSec } = options
-  const authority = options.upstreamHost + ':' + options.upstreamPort
+  const authority = formatLoopbackAuthority(options.upstreamHost, options.upstreamPort)
   const state: SessionState = {
     peerPub: new Uint8Array(peerPub),
     inSeq: 0,
@@ -255,7 +257,7 @@ function startHostSession(
     }
     const complete = typeof msg.body === 'string' || BODILESS_METHODS.has(pending.method)
     if (pending.size > MAX_BODY_BYTES) return refuseBody(msg.id)
-    if (complete) forwardRequest(msg.id)
+    if (complete) void forwardRequest(msg.id)
   }
 
   function onHttpData(msg: { id?: unknown; data?: unknown; last?: unknown }): void {
@@ -266,7 +268,7 @@ function startHostSession(
     pending.chunks.push(chunk)
     pending.size += chunk.length
     if (pending.size > MAX_BODY_BYTES) return refuseBody(msg.id)
-    if (msg.last === true) forwardRequest(msg.id)
+    if (msg.last === true) void forwardRequest(msg.id)
   }
 
   /** Answer 413 for an oversized request body and drop the pending state. */
@@ -281,10 +283,22 @@ function startHostSession(
     })
   }
 
-  function forwardRequest(id: string): void {
+  async function forwardRequest(id: string): Promise<void> {
     const pending = state.requests.get(id)
     if (pending === undefined) return
     state.requests.delete(id)
+    if (!active) return
+    let cookie = currentCookie()
+    if (options.waitCookie !== undefined) {
+      try {
+        const waited = await options.waitCookie()
+        if (waited !== undefined || cookie === undefined) cookie = waited
+      } catch (error) {
+        const diagnostic = redactCookieDiagnostic(error)
+        options.logger?.('DSH cookie wait failed: ' + diagnostic)
+      }
+    }
+    if (!active) return
     const headers: Record<string, string | string[]> = {}
     for (const [key, value] of Object.entries(pending.headers)) {
       if (STRIPPED_REQUEST_HEADERS.has(key.toLowerCase())) continue
@@ -292,13 +306,17 @@ function startHostSession(
       headers[key] = value
     }
     headers.host = authority
-    const cookie = currentCookie()
+    cookie ??= currentCookie()
     if (cookie !== undefined) headers.cookie = cookie
     const upstreamReq = request(
       { host: options.upstreamHost, port: options.upstreamPort, method: pending.method, path: pending.path, headers, timeout: 60_000, agent: false },
       (upstreamRes) => collectResponse(id, upstreamRes),
     )
-    upstreamReq.on('error', (error) => sendMsg({ t: 'http-res', id, status: 502, headers: { 'content-type': 'text/plain' }, body: Buffer.from(error.message).toString('base64') }))
+    upstreamReq.on('error', (error) => {
+      const diagnostic = redactCookieDiagnostic(error)
+      options.logger?.('upstream request failed: ' + diagnostic)
+      sendMsg({ t: 'http-res', id, status: 502, headers: { 'content-type': 'text/plain' }, body: Buffer.from(diagnostic).toString('base64') })
+    })
     upstreamReq.on('timeout', () => upstreamReq.destroy(new Error('upstream timeout')))
     upstreamReq.end(Buffer.concat(pending.chunks))
   }
@@ -369,39 +387,49 @@ function startHostSession(
     }
     let opened = false
     const start = (cookie: string | undefined): void => {
-    const upstream = new WebSocket('ws://' + authority + target.path, {
-      headers: cookie === undefined ? undefined : { cookie },
-    })
-    state.bridges.set(id, upstream)
-    upstream.on('open', () => {
-      opened = true
-      sendMsg({ t: 'ws-ack', id })
-    })
-    upstream.on('message', (data: Buffer | ArrayBuffer | Buffer[] | string, isBinary: boolean) => {
-      sendWsPayload(id, asBuffer(data), isBinary)
-    })
-    upstream.on('error', (error: Error) => {
-      if (!opened) {
+      const upstream = new WebSocket('ws://' + authority + target.path, {
+        headers: cookie === undefined ? undefined : { cookie },
+      })
+      state.bridges.set(id, upstream)
+      upstream.on('open', () => {
+        opened = true
+        sendMsg({ t: 'ws-ack', id })
+      })
+      upstream.on('message', (data: Buffer | ArrayBuffer | Buffer[] | string, isBinary: boolean) => {
+        sendWsPayload(id, asBuffer(data), isBinary)
+      })
+      upstream.on('unexpected-response', (_request, response) => {
+        if (response.statusCode === 401) options.onUnauthorized?.()
+        response.resume()
+      })
+      upstream.on('error', (error: Error) => {
+        if (!opened) {
+          state.bridges.delete(id)
+          state.closedBridges.add(id)
+          const diagnostic = redactCookieDiagnostic(error)
+          options.logger?.('upstream WebSocket failed: ' + diagnostic)
+          sendMsg({ t: 'ws-err', id, message: diagnostic })
+        }
+        // After a successful open an error is always followed by close, which reports it.
+      })
+      upstream.on('close', (code: number, reason: Buffer) => {
         state.bridges.delete(id)
         state.closedBridges.add(id)
-        sendMsg({ t: 'ws-err', id, message: error.message })
-      }
-      // After a successful open an error is always followed by close, which reports it.
-    })
-    upstream.on('close', (code: number, reason: Buffer) => {
-      state.bridges.delete(id)
-      state.closedBridges.add(id)
-      sendMsg({ t: 'ws-close', id, code, reason: reason.toString() })
-    })
+        sendMsg({ t: 'ws-close', id, code, reason: reason.toString() })
+      })
     }
     const cookie = currentCookie()
-    if (cookie !== undefined || options.waitCookie === undefined) {
+    if (options.waitCookie === undefined) {
       start(cookie)
       return
     }
     void options.waitCookie().then(
       (next) => { if (active && !state.closedBridges.has(id)) start(next ?? currentCookie()) },
-      () => { if (active && !state.closedBridges.has(id)) start(currentCookie()) },
+      (error: unknown) => {
+        const diagnostic = redactCookieDiagnostic(error)
+        options.logger?.('DSH cookie wait failed: ' + diagnostic)
+        if (active && !state.closedBridges.has(id)) start(currentCookie())
+      },
     )
   }
 
@@ -503,6 +531,7 @@ export function attachAuthenticatedTransport(
     upstreamPort: options.upstreamPort,
     ownSec: options.hostSecretKey,
     upstreamCookie: options.upstreamCookie,
+    logger: options.logger,
     onUnauthorized: options.onUnauthorized,
     waitCookie: options.waitCookie,
   })
@@ -549,8 +578,9 @@ export function attachHandshakeTransport(
       upstreamPort: options.upstreamPort,
       ownSec: options.handshake.keypair.secretKeyRaw,
       upstreamCookie: options.upstreamCookie,
+      logger: options.logger,
       onUnauthorized: options.onUnauthorized,
-    waitCookie: options.waitCookie,
+      waitCookie: options.waitCookie,
     })
     transport.send(ackFrame)
     log(resumed ? 'tunnel session resumed via re-handshake' : 'tunnel session established')

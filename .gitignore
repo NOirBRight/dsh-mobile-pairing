@@ -1,1 +1,6 @@
-node_modules
+node_modules/
+!fixtures/
+!fixtures/alpha1/
+!fixtures/alpha1/PROVENANCE.json
+!fixtures/alpha1/tarballs/
+!fixtures/alpha1/tarballs/*.tgz

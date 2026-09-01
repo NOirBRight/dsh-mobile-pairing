@@ -1,0 +1,3651 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+    "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+    "tag": "dsh-v0.1.2-alpha.1",
+    "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc"
+  },
+  "cleanEvidence": {
+    "officialCheckout": {
+      "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+      "tag": "dsh-v0.1.2-alpha.1",
+      "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+      "gitStatus": "clean",
+      "archiveCount": 24
+    },
+    "e2eCheckout": {
+      "repository": "https://github.com/NOirBRight/dsh-e2e-tunnel.git",
+      "tag": "v0.1.4",
+      "commit": "6a3dcee8717bcefff9b71297d5543eadde727122",
+      "gitStatus": "clean",
+      "tarball": "dsh-mobile-e2e-tunnel-0.1.4.tgz",
+      "sha256": "700576556aa2756a886dc5c3b17b7987e48f7fe3abe4d275a80cca56d348fcc5"
+    }
+  },
+  "purpose": "Exact repository-owned, unmodified recursive fixture tarballs for the alpha.1 offline publication gate.",
+  "root": "@dsh-mobile/pairing@0.1.12",
+  "consumer": {
+    "lockfile": "consumer-pnpm-lock.yaml",
+    "sha256": "4e608e9a6605a3890b084a78f8eee991dd773cfe9e999fc0cfb2ca469d044ad7"
+  },
+  "rootArtifact": {
+    "name": "@dsh-mobile/pairing",
+    "version": "0.1.12",
+    "bytes": 69681,
+    "sha256": "8daddb162bc85d4fe1af484e51eaedd6e747a0f07f809f51f74a4acdebe6674a",
+    "integrity": "sha512-bGrERhXQCIFUU8hJVAVWWnIfFigv+f+5Vm/Cpdxkbt+o2yBcyrit245c08Oxp2Ku1m4uQLXVQgxf2GO4DxVxrA==",
+    "manifestSha256": "3d699c90357d33710fafba7315bdd0b212ba8bf847cde999194f5971934e6175"
+  },
+  "packages": {
+    "@deepseek-ai/cordis@4.0.1": {
+      "tarball": "deepseek-ai-cordis-4.0.1.tgz",
+      "name": "@deepseek-ai/cordis",
+      "version": "4.0.1",
+      "bytes": 55443,
+      "sha256": "31e96b8e13d5c55bfd4316c08ac8925510e0eed86d48a3a9cc86046623074613",
+      "integrity": "sha512-YBdskTU2Po1kru3GgcUWUbkTsPMA9LkSQDAY8rBkFJeajdgcQad3QPJZE26JyK99Xb6HaASvoXg2DSUTeN/0Nw==",
+      "manifestSha256": "905ee8bf60012c7b87386466d89de3eb42eeb5dca5752f840efa4602d35bd609",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "vendor/cordis"
+      }
+    },
+    "@deepseek-ai/cosmokit@1.8.2": {
+      "tarball": "deepseek-ai-cosmokit-1.8.2.tgz",
+      "name": "@deepseek-ai/cosmokit",
+      "version": "1.8.2",
+      "bytes": 13976,
+      "sha256": "74986e0a5d2b7984607d5913974b083d30efe31ac5c25a8b1efc90b06fa4ec90",
+      "integrity": "sha512-muBOKtSrUKU5m/xpq8ZXWL6hQ/jgd4PhU2PqH97bcxIiLEJfNwZOGQEx4t/aS/GgxRAR+ra9pMHPMtTHU4sqqA==",
+      "manifestSha256": "492373fe08ca0acb4050e210c9ccd68cc839929d95babe9a8eae7b29aa3574e1",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "vendor/cosmokit"
+      }
+    },
+    "@deepseek-ai/dsh-agent@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-agent",
+      "version": "0.1.2-alpha.1",
+      "bytes": 43129,
+      "sha256": "74c44f41300223063d8f5b23cc4f8cc6e5d68660d69752aec4225563500f76e6",
+      "integrity": "sha512-yy1PoPEKEn1Er7FKxkwKuNIwqU3C/WgzFmi3OlJVMpD02ZduYopnN7IQH2RHTd2e/ieFUJiPNU82EYx6NTc9lA==",
+      "manifestSha256": "59e7b5e1ffc568c8ace10359708d6b8760a98e17b524ca57719508c26e4f2fec",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/core/agent"
+      }
+    },
+    "@deepseek-ai/dsh-attachment@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-attachment",
+      "version": "0.1.2-alpha.1",
+      "bytes": 17787,
+      "sha256": "2505e9b4ebdc159494fddac9eea0f3b5a31782d7a25a1e075e8a6adf3b56b09d",
+      "integrity": "sha512-wfA4FFgHsWsERSqXaIV4FkXahTZbUFrtB/lpDllVXL1PftHVgJkIXg8MDvxGncyy1cqd1PM7t0oO0s8Ox/MfrQ==",
+      "manifestSha256": "5795647e6c4eae074d2eabf15b9f7b2e002f504e4dd7096389e83e3299d9a783",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/attachment/attachment"
+      }
+    },
+    "@deepseek-ai/dsh-brand@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-brand",
+      "version": "0.1.2-alpha.1",
+      "bytes": 6245,
+      "sha256": "285217a5f5d2dd70bfc1137ba8d88bbde0f0aeae57b8bc8304bec6251eee3778",
+      "integrity": "sha512-qJreQJZOPj9rDwV3L9ZN1roBW/FlQUJjoz9LDe5lXdLTvKSO3USyTzA4LnTtU686dQz3fD9npyLhcDugKgGc2A==",
+      "manifestSha256": "d90b815af804b5b3c61e949511806d4f768fa023c057841203ab2d9a746fc0ba",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/util/brand"
+      }
+    },
+    "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-client-connection",
+      "version": "0.1.2-alpha.1",
+      "bytes": 67222,
+      "sha256": "33d49cd9c4f8152160e01925480d41bc98ba4d5a9866018f33738ffd80bf7873",
+      "integrity": "sha512-RLzdZ1IbTo80W2JOg5XnVbNvBzRUc84R1CjLOmr+E62B28XTyeZQgHtxuY8rqRWa6Ss7CJ52UOHpo58jVBecYQ==",
+      "manifestSha256": "8eaa6be7cfad0e6e36b215e8bb496277cd023807196cfbe2603e1acab825ad22",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/client/connection"
+      }
+    },
+    "@deepseek-ai/dsh-code-runtime@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-code-runtime-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-code-runtime",
+      "version": "0.1.2-alpha.1",
+      "bytes": 15152,
+      "sha256": "a057a2811d5554cc917f7ae822701666f0f179eb9c89e72fc3904a5740f5a5a8",
+      "integrity": "sha512-ZoM2iQFBVrJEg1D/vLBMY7tLrfOWZszarv7Eqt3ag+rVjCdEEURSGEMKesqDV+YcSC5Qje+DDmn9irmgGnsGcQ==",
+      "manifestSha256": "625e060cb7199315587ffe42465b692ec1b264f43dffc4084c9daa4cebbe2cb5",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/code-runtime/code-runtime"
+      }
+    },
+    "@deepseek-ai/dsh-commands@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-commands-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-commands",
+      "version": "0.1.2-alpha.1",
+      "bytes": 30684,
+      "sha256": "5f992a063c962ee1effd618e144c5c725505771ae72137cfbdb666f5e05b9897",
+      "integrity": "sha512-QFcYFsnA3z3oXrKMXuWO4O7Ku/u8DZ0nHIaa1oSdTgvc/2Revo5bZqNZMig26f95ND8mCOOCz5z7/E3UNVYO0Q==",
+      "manifestSha256": "f752a0202485670209a8e6d578a05586430744c47fc974a9d37c98e95c6dc197",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/interaction/commands"
+      }
+    },
+    "@deepseek-ai/dsh-credentials@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-credentials-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-credentials",
+      "version": "0.1.2-alpha.1",
+      "bytes": 20031,
+      "sha256": "27982c6dd7ba6a4f1f04c4f6b8033cc1915e6808b9688beadfe1780da0da54a1",
+      "integrity": "sha512-U2vTJQTGaNAnA6uVWy04r7W99OINecMNwHisqiFnYoAHEf0HImx0r4W0mYPZNcRUJGaT+YOpArz7LlOTPhv6Yg==",
+      "manifestSha256": "43c15689821f0bc540f1790fd36133e18764ce41d20fbe8664713416a588fd9b",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/credentials/credentials"
+      }
+    },
+    "@deepseek-ai/dsh-host-directory-picker@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-host-directory-picker-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-host-directory-picker",
+      "version": "0.1.2-alpha.1",
+      "bytes": 9931,
+      "sha256": "71d9899ed711e06cffaf91f32b765a783483f4ad3e5caef9e3fb0b1ca291dc32",
+      "integrity": "sha512-lpWTNQk/aqhlMcyRqI7jJEMAG/q+uI35D95rHepd4dhhsyGp9EguIRSPFvrxzwcGooMUFenZXaFGDw6FyCE1nQ==",
+      "manifestSha256": "49fed27ee2785952e3ce0f6eea58182c1617d705f1ea3c9cfe13864420b5187a",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/host/directory-picker"
+      }
+    },
+    "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-host-webserver",
+      "version": "0.1.2-alpha.1",
+      "bytes": 15516,
+      "sha256": "7a3fe7bd962c850d856f8e50b64582a06e8556a59b57ea9bff396a6e6a8f157e",
+      "integrity": "sha512-RO9X/fF08ttitfFOWv+vojfQz68IiqMEkDfk0vWYIs2YdTG6rnUfqbrgvmIyKgeNBbcjs/tnDr/2O6Sz03mF2w==",
+      "manifestSha256": "be46e97717e4fd4c8fadf65fb9a54de419a657c374d40752d33334bded568cd4",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/host/webserver"
+      }
+    },
+    "@deepseek-ai/dsh-invariants@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-invariants",
+      "version": "0.1.2-alpha.1",
+      "bytes": 13389,
+      "sha256": "8158af724b80392c1e4aec4dc7e710811a76b61578b40bf59d87592ffc263a47",
+      "integrity": "sha512-4JNDvbYHHky/d1JfEa33uZOqcAx2vxzt2nUXMEWCkhBC/Tw9mIsszGzTl1te4bhKszABxwaejMZd16DcxhBpkg==",
+      "manifestSha256": "b1bce3dd41d9ff584c2eafd239e2dbb46208a7738d38700514bfa41e1cf994f4",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/runtime-diagnostics/invariants"
+      }
+    },
+    "@deepseek-ai/dsh-llm@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-llm",
+      "version": "0.1.2-alpha.1",
+      "bytes": 88663,
+      "sha256": "bdcc0c15abed01f21d68ec4895801e20fde831cc19dce3815e9c607161d8d749",
+      "integrity": "sha512-dbe3nlNi+/ad9ukB/NSG3zc8i7CYGF6k+JQXmxzriXP607BRBnWZPMknVF02Ko8foj0VHsKH4RSBYU/2RagBBw==",
+      "manifestSha256": "cffe736b0084f1dd284884cb0c9f1c7ed51353e933c49a77b440445ffaeba992",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/llm/llm"
+      }
+    },
+    "@deepseek-ai/dsh-scope@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-scope",
+      "version": "0.1.2-alpha.1",
+      "bytes": 15116,
+      "sha256": "abe87a14d9ac8840a53b30e047a335e0f9e23f385cf3f87caa482c360a6dd57a",
+      "integrity": "sha512-MBgR/jaT4y2sgeNQcZB3VExfiIMwJ4nr1L6t0CLaq6KQyLeUoIc6DiKnn/Cs7JClv22SDhsdlX8oEO9DjHDDQQ==",
+      "manifestSha256": "93d69e366ceffba2bef0f2c535b3bfcb8dfddd58c7f9ba0e52068f3256cb0825",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/core/scope"
+      }
+    },
+    "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-session-projection-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-session-projection",
+      "version": "0.1.2-alpha.1",
+      "bytes": 22161,
+      "sha256": "bc927d8fd32ba4dc610b7514cc3b72f084589c166d1e21ebdf001d71e72cc8f0",
+      "integrity": "sha512-bOr4WdETuF5ZZ9S7A12T7B6ZoB1PyylhyRj9U1dXqtmNbZ0+G29fJC74aWfZF9dUnkmRTj69KdJeAmIewqZmHw==",
+      "manifestSha256": "3b8c429e457df56c617f7fb0f2e8f3af2e449e20ae38cf3ec71b363745a18253",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/session/session-projection"
+      }
+    },
+    "@deepseek-ai/dsh-session@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-session-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-session",
+      "version": "0.1.2-alpha.1",
+      "bytes": 85694,
+      "sha256": "5514a35238f8af6d0a29dcd0955d75fd02519f0c561ccabc59df289b7f481f84",
+      "integrity": "sha512-fDGDRvtsLfpUeSXeqbBfzABlViu5V0z7ggQjumfh8iSaElFtStiEM1RDN55BrLaIroXl2Oq84HdraDs3zEsG5g==",
+      "manifestSha256": "2b659ce34755234b5448d2bcbfc1c7124a7efad3cc953bdfe0b7acf4935b587a",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/core/session"
+      }
+    },
+    "@deepseek-ai/dsh-settings@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-settings",
+      "version": "0.1.2-alpha.1",
+      "bytes": 35229,
+      "sha256": "160d32877ee14d468d6c80543ce9ca2c017e873984908532d300f0d8af3ab473",
+      "integrity": "sha512-LSXYC2QWPVIrlm/QgiodnMIxLPE+wOzhArv5ghezQvxA6fhr40pKm7pQuyC3luQGH261OqdgX2CKW6V9K5P37Q==",
+      "manifestSha256": "ae674b8613e917aae56157bb897f93ecb4c88a99bb30f2997f5e319c15d9cc3e",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/settings/settings"
+      }
+    },
+    "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-system-prompt",
+      "version": "0.1.2-alpha.1",
+      "bytes": 19262,
+      "sha256": "17bf00c32c2884e43dc2e56c67699917bb8cd3cdd07948c7add734786e1d6b5e",
+      "integrity": "sha512-gkTM672Jwst+cVnr1j3eg2+2nkQrHC5oqmAmDG7hRIvNq00uTtWAILphg7oSU6rwCZUY6JBkZEP9W3+B6qEmXA==",
+      "manifestSha256": "5f82d5606b1c344721ec3f295178580790710e4908733c9aaa10ee0b5c6b02a1",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/core/system-prompt"
+      }
+    },
+    "@deepseek-ai/dsh-timeout@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-timeout-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-timeout",
+      "version": "0.1.2-alpha.1",
+      "bytes": 10892,
+      "sha256": "2abed7a638df6a3650d7e46392d9d7fe731149316b4f564556f6583ed1a400a7",
+      "integrity": "sha512-nZFGEH07l4oyVPrZ/pOOACYt2QXqFXXvj6x890Xrb6UUARsfiuQXAVp60ivoUO6qmHEKum3RJMiKSEUIsky75g==",
+      "manifestSha256": "d209400c6d9fdadd63bb2ec479a081ab3237c87949f7013d0a38b7ff74b2c36e",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/util/timeout"
+      }
+    },
+    "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-tool-todo-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-tool-todo",
+      "version": "0.1.2-alpha.1",
+      "bytes": 18413,
+      "sha256": "556595f5e0ac272b6a7ba5fbaa5edcda4eceb230a0ecb8ccabecf9647492f207",
+      "integrity": "sha512-UIJCa2N/pV/wwarwRp61Y9a/4LF66xPuj8yX/L0mIOwbfQYxeKVFKnVHiF3Ry8U7LAgM/KXCFg/B6glEYhl+ZA==",
+      "manifestSha256": "848ac3dd96c0a1222bb5aa139d1a069ac6d47742df95ae516531e8f3bec02959",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/todo/tool-todo"
+      }
+    },
+    "@deepseek-ai/dsh-tools@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-tools-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-tools",
+      "version": "0.1.2-alpha.1",
+      "bytes": 141036,
+      "sha256": "a153ae5b24562895435b68629f34cf448b12bfc2473579371fa8ac159e98c768",
+      "integrity": "sha512-twV6Oi/j5kFJB3e+MeX9ti+p23L8fS0wrwDrUDIz5GCWhFJ586Li3uQPQJYjYsZs8dil+HbaAjBivKtA7ou4zw==",
+      "manifestSha256": "c6abb2ffbbc955b913c450aedffa53d514af014e272d0736c51744a7bcc6c7de",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/core/tools"
+      }
+    },
+    "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-typert-protocol",
+      "version": "0.1.2-alpha.1",
+      "bytes": 17539,
+      "sha256": "13b17a1105bb3112987a10d1d3a973d7142457bb9955275faeb95bfb03e36ab3",
+      "integrity": "sha512-yv3O4Fa0L0my6I+YvlmSTuHxqTqETTZmY6Ah/kU6HRKqTBfLBAae2qrCsGgMkPslJ2/NgNgT8jSB6yg9lArqTg==",
+      "manifestSha256": "301c11e1badcd5cd700724d38e207951b4d466940f897ca6724f330d0ba8557d",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/typert/protocol"
+      }
+    },
+    "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-user-approval-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-user-approval",
+      "version": "0.1.2-alpha.1",
+      "bytes": 19394,
+      "sha256": "d3a8e83b6d6712c163ef8447b312459a5736104b2cefd5aca4432763d183b307",
+      "integrity": "sha512-vFcSXJ3GyHNp0aBezlUG9zH9NkTZ7IIL/0sYh1xhaMoK/vi1v0+v5iIsQ2VokqDm+1ZpJH5TTSwUC3ciETUyvw==",
+      "manifestSha256": "3a74f8a96ef08ec6665f7b924d3f3adb360da19184be01417b961e773fc649cc",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/interaction/user-approval"
+      }
+    },
+    "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1": {
+      "tarball": "deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz",
+      "name": "@deepseek-ai/dsh-util-crypto",
+      "version": "0.1.2-alpha.1",
+      "bytes": 5263,
+      "sha256": "bd10d2ca67dadb054c04e427e59504c6f25bbd48bcf65e7503e2914d77068fd6",
+      "integrity": "sha512-vca+yGv6sHrsXraH3pbyejxy/vj3FV3tL96yW2fWOFpLvQWB9unIq923h0KfAKJrBOr3gum4B5/CtIphLN1m2w==",
+      "manifestSha256": "781cc079cb35021670c285d4704c2db44d7a7136c44161ea8eacb304e33f783d",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
+        "tag": "dsh-v0.1.2-alpha.1",
+        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+        "packagePath": "packages/util/crypto"
+      }
+    },
+    "@deepseek-ai/schemastery@3.18.1": {
+      "tarball": "deepseek-ai-schemastery-3.18.1.tgz",
+      "name": "@deepseek-ai/schemastery",
+      "version": "3.18.1",
+      "bytes": 25098,
+      "sha256": "a64b5bed661f303cb27a44bc3942142da953460cca44571f89d960f35a74b682",
+      "integrity": "sha512-Qn0FCSwCQnpnj6SB31I6i2sIKgKWnkbJM8O0EU91Gv2UsYVvtZTl6IA0sCwk2e2MZf5S8w5hpq9QkeVvK9qwxg==",
+      "manifestSha256": "ddfb27064e006d4c6db679f76728b08c071079fd28ef6abd6f358477088c9a10",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@deepseek-ai/schemastery/-/schemastery-3.18.1.tgz",
+        "integrity": "sha512-Qn0FCSwCQnpnj6SB31I6i2sIKgKWnkbJM8O0EU91Gv2UsYVvtZTl6IA0sCwk2e2MZf5S8w5hpq9QkeVvK9qwxg=="
+      }
+    },
+    "@dsh-mobile/e2e-tunnel@0.1.4": {
+      "tarball": "dsh-mobile-e2e-tunnel-0.1.4.tgz",
+      "name": "@dsh-mobile/e2e-tunnel",
+      "version": "0.1.4",
+      "bytes": 47148,
+      "sha256": "700576556aa2756a886dc5c3b17b7987e48f7fe3abe4d275a80cca56d348fcc5",
+      "integrity": "sha512-2qUDtYC/1+Kvb3HWeKepISmApZtozLhuP/oU8a5eQ10dbST42CQfbU3typszjac3QjKqboeaDbPWWW1TeOiAZw==",
+      "manifestSha256": "4ca851e42965474319e4afb6c710a46b2a7cd5b485dd28d2c162698320bc4b9b",
+      "source": {
+        "type": "git",
+        "repository": "https://github.com/NOirBRight/dsh-e2e-tunnel.git",
+        "tag": "v0.1.4",
+        "commit": "6a3dcee8717bcefff9b71297d5543eadde727122",
+        "packagePath": "package.json"
+      }
+    },
+    "@fidm/asn1@1.0.4": {
+      "tarball": "fidm-asn1-1.0.4.tgz",
+      "name": "@fidm/asn1",
+      "version": "1.0.4",
+      "bytes": 21470,
+      "sha256": "0a8c4a98c27b0fb583af2f96bc010e268e2c42ad7f052d30173857bca611a156",
+      "integrity": "sha512-esd1jyNvRb2HVaQGq2Gg8Z0kbQPXzV9Tq5Z14KNIov6KfFD6PTaRIO8UpcsYiTNzOqJpmyzWgVTrUwFV3UF4TQ==",
+      "manifestSha256": "b1f792bd161e5f5f0388a0a07d0995a705256d81c46310c932854718ea31f101",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@fidm/asn1/-/asn1-1.0.4.tgz",
+        "integrity": "sha512-esd1jyNvRb2HVaQGq2Gg8Z0kbQPXzV9Tq5Z14KNIov6KfFD6PTaRIO8UpcsYiTNzOqJpmyzWgVTrUwFV3UF4TQ=="
+      }
+    },
+    "@fidm/x509@1.2.1": {
+      "tarball": "fidm-x509-1.2.1.tgz",
+      "name": "@fidm/x509",
+      "version": "1.2.1",
+      "bytes": 26663,
+      "sha256": "550c4e43e51ea2999d841d850e1a1e109ef883467c38f085675eb3beb70f540f",
+      "integrity": "sha512-nwc2iesjyc9hkuzcrMCBXQRn653XuAUKorfWM8PZyJawiy1QzLj4vahwzaI25+pfpwOLvMzbJ0uKpWLDNmo16w==",
+      "manifestSha256": "acaa4db488b6650c8d45d9efd65de35660cf2c8b616f3104160ff80e16bbfffc",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@fidm/x509/-/x509-1.2.1.tgz",
+        "integrity": "sha512-nwc2iesjyc9hkuzcrMCBXQRn653XuAUKorfWM8PZyJawiy1QzLj4vahwzaI25+pfpwOLvMzbJ0uKpWLDNmo16w=="
+      }
+    },
+    "@leichtgewicht/ip-codec@2.0.5": {
+      "tarball": "leichtgewicht-ip-codec-2.0.5.tgz",
+      "name": "@leichtgewicht/ip-codec",
+      "version": "2.0.5",
+      "bytes": 5013,
+      "sha256": "6134a851c2710e367f4bec39b8cb58805de4792fb1b64cd83c61a1bab419f201",
+      "integrity": "sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==",
+      "manifestSha256": "9b979a9047cf7d7676b4616ed180315826c38d5932fb541f49ac318e704a3db1",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.5.tgz",
+        "integrity": "sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw=="
+      }
+    },
+    "@noble/curves@1.9.7": {
+      "tarball": "noble-curves-1.9.7.tgz",
+      "name": "@noble/curves",
+      "version": "1.9.7",
+      "bytes": 362302,
+      "sha256": "c4c5545645b8d58a080d2faf84982f6fe5dc3a0516e11de8dc571b38cab565e9",
+      "integrity": "sha512-gbKGcRUYIjA3/zCCNaWDciTMFI0dCkvou3TL8Zmy5Nc7sJ47a0jtOeZoTaMxkuqRo9cRhjOdZJXegxYE5FN/xw==",
+      "manifestSha256": "cbffd40393726bf2d7ced0f769edd56b1b8a6a092cc2f0641fd3b8e8e78cf605",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@noble/curves/-/curves-1.9.7.tgz",
+        "integrity": "sha512-gbKGcRUYIjA3/zCCNaWDciTMFI0dCkvou3TL8Zmy5Nc7sJ47a0jtOeZoTaMxkuqRo9cRhjOdZJXegxYE5FN/xw=="
+      }
+    },
+    "@noble/hashes@1.8.0": {
+      "tarball": "noble-hashes-1.8.0.tgz",
+      "name": "@noble/hashes",
+      "version": "1.8.0",
+      "bytes": 155326,
+      "sha256": "e8a765d92c04faaccba8776411c5038cb195f812ee629fce07e1d2e6aec80ea0",
+      "integrity": "sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==",
+      "manifestSha256": "7c4657c5e616c22cefa2691cc30670824a639dc71d97bf83925be2d239dc60e3",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@noble/hashes/-/hashes-1.8.0.tgz",
+        "integrity": "sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A=="
+      }
+    },
+    "@peculiar/asn1-cms@2.9.4": {
+      "tarball": "peculiar-asn1-cms-2.9.4.tgz",
+      "name": "@peculiar/asn1-cms",
+      "version": "2.9.4",
+      "bytes": 13260,
+      "sha256": "4c655cf705f90ab25bea28b27bae617d11a00e772b778b37d72d3dac6cc1e0e7",
+      "integrity": "sha512-cben7oxmQsUGZqotus7yt0srYdncOT6RNWcTQ77T2RFOXejYVYkXadrfePdRcrVpO9K95IRLKKglG2k38jKXuw==",
+      "manifestSha256": "72d72feea9ddc2597050249d513cafac480bdd052136caf5041908dd86b88eee",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-cms/-/asn1-cms-2.9.4.tgz",
+        "integrity": "sha512-cben7oxmQsUGZqotus7yt0srYdncOT6RNWcTQ77T2RFOXejYVYkXadrfePdRcrVpO9K95IRLKKglG2k38jKXuw=="
+      }
+    },
+    "@peculiar/asn1-csr@2.9.4": {
+      "tarball": "peculiar-asn1-csr-2.9.4.tgz",
+      "name": "@peculiar/asn1-csr",
+      "version": "2.9.4",
+      "bytes": 3853,
+      "sha256": "0e445b040335d933fde1c49b42f17e72be18fe95a6475c768e1e6d0bc2882248",
+      "integrity": "sha512-xd4YN4vpRjkDAQWVfZZkeu12IEND7DOpkqaHSIHxZl1uggUNa9Ju0QxY2jHvDAS9pP0zhRBytg8ifsnGo3V0jw==",
+      "manifestSha256": "e6d26b484593317511693cf0bf50e869e10f9058cd8709cf337db73578e5919d",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-csr/-/asn1-csr-2.9.4.tgz",
+        "integrity": "sha512-xd4YN4vpRjkDAQWVfZZkeu12IEND7DOpkqaHSIHxZl1uggUNa9Ju0QxY2jHvDAS9pP0zhRBytg8ifsnGo3V0jw=="
+      }
+    },
+    "@peculiar/asn1-ecc@2.9.4": {
+      "tarball": "peculiar-asn1-ecc-2.9.4.tgz",
+      "name": "@peculiar/asn1-ecc",
+      "version": "2.9.4",
+      "bytes": 5870,
+      "sha256": "8bb21a6c3b7ce45551665f76c05c10cf9fd0b8df00a06af2487ef5976abd1d3f",
+      "integrity": "sha512-JJXefFshRAuVAjWQo/39bkg1ywc1VaiO44S8RRC+Ykvf/u2KDmYffoDb0ZBPCR5uJy4AGKQhl8mX+Q8ShcWaXQ==",
+      "manifestSha256": "65cce2ab388aacddd22ee187a11a4fe5f5fd459b9dd4da110cd4c0488e2403cb",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-ecc/-/asn1-ecc-2.9.4.tgz",
+        "integrity": "sha512-JJXefFshRAuVAjWQo/39bkg1ywc1VaiO44S8RRC+Ykvf/u2KDmYffoDb0ZBPCR5uJy4AGKQhl8mX+Q8ShcWaXQ=="
+      }
+    },
+    "@peculiar/asn1-pfx@2.9.4": {
+      "tarball": "peculiar-asn1-pfx-2.9.4.tgz",
+      "name": "@peculiar/asn1-pfx",
+      "version": "2.9.4",
+      "bytes": 6843,
+      "sha256": "197e15c0e5f9687480e403bd663be2fb5e5aabbd91a12b28f0b14a08cdf419c3",
+      "integrity": "sha512-khuGzHTzNzk4GDlIBEILyIs6Lce0yn0ZBdoI9v93kmNncfZRhD+AQ5ODFqdhvoE8cMJF/JMTQ8yA+t1D14kqCw==",
+      "manifestSha256": "04c3c560e1336b0b08352a85c822b505d895b0eb0d55c9aff004b5ee73607449",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-pfx/-/asn1-pfx-2.9.4.tgz",
+        "integrity": "sha512-khuGzHTzNzk4GDlIBEILyIs6Lce0yn0ZBdoI9v93kmNncfZRhD+AQ5ODFqdhvoE8cMJF/JMTQ8yA+t1D14kqCw=="
+      }
+    },
+    "@peculiar/asn1-pkcs8@2.9.4": {
+      "tarball": "peculiar-asn1-pkcs8-2.9.4.tgz",
+      "name": "@peculiar/asn1-pkcs8",
+      "version": "2.9.4",
+      "bytes": 3314,
+      "sha256": "f24d052f53fb9e56b1431220469e81da7de5b4cb548290f251811f9fafbaf567",
+      "integrity": "sha512-duRdotlUx9eDZe6QrQpQKl61RbWykCHBCkKayP8V8XdEFwlKHZ8qGGDMyS6Pye7OX7nLFttTTpRkJeet78ckwQ==",
+      "manifestSha256": "ab483d6fbc73cd1f64ee860a8a45ea6573f27472574837465d5198e39746abe8",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-pkcs8/-/asn1-pkcs8-2.9.4.tgz",
+        "integrity": "sha512-duRdotlUx9eDZe6QrQpQKl61RbWykCHBCkKayP8V8XdEFwlKHZ8qGGDMyS6Pye7OX7nLFttTTpRkJeet78ckwQ=="
+      }
+    },
+    "@peculiar/asn1-pkcs9@2.9.4": {
+      "tarball": "peculiar-asn1-pkcs9-2.9.4.tgz",
+      "name": "@peculiar/asn1-pkcs9",
+      "version": "2.9.4",
+      "bytes": 8281,
+      "sha256": "dde87539c13be7562d17cef545f6e19d910110828976ea7f5b043d1a8dd19f13",
+      "integrity": "sha512-kaL4cNxBpdQE2dKlyZBqz4ygCrwffO+8wfoxTEqM1Z8RadvCeELBRzcv0dzM8aY9azHMwODO5nxU65zXmhToOQ==",
+      "manifestSha256": "18130216738df754169dfd61adc14a788fbc57a7e140d23e789e1e773f9c74cb",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-pkcs9/-/asn1-pkcs9-2.9.4.tgz",
+        "integrity": "sha512-kaL4cNxBpdQE2dKlyZBqz4ygCrwffO+8wfoxTEqM1Z8RadvCeELBRzcv0dzM8aY9azHMwODO5nxU65zXmhToOQ=="
+      }
+    },
+    "@peculiar/asn1-rsa@2.9.4": {
+      "tarball": "peculiar-asn1-rsa-2.9.4.tgz",
+      "name": "@peculiar/asn1-rsa",
+      "version": "2.9.4",
+      "bytes": 6893,
+      "sha256": "8dd4eaad71922fbac99aaf5f7048d49adc8f96231c1ead8100f2a54b7c559b93",
+      "integrity": "sha512-pZ96eD1PptovcWQ/GSmuNFXd/7EQJNlKfDaNCyE2rx3W0v6QFelkzquVqRSRyyDXXCYD69ZXJDzZ8GhIiQzKoA==",
+      "manifestSha256": "4abc773f9efd75380b2c4a7f734ea8de63df4246153790ea5c6ceecd99b49d73",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-rsa/-/asn1-rsa-2.9.4.tgz",
+        "integrity": "sha512-pZ96eD1PptovcWQ/GSmuNFXd/7EQJNlKfDaNCyE2rx3W0v6QFelkzquVqRSRyyDXXCYD69ZXJDzZ8GhIiQzKoA=="
+      }
+    },
+    "@peculiar/asn1-schema@2.9.4": {
+      "tarball": "peculiar-asn1-schema-2.9.4.tgz",
+      "name": "@peculiar/asn1-schema",
+      "version": "2.9.4",
+      "bytes": 15747,
+      "sha256": "ebf63283cecd8a56fdc3ad65055d5a458b7dc63dd311abc5ff2f45e3e1081a49",
+      "integrity": "sha512-GjzePcT9Iw8NzeOPf73iNS9xM+TBhd/FilAfP+RQGkTMQJTVWtytN3JHJACCjf/ABNau5S7mS3g+DcuxmRgYEg==",
+      "manifestSha256": "804a84002aa0a093796dc97a0ef4122bab338baddde077c7435701bbf9b6945a",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-schema/-/asn1-schema-2.9.4.tgz",
+        "integrity": "sha512-GjzePcT9Iw8NzeOPf73iNS9xM+TBhd/FilAfP+RQGkTMQJTVWtytN3JHJACCjf/ABNau5S7mS3g+DcuxmRgYEg=="
+      }
+    },
+    "@peculiar/asn1-x509-attr@2.9.4": {
+      "tarball": "peculiar-asn1-x509-attr-2.9.4.tgz",
+      "name": "@peculiar/asn1-x509-attr",
+      "version": "2.9.4",
+      "bytes": 10376,
+      "sha256": "5e33ef94d286783f40f33b798a376360a6e641d8d869c18d95fbab112f557ceb",
+      "integrity": "sha512-ehQXbpQaQYycgu8OrvigwSPTFfVRcu0ECNYCWw+yzBp02Lw5paRqzzhUpfOgO2K38+WfFZuEz/0RPtam5g0OMg==",
+      "manifestSha256": "ba9e9b86b7f9ba530c0d7acb4f181704cea04848150e46b19d9410e13727593b",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-x509-attr/-/asn1-x509-attr-2.9.4.tgz",
+        "integrity": "sha512-ehQXbpQaQYycgu8OrvigwSPTFfVRcu0ECNYCWw+yzBp02Lw5paRqzzhUpfOgO2K38+WfFZuEz/0RPtam5g0OMg=="
+      }
+    },
+    "@peculiar/asn1-x509@2.9.4": {
+      "tarball": "peculiar-asn1-x509-2.9.4.tgz",
+      "name": "@peculiar/asn1-x509",
+      "version": "2.9.4",
+      "bytes": 24776,
+      "sha256": "eb83db99d8e3a31f47d4c5fc96ed895bc948af5fc1069e6d6a2d2accf7806f40",
+      "integrity": "sha512-CxhBo/RdEbMMob7T31ZdQjGuoyRFLVwrDzTn25bihzBasRg9kRm/0IxIPvhgQtcK/9dNcO1XQL2fuPugwELL0Q==",
+      "manifestSha256": "c8d19166df3452f80de64a62685470bbf964d6b043600bdf8d5691c41d89387e",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/asn1-x509/-/asn1-x509-2.9.4.tgz",
+        "integrity": "sha512-CxhBo/RdEbMMob7T31ZdQjGuoyRFLVwrDzTn25bihzBasRg9kRm/0IxIPvhgQtcK/9dNcO1XQL2fuPugwELL0Q=="
+      }
+    },
+    "@peculiar/utils@2.0.3": {
+      "tarball": "peculiar-utils-2.0.3.tgz",
+      "name": "@peculiar/utils",
+      "version": "2.0.3",
+      "bytes": 25624,
+      "sha256": "f13ac28dbe9956f37328df40815cabdc4f9dd9791af7b54646825673bfcfbcc2",
+      "integrity": "sha512-+oL3HPFRIZ1St2K50lWCXiioIgSoxzz7R1J3uF6neO2yl1sgmpgY6XXJH4BdpoDkMWznQTeYF6oWNDZLCdQ4eQ==",
+      "manifestSha256": "a94d3387ec3358c0445e395c9446236468044375a2e53e50ba3d9972cb7a1e6f",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/utils/-/utils-2.0.3.tgz",
+        "integrity": "sha512-+oL3HPFRIZ1St2K50lWCXiioIgSoxzz7R1J3uF6neO2yl1sgmpgY6XXJH4BdpoDkMWznQTeYF6oWNDZLCdQ4eQ=="
+      }
+    },
+    "@peculiar/x509@1.14.3": {
+      "tarball": "peculiar-x509-1.14.3.tgz",
+      "name": "@peculiar/x509",
+      "version": "1.14.3",
+      "bytes": 107222,
+      "sha256": "fff003ed0d7e2f6b134cccddef5383695e8b45277bcbae43af6d6cf4fd654893",
+      "integrity": "sha512-C2Xj8FZ0uHWeCXXqX5B4/gVFQmtSkiuOolzAgutjTfseNOHT3pUjljDZsTSxXFGgio54bCzVFqmEOUrIVk8RDA==",
+      "manifestSha256": "27719c7f479804be63667f9157eed53f3b5ccb44e070067dfcc084ef06996866",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@peculiar/x509/-/x509-1.14.3.tgz",
+        "integrity": "sha512-C2Xj8FZ0uHWeCXXqX5B4/gVFQmtSkiuOolzAgutjTfseNOHT3pUjljDZsTSxXFGgio54bCzVFqmEOUrIVk8RDA=="
+      }
+    },
+    "@shinyoshiaki/binary-data@0.6.1": {
+      "tarball": "shinyoshiaki-binary-data-0.6.1.tgz",
+      "name": "@shinyoshiaki/binary-data",
+      "version": "0.6.1",
+      "bytes": 17456,
+      "sha256": "588e994751d2b4b50d7809eeca1b42725e0155c9f5a771b5e36abf9dc4f1be55",
+      "integrity": "sha512-7HDb/fQAop2bCmvDIzU5+69i+UJaFgIVp99h1VzK1mpg1JwSODOkjbqD7ilTYnqlnadF8C4XjpwpepxDsGY6+w==",
+      "manifestSha256": "84c8271ea4b5da0e6b78d29f30eca2b1a50a3afae5d8b62cbfffe3ab9b6a7fbd",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@shinyoshiaki/binary-data/-/binary-data-0.6.1.tgz",
+        "integrity": "sha512-7HDb/fQAop2bCmvDIzU5+69i+UJaFgIVp99h1VzK1mpg1JwSODOkjbqD7ilTYnqlnadF8C4XjpwpepxDsGY6+w=="
+      }
+    },
+    "@standard-schema/spec@1.1.0": {
+      "tarball": "standard-schema-spec-1.1.0.tgz",
+      "name": "@standard-schema/spec",
+      "version": "1.1.0",
+      "bytes": 4088,
+      "sha256": "dc1727364be948ba112d941e58b83da38a7851ee026ce0c221cddad667541883",
+      "integrity": "sha512-tzwn3epx+PvlaEQMR/f8BVMCrFFo4wV2sYFCkY1AgQcFOD3bk/XVjzqPm0Wl8LLAi1swUZztlpm8dUwlypaOFw==",
+      "manifestSha256": "0c63deb552d5aaafe1f99ad0d97b668d3c759e14895428a0609f5acb51a73365",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@standard-schema/spec/-/spec-1.1.0.tgz",
+        "integrity": "sha512-tzwn3epx+PvlaEQMR/f8BVMCrFFo4wV2sYFCkY1AgQcFOD3bk/XVjzqPm0Wl8LLAi1swUZztlpm8dUwlypaOFw=="
+      }
+    },
+    "@types/dom-mediacapture-transform@0.1.12": {
+      "tarball": "types-dom-mediacapture-transform-0.1.12.tgz",
+      "name": "@types/dom-mediacapture-transform",
+      "version": "0.1.12",
+      "bytes": 3085,
+      "sha256": "5aa2ba64e29d43f69b0d3a56ad33933a9665f234e0c498ee87500ffc54449fb9",
+      "integrity": "sha512-d7/QsLRwF864A5mgIM/YrfiglHoYn7zgCcAoJgW404r+2DwnNr7EBbLnCWpmOMgH8y0te73L1AV6H1bmauaWFw==",
+      "manifestSha256": "0d4a78731fdf4dab2333dd750b530d3dcfe367069c49376720a39e03a9bba0b7",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@types/dom-mediacapture-transform/-/dom-mediacapture-transform-0.1.12.tgz",
+        "integrity": "sha512-d7/QsLRwF864A5mgIM/YrfiglHoYn7zgCcAoJgW404r+2DwnNr7EBbLnCWpmOMgH8y0te73L1AV6H1bmauaWFw=="
+      }
+    },
+    "@types/dom-webcodecs@0.1.13": {
+      "tarball": "types-dom-webcodecs-0.1.13.tgz",
+      "name": "@types/dom-webcodecs",
+      "version": "0.1.13",
+      "bytes": 5015,
+      "sha256": "f4334b7a34dac2334661b5862348fb0c7c34c2025579f7b3367b305a8d102bb5",
+      "integrity": "sha512-O5hkiFIcjjszPIYyUSyvScyvrBoV3NOEEZx/pMlsu44TKzWNkLVBBxnxJz42in5n3QIolYOcBYFCPZZ0h8SkwQ==",
+      "manifestSha256": "962672d1b0e1ed92d8a46060685fcc634c691bcb59f38a787472ac2126df884c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/@types/dom-webcodecs/-/dom-webcodecs-0.1.13.tgz",
+        "integrity": "sha512-O5hkiFIcjjszPIYyUSyvScyvrBoV3NOEEZx/pMlsu44TKzWNkLVBBxnxJz42in5n3QIolYOcBYFCPZZ0h8SkwQ=="
+      }
+    },
+    "ansi-regex@5.0.1": {
+      "tarball": "ansi-regex-5.0.1.tgz",
+      "name": "ansi-regex",
+      "version": "5.0.1",
+      "bytes": 2768,
+      "sha256": "0e0eadcdaada805db5d85b53ad5cdca0760b996ee199ec9658e7b34aa6c8e0d9",
+      "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
+      "manifestSha256": "8b2dc166f2b74d5098bad38bdd3dd2f4d4775c626199872f5e36dbb48c40931d",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+        "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="
+      }
+    },
+    "ansi-styles@4.3.0": {
+      "tarball": "ansi-styles-4.3.0.tgz",
+      "name": "ansi-styles",
+      "version": "4.3.0",
+      "bytes": 5849,
+      "sha256": "2c539a46d85ab6033183997434d2d9a5ca2ceefc12b4db9022f564784cd7987f",
+      "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",
+      "manifestSha256": "d405f010681d53f77691015e98461f8484b2afe6a9edfdd2ddb27b1e8a8e883d",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
+        "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg=="
+      }
+    },
+    "asn1js@3.0.10": {
+      "tarball": "asn1js-3.0.10.tgz",
+      "name": "asn1js",
+      "version": "3.0.10",
+      "bytes": 44403,
+      "sha256": "10deee319d80ad2ab326155cdf49019526dbdd7abd5b53f005f6d557827a97e3",
+      "integrity": "sha512-S2s3aOytiKdFRdulw2qPE51MzjzVOisppcVv7jVFR+Kw0kxwvFrDcYA0h7Ndqbmj0HkMIXYWaoj7fli8kgx1eg==",
+      "manifestSha256": "e5e046b9bca640e0aa4aeb60fe1e8178a97959c6383b965b0ff52ee565b0ff2c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/asn1js/-/asn1js-3.0.10.tgz",
+        "integrity": "sha512-S2s3aOytiKdFRdulw2qPE51MzjzVOisppcVv7jVFR+Kw0kxwvFrDcYA0h7Ndqbmj0HkMIXYWaoj7fli8kgx1eg=="
+      }
+    },
+    "base64-js@1.5.1": {
+      "tarball": "base64-js-1.5.1.tgz",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "bytes": 4109,
+      "sha256": "b1b7a945b52685269083425216d6597e33d97bf21699d656e92fdb3eb5210a85",
+      "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==",
+      "manifestSha256": "9758f3ab8c45e07bb9a368e32f9a8b3729623bbf47cbbb205b32d674ab2a91f0",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",
+        "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA=="
+      }
+    },
+    "buffer@6.0.3": {
+      "tarball": "buffer-6.0.3.tgz",
+      "name": "buffer",
+      "version": "6.0.3",
+      "bytes": 23108,
+      "sha256": "555b6f49224afcf6b2c5a9aea7cd34a7f443f395b10532bc5580022d57aa51f5",
+      "integrity": "sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==",
+      "manifestSha256": "5b105ac0abbf5985cbe62ad28a34032d85c7ef623e0eb01f39441b0feb419004",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/buffer/-/buffer-6.0.3.tgz",
+        "integrity": "sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA=="
+      }
+    },
+    "bytes@3.1.2": {
+      "tarball": "bytes-3.1.2.tgz",
+      "name": "bytes",
+      "version": "3.1.2",
+      "bytes": 4458,
+      "sha256": "c3247bd187e420ed2392946603892b5ea9ba36c84bed2d8d661591f4430cbad9",
+      "integrity": "sha512-ixmFOUxnVTBUBxrEvH+jKidDVI6r7igIgQtwUnCKAQDrv01/HG33yz6+tkl/FGM5RN+zKSvi87e78x/2pNAx0A==",
+      "manifestSha256": "4817b71f0774850640a7f3c31c94925f3f4dcdb7321b703a74a0d16c823c68d2",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz",
+        "integrity": "sha512-ixmFOUxnVTBUBxrEvH+jKidDVI6r7igIgQtwUnCKAQDrv01/HG33yz6+tkl/FGM5RN+zKSvi87e78x/2pNAx0A=="
+      }
+    },
+    "camelcase@5.3.1": {
+      "tarball": "camelcase-5.3.1.tgz",
+      "name": "camelcase",
+      "version": "5.3.1",
+      "bytes": 3028,
+      "sha256": "c609324ab889515f2f7354ddcc319b6080c9b76f2ac1441c03da031c85458696",
+      "integrity": "sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==",
+      "manifestSha256": "b6d533c740d144de4da1493940b541978a77aae9d712dd0d609f60c58c83a73e",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/camelcase/-/camelcase-5.3.1.tgz",
+        "integrity": "sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg=="
+      }
+    },
+    "cliui@6.0.0": {
+      "tarball": "cliui-6.0.0.tgz",
+      "name": "cliui",
+      "version": "6.0.0",
+      "bytes": 5566,
+      "sha256": "538bfc9753338f8eb816c46e7e541b3bbada18446cf8b5149cfaaafff01acbd8",
+      "integrity": "sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ==",
+      "manifestSha256": "aefd282b90d2d0a055f3b40bbd2010531ba7cbf902e76a314fe09fe777491814",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/cliui/-/cliui-6.0.0.tgz",
+        "integrity": "sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ=="
+      }
+    },
+    "color-convert@2.0.1": {
+      "tarball": "color-convert-2.0.1.tgz",
+      "name": "color-convert",
+      "version": "2.0.1",
+      "bytes": 8996,
+      "sha256": "920fa43538c019a085dbbf04cb6f72cc337624e5f5217519f0e7b2ef784e7ce1",
+      "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
+      "manifestSha256": "9471d21744ca3137410448da6b3bd7b30ee91d42edce3b82ebcbf84faef74fb4",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
+        "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ=="
+      }
+    },
+    "color-name@1.1.4": {
+      "tarball": "color-name-1.1.4.tgz",
+      "name": "color-name",
+      "version": "1.1.4",
+      "bytes": 2868,
+      "sha256": "507b7c4461e8eb941355af9a59e9a7e02cd0e7c6176b48d1809766344f3f1708",
+      "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
+      "manifestSha256": "4a557ea373907e4643badb89ff21b3f4b969d20631086d78eab2e03d05c2efa4",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
+        "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA=="
+      }
+    },
+    "compressible@2.0.18": {
+      "tarball": "compressible-2.0.18.tgz",
+      "name": "compressible",
+      "version": "2.0.18",
+      "bytes": 2940,
+      "sha256": "7e14aeacee6f0e4fa6eb6676fbf4ef97701c7a409681a3242314e478f798222d",
+      "integrity": "sha512-NIsorCKx87biEFhbo+WF9DVXyz6e/2CnHm9Qk6Q6uJaWkgxfKKp6XWYEyhGy7x1Ad/lEGcScCwjfzNu5GfZYuA==",
+      "manifestSha256": "47ba06372368b8b99582fe456589274d2bc6093cc2d018127bc3b386aff0d25e",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/compressible/-/compressible-2.0.18.tgz",
+        "integrity": "sha512-NIsorCKx87biEFhbo+WF9DVXyz6e/2CnHm9Qk6Q6uJaWkgxfKKp6XWYEyhGy7x1Ad/lEGcScCwjfzNu5GfZYuA=="
+      }
+    },
+    "compression@1.8.1": {
+      "tarball": "compression-1.8.1.tgz",
+      "name": "compression",
+      "version": "1.8.1",
+      "bytes": 9146,
+      "sha256": "d7c98d220dc7999a0cbe328d118072cb0204ad6424b72b943608bfce3b47a637",
+      "integrity": "sha512-IC2VUTFC9mDuQGtw4kYFcbJxR8qIOT6+ZzBcxNbl3oNAtUue1djjGmKDkOSSDfNikDfTulsg+qne5mEuvh9mcw==",
+      "manifestSha256": "14fc1b8d088f53ac1d1f68e57e72660cf45a2727ffd19dc2486f51c84c2de9ab",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/compression/-/compression-1.8.1.tgz",
+        "integrity": "sha512-IC2VUTFC9mDuQGtw4kYFcbJxR8qIOT6+ZzBcxNbl3oNAtUue1djjGmKDkOSSDfNikDfTulsg+qne5mEuvh9mcw=="
+      }
+    },
+    "debug@2.6.9": {
+      "tarball": "debug-2.6.9.tgz",
+      "name": "debug",
+      "version": "2.6.9",
+      "bytes": 16514,
+      "sha256": "34ae48c66698f1f81e2a2e6e322f34e8a88b0986a3fa7b74bb5ea14c0edb1c98",
+      "integrity": "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==",
+      "manifestSha256": "6c3d2c892db282317913ce7c340dd2edccd326bcafd18b644b8738144967d6ee",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",
+        "integrity": "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
+      }
+    },
+    "debug@4.4.0": {
+      "tarball": "debug-4.4.0.tgz",
+      "name": "debug",
+      "version": "4.4.0",
+      "bytes": 13390,
+      "sha256": "fd9c4f0ca9acd1103099f038754eb21f94497456fb9b195b18fd582fa6982d1c",
+      "integrity": "sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==",
+      "manifestSha256": "47344a5e8738d8b35ca7bcf3fb4b71081442bd82e8ad9847d9bc3c46ccf4a0e8",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/debug/-/debug-4.4.0.tgz",
+        "integrity": "sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA=="
+      }
+    },
+    "decamelize@1.2.0": {
+      "tarball": "decamelize-1.2.0.tgz",
+      "name": "decamelize",
+      "version": "1.2.0",
+      "bytes": 1691,
+      "sha256": "b4adeff510e38c3a02703bcba72ffbe3c65b591f13c78c6a459b5e801a3e2864",
+      "integrity": "sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==",
+      "manifestSha256": "fb07ecfb5937f8757b0721fdafa6febff75d3c159f6dc8ec0d6ad4e1d1be7d9c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/decamelize/-/decamelize-1.2.0.tgz",
+        "integrity": "sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA=="
+      }
+    },
+    "dijkstrajs@1.0.3": {
+      "tarball": "dijkstrajs-1.0.3.tgz",
+      "name": "dijkstrajs",
+      "version": "1.0.3",
+      "bytes": 3541,
+      "sha256": "07149886ab98299c227b8de61912770b24b8a17b250996a4b5727c9f8bff4c00",
+      "integrity": "sha512-qiSlmBq9+BCdCA/L46dw8Uy93mloxsPSbwnm5yrKn2vMPiy8KyAskTF6zuV/j5BMsmOGZDPs7KjU+mjb670kfA==",
+      "manifestSha256": "b523e007019401be68405b83e846ef9da4682026e8be339ee4ee7888e90b865a",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/dijkstrajs/-/dijkstrajs-1.0.3.tgz",
+        "integrity": "sha512-qiSlmBq9+BCdCA/L46dw8Uy93mloxsPSbwnm5yrKn2vMPiy8KyAskTF6zuV/j5BMsmOGZDPs7KjU+mjb670kfA=="
+      }
+    },
+    "dns-packet@5.6.1": {
+      "tarball": "dns-packet-5.6.1.tgz",
+      "name": "dns-packet",
+      "version": "5.6.1",
+      "bytes": 13581,
+      "sha256": "ed3fc8a11698beae354e8086d29b6de287c978d69d066308b935af7b059cbe59",
+      "integrity": "sha512-l4gcSouhcgIKRvyy99RNVOgxXiicE+2jZoNmaNmZ6JXiGajBOJAesk1OBlJuM5k2c+eudGdLxDqXuPCKIj6kpw==",
+      "manifestSha256": "928c17d2ec39fab9d35ab67187005c55795a279f66cf42ba97679b1d41bf63dd",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/dns-packet/-/dns-packet-5.6.1.tgz",
+        "integrity": "sha512-l4gcSouhcgIKRvyy99RNVOgxXiicE+2jZoNmaNmZ6JXiGajBOJAesk1OBlJuM5k2c+eudGdLxDqXuPCKIj6kpw=="
+      }
+    },
+    "emoji-regex@8.0.0": {
+      "tarball": "emoji-regex-8.0.0.tgz",
+      "name": "emoji-regex",
+      "version": "8.0.0",
+      "bytes": 6664,
+      "sha256": "b5ccd9fbfb08098eefbeb6b6b4b40db6db3acf9243e327e039925aa8661cb107",
+      "integrity": "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==",
+      "manifestSha256": "7bec29b9ca68f2c4becc60e866c2f9342ecdc89fab39841a818ccd9eda15c148",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",
+        "integrity": "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A=="
+      }
+    },
+    "find-up@4.1.0": {
+      "tarball": "find-up-4.1.0.tgz",
+      "name": "find-up",
+      "version": "4.1.0",
+      "bytes": 3745,
+      "sha256": "33a9b0535306d2e05e0a27088b68344b52ac767d576ef60b7ab173aa0d5a26eb",
+      "integrity": "sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==",
+      "manifestSha256": "19b9626d190ae97ecbc47843ff5781c462b6acfca35a2652dccded7d046dce53",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/find-up/-/find-up-4.1.0.tgz",
+        "integrity": "sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw=="
+      }
+    },
+    "generate-function@2.3.1": {
+      "tarball": "generate-function-2.3.1.tgz",
+      "name": "generate-function",
+      "version": "2.3.1",
+      "bytes": 3632,
+      "sha256": "6a4d880c7f170c3277a954b4d6ac1686e20494bb8b964d2f278fcb31d4e68d79",
+      "integrity": "sha512-eeB5GfMNeevm/GRYq20ShmsaGcmI81kIX2K9XQx5miC8KdHaC6Jm0qQ8ZNeGOi7wYB8OsdxKs+Y2oVuTFuVwKQ==",
+      "manifestSha256": "1726f2afc0c63cf76c6476efd8d2f581c238274dab10bc99137ca5bcde22747b",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/generate-function/-/generate-function-2.3.1.tgz",
+        "integrity": "sha512-eeB5GfMNeevm/GRYq20ShmsaGcmI81kIX2K9XQx5miC8KdHaC6Jm0qQ8ZNeGOi7wYB8OsdxKs+Y2oVuTFuVwKQ=="
+      }
+    },
+    "get-caller-file@2.0.5": {
+      "tarball": "get-caller-file-2.0.5.tgz",
+      "name": "get-caller-file",
+      "version": "2.0.5",
+      "bytes": 2383,
+      "sha256": "7b13e1c81949ff4c1baae4ac4e34990492d5e8a86dab7e3b90027b1f5126935f",
+      "integrity": "sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==",
+      "manifestSha256": "680a080d2885c05bc51dde429c80784bfb248ca3ef3685438079c5015721e2ae",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz",
+        "integrity": "sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg=="
+      }
+    },
+    "ieee754@1.2.1": {
+      "tarball": "ieee754-1.2.1.tgz",
+      "name": "ieee754",
+      "version": "1.2.1",
+      "bytes": 2886,
+      "sha256": "8ef14b9b397e339db89db97881fb714f49319d8f0eb1275901f45567b28f9dac",
+      "integrity": "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==",
+      "manifestSha256": "a8004b9c8dffe2e1b01a058ecf968a5d50beabcabc43cc98c655184ba6afc050",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz",
+        "integrity": "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA=="
+      }
+    },
+    "is-fullwidth-code-point@3.0.0": {
+      "tarball": "is-fullwidth-code-point-3.0.0.tgz",
+      "name": "is-fullwidth-code-point",
+      "version": "3.0.0",
+      "bytes": 2169,
+      "sha256": "6f415dae5dc6070f1b42daee6165eab941a97101982305facc8bafdaf300bc4a",
+      "integrity": "sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==",
+      "manifestSha256": "5b48496ca129073ed44a677b777ea3b91366c8bc228bc75fe858749a78ac1a32",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz",
+        "integrity": "sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg=="
+      }
+    },
+    "is-plain-object@2.0.4": {
+      "tarball": "is-plain-object-2.0.4.tgz",
+      "name": "is-plain-object",
+      "version": "2.0.4",
+      "bytes": 3029,
+      "sha256": "4893fd94b7cf23cc0c936fdea4ada5d174e53adba6c72e7334b8cec0804ffdc6",
+      "integrity": "sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==",
+      "manifestSha256": "9d230b1f721ff1453f40e10824eb4048072ba04c3d63979c48d59c20fabdbb96",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/is-plain-object/-/is-plain-object-2.0.4.tgz",
+        "integrity": "sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og=="
+      }
+    },
+    "is-property@1.0.2": {
+      "tarball": "is-property-1.0.2.tgz",
+      "name": "is-property",
+      "version": "1.0.2",
+      "bytes": 4498,
+      "sha256": "34b46bc9b66b67a542928517b96b2d84e4ca9baf5b58826e221eeb6e26020870",
+      "integrity": "sha512-Ks/IoX00TtClbGQr4TWXemAnktAQvYB7HzcCxDGqEZU6oCmb2INHuOoKxbtR+HFkmYWBKv/dOZtGRiAjDhj92g==",
+      "manifestSha256": "333f5b8f801c13729b10aa319d5ef3341183ea6966d1b6191c2ae24a50eada22",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/is-property/-/is-property-1.0.2.tgz",
+        "integrity": "sha512-Ks/IoX00TtClbGQr4TWXemAnktAQvYB7HzcCxDGqEZU6oCmb2INHuOoKxbtR+HFkmYWBKv/dOZtGRiAjDhj92g=="
+      }
+    },
+    "isobject@3.0.1": {
+      "tarball": "isobject-3.0.1.tgz",
+      "name": "isobject",
+      "version": "3.0.1",
+      "bytes": 2839,
+      "sha256": "3cc6c92b005a644c93fbc9e3eb450b6a642bbca3443cc9dcc169152961367d37",
+      "integrity": "sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==",
+      "manifestSha256": "c66c0936c8ac63e97aca4e747fe0da8df7d6f093eeb47fb29d4d186c41272465",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz",
+        "integrity": "sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg=="
+      }
+    },
+    "js-tokens@4.0.0": {
+      "tarball": "js-tokens-4.0.0.tgz",
+      "name": "js-tokens",
+      "version": "4.0.0",
+      "bytes": 6542,
+      "sha256": "d884c7a2d8adb5568c1272d92b4f9c62707f4226cf9e7b22e7b957c7361e3c53",
+      "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",
+      "manifestSha256": "47345931827b3e26db9fe690abb81f856a0d040cbca8af1e69711a64cd58ce0d",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
+        "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
+      }
+    },
+    "locate-path@5.0.0": {
+      "tarball": "locate-path-5.0.0.tgz",
+      "name": "locate-path",
+      "version": "5.0.0",
+      "bytes": 2723,
+      "sha256": "ae3d1b9360a435840a81a8c7da29f59630dd793c3f39a08f15f73fd3894053b7",
+      "integrity": "sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==",
+      "manifestSha256": "6fb0681c3501741d68594c69a0baae9f558f2d426c136946f2c7780a8c5e27bd",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/locate-path/-/locate-path-5.0.0.tgz",
+        "integrity": "sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g=="
+      }
+    },
+    "loose-envify@1.4.0": {
+      "tarball": "loose-envify-1.4.0.tgz",
+      "name": "loose-envify",
+      "version": "1.4.0",
+      "bytes": 2842,
+      "sha256": "1218830a93538a4f730d530138e945ea6a65b45e099ee7a9ea538a05141babdc",
+      "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==",
+      "manifestSha256": "8c2e27dae366396ced36fe0f7c6d35d71a1440fd8e82df5f2005a5297888a0d4",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",
+        "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q=="
+      }
+    },
+    "mediabunny@1.55.2": {
+      "tarball": "mediabunny-1.55.2.tgz",
+      "name": "mediabunny",
+      "version": "1.55.2",
+      "bytes": 2074958,
+      "sha256": "f628d14643b36034f53754ae10cfaa8ff7b939a6bae42ae7c8cf2a157db24136",
+      "integrity": "sha512-EEx4O6qYddAdCyWPMZNDwI7uc5hewNHrPAf9jLcVhIbXoPsiqNQ+D9i1pfadmGkjN2V318jSrZljkpoziYm6Lg==",
+      "manifestSha256": "36202e961af2e51278993fe300c331988194e78e3597edf7e491db37c993224f",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/mediabunny/-/mediabunny-1.55.2.tgz",
+        "integrity": "sha512-EEx4O6qYddAdCyWPMZNDwI7uc5hewNHrPAf9jLcVhIbXoPsiqNQ+D9i1pfadmGkjN2V318jSrZljkpoziYm6Lg=="
+      }
+    },
+    "mime-db@1.54.0": {
+      "tarball": "mime-db-1.54.0.tgz",
+      "name": "mime-db",
+      "version": "1.54.0",
+      "bytes": 29535,
+      "sha256": "2b21054e65d0eabd58c5002d2713e968dd47b15700bfed4b7281a344ded1c420",
+      "integrity": "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ==",
+      "manifestSha256": "33bdbb99915697ac01df12490b9d479a55529123842e67975e6d76d0010aa142",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.54.0.tgz",
+        "integrity": "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ=="
+      }
+    },
+    "ms@2.0.0": {
+      "tarball": "ms-2.0.0.tgz",
+      "name": "ms",
+      "version": "2.0.0",
+      "bytes": 2874,
+      "sha256": "362152ab8864181fc3359a3c440eec58ce3e18f773b0dde4d88a84fe13d73ecb",
+      "integrity": "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==",
+      "manifestSha256": "30fbfaa3840b2f63978ad4bcd7ed8dc24d277b818e4755fe93eda8cb1bc8b74c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
+        "integrity": "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A=="
+      }
+    },
+    "ms@2.1.3": {
+      "tarball": "ms-2.1.3.tgz",
+      "name": "ms",
+      "version": "2.1.3",
+      "bytes": 2967,
+      "sha256": "f6616e15e530ed552f9daa2d3ce71963947c6bc7c98c9b64fd3e673fd02622c6",
+      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",
+      "manifestSha256": "1a6b4d9739790c0b94ab96c8cc0507e281c164c311ff4fbf5e57fb8d26290b40",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
+        "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="
+      }
+    },
+    "multicast-dns@7.2.5": {
+      "tarball": "multicast-dns-7.2.5.tgz",
+      "name": "multicast-dns",
+      "version": "7.2.5",
+      "bytes": 6116,
+      "sha256": "c5a64be6ae9f63485f419b01ae562ee50ce13df92cd329152f4ad44172e2aad6",
+      "integrity": "sha512-2eznPJP8z2BFLX50tf0LuODrpINqP1RVIm/CObbTcBRITQgmC/TjcREF1NeTBzIcR5XO/ukWo+YHOjBbFwIupg==",
+      "manifestSha256": "36119c9323830dd57b8bb03ad7e0b7357a47ac4c4ef77915f741594243183376",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/multicast-dns/-/multicast-dns-7.2.5.tgz",
+        "integrity": "sha512-2eznPJP8z2BFLX50tf0LuODrpINqP1RVIm/CObbTcBRITQgmC/TjcREF1NeTBzIcR5XO/ukWo+YHOjBbFwIupg=="
+      }
+    },
+    "negotiator@0.6.4": {
+      "tarball": "negotiator-0.6.4.tgz",
+      "name": "negotiator",
+      "version": "0.6.4",
+      "bytes": 6725,
+      "sha256": "8fc72d4030ac7b0d4c51933a19224d72bebab8d51da196cb863f754cd772b210",
+      "integrity": "sha512-myRT3DiWPHqho5PrJaIRyaMv2kgYf0mUVgBNOYMuCH5Ki1yEiQaf/ZJuQ62nvpc44wL5WDbTX7yGJi1Neevw8w==",
+      "manifestSha256": "d7c1fb78e3186b6385077e0b7b365adca324274963e41e1d68f78b4f82105e4f",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/negotiator/-/negotiator-0.6.4.tgz",
+        "integrity": "sha512-myRT3DiWPHqho5PrJaIRyaMv2kgYf0mUVgBNOYMuCH5Ki1yEiQaf/ZJuQ62nvpc44wL5WDbTX7yGJi1Neevw8w=="
+      }
+    },
+    "negotiator@1.0.0": {
+      "tarball": "negotiator-1.0.0.tgz",
+      "name": "negotiator",
+      "version": "1.0.0",
+      "bytes": 6694,
+      "sha256": "522e97a674c970a38e4cf988b80939ada96a4fe84578bbf66ebf5cfbc49445b4",
+      "integrity": "sha512-mNnU1LX0khzsfC1SyaVpM5IMKUP8hsUS48dgc4/uILsEEwdobc1Vc7Zs8OGtAIGzxzsim/TQe5i8bv+f82ucOw==",
+      "manifestSha256": "4de8464bd2b2ba56516bd59c6e62d9906a5fd216daa173959b0aaca0863fccb8",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/negotiator/-/negotiator-1.0.0.tgz",
+        "integrity": "sha512-mNnU1LX0khzsfC1SyaVpM5IMKUP8hsUS48dgc4/uILsEEwdobc1Vc7Zs8OGtAIGzxzsim/TQe5i8bv+f82ucOw=="
+      }
+    },
+    "on-headers@1.1.0": {
+      "tarball": "on-headers-1.1.0.tgz",
+      "name": "on-headers",
+      "version": "1.1.0",
+      "bytes": 3461,
+      "sha256": "ab6c2c9bec0b090a6932fde6f8ed6dda2341683e9b29a54e249982dd9987035a",
+      "integrity": "sha512-GNKtEnNqu5yfMjqOnKJR30MG2BnQLbGDDP8OHHfUFkMHG12Ye5uouF5zr5hduj75J1XGOuQ68+bXmG7Tmk8r7A==",
+      "manifestSha256": "08367034b8d2626d3d714ba1b2adfd8a277834ee58b3e95d1e6d5001364733fc",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/on-headers/-/on-headers-1.1.0.tgz",
+        "integrity": "sha512-GNKtEnNqu5yfMjqOnKJR30MG2BnQLbGDDP8OHHfUFkMHG12Ye5uouF5zr5hduj75J1XGOuQ68+bXmG7Tmk8r7A=="
+      }
+    },
+    "p-limit@2.3.0": {
+      "tarball": "p-limit-2.3.0.tgz",
+      "name": "p-limit",
+      "version": "2.3.0",
+      "bytes": 3140,
+      "sha256": "384b452409cfeb5c6fa82dc68ebfa498b24717b74fb8d3fe6eb2bb89908db295",
+      "integrity": "sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==",
+      "manifestSha256": "d4529e88d06488042103f25322b0b60d90dfc5de0ed61c3b7c7d27f2ac3fe1bb",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/p-limit/-/p-limit-2.3.0.tgz",
+        "integrity": "sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w=="
+      }
+    },
+    "p-locate@4.1.0": {
+      "tarball": "p-locate-4.1.0.tgz",
+      "name": "p-locate",
+      "version": "4.1.0",
+      "bytes": 3060,
+      "sha256": "d95a6ae462e3d967deb0c250bda1c3bbebfe86a58832d27b204c7b74a76fa5f0",
+      "integrity": "sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==",
+      "manifestSha256": "26d44c5d05942d6b315ecde2f3dcf78972cfb3b4c81c932ac2573d3eea5f5e94",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/p-locate/-/p-locate-4.1.0.tgz",
+        "integrity": "sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A=="
+      }
+    },
+    "p-try@2.2.0": {
+      "tarball": "p-try-2.2.0.tgz",
+      "name": "p-try",
+      "version": "2.2.0",
+      "bytes": 2194,
+      "sha256": "a390b2b89899df950afc0304eaba7cd1f5e3746b2e370758a9b50f177e713790",
+      "integrity": "sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==",
+      "manifestSha256": "ff793c821f36985cde9f9d9ff6297e6c1304f8e597aa2d48dc53eda83c11e54c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz",
+        "integrity": "sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ=="
+      }
+    },
+    "path-exists@4.0.0": {
+      "tarball": "path-exists-4.0.0.tgz",
+      "name": "path-exists",
+      "version": "4.0.0",
+      "bytes": 2073,
+      "sha256": "dbb535c9302ce9b3f777ece3ff055cc8d88890a1e1deddc045340aef76fb775c",
+      "integrity": "sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==",
+      "manifestSha256": "5e258d1a0d185ae469fec34de2af18913421b94181ef61238efcfe0b00d1b2c3",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/path-exists/-/path-exists-4.0.0.tgz",
+        "integrity": "sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w=="
+      }
+    },
+    "pngjs@5.0.0": {
+      "tarball": "pngjs-5.0.0.tgz",
+      "name": "pngjs",
+      "version": "5.0.0",
+      "bytes": 200153,
+      "sha256": "4d960bbbe078022d7a36822e2874f884c7410ead111f3603d69d70fc7af36f20",
+      "integrity": "sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==",
+      "manifestSha256": "1f3fbe71a51c03470a83044efb2f7dfcca4877f22f1d54f9d952081cb28fbedf",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/pngjs/-/pngjs-5.0.0.tgz",
+        "integrity": "sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw=="
+      }
+    },
+    "pvtsutils@1.3.6": {
+      "tarball": "pvtsutils-1.3.6.tgz",
+      "name": "pvtsutils",
+      "version": "1.3.6",
+      "bytes": 6656,
+      "sha256": "dc4d03ef56d2f864a186d4a00e0d9b51a893a780ab9d440ca21354e1e84c834d",
+      "integrity": "sha512-PLgQXQ6H2FWCaeRak8vvk1GW462lMxB5s3Jm673N82zI4vqtVUPuZdffdZbPDFRoU8kAhItWFtPCWiPpp4/EDg==",
+      "manifestSha256": "c919db2c1458eceb304414b4e4da34dabc43cee71141ceb13d1a0d389a9b5a01",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/pvtsutils/-/pvtsutils-1.3.6.tgz",
+        "integrity": "sha512-PLgQXQ6H2FWCaeRak8vvk1GW462lMxB5s3Jm673N82zI4vqtVUPuZdffdZbPDFRoU8kAhItWFtPCWiPpp4/EDg=="
+      }
+    },
+    "pvutils@1.2.0": {
+      "tarball": "pvutils-1.2.0.tgz",
+      "name": "pvutils",
+      "version": "1.2.0",
+      "bytes": 5970,
+      "sha256": "ff7b3a564d2a3b02b696ae442c9a512fb63038e8220fab63156a9e65c26b5efc",
+      "integrity": "sha512-BbubeCEyTuQjVMakvJQ/Sxbc93F2pwmbsxONT/ZRrwU7Ua38d8unYTwXpTVLAKJ4BDuH9IGztCjQcd/N/39Dvg==",
+      "manifestSha256": "8d7f27545db8668ab8e1a65f40cac53465646c36e18d1400bba3947f6ca7ed4c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/pvutils/-/pvutils-1.2.0.tgz",
+        "integrity": "sha512-BbubeCEyTuQjVMakvJQ/Sxbc93F2pwmbsxONT/ZRrwU7Ua38d8unYTwXpTVLAKJ4BDuH9IGztCjQcd/N/39Dvg=="
+      }
+    },
+    "qrcode@1.5.4": {
+      "tarball": "qrcode-1.5.4.tgz",
+      "name": "qrcode",
+      "version": "1.5.4",
+      "bytes": 50428,
+      "sha256": "0c7274f0c299f39c2fddf54a2e0039b785977b0173c02d0b3f65fad68923e2b0",
+      "integrity": "sha512-1ca71Zgiu6ORjHqFBDpnSMTR2ReToX4l1Au1VFLyVeBTFavzQnv5JxMFr3ukHVKpSrSA2MCk0lNJSykjUfz7Zg==",
+      "manifestSha256": "cbe26d7282c802f4ab9c1f790c5d8450d2b5c82e8bb5f67e3a5c2641ea347d1d",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/qrcode/-/qrcode-1.5.4.tgz",
+        "integrity": "sha512-1ca71Zgiu6ORjHqFBDpnSMTR2ReToX4l1Au1VFLyVeBTFavzQnv5JxMFr3ukHVKpSrSA2MCk0lNJSykjUfz7Zg=="
+      }
+    },
+    "react@18.3.1": {
+      "tarball": "react-18.3.1.tgz",
+      "name": "react",
+      "version": "18.3.1",
+      "bytes": 81751,
+      "sha256": "8d9bed01a672e7eaf387942d781ad47c6a43089a30a0306060f9fd5ac7870347",
+      "integrity": "sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==",
+      "manifestSha256": "d4e68a5c96babb20cad1daafea8b78822eae45b341552cf5418d06a5304fa64c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/react/-/react-18.3.1.tgz",
+        "integrity": "sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ=="
+      }
+    },
+    "reflect-metadata@0.2.2": {
+      "tarball": "reflect-metadata-0.2.2.tgz",
+      "name": "reflect-metadata",
+      "version": "0.2.2",
+      "bytes": 33419,
+      "sha256": "cad52ea77001223648829bfa3c4e677d30939928b12ed3566148bf2b7e1df18f",
+      "integrity": "sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==",
+      "manifestSha256": "e0f6d5cf809e02e338f501d3030e917fa57e3a10044387de890cbf142b4f4083",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.2.2.tgz",
+        "integrity": "sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q=="
+      }
+    },
+    "require-directory@2.1.1": {
+      "tarball": "require-directory-2.1.1.tgz",
+      "name": "require-directory",
+      "version": "2.1.1",
+      "bytes": 4372,
+      "sha256": "703bee0844360383fe4a8792d4a5a562647426a053e7597a1d272ac554f386c8",
+      "integrity": "sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==",
+      "manifestSha256": "5690bdddd6eb4abd795fa5319df7552279508df9d562d571e3132ddff3045a71",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz",
+        "integrity": "sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q=="
+      }
+    },
+    "require-main-filename@2.0.0": {
+      "tarball": "require-main-filename-2.0.0.tgz",
+      "name": "require-main-filename",
+      "version": "2.0.0",
+      "bytes": 1965,
+      "sha256": "c5bb566318fb6091c7c2ac7c0aba6eeb7b332ffcfafad2268a2dc12a4d428e00",
+      "integrity": "sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==",
+      "manifestSha256": "cc3853357a59a82c9a0e5cebbe52221eccc4a52bced4557300b69bbec17fa41b",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/require-main-filename/-/require-main-filename-2.0.0.tgz",
+        "integrity": "sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg=="
+      }
+    },
+    "safe-buffer@5.2.1": {
+      "tarball": "safe-buffer-5.2.1.tgz",
+      "name": "safe-buffer",
+      "version": "5.2.1",
+      "bytes": 9972,
+      "sha256": "5d181804516c4a693a384272a7bd0e42d17e0d4b301ccfbe408669ccafdcb3e8",
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
+      "manifestSha256": "e4018fdbfe625433371f48274fee26f520bbe865e0d8c85bf3aa07424134b90c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
+        "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="
+      }
+    },
+    "set-blocking@2.0.0": {
+      "tarball": "set-blocking-2.0.0.tgz",
+      "name": "set-blocking",
+      "version": "2.0.0",
+      "bytes": 2212,
+      "sha256": "d934aee7db9e09da09e87724743315ffe888130aa6e04fbbdecac985f6ae693d",
+      "integrity": "sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==",
+      "manifestSha256": "e0c598215c66f2c35edbc3cb2a3433d45f9d4b726524c095c93e7376d87a3bce",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz",
+        "integrity": "sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw=="
+      }
+    },
+    "string-width@4.2.3": {
+      "tarball": "string-width-4.2.3.tgz",
+      "name": "string-width",
+      "version": "4.2.3",
+      "bytes": 2383,
+      "sha256": "adbb4fb1b26e8069af99adff0079369c93f17cf887b91086691d671ddbd52934",
+      "integrity": "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==",
+      "manifestSha256": "6457a02418f004fe5d3fbbb19c7cbcc1450a8b887ff9a471dc6985ac83a48d36",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz",
+        "integrity": "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g=="
+      }
+    },
+    "strip-ansi@6.0.1": {
+      "tarball": "strip-ansi-6.0.1.tgz",
+      "name": "strip-ansi",
+      "version": "6.0.1",
+      "bytes": 2041,
+      "sha256": "9bdb75d0bff49f156dd8c3bcb0e06b3fa96c3d88ddd4c342a4345866a40c08ca",
+      "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
+      "manifestSha256": "0130850b9da0584f54cc20d3dab6365c807e9436ac78e016d5009efa99bd0530",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",
+        "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A=="
+      }
+    },
+    "thunky@1.1.0": {
+      "tarball": "thunky-1.1.0.tgz",
+      "name": "thunky",
+      "version": "1.1.0",
+      "bytes": 3117,
+      "sha256": "4474248d0a3f856050014e5b1d4d93a66c0564dd8f284e15128beaaa7b0c3454",
+      "integrity": "sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==",
+      "manifestSha256": "2e0f97d0ca8854986390dce5b2721325cce2260fd7800ad72426b820b39a05ba",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/thunky/-/thunky-1.1.0.tgz",
+        "integrity": "sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA=="
+      }
+    },
+    "tslib@1.14.1": {
+      "tarball": "tslib-1.14.1.tgz",
+      "name": "tslib",
+      "version": "1.14.1",
+      "bytes": 7605,
+      "sha256": "733b312e29ef6488eb668db728bcd0dee92f087872001a06c8594999c06d91fb",
+      "integrity": "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==",
+      "manifestSha256": "f685f35daa1c75b3e6e3e2e9158de36130e34aee095498f65af9e508ea2d56b0",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz",
+        "integrity": "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg=="
+      }
+    },
+    "tslib@2.8.1": {
+      "tarball": "tslib-2.8.1.tgz",
+      "name": "tslib",
+      "version": "2.8.1",
+      "bytes": 18477,
+      "sha256": "66f635d5eeabae44807534976913a102cf615b9a045368359c9f79ae6ee2119e",
+      "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",
+      "manifestSha256": "f02b4851df316f29bdfcd404aa1eb41e4e216b5859015f81fcd3e91caf8be931",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz",
+        "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="
+      }
+    },
+    "tsyringe@4.10.0": {
+      "tarball": "tsyringe-4.10.0.tgz",
+      "name": "tsyringe",
+      "version": "4.10.0",
+      "bytes": 27171,
+      "sha256": "fca4cd31e733b8f1bc1a43de542bf3837fdbd9c27fafa7382c6390fb6873a7ce",
+      "integrity": "sha512-axr3IdNuVIxnaK5XGEUFTu3YmAQ6lllgrvqfEoR16g/HGnYY/6We4oWENtAnzK6/LpJ2ur9PAb80RBt7/U4ugw==",
+      "manifestSha256": "d62f650419534a5f60d404d7d9cbf578ec7bca83b4b46a7a4a16a024969f95b1",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/tsyringe/-/tsyringe-4.10.0.tgz",
+        "integrity": "sha512-axr3IdNuVIxnaK5XGEUFTu3YmAQ6lllgrvqfEoR16g/HGnYY/6We4oWENtAnzK6/LpJ2ur9PAb80RBt7/U4ugw=="
+      }
+    },
+    "tweetnacl@1.0.3": {
+      "tarball": "tweetnacl-1.0.3.tgz",
+      "name": "tweetnacl",
+      "version": "1.0.3",
+      "bytes": 49790,
+      "sha256": "5f8dc49cb4483e206ba3ebb22abbccfc0218c59b60fc78cce24197ced5b9e102",
+      "integrity": "sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==",
+      "manifestSha256": "929dc634f6c254c5881612db9a4c52e2ef16cc1b3e3da3343b9e31e6cf037448",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-1.0.3.tgz",
+        "integrity": "sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw=="
+      }
+    },
+    "vary@1.1.2": {
+      "tarball": "vary-1.1.2.tgz",
+      "name": "vary",
+      "version": "1.1.2",
+      "bytes": 3609,
+      "sha256": "5d63ba60b42df5cff23e72d054ead3073fe5a54e0878c3d1995cb4be48e51d1f",
+      "integrity": "sha512-TPBUZSR+8DO9Mao2Uk3qhddYrbwJXDFS+ed0nTNPxoUBqgywUN+S4JrlI0wt+3eZV13+soda53iUCIE2KXsrnw==",
+      "manifestSha256": "9b720f50ab3c5d03896f995f22fad9ca76db449c166cefa31f7113d9a533b227",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz",
+        "integrity": "sha512-TPBUZSR+8DO9Mao2Uk3qhddYrbwJXDFS+ed0nTNPxoUBqgywUN+S4JrlI0wt+3eZV13+soda53iUCIE2KXsrnw=="
+      }
+    },
+    "werift@0.24.4": {
+      "tarball": "werift-0.24.4.tgz",
+      "name": "werift",
+      "version": "0.24.4",
+      "bytes": 860574,
+      "sha256": "e5605ba0f638ec2050372d3085d59a5485d785bb8d88b00a254c79b0957236fe",
+      "integrity": "sha512-NoROZ11L/ZqAB5ombCB4VBuVNdIZfwI493zlxlIX7BlwfWRy55eDJdtWMC2VX35yBXFaWwA8NtYbmJ8qWtVk9Q==",
+      "manifestSha256": "a196305ac3e2a89431eba1cf53e56248ff01633252bbb932b5141b600f69f65f",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/werift/-/werift-0.24.4.tgz",
+        "integrity": "sha512-NoROZ11L/ZqAB5ombCB4VBuVNdIZfwI493zlxlIX7BlwfWRy55eDJdtWMC2VX35yBXFaWwA8NtYbmJ8qWtVk9Q=="
+      }
+    },
+    "which-module@2.0.1": {
+      "tarball": "which-module-2.0.1.tgz",
+      "name": "which-module",
+      "version": "2.0.1",
+      "bytes": 1971,
+      "sha256": "ff8eef22f989286c4a33d6c53acf11027a4c2634eb042c63d7bf3700b3424973",
+      "integrity": "sha512-iBdZ57RDvnOR9AGBhML2vFZf7h8vmBjhoaZqODJBFWHVtKkDmKuHai3cx5PgVMrX5YDNp27AofYbAwctSS+vhQ==",
+      "manifestSha256": "02f6f6833d09c32100317a390892888ae44da4f712b2271d4b308bcace09a99f",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/which-module/-/which-module-2.0.1.tgz",
+        "integrity": "sha512-iBdZ57RDvnOR9AGBhML2vFZf7h8vmBjhoaZqODJBFWHVtKkDmKuHai3cx5PgVMrX5YDNp27AofYbAwctSS+vhQ=="
+      }
+    },
+    "wrap-ansi@6.2.0": {
+      "tarball": "wrap-ansi-6.2.0.tgz",
+      "name": "wrap-ansi",
+      "version": "6.2.0",
+      "bytes": 4004,
+      "sha256": "d46fc412f04d873700a557bc9686d42c0d6c7979e1825cefebf4279ca9d678f8",
+      "integrity": "sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==",
+      "manifestSha256": "ee3d1495da354ea19d3900e3f28a4e93cc202966623fee4ad6fe54346b385075",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-6.2.0.tgz",
+        "integrity": "sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA=="
+      }
+    },
+    "ws@8.21.3": {
+      "tarball": "ws-8.21.3.tgz",
+      "name": "ws",
+      "version": "8.21.3",
+      "bytes": 35016,
+      "sha256": "df3454ef205791ce50b5b9241762dcf9bfe1aa9f7f01d3057229be7dac0c2dc3",
+      "integrity": "sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==",
+      "manifestSha256": "a56a3fd55945a3ce177e3ca165dafae6f7eb03b7aefd58c092ac723d5741a6fb",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/ws/-/ws-8.21.3.tgz",
+        "integrity": "sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw=="
+      }
+    },
+    "y18n@4.0.3": {
+      "tarball": "y18n-4.0.3.tgz",
+      "name": "y18n",
+      "version": "4.0.3",
+      "bytes": 4296,
+      "sha256": "bc4970449801429ba77228a26f03e05ba7e9a5e98111edb44d6a0fc7b6660ecf",
+      "integrity": "sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==",
+      "manifestSha256": "5995de811ffa1b8a8e9ed9bd0444f60058dba9ce1ccbe12f2d5e12c31a975d9c",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/y18n/-/y18n-4.0.3.tgz",
+        "integrity": "sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ=="
+      }
+    },
+    "yargs-parser@18.1.3": {
+      "tarball": "yargs-parser-18.1.3.tgz",
+      "name": "yargs-parser",
+      "version": "18.1.3",
+      "bytes": 19027,
+      "sha256": "0c9135ee2330fd9cdc19fed11b8d9a7b292f5dd8ddf40c13b051340693ebbe58",
+      "integrity": "sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==",
+      "manifestSha256": "2de71e9a1ff3e5bce791f5e3de66e1ad86f4f143d8c3ce4fbaad7a615e5c5e70",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-18.1.3.tgz",
+        "integrity": "sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ=="
+      }
+    },
+    "yargs@15.4.1": {
+      "tarball": "yargs-15.4.1.tgz",
+      "name": "yargs",
+      "version": "15.4.1",
+      "bytes": 56286,
+      "sha256": "41abfec6a74cfb4fa330af2a33b867dfa06a9b2b439bb01244c4f47c585de535",
+      "integrity": "sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==",
+      "manifestSha256": "be417ad995e4f608d6f5243ad90b28f3f2604c73abb30d72382ae13358a74949",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/yargs/-/yargs-15.4.1.tgz",
+        "integrity": "sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A=="
+      }
+    },
+    "zod@4.4.3": {
+      "tarball": "zod-4.4.3.tgz",
+      "name": "zod",
+      "version": "4.4.3",
+      "bytes": 759412,
+      "sha256": "187e083366bc46e62106dc1e1ce3909f1cb2ed9c0c47135a7890e520e4aa3907",
+      "integrity": "sha512-v5vbJYgxpwhb4DPfW4oOTGfoYkVaXj7eULNlWSlndq6aUH0oXtcoFaEOrG4uoqrrQ/YYEVUbTjgfYd87l6UjoQ==",
+      "manifestSha256": "9e2004a930a9e938f3fbf75395d8e287da0033e2c8e1d86642c6b8313f9d5179",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/zod/-/zod-4.4.3.tgz",
+        "integrity": "sha512-v5vbJYgxpwhb4DPfW4oOTGfoYkVaXj7eULNlWSlndq6aUH0oXtcoFaEOrG4uoqrrQ/YYEVUbTjgfYd87l6UjoQ=="
+      }
+    }
+  },
+  "edges": [
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "@dsh-mobile/e2e-tunnel",
+      "declaredRange": "github:NOirBRight/dsh-e2e-tunnel#v0.1.4",
+      "section": "dependencies",
+      "child": "@dsh-mobile/e2e-tunnel@0.1.4"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "qrcode",
+      "declaredRange": "^1.5.4",
+      "section": "dependencies",
+      "child": "qrcode@1.5.4"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "tweetnacl",
+      "declaredRange": "^1.0.3",
+      "section": "dependencies",
+      "child": "tweetnacl@1.0.3"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "werift",
+      "declaredRange": "^0.24.4",
+      "section": "dependencies",
+      "child": "werift@0.24.4"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "ws",
+      "declaredRange": "^8.18.0",
+      "section": "dependencies",
+      "child": "ws@8.21.3"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "@deepseek-ai/dsh-host-webserver",
+      "declaredRange": "0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "@deepseek-ai/dsh-settings",
+      "declaredRange": "0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-settings@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "react",
+      "declaredRange": "^18.2.0",
+      "section": "peerDependencies",
+      "child": "react@18.3.1"
+    },
+    {
+      "parent": "@dsh-mobile/pairing@0.1.12",
+      "dependency": "@deepseek-ai/dsh-client-connection",
+      "declaredRange": ">=0.1.2-alpha.1 <0.1.3",
+      "section": "peerDependencies",
+      "optional": true,
+      "child": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/cordis@4.0.1",
+      "dependency": "@standard-schema/spec",
+      "declaredRange": "^1.1.0",
+      "section": "dependencies",
+      "child": "@standard-schema/spec@1.1.0"
+    },
+    {
+      "parent": "@deepseek-ai/cordis@4.0.1",
+      "dependency": "@deepseek-ai/cosmokit",
+      "declaredRange": "^1.8.2",
+      "section": "dependencies",
+      "child": "@deepseek-ai/cosmokit@1.8.2"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-llm",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-scope",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-system-prompt",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-typert-protocol",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-brand@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-brand@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "zod",
+      "declaredRange": "^4.4.3",
+      "section": "dependencies",
+      "child": "zod@4.4.3"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-attachment",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-credentials",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-credentials@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-commands",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-commands@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-host-directory-picker",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-host-directory-picker@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-host-webserver",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-llm",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-settings",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-settings@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-tool-todo",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-code-runtime@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-code-runtime@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "zod",
+      "declaredRange": "^4.4.3",
+      "section": "dependencies",
+      "child": "zod@4.4.3"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-util-crypto",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-agent",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-agent@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-attachment",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-llm",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-scope",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-typert-protocol",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-host-directory-picker@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-host-directory-picker@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
+      "dependency": "compression",
+      "declaredRange": "^1.8.1",
+      "section": "dependencies",
+      "child": "compression@1.8.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
+      "dependency": "negotiator",
+      "declaredRange": "^1.0.0",
+      "section": "dependencies",
+      "child": "negotiator@1.0.0"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "zod",
+      "declaredRange": "^4.4.3",
+      "section": "dependencies",
+      "child": "zod@4.4.3"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-util-crypto",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-attachment",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-typert-protocol",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-timeout",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-timeout@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-scope@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-scope@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1",
+      "dependency": "zod",
+      "declaredRange": "^4.4.3",
+      "section": "dependencies",
+      "child": "zod@4.4.3"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-scope",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-llm",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-typert-protocol",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-scope",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-llm",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-timeout@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-timeout@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "dependency": "zod",
+      "declaredRange": "^4.4.3",
+      "section": "dependencies",
+      "child": "zod@4.4.3"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-agent",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-agent@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session-projection",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-tools",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-tools@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-agent",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-agent@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-llm",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-scope",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-system-prompt",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-user-approval",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-code-runtime",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-code-runtime@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "^3.18.1",
+      "section": "dependencies",
+      "child": "@deepseek-ai/schemastery@3.18.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-agent",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-agent@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-llm",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-scope",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-system-prompt",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/dsh-invariants",
+      "declaredRange": "^0.1.2-alpha.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "^4.0.1",
+      "section": "peerDependencies",
+      "child": "@deepseek-ai/cordis@4.0.1"
+    },
+    {
+      "parent": "@deepseek-ai/schemastery@3.18.1",
+      "dependency": "@standard-schema/spec",
+      "declaredRange": "^1.1.0",
+      "section": "dependencies",
+      "child": "@standard-schema/spec@1.1.0"
+    },
+    {
+      "parent": "@deepseek-ai/schemastery@3.18.1",
+      "dependency": "@deepseek-ai/cosmokit",
+      "declaredRange": "^1.8.2",
+      "section": "dependencies",
+      "child": "@deepseek-ai/cosmokit@1.8.2"
+    },
+    {
+      "parent": "@dsh-mobile/e2e-tunnel@0.1.4",
+      "dependency": "tweetnacl",
+      "declaredRange": "^1.0.3",
+      "section": "dependencies",
+      "child": "tweetnacl@1.0.3"
+    },
+    {
+      "parent": "@fidm/x509@1.2.1",
+      "dependency": "@fidm/asn1",
+      "declaredRange": "^1.0.4",
+      "section": "dependencies",
+      "child": "@fidm/asn1@1.0.4"
+    },
+    {
+      "parent": "@fidm/x509@1.2.1",
+      "dependency": "tweetnacl",
+      "declaredRange": "^1.0.1",
+      "section": "dependencies",
+      "child": "tweetnacl@1.0.3"
+    },
+    {
+      "parent": "@noble/curves@1.9.7",
+      "dependency": "@noble/hashes",
+      "declaredRange": "1.8.0",
+      "section": "dependencies",
+      "child": "@noble/hashes@1.8.0"
+    },
+    {
+      "parent": "@peculiar/asn1-cms@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-cms@2.9.4",
+      "dependency": "@peculiar/asn1-x509",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-cms@2.9.4",
+      "dependency": "@peculiar/asn1-x509-attr",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509-attr@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-cms@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-cms@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-csr@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-csr@2.9.4",
+      "dependency": "@peculiar/asn1-x509",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-csr@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-csr@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-ecc@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-ecc@2.9.4",
+      "dependency": "@peculiar/asn1-x509",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-ecc@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-ecc@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-pfx@2.9.4",
+      "dependency": "@peculiar/asn1-cms",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-cms@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pfx@2.9.4",
+      "dependency": "@peculiar/asn1-pkcs8",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-pkcs8@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pfx@2.9.4",
+      "dependency": "@peculiar/asn1-rsa",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-rsa@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pfx@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pfx@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-pfx@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs8@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs8@2.9.4",
+      "dependency": "@peculiar/asn1-x509",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs8@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs8@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs9@2.9.4",
+      "dependency": "@peculiar/asn1-cms",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-cms@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs9@2.9.4",
+      "dependency": "@peculiar/asn1-pfx",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-pfx@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs9@2.9.4",
+      "dependency": "@peculiar/asn1-pkcs8",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-pkcs8@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs9@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs9@2.9.4",
+      "dependency": "@peculiar/asn1-x509",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs9@2.9.4",
+      "dependency": "@peculiar/asn1-x509-attr",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509-attr@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs9@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-pkcs9@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-rsa@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-rsa@2.9.4",
+      "dependency": "@peculiar/asn1-x509",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-rsa@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-rsa@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-schema@2.9.4",
+      "dependency": "@peculiar/utils",
+      "declaredRange": "^2.0.2",
+      "section": "dependencies",
+      "child": "@peculiar/utils@2.0.3"
+    },
+    {
+      "parent": "@peculiar/asn1-schema@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-schema@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-x509-attr@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-x509-attr@2.9.4",
+      "dependency": "@peculiar/asn1-x509",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-x509-attr@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-x509-attr@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/asn1-x509@2.9.4",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.9.4",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/asn1-x509@2.9.4",
+      "dependency": "@peculiar/utils",
+      "declaredRange": "^2.0.2",
+      "section": "dependencies",
+      "child": "@peculiar/utils@2.0.3"
+    },
+    {
+      "parent": "@peculiar/asn1-x509@2.9.4",
+      "dependency": "asn1js",
+      "declaredRange": "^3.0.10",
+      "section": "dependencies",
+      "child": "asn1js@3.0.10"
+    },
+    {
+      "parent": "@peculiar/asn1-x509@2.9.4",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/utils@2.0.3",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "@peculiar/asn1-cms",
+      "declaredRange": "^2.6.0",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-cms@2.9.4"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "@peculiar/asn1-csr",
+      "declaredRange": "^2.6.0",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-csr@2.9.4"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "@peculiar/asn1-ecc",
+      "declaredRange": "^2.6.0",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-ecc@2.9.4"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "@peculiar/asn1-pkcs9",
+      "declaredRange": "^2.6.0",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-pkcs9@2.9.4"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "@peculiar/asn1-rsa",
+      "declaredRange": "^2.6.0",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-rsa@2.9.4"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "@peculiar/asn1-schema",
+      "declaredRange": "^2.6.0",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-schema@2.9.4"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "@peculiar/asn1-x509",
+      "declaredRange": "^2.6.0",
+      "section": "dependencies",
+      "child": "@peculiar/asn1-x509@2.9.4"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "pvtsutils",
+      "declaredRange": "^1.3.6",
+      "section": "dependencies",
+      "child": "pvtsutils@1.3.6"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "reflect-metadata",
+      "declaredRange": "^0.2.2",
+      "section": "dependencies",
+      "child": "reflect-metadata@0.2.2"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "@peculiar/x509@1.14.3",
+      "dependency": "tsyringe",
+      "declaredRange": "^4.10.0",
+      "section": "dependencies",
+      "child": "tsyringe@4.10.0"
+    },
+    {
+      "parent": "@shinyoshiaki/binary-data@0.6.1",
+      "dependency": "generate-function",
+      "declaredRange": "^2.3.1",
+      "section": "dependencies",
+      "child": "generate-function@2.3.1"
+    },
+    {
+      "parent": "@shinyoshiaki/binary-data@0.6.1",
+      "dependency": "is-plain-object",
+      "declaredRange": "^2.0.3",
+      "section": "dependencies",
+      "child": "is-plain-object@2.0.4"
+    },
+    {
+      "parent": "@types/dom-mediacapture-transform@0.1.12",
+      "dependency": "@types/dom-webcodecs",
+      "declaredRange": "*",
+      "section": "dependencies",
+      "child": "@types/dom-webcodecs@0.1.13"
+    },
+    {
+      "parent": "ansi-styles@4.3.0",
+      "dependency": "color-convert",
+      "declaredRange": "^2.0.1",
+      "section": "dependencies",
+      "child": "color-convert@2.0.1"
+    },
+    {
+      "parent": "asn1js@3.0.10",
+      "dependency": "pvtsutils",
+      "declaredRange": "^1.3.6",
+      "section": "dependencies",
+      "child": "pvtsutils@1.3.6"
+    },
+    {
+      "parent": "asn1js@3.0.10",
+      "dependency": "pvutils",
+      "declaredRange": "^1.1.5",
+      "section": "dependencies",
+      "child": "pvutils@1.2.0"
+    },
+    {
+      "parent": "asn1js@3.0.10",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "buffer@6.0.3",
+      "dependency": "base64-js",
+      "declaredRange": "^1.3.1",
+      "section": "dependencies",
+      "child": "base64-js@1.5.1"
+    },
+    {
+      "parent": "buffer@6.0.3",
+      "dependency": "ieee754",
+      "declaredRange": "^1.2.1",
+      "section": "dependencies",
+      "child": "ieee754@1.2.1"
+    },
+    {
+      "parent": "cliui@6.0.0",
+      "dependency": "string-width",
+      "declaredRange": "^4.2.0",
+      "section": "dependencies",
+      "child": "string-width@4.2.3"
+    },
+    {
+      "parent": "cliui@6.0.0",
+      "dependency": "strip-ansi",
+      "declaredRange": "^6.0.0",
+      "section": "dependencies",
+      "child": "strip-ansi@6.0.1"
+    },
+    {
+      "parent": "cliui@6.0.0",
+      "dependency": "wrap-ansi",
+      "declaredRange": "^6.2.0",
+      "section": "dependencies",
+      "child": "wrap-ansi@6.2.0"
+    },
+    {
+      "parent": "color-convert@2.0.1",
+      "dependency": "color-name",
+      "declaredRange": "~1.1.4",
+      "section": "dependencies",
+      "child": "color-name@1.1.4"
+    },
+    {
+      "parent": "compressible@2.0.18",
+      "dependency": "mime-db",
+      "declaredRange": ">= 1.43.0 < 2",
+      "section": "dependencies",
+      "child": "mime-db@1.54.0"
+    },
+    {
+      "parent": "compression@1.8.1",
+      "dependency": "bytes",
+      "declaredRange": "3.1.2",
+      "section": "dependencies",
+      "child": "bytes@3.1.2"
+    },
+    {
+      "parent": "compression@1.8.1",
+      "dependency": "compressible",
+      "declaredRange": "~2.0.18",
+      "section": "dependencies",
+      "child": "compressible@2.0.18"
+    },
+    {
+      "parent": "compression@1.8.1",
+      "dependency": "debug",
+      "declaredRange": "2.6.9",
+      "section": "dependencies",
+      "child": "debug@2.6.9"
+    },
+    {
+      "parent": "compression@1.8.1",
+      "dependency": "negotiator",
+      "declaredRange": "~0.6.4",
+      "section": "dependencies",
+      "child": "negotiator@0.6.4"
+    },
+    {
+      "parent": "compression@1.8.1",
+      "dependency": "on-headers",
+      "declaredRange": "~1.1.0",
+      "section": "dependencies",
+      "child": "on-headers@1.1.0"
+    },
+    {
+      "parent": "compression@1.8.1",
+      "dependency": "safe-buffer",
+      "declaredRange": "5.2.1",
+      "section": "dependencies",
+      "child": "safe-buffer@5.2.1"
+    },
+    {
+      "parent": "compression@1.8.1",
+      "dependency": "vary",
+      "declaredRange": "~1.1.2",
+      "section": "dependencies",
+      "child": "vary@1.1.2"
+    },
+    {
+      "parent": "debug@2.6.9",
+      "dependency": "ms",
+      "declaredRange": "2.0.0",
+      "section": "dependencies",
+      "child": "ms@2.0.0"
+    },
+    {
+      "parent": "debug@4.4.0",
+      "dependency": "ms",
+      "declaredRange": "^2.1.3",
+      "section": "dependencies",
+      "child": "ms@2.1.3"
+    },
+    {
+      "parent": "dns-packet@5.6.1",
+      "dependency": "@leichtgewicht/ip-codec",
+      "declaredRange": "^2.0.1",
+      "section": "dependencies",
+      "child": "@leichtgewicht/ip-codec@2.0.5"
+    },
+    {
+      "parent": "find-up@4.1.0",
+      "dependency": "locate-path",
+      "declaredRange": "^5.0.0",
+      "section": "dependencies",
+      "child": "locate-path@5.0.0"
+    },
+    {
+      "parent": "find-up@4.1.0",
+      "dependency": "path-exists",
+      "declaredRange": "^4.0.0",
+      "section": "dependencies",
+      "child": "path-exists@4.0.0"
+    },
+    {
+      "parent": "generate-function@2.3.1",
+      "dependency": "is-property",
+      "declaredRange": "^1.0.2",
+      "section": "dependencies",
+      "child": "is-property@1.0.2"
+    },
+    {
+      "parent": "is-plain-object@2.0.4",
+      "dependency": "isobject",
+      "declaredRange": "^3.0.1",
+      "section": "dependencies",
+      "child": "isobject@3.0.1"
+    },
+    {
+      "parent": "locate-path@5.0.0",
+      "dependency": "p-locate",
+      "declaredRange": "^4.1.0",
+      "section": "dependencies",
+      "child": "p-locate@4.1.0"
+    },
+    {
+      "parent": "loose-envify@1.4.0",
+      "dependency": "js-tokens",
+      "declaredRange": "^3.0.0 || ^4.0.0",
+      "section": "dependencies",
+      "child": "js-tokens@4.0.0"
+    },
+    {
+      "parent": "mediabunny@1.55.2",
+      "dependency": "@types/dom-mediacapture-transform",
+      "declaredRange": "^0.1.11",
+      "section": "dependencies",
+      "child": "@types/dom-mediacapture-transform@0.1.12"
+    },
+    {
+      "parent": "mediabunny@1.55.2",
+      "dependency": "@types/dom-webcodecs",
+      "declaredRange": "0.1.13",
+      "section": "dependencies",
+      "child": "@types/dom-webcodecs@0.1.13"
+    },
+    {
+      "parent": "multicast-dns@7.2.5",
+      "dependency": "dns-packet",
+      "declaredRange": "^5.2.2",
+      "section": "dependencies",
+      "child": "dns-packet@5.6.1"
+    },
+    {
+      "parent": "multicast-dns@7.2.5",
+      "dependency": "thunky",
+      "declaredRange": "^1.0.2",
+      "section": "dependencies",
+      "child": "thunky@1.1.0"
+    },
+    {
+      "parent": "p-limit@2.3.0",
+      "dependency": "p-try",
+      "declaredRange": "^2.0.0",
+      "section": "dependencies",
+      "child": "p-try@2.2.0"
+    },
+    {
+      "parent": "p-locate@4.1.0",
+      "dependency": "p-limit",
+      "declaredRange": "^2.2.0",
+      "section": "dependencies",
+      "child": "p-limit@2.3.0"
+    },
+    {
+      "parent": "pvtsutils@1.3.6",
+      "dependency": "tslib",
+      "declaredRange": "^2.8.1",
+      "section": "dependencies",
+      "child": "tslib@2.8.1"
+    },
+    {
+      "parent": "qrcode@1.5.4",
+      "dependency": "dijkstrajs",
+      "declaredRange": "^1.0.1",
+      "section": "dependencies",
+      "child": "dijkstrajs@1.0.3"
+    },
+    {
+      "parent": "qrcode@1.5.4",
+      "dependency": "pngjs",
+      "declaredRange": "^5.0.0",
+      "section": "dependencies",
+      "child": "pngjs@5.0.0"
+    },
+    {
+      "parent": "qrcode@1.5.4",
+      "dependency": "yargs",
+      "declaredRange": "^15.3.1",
+      "section": "dependencies",
+      "child": "yargs@15.4.1"
+    },
+    {
+      "parent": "react@18.3.1",
+      "dependency": "loose-envify",
+      "declaredRange": "^1.1.0",
+      "section": "dependencies",
+      "child": "loose-envify@1.4.0"
+    },
+    {
+      "parent": "string-width@4.2.3",
+      "dependency": "emoji-regex",
+      "declaredRange": "^8.0.0",
+      "section": "dependencies",
+      "child": "emoji-regex@8.0.0"
+    },
+    {
+      "parent": "string-width@4.2.3",
+      "dependency": "is-fullwidth-code-point",
+      "declaredRange": "^3.0.0",
+      "section": "dependencies",
+      "child": "is-fullwidth-code-point@3.0.0"
+    },
+    {
+      "parent": "string-width@4.2.3",
+      "dependency": "strip-ansi",
+      "declaredRange": "^6.0.1",
+      "section": "dependencies",
+      "child": "strip-ansi@6.0.1"
+    },
+    {
+      "parent": "strip-ansi@6.0.1",
+      "dependency": "ansi-regex",
+      "declaredRange": "^5.0.1",
+      "section": "dependencies",
+      "child": "ansi-regex@5.0.1"
+    },
+    {
+      "parent": "tsyringe@4.10.0",
+      "dependency": "tslib",
+      "declaredRange": "^1.9.3",
+      "section": "dependencies",
+      "child": "tslib@1.14.1"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "@fidm/x509",
+      "declaredRange": "^1.2.1",
+      "section": "dependencies",
+      "child": "@fidm/x509@1.2.1"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "@noble/curves",
+      "declaredRange": "^1.8.1",
+      "section": "dependencies",
+      "child": "@noble/curves@1.9.7"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "@peculiar/x509",
+      "declaredRange": "^1.12.3",
+      "section": "dependencies",
+      "child": "@peculiar/x509@1.14.3"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "@shinyoshiaki/binary-data",
+      "declaredRange": "^0.6.1",
+      "section": "dependencies",
+      "child": "@shinyoshiaki/binary-data@0.6.1"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "buffer",
+      "declaredRange": "^6.0.3",
+      "section": "dependencies",
+      "child": "buffer@6.0.3"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "debug",
+      "declaredRange": "4.4.0",
+      "section": "dependencies",
+      "child": "debug@4.4.0"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "mediabunny",
+      "declaredRange": "^1.45.2",
+      "section": "dependencies",
+      "child": "mediabunny@1.55.2"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "multicast-dns",
+      "declaredRange": "^7.2.5",
+      "section": "dependencies",
+      "child": "multicast-dns@7.2.5"
+    },
+    {
+      "parent": "werift@0.24.4",
+      "dependency": "tweetnacl",
+      "declaredRange": "^1.0.3",
+      "section": "dependencies",
+      "child": "tweetnacl@1.0.3"
+    },
+    {
+      "parent": "wrap-ansi@6.2.0",
+      "dependency": "ansi-styles",
+      "declaredRange": "^4.0.0",
+      "section": "dependencies",
+      "child": "ansi-styles@4.3.0"
+    },
+    {
+      "parent": "wrap-ansi@6.2.0",
+      "dependency": "string-width",
+      "declaredRange": "^4.1.0",
+      "section": "dependencies",
+      "child": "string-width@4.2.3"
+    },
+    {
+      "parent": "wrap-ansi@6.2.0",
+      "dependency": "strip-ansi",
+      "declaredRange": "^6.0.0",
+      "section": "dependencies",
+      "child": "strip-ansi@6.0.1"
+    },
+    {
+      "parent": "yargs-parser@18.1.3",
+      "dependency": "camelcase",
+      "declaredRange": "^5.0.0",
+      "section": "dependencies",
+      "child": "camelcase@5.3.1"
+    },
+    {
+      "parent": "yargs-parser@18.1.3",
+      "dependency": "decamelize",
+      "declaredRange": "^1.2.0",
+      "section": "dependencies",
+      "child": "decamelize@1.2.0"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "cliui",
+      "declaredRange": "^6.0.0",
+      "section": "dependencies",
+      "child": "cliui@6.0.0"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "decamelize",
+      "declaredRange": "^1.2.0",
+      "section": "dependencies",
+      "child": "decamelize@1.2.0"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "find-up",
+      "declaredRange": "^4.1.0",
+      "section": "dependencies",
+      "child": "find-up@4.1.0"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "get-caller-file",
+      "declaredRange": "^2.0.1",
+      "section": "dependencies",
+      "child": "get-caller-file@2.0.5"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "require-directory",
+      "declaredRange": "^2.1.1",
+      "section": "dependencies",
+      "child": "require-directory@2.1.1"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "require-main-filename",
+      "declaredRange": "^2.0.0",
+      "section": "dependencies",
+      "child": "require-main-filename@2.0.0"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "set-blocking",
+      "declaredRange": "^2.0.0",
+      "section": "dependencies",
+      "child": "set-blocking@2.0.0"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "string-width",
+      "declaredRange": "^4.2.0",
+      "section": "dependencies",
+      "child": "string-width@4.2.3"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "which-module",
+      "declaredRange": "^2.0.0",
+      "section": "dependencies",
+      "child": "which-module@2.0.1"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "y18n",
+      "declaredRange": "^4.0.0",
+      "section": "dependencies",
+      "child": "y18n@4.0.3"
+    },
+    {
+      "parent": "yargs@15.4.1",
+      "dependency": "yargs-parser",
+      "declaredRange": "^18.1.2",
+      "section": "dependencies",
+      "child": "yargs-parser@18.1.3"
+    }
+  ],
+  "regeneration": [
+    "Build each official package from the clean alpha.1 checkout at the pinned commit and run pnpm pack without editing package contents.",
+    "Pack the e2e tunnel from Git tag v0.1.4 at the pinned commit without editing package contents.",
+    "Fetch registry tarballs at the package-lock resolved URL and verify each recorded SHA-512 integrity before adding it.",
+    "Update package metadata and dependency edges only when the exact archive bytes and provenance are independently verified."
+  ]
+}
