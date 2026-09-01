@@ -13,7 +13,7 @@ export interface Config {
     port: number;
     /** Upstream dsh web host. The proxy only ever forwards to loopback. */
     dshHost: string;
-    /** Upstream dsh web port. */
+    /** Upstream dsh web port; valid Node/URL ports are 1 through 65535. */
     dshPort: number;
     /** Harness home; the keypair and device store live under it unless overridden. */
     dshHome: string;
@@ -23,6 +23,8 @@ export interface Config {
     tokenStorePath?: string;
     /** One-time pairing-code lifetime in milliseconds. */
     codeTtlMs: number;
+    /** Delay before retrying a failed DSH browser-session cookie acquisition. */
+    cookieRetryDelayMs: number;
     /** Product Public Endpoint mode. Quick Tunnel is the zero-configuration default. */
     endpointMode: 'quick' | 'custom' | 'relay';
     /** Operator-provisioned URL, required only in custom mode. */

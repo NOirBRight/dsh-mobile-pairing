@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { createServer } from 'node:http'
-import { createDshCookieAcquirer, parseLoopbackAuthority } from '../src/dsh-cookie.ts'
+import { createDshCookieAcquirer, formatLoopbackAuthority, parseLoopbackAuthority, redactCookieDiagnostic } from '../src/dsh-cookie.ts'
 
 function listen(handler) {
   const server = createServer(handler)
@@ -12,7 +12,16 @@ function listen(handler) {
 
 test('parseLoopbackAuthority splits host:port once from the right', () => {
   assert.deepEqual(parseLoopbackAuthority('127.0.0.1:3082'), { host: '127.0.0.1', port: 3082 })
-  assert.deepEqual(parseLoopbackAuthority('[::1]:3082'), { host: '[::1]', port: 3082 })
+  assert.deepEqual(parseLoopbackAuthority('[::1]:3082'), { host: '::1', port: 3082 })
+  assert.equal(formatLoopbackAuthority('::1', 3082), '[::1]:3082')
+  assert.equal(formatLoopbackAuthority('[::1]', 3082), '[::1]:3082')
+  assert.throws(() => formatLoopbackAuthority('127.0.0.1', 0), /port/)
+})
+
+test('cookie diagnostics redact URL, cookie, and authorization secrets', () => {
+  const diagnostic = redactCookieDiagnostic(new Error('GET /?token=launch-secret Cookie: dsh-auth=abc Authorization: Bearer xyz\nnext'))
+  assert.equal(diagnostic, 'GET /?token=[redacted] Cookie: [redacted] Authorization: Bearer [redacted] next')
+  assert.doesNotMatch(diagnostic, /launch-secret|dsh-auth=abc|xyz/)
 })
 
 test('refresh follows 303 and keeps Set-Cookie from the token hop', async () => {

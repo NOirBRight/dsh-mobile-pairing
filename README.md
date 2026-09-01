@@ -26,7 +26,7 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 正式版安装：
 
 ~~~sh
-pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.11
+pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.12
 ~~~
 
 然后把 `@dsh-mobile/pairing` 加入 profile 的 `dsh.profile.bundles`。包内的 `cordis.patch.yml` 会插入 Remote loader；默认配置面向日常 `:3080`：
@@ -86,11 +86,57 @@ quickTunnelEndpointPattern: 'https://mobile\\.example\\.com\\b'
 
 严禁启动共享同一 DSH_HOME 的第二个 DSH 进程来承载本插件。
 
+## 维护边界
+
+- **单一来源**：本仓库是 `@dsh-mobile/pairing` 的唯一来源；`dsh-mobile` 等下游通过已发布的 tag/tarball 消费，不维护第二份源码镜像。
+- **设置图标兼容性**：设置导航的远程图标通过临时 DOM patch 替换官方齿轮（官方 `settings.section` 暂无 icon 字段）。这是已接受的临时兼容性限制，Host 导航结构变更时静默回落为默认齿轮，不影响配对与会话功能。
+
 ## 验证
 
 ~~~sh
 npm test
 npm run typecheck
 npm run build
+npm run verify:packed
 npm pack --dry-run
 ~~~
+
+`verify:packed` 只消费已提交的 `fixtures/alpha1/tarballs/*.tgz` 和 `PROVENANCE.json`，校验归档安全性、哈希、清单、导出、入口点与完整依赖闭包（按 npm semver 规则，并保留冲突依赖的嵌套版本），再在空缓存、空 store、无效 registry、隔离 userconfig 和显式 allowlist 环境中安装发布 tarball，冒烟测试 Host Webserver、Connection、Pairing 的根入口及其 ModuleLoader 客户端入口；捕获缺失导出与未声明的运行时依赖，无需联网或源码 `node_modules`，临时目录清理不跟随符号链接且不覆盖首个错误。`PROVENANCE.json` 同时绑定干净 alpha.1/e2e 来源证据与最终 `0.1.12` root tarball 的 SHA-256/SHA-512。
+
+
+## Release installation (Latest)
+
+Host pairing gateway, QR/device management, WebRTC Direct, and encrypted tunnel fallback. The release artifact targets DeepSeek Harness 0.1.2-alpha.1 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
+
+Latest installation (the URL never contains a version):
+
+~~~sh
+dsh plugin --profile web add --force \
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing.tgz
+~~~
+
+Fixed-version installation:
+
+~~~sh
+dsh plugin --profile web add --force \
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.12/dsh-mobile-pairing.tgz
+~~~
+
+Update, uninstall, and verify:
+
+~~~sh
+# Update to the latest Release
+dsh plugin --profile web add --force \
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing.tgz
+# Verify the loaded version
+dsh plugin --profile web list
+dsh plugin --profile web doctor
+# Uninstall only this plugin
+dsh plugin --profile web remove @dsh-mobile/pairing
+~~~
+
+Configuration: use the plugin section in Settings for Web UI plugins, or the profile dsh.profile.bundles entry for Host-only plugins. Start with this README's minimal YAML/JSON example and provide credentials/backend addresses explicitly.
+
+Rollback: rerun the fixed v0.1.12 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
+
+Release and integrity: [v0.1.12](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.12) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.12/SHA256SUMS).

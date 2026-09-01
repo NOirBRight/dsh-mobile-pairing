@@ -1,14 +1,6 @@
 /** Host-owned Public Endpoint and bounded loopback Gateway plugin. */
 import type { Context } from '@deepseek-ai/cordis';
 import { Config } from './config.ts';
-declare module '@deepseek-ai/cordis' {
-    interface Context {
-        /** Host Connection transport (alpha.1); present in the web profile. */
-        connection?: {
-            authenticatedUrl(baseUrl: string): string;
-        };
-    }
-}
 export declare const name = "dsh-mobile-pairing";
 export declare const inject: string[];
 export { Config, resolveConfig } from './config.ts';

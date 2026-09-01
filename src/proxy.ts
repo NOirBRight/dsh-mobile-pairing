@@ -13,6 +13,7 @@ import type { IncomingMessage, Server, ServerResponse } from 'node:http'
 import { connect } from 'node:net'
 import type { AddressInfo } from 'node:net'
 import type { Duplex } from 'node:stream'
+import { formatLoopbackAuthority } from './dsh-cookie.ts'
 
 /** The Sec-WebSocket-Protocol entry carrying the device token: `dsh-mobile.<token>`. */
 export const WS_AUTH_PREFIX = 'dsh-mobile.'
@@ -54,7 +55,7 @@ export interface AuthProxy {
  */
 export function createAuthProxy(options: AuthProxyOptions): AuthProxy {
   const { upstreamHost, upstreamPort, tokenStore } = options
-  const upstreamAuthority = `${upstreamHost}:${upstreamPort}`
+  const upstreamAuthority = formatLoopbackAuthority(upstreamHost, upstreamPort)
   let listenedPort: number | null = null
   const upgradedSockets = new Set<Duplex>()
 

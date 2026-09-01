@@ -1,0 +1,1599 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@deepseek-ai/cordis':
+        specifier: file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+        version: file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/cosmokit':
+        specifier: file:../tarballs/deepseek-ai-cosmokit-1.8.2.tgz
+        version: file:../tarballs/deepseek-ai-cosmokit-1.8.2.tgz
+      '@deepseek-ai/dsh-agent':
+        specifier: file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz(5f225efed99ae4e75f9b536ee8cba216)
+      '@deepseek-ai/dsh-attachment':
+        specifier: file:../tarballs/deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-brand':
+        specifier: file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-client-connection':
+        specifier: file:../tarballs/deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz(7a5ef30e2670ec0fc8efaaf869a5f31d)
+      '@deepseek-ai/dsh-code-runtime':
+        specifier: file:../tarballs/deepseek-ai-dsh-code-runtime-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-code-runtime-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-commands':
+        specifier: file:../tarballs/deepseek-ai-dsh-commands-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-commands-0.1.2-alpha.1.tgz(b48ee1a2a84a29aba74fec36ebac4933)
+      '@deepseek-ai/dsh-credentials':
+        specifier: file:../tarballs/deepseek-ai-dsh-credentials-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-credentials-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-host-directory-picker':
+        specifier: file:../tarballs/deepseek-ai-dsh-host-directory-picker-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-host-directory-picker-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-host-webserver':
+        specifier: file:../tarballs/deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants':
+        specifier: file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-llm':
+        specifier: file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)
+      '@deepseek-ai/dsh-scope':
+        specifier: file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-session':
+        specifier: file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      '@deepseek-ai/dsh-session-projection':
+        specifier: file:../tarballs/deepseek-ai-dsh-session-projection-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-session-projection-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409))
+      '@deepseek-ai/dsh-settings':
+        specifier: file:../tarballs/deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409))(@deepseek-ai/schemastery@file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz)
+      '@deepseek-ai/dsh-system-prompt':
+        specifier: file:../tarballs/deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-llm@file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb))(@deepseek-ai/dsh-scope@file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))
+      '@deepseek-ai/dsh-timeout':
+        specifier: file:../tarballs/deepseek-ai-dsh-timeout-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-timeout-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-tool-todo':
+        specifier: file:../tarballs/deepseek-ai-dsh-tool-todo-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-tool-todo-0.1.2-alpha.1.tgz(0742a16c1d7cb426e29a682b6c0c64be)
+      '@deepseek-ai/dsh-tools':
+        specifier: file:../tarballs/deepseek-ai-dsh-tools-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-tools-0.1.2-alpha.1.tgz(7759f35d9e14fe1cf752da7ae009b7de)
+      '@deepseek-ai/dsh-typert-protocol':
+        specifier: file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-user-approval':
+        specifier: file:../tarballs/deepseek-ai-dsh-user-approval-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-user-approval-0.1.2-alpha.1.tgz(f600370fa0583c4b15e09cd7c80ad4e5)
+      '@deepseek-ai/dsh-util-crypto':
+        specifier: file:../tarballs/deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz
+        version: file:../tarballs/deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/schemastery':
+        specifier: file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+        version: file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+      '@dsh-mobile/e2e-tunnel':
+        specifier: file:../tarballs/dsh-mobile-e2e-tunnel-0.1.4.tgz
+        version: file:../tarballs/dsh-mobile-e2e-tunnel-0.1.4.tgz
+      '@dsh-mobile/pairing':
+        specifier: file:pairing.tgz
+        version: file:pairing.tgz(31034ac5fde0584b1ecf3e5b748b06c3)
+      '@fidm/asn1':
+        specifier: file:../tarballs/fidm-asn1-1.0.4.tgz
+        version: file:../tarballs/fidm-asn1-1.0.4.tgz
+      '@fidm/x509':
+        specifier: file:../tarballs/fidm-x509-1.2.1.tgz
+        version: file:../tarballs/fidm-x509-1.2.1.tgz
+      '@leichtgewicht/ip-codec':
+        specifier: file:../tarballs/leichtgewicht-ip-codec-2.0.5.tgz
+        version: file:../tarballs/leichtgewicht-ip-codec-2.0.5.tgz
+      '@noble/curves':
+        specifier: file:../tarballs/noble-curves-1.9.7.tgz
+        version: file:../tarballs/noble-curves-1.9.7.tgz
+      '@noble/hashes':
+        specifier: file:../tarballs/noble-hashes-1.8.0.tgz
+        version: file:../tarballs/noble-hashes-1.8.0.tgz
+      '@peculiar/asn1-cms':
+        specifier: file:../tarballs/peculiar-asn1-cms-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-cms-2.9.4.tgz
+      '@peculiar/asn1-csr':
+        specifier: file:../tarballs/peculiar-asn1-csr-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-csr-2.9.4.tgz
+      '@peculiar/asn1-ecc':
+        specifier: file:../tarballs/peculiar-asn1-ecc-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-ecc-2.9.4.tgz
+      '@peculiar/asn1-pfx':
+        specifier: file:../tarballs/peculiar-asn1-pfx-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-pfx-2.9.4.tgz
+      '@peculiar/asn1-pkcs8':
+        specifier: file:../tarballs/peculiar-asn1-pkcs8-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-pkcs8-2.9.4.tgz
+      '@peculiar/asn1-pkcs9':
+        specifier: file:../tarballs/peculiar-asn1-pkcs9-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-pkcs9-2.9.4.tgz
+      '@peculiar/asn1-rsa':
+        specifier: file:../tarballs/peculiar-asn1-rsa-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-rsa-2.9.4.tgz
+      '@peculiar/asn1-schema':
+        specifier: file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509':
+        specifier: file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      '@peculiar/asn1-x509-attr':
+        specifier: file:../tarballs/peculiar-asn1-x509-attr-2.9.4.tgz
+        version: file:../tarballs/peculiar-asn1-x509-attr-2.9.4.tgz
+      '@peculiar/utils':
+        specifier: file:../tarballs/peculiar-utils-2.0.3.tgz
+        version: file:../tarballs/peculiar-utils-2.0.3.tgz
+      '@peculiar/x509':
+        specifier: file:../tarballs/peculiar-x509-1.14.3.tgz
+        version: file:../tarballs/peculiar-x509-1.14.3.tgz
+      '@shinyoshiaki/binary-data':
+        specifier: file:../tarballs/shinyoshiaki-binary-data-0.6.1.tgz
+        version: file:../tarballs/shinyoshiaki-binary-data-0.6.1.tgz
+      '@standard-schema/spec':
+        specifier: file:../tarballs/standard-schema-spec-1.1.0.tgz
+        version: file:../tarballs/standard-schema-spec-1.1.0.tgz
+      '@types/dom-mediacapture-transform':
+        specifier: file:../tarballs/types-dom-mediacapture-transform-0.1.12.tgz
+        version: file:../tarballs/types-dom-mediacapture-transform-0.1.12.tgz
+      '@types/dom-webcodecs':
+        specifier: file:../tarballs/types-dom-webcodecs-0.1.13.tgz
+        version: file:../tarballs/types-dom-webcodecs-0.1.13.tgz
+      ansi-regex:
+        specifier: file:../tarballs/ansi-regex-5.0.1.tgz
+        version: file:../tarballs/ansi-regex-5.0.1.tgz
+      ansi-styles:
+        specifier: file:../tarballs/ansi-styles-4.3.0.tgz
+        version: file:../tarballs/ansi-styles-4.3.0.tgz
+      asn1js:
+        specifier: file:../tarballs/asn1js-3.0.10.tgz
+        version: file:../tarballs/asn1js-3.0.10.tgz
+      base64-js:
+        specifier: file:../tarballs/base64-js-1.5.1.tgz
+        version: file:../tarballs/base64-js-1.5.1.tgz
+      buffer:
+        specifier: file:../tarballs/buffer-6.0.3.tgz
+        version: file:../tarballs/buffer-6.0.3.tgz
+      bytes:
+        specifier: file:../tarballs/bytes-3.1.2.tgz
+        version: file:../tarballs/bytes-3.1.2.tgz
+      camelcase:
+        specifier: file:../tarballs/camelcase-5.3.1.tgz
+        version: file:../tarballs/camelcase-5.3.1.tgz
+      cliui:
+        specifier: file:../tarballs/cliui-6.0.0.tgz
+        version: file:../tarballs/cliui-6.0.0.tgz
+      color-convert:
+        specifier: file:../tarballs/color-convert-2.0.1.tgz
+        version: file:../tarballs/color-convert-2.0.1.tgz
+      color-name:
+        specifier: file:../tarballs/color-name-1.1.4.tgz
+        version: file:../tarballs/color-name-1.1.4.tgz
+      compressible:
+        specifier: file:../tarballs/compressible-2.0.18.tgz
+        version: file:../tarballs/compressible-2.0.18.tgz
+      compression:
+        specifier: file:../tarballs/compression-1.8.1.tgz
+        version: file:../tarballs/compression-1.8.1.tgz
+      debug:
+        specifier: file:../tarballs/debug-4.4.0.tgz
+        version: file:../tarballs/debug-4.4.0.tgz
+      decamelize:
+        specifier: file:../tarballs/decamelize-1.2.0.tgz
+        version: file:../tarballs/decamelize-1.2.0.tgz
+      dijkstrajs:
+        specifier: file:../tarballs/dijkstrajs-1.0.3.tgz
+        version: file:../tarballs/dijkstrajs-1.0.3.tgz
+      dns-packet:
+        specifier: file:../tarballs/dns-packet-5.6.1.tgz
+        version: file:../tarballs/dns-packet-5.6.1.tgz
+      emoji-regex:
+        specifier: file:../tarballs/emoji-regex-8.0.0.tgz
+        version: file:../tarballs/emoji-regex-8.0.0.tgz
+      find-up:
+        specifier: file:../tarballs/find-up-4.1.0.tgz
+        version: file:../tarballs/find-up-4.1.0.tgz
+      generate-function:
+        specifier: file:../tarballs/generate-function-2.3.1.tgz
+        version: file:../tarballs/generate-function-2.3.1.tgz
+      get-caller-file:
+        specifier: file:../tarballs/get-caller-file-2.0.5.tgz
+        version: file:../tarballs/get-caller-file-2.0.5.tgz
+      ieee754:
+        specifier: file:../tarballs/ieee754-1.2.1.tgz
+        version: file:../tarballs/ieee754-1.2.1.tgz
+      is-fullwidth-code-point:
+        specifier: file:../tarballs/is-fullwidth-code-point-3.0.0.tgz
+        version: file:../tarballs/is-fullwidth-code-point-3.0.0.tgz
+      is-plain-object:
+        specifier: file:../tarballs/is-plain-object-2.0.4.tgz
+        version: file:../tarballs/is-plain-object-2.0.4.tgz
+      is-property:
+        specifier: file:../tarballs/is-property-1.0.2.tgz
+        version: file:../tarballs/is-property-1.0.2.tgz
+      isobject:
+        specifier: file:../tarballs/isobject-3.0.1.tgz
+        version: file:../tarballs/isobject-3.0.1.tgz
+      js-tokens:
+        specifier: file:../tarballs/js-tokens-4.0.0.tgz
+        version: file:../tarballs/js-tokens-4.0.0.tgz
+      locate-path:
+        specifier: file:../tarballs/locate-path-5.0.0.tgz
+        version: file:../tarballs/locate-path-5.0.0.tgz
+      loose-envify:
+        specifier: file:../tarballs/loose-envify-1.4.0.tgz
+        version: file:../tarballs/loose-envify-1.4.0.tgz
+      mediabunny:
+        specifier: file:../tarballs/mediabunny-1.55.2.tgz
+        version: file:../tarballs/mediabunny-1.55.2.tgz
+      mime-db:
+        specifier: file:../tarballs/mime-db-1.54.0.tgz
+        version: file:../tarballs/mime-db-1.54.0.tgz
+      ms:
+        specifier: file:../tarballs/ms-2.1.3.tgz
+        version: file:../tarballs/ms-2.1.3.tgz
+      multicast-dns:
+        specifier: file:../tarballs/multicast-dns-7.2.5.tgz
+        version: file:../tarballs/multicast-dns-7.2.5.tgz
+      negotiator:
+        specifier: file:../tarballs/negotiator-1.0.0.tgz
+        version: file:../tarballs/negotiator-1.0.0.tgz
+      on-headers:
+        specifier: file:../tarballs/on-headers-1.1.0.tgz
+        version: file:../tarballs/on-headers-1.1.0.tgz
+      p-limit:
+        specifier: file:../tarballs/p-limit-2.3.0.tgz
+        version: file:../tarballs/p-limit-2.3.0.tgz
+      p-locate:
+        specifier: file:../tarballs/p-locate-4.1.0.tgz
+        version: file:../tarballs/p-locate-4.1.0.tgz
+      p-try:
+        specifier: file:../tarballs/p-try-2.2.0.tgz
+        version: file:../tarballs/p-try-2.2.0.tgz
+      path-exists:
+        specifier: file:../tarballs/path-exists-4.0.0.tgz
+        version: file:../tarballs/path-exists-4.0.0.tgz
+      pngjs:
+        specifier: file:../tarballs/pngjs-5.0.0.tgz
+        version: file:../tarballs/pngjs-5.0.0.tgz
+      pvtsutils:
+        specifier: file:../tarballs/pvtsutils-1.3.6.tgz
+        version: file:../tarballs/pvtsutils-1.3.6.tgz
+      pvutils:
+        specifier: file:../tarballs/pvutils-1.2.0.tgz
+        version: file:../tarballs/pvutils-1.2.0.tgz
+      qrcode:
+        specifier: file:../tarballs/qrcode-1.5.4.tgz
+        version: file:../tarballs/qrcode-1.5.4.tgz
+      react:
+        specifier: file:../tarballs/react-18.3.1.tgz
+        version: file:../tarballs/react-18.3.1.tgz
+      reflect-metadata:
+        specifier: file:../tarballs/reflect-metadata-0.2.2.tgz
+        version: file:../tarballs/reflect-metadata-0.2.2.tgz
+      require-directory:
+        specifier: file:../tarballs/require-directory-2.1.1.tgz
+        version: file:../tarballs/require-directory-2.1.1.tgz
+      require-main-filename:
+        specifier: file:../tarballs/require-main-filename-2.0.0.tgz
+        version: file:../tarballs/require-main-filename-2.0.0.tgz
+      safe-buffer:
+        specifier: file:../tarballs/safe-buffer-5.2.1.tgz
+        version: file:../tarballs/safe-buffer-5.2.1.tgz
+      set-blocking:
+        specifier: file:../tarballs/set-blocking-2.0.0.tgz
+        version: file:../tarballs/set-blocking-2.0.0.tgz
+      string-width:
+        specifier: file:../tarballs/string-width-4.2.3.tgz
+        version: file:../tarballs/string-width-4.2.3.tgz
+      strip-ansi:
+        specifier: file:../tarballs/strip-ansi-6.0.1.tgz
+        version: file:../tarballs/strip-ansi-6.0.1.tgz
+      thunky:
+        specifier: file:../tarballs/thunky-1.1.0.tgz
+        version: file:../tarballs/thunky-1.1.0.tgz
+      tslib:
+        specifier: file:../tarballs/tslib-2.8.1.tgz
+        version: file:../tarballs/tslib-2.8.1.tgz
+      tsyringe:
+        specifier: file:../tarballs/tsyringe-4.10.0.tgz
+        version: file:../tarballs/tsyringe-4.10.0.tgz
+      tweetnacl:
+        specifier: file:../tarballs/tweetnacl-1.0.3.tgz
+        version: file:../tarballs/tweetnacl-1.0.3.tgz
+      vary:
+        specifier: file:../tarballs/vary-1.1.2.tgz
+        version: file:../tarballs/vary-1.1.2.tgz
+      werift:
+        specifier: file:../tarballs/werift-0.24.4.tgz
+        version: file:../tarballs/werift-0.24.4.tgz
+      which-module:
+        specifier: file:../tarballs/which-module-2.0.1.tgz
+        version: file:../tarballs/which-module-2.0.1.tgz
+      wrap-ansi:
+        specifier: file:../tarballs/wrap-ansi-6.2.0.tgz
+        version: file:../tarballs/wrap-ansi-6.2.0.tgz
+      ws:
+        specifier: file:../tarballs/ws-8.21.3.tgz
+        version: file:../tarballs/ws-8.21.3.tgz
+      y18n:
+        specifier: file:../tarballs/y18n-4.0.3.tgz
+        version: file:../tarballs/y18n-4.0.3.tgz
+      yargs:
+        specifier: file:../tarballs/yargs-15.4.1.tgz
+        version: file:../tarballs/yargs-15.4.1.tgz
+      yargs-parser:
+        specifier: file:../tarballs/yargs-parser-18.1.3.tgz
+        version: file:../tarballs/yargs-parser-18.1.3.tgz
+      zod:
+        specifier: file:../tarballs/zod-4.4.3.tgz
+        version: file:../tarballs/zod-4.4.3.tgz
+
+packages:
+
+  '@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz':
+    resolution: {integrity: sha512-YBdskTU2Po1kru3GgcUWUbkTsPMA9LkSQDAY8rBkFJeajdgcQad3QPJZE26JyK99Xb6HaASvoXg2DSUTeN/0Nw==, tarball: file:../tarballs/deepseek-ai-cordis-4.0.1.tgz}
+    version: 4.0.1
+    hasBin: true
+    peerDependencies:
+      '@deepseek-ai/cordis-plugin-include': ^1.0.6
+      '@deepseek-ai/cordis-plugin-loader': ^1.0.2
+    peerDependenciesMeta:
+      '@deepseek-ai/cordis-plugin-include':
+        optional: true
+      '@deepseek-ai/cordis-plugin-loader':
+        optional: true
+
+  '@deepseek-ai/cosmokit@file:../tarballs/deepseek-ai-cosmokit-1.8.2.tgz':
+    resolution: {integrity: sha512-muBOKtSrUKU5m/xpq8ZXWL6hQ/jgd4PhU2PqH97bcxIiLEJfNwZOGQEx4t/aS/GgxRAR+ra9pMHPMtTHU4sqqA==, tarball: file:../tarballs/deepseek-ai-cosmokit-1.8.2.tgz}
+    version: 1.8.2
+
+  '@deepseek-ai/dsh-agent@file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-yy1PoPEKEn1Er7FKxkwKuNIwqU3C/WgzFmi3OlJVMpD02ZduYopnN7IQH2RHTd2e/ieFUJiPNU82EYx6NTc9lA==, tarball: file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-llm': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-scope': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-system-prompt': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-typert-protocol': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-attachment@file:../tarballs/deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-wfA4FFgHsWsERSqXaIV4FkXahTZbUFrtB/lpDllVXL1PftHVgJkIXg8MDvxGncyy1cqd1PM7t0oO0s8Ox/MfrQ==, tarball: file:../tarballs/deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-brand': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-qJreQJZOPj9rDwV3L9ZN1roBW/FlQUJjoz9LDe5lXdLTvKSO3USyTzA4LnTtU686dQz3fD9npyLhcDugKgGc2A==, tarball: file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-client-connection@file:../tarballs/deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-RLzdZ1IbTo80W2JOg5XnVbNvBzRUc84R1CjLOmr+E62B28XTyeZQgHtxuY8rqRWa6Ss7CJ52UOHpo58jVBecYQ==, tarball: file:../tarballs/deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-attachment': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-brand': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-commands': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-credentials': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-host-directory-picker': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-host-webserver': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-llm': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-settings': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-tool-todo': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-code-runtime@file:../tarballs/deepseek-ai-dsh-code-runtime-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-ZoM2iQFBVrJEg1D/vLBMY7tLrfOWZszarv7Eqt3ag+rVjCdEEURSGEMKesqDV+YcSC5Qje+DDmn9irmgGnsGcQ==, tarball: file:../tarballs/deepseek-ai-dsh-code-runtime-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-commands@file:../tarballs/deepseek-ai-dsh-commands-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-QFcYFsnA3z3oXrKMXuWO4O7Ku/u8DZ0nHIaa1oSdTgvc/2Revo5bZqNZMig26f95ND8mCOOCz5z7/E3UNVYO0Q==, tarball: file:../tarballs/deepseek-ai-dsh-commands-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-agent': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-attachment': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-brand': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-llm': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-scope': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-typert-protocol': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-credentials@file:../tarballs/deepseek-ai-dsh-credentials-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-U2vTJQTGaNAnA6uVWy04r7W99OINecMNwHisqiFnYoAHEf0HImx0r4W0mYPZNcRUJGaT+YOpArz7LlOTPhv6Yg==, tarball: file:../tarballs/deepseek-ai-dsh-credentials-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-brand': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-host-directory-picker@file:../tarballs/deepseek-ai-dsh-host-directory-picker-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-lpWTNQk/aqhlMcyRqI7jJEMAG/q+uI35D95rHepd4dhhsyGp9EguIRSPFvrxzwcGooMUFenZXaFGDw6FyCE1nQ==, tarball: file:../tarballs/deepseek-ai-dsh-host-directory-picker-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-host-webserver@file:../tarballs/deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-RO9X/fF08ttitfFOWv+vojfQz68IiqMEkDfk0vWYIs2YdTG6rnUfqbrgvmIyKgeNBbcjs/tnDr/2O6Sz03mF2w==, tarball: file:../tarballs/deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-4JNDvbYHHky/d1JfEa33uZOqcAx2vxzt2nUXMEWCkhBC/Tw9mIsszGzTl1te4bhKszABxwaejMZd16DcxhBpkg==, tarball: file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+
+  '@deepseek-ai/dsh-llm@file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-dbe3nlNi+/ad9ukB/NSG3zc8i7CYGF6k+JQXmxzriXP607BRBnWZPMknVF02Ko8foj0VHsKH4RSBYU/2RagBBw==, tarball: file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-attachment': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-brand': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-timeout': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-typert-protocol': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-scope@file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-MBgR/jaT4y2sgeNQcZB3VExfiIMwJ4nr1L6t0CLaq6KQyLeUoIc6DiKnn/Cs7JClv22SDhsdlX8oEO9DjHDDQQ==, tarball: file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-session-projection@file:../tarballs/deepseek-ai-dsh-session-projection-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-bOr4WdETuF5ZZ9S7A12T7B6ZoB1PyylhyRj9U1dXqtmNbZ0+G29fJC74aWfZF9dUnkmRTj69KdJeAmIewqZmHw==, tarball: file:../tarballs/deepseek-ai-dsh-session-projection-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-fDGDRvtsLfpUeSXeqbBfzABlViu5V0z7ggQjumfh8iSaElFtStiEM1RDN55BrLaIroXl2Oq84HdraDs3zEsG5g==, tarball: file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-brand': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-llm': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-scope': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-typert-protocol': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-settings@file:../tarballs/deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-LSXYC2QWPVIrlm/QgiodnMIxLPE+wOzhArv5ghezQvxA6fhr40pKm7pQuyC3luQGH261OqdgX2CKW6V9K5P37Q==, tarball: file:../tarballs/deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-brand': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session': ^0.1.2-alpha.1
+      '@deepseek-ai/schemastery': ^3.18.1
+
+  '@deepseek-ai/dsh-system-prompt@file:../tarballs/deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-gkTM672Jwst+cVnr1j3eg2+2nkQrHC5oqmAmDG7hRIvNq00uTtWAILphg7oSU6rwCZUY6JBkZEP9W3+B6qEmXA==, tarball: file:../tarballs/deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-llm': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-scope': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-timeout@file:../tarballs/deepseek-ai-dsh-timeout-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-nZFGEH07l4oyVPrZ/pOOACYt2QXqFXXvj6x890Xrb6UUARsfiuQXAVp60ivoUO6qmHEKum3RJMiKSEUIsky75g==, tarball: file:../tarballs/deepseek-ai-dsh-timeout-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-tool-todo@file:../tarballs/deepseek-ai-dsh-tool-todo-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-UIJCa2N/pV/wwarwRp61Y9a/4LF66xPuj8yX/L0mIOwbfQYxeKVFKnVHiF3Ry8U7LAgM/KXCFg/B6glEYhl+ZA==, tarball: file:../tarballs/deepseek-ai-dsh-tool-todo-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-agent': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session-projection': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-tools': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-tools@file:../tarballs/deepseek-ai-dsh-tools-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-twV6Oi/j5kFJB3e+MeX9ti+p23L8fS0wrwDrUDIz5GCWhFJ586Li3uQPQJYjYsZs8dil+HbaAjBivKtA7ou4zw==, tarball: file:../tarballs/deepseek-ai-dsh-tools-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-agent': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-code-runtime': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-llm': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-scope': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-system-prompt': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-user-approval': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-typert-protocol@file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-yv3O4Fa0L0my6I+YvlmSTuHxqTqETTZmY6Ah/kU6HRKqTBfLBAae2qrCsGgMkPslJ2/NgNgT8jSB6yg9lArqTg==, tarball: file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-user-approval@file:../tarballs/deepseek-ai-dsh-user-approval-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-vFcSXJ3GyHNp0aBezlUG9zH9NkTZ7IIL/0sYh1xhaMoK/vi1v0+v5iIsQ2VokqDm+1ZpJH5TTSwUC3ciETUyvw==, tarball: file:../tarballs/deepseek-ai-dsh-user-approval-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-agent': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-brand': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-llm': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-scope': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-session': ^0.1.2-alpha.1
+      '@deepseek-ai/dsh-system-prompt': ^0.1.2-alpha.1
+
+  '@deepseek-ai/dsh-util-crypto@file:../tarballs/deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz':
+    resolution: {integrity: sha512-vca+yGv6sHrsXraH3pbyejxy/vj3FV3tL96yW2fWOFpLvQWB9unIq923h0KfAKJrBOr3gum4B5/CtIphLN1m2w==, tarball: file:../tarballs/deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz}
+    version: 0.1.2-alpha.1
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-invariants': ^0.1.2-alpha.1
+
+  '@deepseek-ai/schemastery@file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz':
+    resolution: {integrity: sha512-Qn0FCSwCQnpnj6SB31I6i2sIKgKWnkbJM8O0EU91Gv2UsYVvtZTl6IA0sCwk2e2MZf5S8w5hpq9QkeVvK9qwxg==, tarball: file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz}
+    version: 3.18.1
+
+  '@dsh-mobile/e2e-tunnel@file:../tarballs/dsh-mobile-e2e-tunnel-0.1.4.tgz':
+    resolution: {integrity: sha512-2qUDtYC/1+Kvb3HWeKepISmApZtozLhuP/oU8a5eQ10dbST42CQfbU3typszjac3QjKqboeaDbPWWW1TeOiAZw==, tarball: file:../tarballs/dsh-mobile-e2e-tunnel-0.1.4.tgz}
+    version: 0.1.4
+    engines: {node: '>=22.19'}
+
+  '@dsh-mobile/pairing@file:pairing.tgz':
+    resolution: {integrity: sha512-bGrERhXQCIFUU8hJVAVWWnIfFigv+f+5Vm/Cpdxkbt+o2yBcyrit245c08Oxp2Ku1m4uQLXVQgxf2GO4DxVxrA==, tarball: file:pairing.tgz}
+    version: 0.1.12
+    engines: {node: '>=22.19'}
+    hasBin: true
+    peerDependencies:
+      '@deepseek-ai/cordis': ^4.0.1
+      '@deepseek-ai/dsh-client-connection': '>=0.1.2-alpha.1 <0.1.3'
+      '@deepseek-ai/dsh-host-webserver': 0.1.2-alpha.1
+      '@deepseek-ai/dsh-settings': 0.1.2-alpha.1
+      react: ^18.2.0
+    peerDependenciesMeta:
+      '@deepseek-ai/dsh-client-connection':
+        optional: true
+
+  '@fidm/asn1@file:../tarballs/fidm-asn1-1.0.4.tgz':
+    resolution: {integrity: sha512-esd1jyNvRb2HVaQGq2Gg8Z0kbQPXzV9Tq5Z14KNIov6KfFD6PTaRIO8UpcsYiTNzOqJpmyzWgVTrUwFV3UF4TQ==, tarball: file:../tarballs/fidm-asn1-1.0.4.tgz}
+    version: 1.0.4
+    engines: {node: '>= 8'}
+
+  '@fidm/x509@file:../tarballs/fidm-x509-1.2.1.tgz':
+    resolution: {integrity: sha512-nwc2iesjyc9hkuzcrMCBXQRn653XuAUKorfWM8PZyJawiy1QzLj4vahwzaI25+pfpwOLvMzbJ0uKpWLDNmo16w==, tarball: file:../tarballs/fidm-x509-1.2.1.tgz}
+    version: 1.2.1
+    engines: {node: '>= 8'}
+
+  '@leichtgewicht/ip-codec@file:../tarballs/leichtgewicht-ip-codec-2.0.5.tgz':
+    resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==, tarball: file:../tarballs/leichtgewicht-ip-codec-2.0.5.tgz}
+    version: 2.0.5
+
+  '@noble/curves@file:../tarballs/noble-curves-1.9.7.tgz':
+    resolution: {integrity: sha512-gbKGcRUYIjA3/zCCNaWDciTMFI0dCkvou3TL8Zmy5Nc7sJ47a0jtOeZoTaMxkuqRo9cRhjOdZJXegxYE5FN/xw==, tarball: file:../tarballs/noble-curves-1.9.7.tgz}
+    version: 1.9.7
+    engines: {node: ^14.21.3 || >=16}
+
+  '@noble/hashes@file:../tarballs/noble-hashes-1.8.0.tgz':
+    resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==, tarball: file:../tarballs/noble-hashes-1.8.0.tgz}
+    version: 1.8.0
+    engines: {node: ^14.21.3 || >=16}
+
+  '@peculiar/asn1-cms@file:../tarballs/peculiar-asn1-cms-2.9.4.tgz':
+    resolution: {integrity: sha512-cben7oxmQsUGZqotus7yt0srYdncOT6RNWcTQ77T2RFOXejYVYkXadrfePdRcrVpO9K95IRLKKglG2k38jKXuw==, tarball: file:../tarballs/peculiar-asn1-cms-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-csr@file:../tarballs/peculiar-asn1-csr-2.9.4.tgz':
+    resolution: {integrity: sha512-xd4YN4vpRjkDAQWVfZZkeu12IEND7DOpkqaHSIHxZl1uggUNa9Ju0QxY2jHvDAS9pP0zhRBytg8ifsnGo3V0jw==, tarball: file:../tarballs/peculiar-asn1-csr-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-ecc@file:../tarballs/peculiar-asn1-ecc-2.9.4.tgz':
+    resolution: {integrity: sha512-JJXefFshRAuVAjWQo/39bkg1ywc1VaiO44S8RRC+Ykvf/u2KDmYffoDb0ZBPCR5uJy4AGKQhl8mX+Q8ShcWaXQ==, tarball: file:../tarballs/peculiar-asn1-ecc-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-pfx@file:../tarballs/peculiar-asn1-pfx-2.9.4.tgz':
+    resolution: {integrity: sha512-khuGzHTzNzk4GDlIBEILyIs6Lce0yn0ZBdoI9v93kmNncfZRhD+AQ5ODFqdhvoE8cMJF/JMTQ8yA+t1D14kqCw==, tarball: file:../tarballs/peculiar-asn1-pfx-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-pkcs8@file:../tarballs/peculiar-asn1-pkcs8-2.9.4.tgz':
+    resolution: {integrity: sha512-duRdotlUx9eDZe6QrQpQKl61RbWykCHBCkKayP8V8XdEFwlKHZ8qGGDMyS6Pye7OX7nLFttTTpRkJeet78ckwQ==, tarball: file:../tarballs/peculiar-asn1-pkcs8-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-pkcs9@file:../tarballs/peculiar-asn1-pkcs9-2.9.4.tgz':
+    resolution: {integrity: sha512-kaL4cNxBpdQE2dKlyZBqz4ygCrwffO+8wfoxTEqM1Z8RadvCeELBRzcv0dzM8aY9azHMwODO5nxU65zXmhToOQ==, tarball: file:../tarballs/peculiar-asn1-pkcs9-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-rsa@file:../tarballs/peculiar-asn1-rsa-2.9.4.tgz':
+    resolution: {integrity: sha512-pZ96eD1PptovcWQ/GSmuNFXd/7EQJNlKfDaNCyE2rx3W0v6QFelkzquVqRSRyyDXXCYD69ZXJDzZ8GhIiQzKoA==, tarball: file:../tarballs/peculiar-asn1-rsa-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-schema@file:../tarballs/peculiar-asn1-schema-2.9.4.tgz':
+    resolution: {integrity: sha512-GjzePcT9Iw8NzeOPf73iNS9xM+TBhd/FilAfP+RQGkTMQJTVWtytN3JHJACCjf/ABNau5S7mS3g+DcuxmRgYEg==, tarball: file:../tarballs/peculiar-asn1-schema-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-x509-attr@file:../tarballs/peculiar-asn1-x509-attr-2.9.4.tgz':
+    resolution: {integrity: sha512-ehQXbpQaQYycgu8OrvigwSPTFfVRcu0ECNYCWw+yzBp02Lw5paRqzzhUpfOgO2K38+WfFZuEz/0RPtam5g0OMg==, tarball: file:../tarballs/peculiar-asn1-x509-attr-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/asn1-x509@file:../tarballs/peculiar-asn1-x509-2.9.4.tgz':
+    resolution: {integrity: sha512-CxhBo/RdEbMMob7T31ZdQjGuoyRFLVwrDzTn25bihzBasRg9kRm/0IxIPvhgQtcK/9dNcO1XQL2fuPugwELL0Q==, tarball: file:../tarballs/peculiar-asn1-x509-2.9.4.tgz}
+    version: 2.9.4
+    engines: {node: '>=14'}
+
+  '@peculiar/utils@file:../tarballs/peculiar-utils-2.0.3.tgz':
+    resolution: {integrity: sha512-+oL3HPFRIZ1St2K50lWCXiioIgSoxzz7R1J3uF6neO2yl1sgmpgY6XXJH4BdpoDkMWznQTeYF6oWNDZLCdQ4eQ==, tarball: file:../tarballs/peculiar-utils-2.0.3.tgz}
+    version: 2.0.3
+
+  '@peculiar/x509@file:../tarballs/peculiar-x509-1.14.3.tgz':
+    resolution: {integrity: sha512-C2Xj8FZ0uHWeCXXqX5B4/gVFQmtSkiuOolzAgutjTfseNOHT3pUjljDZsTSxXFGgio54bCzVFqmEOUrIVk8RDA==, tarball: file:../tarballs/peculiar-x509-1.14.3.tgz}
+    version: 1.14.3
+    engines: {node: '>=20.0.0'}
+
+  '@shinyoshiaki/binary-data@file:../tarballs/shinyoshiaki-binary-data-0.6.1.tgz':
+    resolution: {integrity: sha512-7HDb/fQAop2bCmvDIzU5+69i+UJaFgIVp99h1VzK1mpg1JwSODOkjbqD7ilTYnqlnadF8C4XjpwpepxDsGY6+w==, tarball: file:../tarballs/shinyoshiaki-binary-data-0.6.1.tgz}
+    version: 0.6.1
+    engines: {node: '>=6'}
+
+  '@standard-schema/spec@file:../tarballs/standard-schema-spec-1.1.0.tgz':
+    resolution: {integrity: sha512-tzwn3epx+PvlaEQMR/f8BVMCrFFo4wV2sYFCkY1AgQcFOD3bk/XVjzqPm0Wl8LLAi1swUZztlpm8dUwlypaOFw==, tarball: file:../tarballs/standard-schema-spec-1.1.0.tgz}
+    version: 1.1.0
+
+  '@types/dom-mediacapture-transform@file:../tarballs/types-dom-mediacapture-transform-0.1.12.tgz':
+    resolution: {integrity: sha512-d7/QsLRwF864A5mgIM/YrfiglHoYn7zgCcAoJgW404r+2DwnNr7EBbLnCWpmOMgH8y0te73L1AV6H1bmauaWFw==, tarball: file:../tarballs/types-dom-mediacapture-transform-0.1.12.tgz}
+    version: 0.1.12
+
+  '@types/dom-webcodecs@file:../tarballs/types-dom-webcodecs-0.1.13.tgz':
+    resolution: {integrity: sha512-O5hkiFIcjjszPIYyUSyvScyvrBoV3NOEEZx/pMlsu44TKzWNkLVBBxnxJz42in5n3QIolYOcBYFCPZZ0h8SkwQ==, tarball: file:../tarballs/types-dom-webcodecs-0.1.13.tgz}
+    version: 0.1.13
+
+  ansi-regex@file:../tarballs/ansi-regex-5.0.1.tgz:
+    resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==, tarball: file:../tarballs/ansi-regex-5.0.1.tgz}
+    version: 5.0.1
+    engines: {node: '>=8'}
+
+  ansi-styles@file:../tarballs/ansi-styles-4.3.0.tgz:
+    resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==, tarball: file:../tarballs/ansi-styles-4.3.0.tgz}
+    version: 4.3.0
+    engines: {node: '>=8'}
+
+  asn1js@file:../tarballs/asn1js-3.0.10.tgz:
+    resolution: {integrity: sha512-S2s3aOytiKdFRdulw2qPE51MzjzVOisppcVv7jVFR+Kw0kxwvFrDcYA0h7Ndqbmj0HkMIXYWaoj7fli8kgx1eg==, tarball: file:../tarballs/asn1js-3.0.10.tgz}
+    version: 3.0.10
+    engines: {node: '>=12.0.0'}
+
+  base64-js@file:../tarballs/base64-js-1.5.1.tgz:
+    resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==, tarball: file:../tarballs/base64-js-1.5.1.tgz}
+    version: 1.5.1
+
+  buffer@file:../tarballs/buffer-6.0.3.tgz:
+    resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==, tarball: file:../tarballs/buffer-6.0.3.tgz}
+    version: 6.0.3
+
+  bytes@file:../tarballs/bytes-3.1.2.tgz:
+    resolution: {integrity: sha512-ixmFOUxnVTBUBxrEvH+jKidDVI6r7igIgQtwUnCKAQDrv01/HG33yz6+tkl/FGM5RN+zKSvi87e78x/2pNAx0A==, tarball: file:../tarballs/bytes-3.1.2.tgz}
+    version: 3.1.2
+    engines: {node: '>= 0.8'}
+
+  camelcase@file:../tarballs/camelcase-5.3.1.tgz:
+    resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==, tarball: file:../tarballs/camelcase-5.3.1.tgz}
+    version: 5.3.1
+    engines: {node: '>=6'}
+
+  cliui@file:../tarballs/cliui-6.0.0.tgz:
+    resolution: {integrity: sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ==, tarball: file:../tarballs/cliui-6.0.0.tgz}
+    version: 6.0.0
+
+  color-convert@file:../tarballs/color-convert-2.0.1.tgz:
+    resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==, tarball: file:../tarballs/color-convert-2.0.1.tgz}
+    version: 2.0.1
+    engines: {node: '>=7.0.0'}
+
+  color-name@file:../tarballs/color-name-1.1.4.tgz:
+    resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==, tarball: file:../tarballs/color-name-1.1.4.tgz}
+    version: 1.1.4
+
+  compressible@file:../tarballs/compressible-2.0.18.tgz:
+    resolution: {integrity: sha512-NIsorCKx87biEFhbo+WF9DVXyz6e/2CnHm9Qk6Q6uJaWkgxfKKp6XWYEyhGy7x1Ad/lEGcScCwjfzNu5GfZYuA==, tarball: file:../tarballs/compressible-2.0.18.tgz}
+    version: 2.0.18
+    engines: {node: '>= 0.6'}
+
+  compression@file:../tarballs/compression-1.8.1.tgz:
+    resolution: {integrity: sha512-IC2VUTFC9mDuQGtw4kYFcbJxR8qIOT6+ZzBcxNbl3oNAtUue1djjGmKDkOSSDfNikDfTulsg+qne5mEuvh9mcw==, tarball: file:../tarballs/compression-1.8.1.tgz}
+    version: 1.8.1
+    engines: {node: '>= 0.8.0'}
+
+  debug@file:../tarballs/debug-2.6.9.tgz:
+    resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==, tarball: file:../tarballs/debug-2.6.9.tgz}
+    version: 2.6.9
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  debug@file:../tarballs/debug-4.4.0.tgz:
+    resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==, tarball: file:../tarballs/debug-4.4.0.tgz}
+    version: 4.4.0
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  decamelize@file:../tarballs/decamelize-1.2.0.tgz:
+    resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==, tarball: file:../tarballs/decamelize-1.2.0.tgz}
+    version: 1.2.0
+    engines: {node: '>=0.10.0'}
+
+  dijkstrajs@file:../tarballs/dijkstrajs-1.0.3.tgz:
+    resolution: {integrity: sha512-qiSlmBq9+BCdCA/L46dw8Uy93mloxsPSbwnm5yrKn2vMPiy8KyAskTF6zuV/j5BMsmOGZDPs7KjU+mjb670kfA==, tarball: file:../tarballs/dijkstrajs-1.0.3.tgz}
+    version: 1.0.3
+
+  dns-packet@file:../tarballs/dns-packet-5.6.1.tgz:
+    resolution: {integrity: sha512-l4gcSouhcgIKRvyy99RNVOgxXiicE+2jZoNmaNmZ6JXiGajBOJAesk1OBlJuM5k2c+eudGdLxDqXuPCKIj6kpw==, tarball: file:../tarballs/dns-packet-5.6.1.tgz}
+    version: 5.6.1
+    engines: {node: '>=6'}
+
+  emoji-regex@file:../tarballs/emoji-regex-8.0.0.tgz:
+    resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==, tarball: file:../tarballs/emoji-regex-8.0.0.tgz}
+    version: 8.0.0
+
+  find-up@file:../tarballs/find-up-4.1.0.tgz:
+    resolution: {integrity: sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==, tarball: file:../tarballs/find-up-4.1.0.tgz}
+    version: 4.1.0
+    engines: {node: '>=8'}
+
+  generate-function@file:../tarballs/generate-function-2.3.1.tgz:
+    resolution: {integrity: sha512-eeB5GfMNeevm/GRYq20ShmsaGcmI81kIX2K9XQx5miC8KdHaC6Jm0qQ8ZNeGOi7wYB8OsdxKs+Y2oVuTFuVwKQ==, tarball: file:../tarballs/generate-function-2.3.1.tgz}
+    version: 2.3.1
+
+  get-caller-file@file:../tarballs/get-caller-file-2.0.5.tgz:
+    resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==, tarball: file:../tarballs/get-caller-file-2.0.5.tgz}
+    version: 2.0.5
+    engines: {node: 6.* || 8.* || >= 10.*}
+
+  ieee754@file:../tarballs/ieee754-1.2.1.tgz:
+    resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==, tarball: file:../tarballs/ieee754-1.2.1.tgz}
+    version: 1.2.1
+
+  is-fullwidth-code-point@file:../tarballs/is-fullwidth-code-point-3.0.0.tgz:
+    resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==, tarball: file:../tarballs/is-fullwidth-code-point-3.0.0.tgz}
+    version: 3.0.0
+    engines: {node: '>=8'}
+
+  is-plain-object@file:../tarballs/is-plain-object-2.0.4.tgz:
+    resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==, tarball: file:../tarballs/is-plain-object-2.0.4.tgz}
+    version: 2.0.4
+    engines: {node: '>=0.10.0'}
+
+  is-property@file:../tarballs/is-property-1.0.2.tgz:
+    resolution: {integrity: sha512-Ks/IoX00TtClbGQr4TWXemAnktAQvYB7HzcCxDGqEZU6oCmb2INHuOoKxbtR+HFkmYWBKv/dOZtGRiAjDhj92g==, tarball: file:../tarballs/is-property-1.0.2.tgz}
+    version: 1.0.2
+
+  isobject@file:../tarballs/isobject-3.0.1.tgz:
+    resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==, tarball: file:../tarballs/isobject-3.0.1.tgz}
+    version: 3.0.1
+    engines: {node: '>=0.10.0'}
+
+  js-tokens@file:../tarballs/js-tokens-4.0.0.tgz:
+    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==, tarball: file:../tarballs/js-tokens-4.0.0.tgz}
+    version: 4.0.0
+
+  locate-path@file:../tarballs/locate-path-5.0.0.tgz:
+    resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==, tarball: file:../tarballs/locate-path-5.0.0.tgz}
+    version: 5.0.0
+    engines: {node: '>=8'}
+
+  loose-envify@file:../tarballs/loose-envify-1.4.0.tgz:
+    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==, tarball: file:../tarballs/loose-envify-1.4.0.tgz}
+    version: 1.4.0
+    hasBin: true
+
+  mediabunny@file:../tarballs/mediabunny-1.55.2.tgz:
+    resolution: {integrity: sha512-EEx4O6qYddAdCyWPMZNDwI7uc5hewNHrPAf9jLcVhIbXoPsiqNQ+D9i1pfadmGkjN2V318jSrZljkpoziYm6Lg==, tarball: file:../tarballs/mediabunny-1.55.2.tgz}
+    version: 1.55.2
+
+  mime-db@file:../tarballs/mime-db-1.54.0.tgz:
+    resolution: {integrity: sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ==, tarball: file:../tarballs/mime-db-1.54.0.tgz}
+    version: 1.54.0
+    engines: {node: '>= 0.6'}
+
+  ms@file:../tarballs/ms-2.0.0.tgz:
+    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==, tarball: file:../tarballs/ms-2.0.0.tgz}
+    version: 2.0.0
+
+  ms@file:../tarballs/ms-2.1.3.tgz:
+    resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==, tarball: file:../tarballs/ms-2.1.3.tgz}
+    version: 2.1.3
+
+  multicast-dns@file:../tarballs/multicast-dns-7.2.5.tgz:
+    resolution: {integrity: sha512-2eznPJP8z2BFLX50tf0LuODrpINqP1RVIm/CObbTcBRITQgmC/TjcREF1NeTBzIcR5XO/ukWo+YHOjBbFwIupg==, tarball: file:../tarballs/multicast-dns-7.2.5.tgz}
+    version: 7.2.5
+    hasBin: true
+
+  negotiator@file:../tarballs/negotiator-0.6.4.tgz:
+    resolution: {integrity: sha512-myRT3DiWPHqho5PrJaIRyaMv2kgYf0mUVgBNOYMuCH5Ki1yEiQaf/ZJuQ62nvpc44wL5WDbTX7yGJi1Neevw8w==, tarball: file:../tarballs/negotiator-0.6.4.tgz}
+    version: 0.6.4
+    engines: {node: '>= 0.6'}
+
+  negotiator@file:../tarballs/negotiator-1.0.0.tgz:
+    resolution: {integrity: sha512-mNnU1LX0khzsfC1SyaVpM5IMKUP8hsUS48dgc4/uILsEEwdobc1Vc7Zs8OGtAIGzxzsim/TQe5i8bv+f82ucOw==, tarball: file:../tarballs/negotiator-1.0.0.tgz}
+    version: 1.0.0
+    engines: {node: '>= 0.6'}
+
+  on-headers@file:../tarballs/on-headers-1.1.0.tgz:
+    resolution: {integrity: sha512-GNKtEnNqu5yfMjqOnKJR30MG2BnQLbGDDP8OHHfUFkMHG12Ye5uouF5zr5hduj75J1XGOuQ68+bXmG7Tmk8r7A==, tarball: file:../tarballs/on-headers-1.1.0.tgz}
+    version: 1.1.0
+    engines: {node: '>= 0.8'}
+
+  p-limit@file:../tarballs/p-limit-2.3.0.tgz:
+    resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==, tarball: file:../tarballs/p-limit-2.3.0.tgz}
+    version: 2.3.0
+    engines: {node: '>=6'}
+
+  p-locate@file:../tarballs/p-locate-4.1.0.tgz:
+    resolution: {integrity: sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==, tarball: file:../tarballs/p-locate-4.1.0.tgz}
+    version: 4.1.0
+    engines: {node: '>=8'}
+
+  p-try@file:../tarballs/p-try-2.2.0.tgz:
+    resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==, tarball: file:../tarballs/p-try-2.2.0.tgz}
+    version: 2.2.0
+    engines: {node: '>=6'}
+
+  path-exists@file:../tarballs/path-exists-4.0.0.tgz:
+    resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==, tarball: file:../tarballs/path-exists-4.0.0.tgz}
+    version: 4.0.0
+    engines: {node: '>=8'}
+
+  pngjs@file:../tarballs/pngjs-5.0.0.tgz:
+    resolution: {integrity: sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==, tarball: file:../tarballs/pngjs-5.0.0.tgz}
+    version: 5.0.0
+    engines: {node: '>=10.13.0'}
+
+  pvtsutils@file:../tarballs/pvtsutils-1.3.6.tgz:
+    resolution: {integrity: sha512-PLgQXQ6H2FWCaeRak8vvk1GW462lMxB5s3Jm673N82zI4vqtVUPuZdffdZbPDFRoU8kAhItWFtPCWiPpp4/EDg==, tarball: file:../tarballs/pvtsutils-1.3.6.tgz}
+    version: 1.3.6
+
+  pvutils@file:../tarballs/pvutils-1.2.0.tgz:
+    resolution: {integrity: sha512-BbubeCEyTuQjVMakvJQ/Sxbc93F2pwmbsxONT/ZRrwU7Ua38d8unYTwXpTVLAKJ4BDuH9IGztCjQcd/N/39Dvg==, tarball: file:../tarballs/pvutils-1.2.0.tgz}
+    version: 1.2.0
+    engines: {node: '>=16.0.0'}
+
+  qrcode@file:../tarballs/qrcode-1.5.4.tgz:
+    resolution: {integrity: sha512-1ca71Zgiu6ORjHqFBDpnSMTR2ReToX4l1Au1VFLyVeBTFavzQnv5JxMFr3ukHVKpSrSA2MCk0lNJSykjUfz7Zg==, tarball: file:../tarballs/qrcode-1.5.4.tgz}
+    version: 1.5.4
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+
+  react@file:../tarballs/react-18.3.1.tgz:
+    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==, tarball: file:../tarballs/react-18.3.1.tgz}
+    version: 18.3.1
+    engines: {node: '>=0.10.0'}
+
+  reflect-metadata@file:../tarballs/reflect-metadata-0.2.2.tgz:
+    resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==, tarball: file:../tarballs/reflect-metadata-0.2.2.tgz}
+    version: 0.2.2
+
+  require-directory@file:../tarballs/require-directory-2.1.1.tgz:
+    resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==, tarball: file:../tarballs/require-directory-2.1.1.tgz}
+    version: 2.1.1
+    engines: {node: '>=0.10.0'}
+
+  require-main-filename@file:../tarballs/require-main-filename-2.0.0.tgz:
+    resolution: {integrity: sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==, tarball: file:../tarballs/require-main-filename-2.0.0.tgz}
+    version: 2.0.0
+
+  safe-buffer@file:../tarballs/safe-buffer-5.2.1.tgz:
+    resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==, tarball: file:../tarballs/safe-buffer-5.2.1.tgz}
+    version: 5.2.1
+
+  set-blocking@file:../tarballs/set-blocking-2.0.0.tgz:
+    resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==, tarball: file:../tarballs/set-blocking-2.0.0.tgz}
+    version: 2.0.0
+
+  string-width@file:../tarballs/string-width-4.2.3.tgz:
+    resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==, tarball: file:../tarballs/string-width-4.2.3.tgz}
+    version: 4.2.3
+    engines: {node: '>=8'}
+
+  strip-ansi@file:../tarballs/strip-ansi-6.0.1.tgz:
+    resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==, tarball: file:../tarballs/strip-ansi-6.0.1.tgz}
+    version: 6.0.1
+    engines: {node: '>=8'}
+
+  thunky@file:../tarballs/thunky-1.1.0.tgz:
+    resolution: {integrity: sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==, tarball: file:../tarballs/thunky-1.1.0.tgz}
+    version: 1.1.0
+
+  tslib@file:../tarballs/tslib-1.14.1.tgz:
+    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==, tarball: file:../tarballs/tslib-1.14.1.tgz}
+    version: 1.14.1
+
+  tslib@file:../tarballs/tslib-2.8.1.tgz:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==, tarball: file:../tarballs/tslib-2.8.1.tgz}
+    version: 2.8.1
+
+  tsyringe@file:../tarballs/tsyringe-4.10.0.tgz:
+    resolution: {integrity: sha512-axr3IdNuVIxnaK5XGEUFTu3YmAQ6lllgrvqfEoR16g/HGnYY/6We4oWENtAnzK6/LpJ2ur9PAb80RBt7/U4ugw==, tarball: file:../tarballs/tsyringe-4.10.0.tgz}
+    version: 4.10.0
+    engines: {node: '>= 6.0.0'}
+
+  tweetnacl@file:../tarballs/tweetnacl-1.0.3.tgz:
+    resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==, tarball: file:../tarballs/tweetnacl-1.0.3.tgz}
+    version: 1.0.3
+
+  vary@file:../tarballs/vary-1.1.2.tgz:
+    resolution: {integrity: sha512-TPBUZSR+8DO9Mao2Uk3qhddYrbwJXDFS+ed0nTNPxoUBqgywUN+S4JrlI0wt+3eZV13+soda53iUCIE2KXsrnw==, tarball: file:../tarballs/vary-1.1.2.tgz}
+    version: 1.1.2
+    engines: {node: '>= 0.8'}
+
+  werift@file:../tarballs/werift-0.24.4.tgz:
+    resolution: {integrity: sha512-NoROZ11L/ZqAB5ombCB4VBuVNdIZfwI493zlxlIX7BlwfWRy55eDJdtWMC2VX35yBXFaWwA8NtYbmJ8qWtVk9Q==, tarball: file:../tarballs/werift-0.24.4.tgz}
+    version: 0.24.4
+    engines: {node: '>=16'}
+
+  which-module@file:../tarballs/which-module-2.0.1.tgz:
+    resolution: {integrity: sha512-iBdZ57RDvnOR9AGBhML2vFZf7h8vmBjhoaZqODJBFWHVtKkDmKuHai3cx5PgVMrX5YDNp27AofYbAwctSS+vhQ==, tarball: file:../tarballs/which-module-2.0.1.tgz}
+    version: 2.0.1
+
+  wrap-ansi@file:../tarballs/wrap-ansi-6.2.0.tgz:
+    resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==, tarball: file:../tarballs/wrap-ansi-6.2.0.tgz}
+    version: 6.2.0
+    engines: {node: '>=8'}
+
+  ws@file:../tarballs/ws-8.21.3.tgz:
+    resolution: {integrity: sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==, tarball: file:../tarballs/ws-8.21.3.tgz}
+    version: 8.21.3
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+  y18n@file:../tarballs/y18n-4.0.3.tgz:
+    resolution: {integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==, tarball: file:../tarballs/y18n-4.0.3.tgz}
+    version: 4.0.3
+
+  yargs-parser@file:../tarballs/yargs-parser-18.1.3.tgz:
+    resolution: {integrity: sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==, tarball: file:../tarballs/yargs-parser-18.1.3.tgz}
+    version: 18.1.3
+    engines: {node: '>=6'}
+
+  yargs@file:../tarballs/yargs-15.4.1.tgz:
+    resolution: {integrity: sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==, tarball: file:../tarballs/yargs-15.4.1.tgz}
+    version: 15.4.1
+    engines: {node: '>=8'}
+
+  zod@file:../tarballs/zod-4.4.3.tgz:
+    resolution: {integrity: sha512-v5vbJYgxpwhb4DPfW4oOTGfoYkVaXj7eULNlWSlndq6aUH0oXtcoFaEOrG4uoqrrQ/YYEVUbTjgfYd87l6UjoQ==, tarball: file:../tarballs/zod-4.4.3.tgz}
+    version: 4.4.3
+
+snapshots:
+
+  '@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz':
+    dependencies:
+      '@deepseek-ai/cosmokit': file:../tarballs/deepseek-ai-cosmokit-1.8.2.tgz
+      '@standard-schema/spec': file:../tarballs/standard-schema-spec-1.1.0.tgz
+
+  '@deepseek-ai/cosmokit@file:../tarballs/deepseek-ai-cosmokit-1.8.2.tgz': {}
+
+  '@deepseek-ai/dsh-agent@file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz(5f225efed99ae4e75f9b536ee8cba216)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-llm': file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)
+      '@deepseek-ai/dsh-scope': file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-session': file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      '@deepseek-ai/dsh-system-prompt': file:../tarballs/deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-llm@file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb))(@deepseek-ai/dsh-scope@file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))
+      '@deepseek-ai/dsh-typert-protocol': file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+
+  '@deepseek-ai/dsh-attachment@file:../tarballs/deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-brand': file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/dsh-client-connection@file:../tarballs/deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz(7a5ef30e2670ec0fc8efaaf869a5f31d)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-attachment': file:../tarballs/deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-brand': file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-commands': file:../tarballs/deepseek-ai-dsh-commands-0.1.2-alpha.1.tgz(b48ee1a2a84a29aba74fec36ebac4933)
+      '@deepseek-ai/dsh-credentials': file:../tarballs/deepseek-ai-dsh-credentials-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-host-directory-picker': file:../tarballs/deepseek-ai-dsh-host-directory-picker-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-host-webserver': file:../tarballs/deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-llm': file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)
+      '@deepseek-ai/dsh-session': file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      '@deepseek-ai/dsh-settings': file:../tarballs/deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409))(@deepseek-ai/schemastery@file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz)
+      '@deepseek-ai/dsh-tool-todo': file:../tarballs/deepseek-ai-dsh-tool-todo-0.1.2-alpha.1.tgz(0742a16c1d7cb426e29a682b6c0c64be)
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+      zod: file:../tarballs/zod-4.4.3.tgz
+
+  '@deepseek-ai/dsh-code-runtime@file:../tarballs/deepseek-ai-dsh-code-runtime-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/dsh-commands@file:../tarballs/deepseek-ai-dsh-commands-0.1.2-alpha.1.tgz(b48ee1a2a84a29aba74fec36ebac4933)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-agent': file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz(5f225efed99ae4e75f9b536ee8cba216)
+      '@deepseek-ai/dsh-attachment': file:../tarballs/deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-brand': file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-llm': file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)
+      '@deepseek-ai/dsh-scope': file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-session': file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      '@deepseek-ai/dsh-typert-protocol': file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-util-crypto': file:../tarballs/deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      zod: file:../tarballs/zod-4.4.3.tgz
+
+  '@deepseek-ai/dsh-credentials@file:../tarballs/deepseek-ai-dsh-credentials-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-brand': file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/dsh-host-directory-picker@file:../tarballs/deepseek-ai-dsh-host-directory-picker-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/dsh-host-webserver@file:../tarballs/deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+      compression: file:../tarballs/compression-1.8.1.tgz
+      negotiator: file:../tarballs/negotiator-1.0.0.tgz
+    transitivePeerDependencies:
+      - supports-color
+
+  '@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+
+  '@deepseek-ai/dsh-llm@file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-attachment': file:../tarballs/deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-brand': file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-timeout': file:../tarballs/deepseek-ai-dsh-timeout-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-typert-protocol': file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-util-crypto': file:../tarballs/deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+      zod: file:../tarballs/zod-4.4.3.tgz
+
+  '@deepseek-ai/dsh-scope@file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/dsh-session-projection@file:../tarballs/deepseek-ai-dsh-session-projection-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-session': file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      zod: file:../tarballs/zod-4.4.3.tgz
+
+  '@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-brand': file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-llm': file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)
+      '@deepseek-ai/dsh-scope': file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-typert-protocol': file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+
+  '@deepseek-ai/dsh-settings@file:../tarballs/deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409))(@deepseek-ai/schemastery@file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-brand': file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-session': file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+
+  '@deepseek-ai/dsh-system-prompt@file:../tarballs/deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-llm@file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb))(@deepseek-ai/dsh-scope@file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-llm': file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)
+      '@deepseek-ai/dsh-scope': file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+
+  '@deepseek-ai/dsh-timeout@file:../tarballs/deepseek-ai-dsh-timeout-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/dsh-tool-todo@file:../tarballs/deepseek-ai-dsh-tool-todo-0.1.2-alpha.1.tgz(0742a16c1d7cb426e29a682b6c0c64be)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-agent': file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz(5f225efed99ae4e75f9b536ee8cba216)
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-session': file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      '@deepseek-ai/dsh-session-projection': file:../tarballs/deepseek-ai-dsh-session-projection-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409))
+      '@deepseek-ai/dsh-tools': file:../tarballs/deepseek-ai-dsh-tools-0.1.2-alpha.1.tgz(7759f35d9e14fe1cf752da7ae009b7de)
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+      zod: file:../tarballs/zod-4.4.3.tgz
+
+  '@deepseek-ai/dsh-tools@file:../tarballs/deepseek-ai-dsh-tools-0.1.2-alpha.1.tgz(7759f35d9e14fe1cf752da7ae009b7de)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-agent': file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz(5f225efed99ae4e75f9b536ee8cba216)
+      '@deepseek-ai/dsh-code-runtime': file:../tarballs/deepseek-ai-dsh-code-runtime-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-llm': file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)
+      '@deepseek-ai/dsh-scope': file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-session': file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      '@deepseek-ai/dsh-system-prompt': file:../tarballs/deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-llm@file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb))(@deepseek-ai/dsh-scope@file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))
+      '@deepseek-ai/dsh-user-approval': file:../tarballs/deepseek-ai-dsh-user-approval-0.1.2-alpha.1.tgz(f600370fa0583c4b15e09cd7c80ad4e5)
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+
+  '@deepseek-ai/dsh-typert-protocol@file:../tarballs/deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/dsh-user-approval@file:../tarballs/deepseek-ai-dsh-user-approval-0.1.2-alpha.1.tgz(f600370fa0583c4b15e09cd7c80ad4e5)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-agent': file:../tarballs/deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz(5f225efed99ae4e75f9b536ee8cba216)
+      '@deepseek-ai/dsh-brand': file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+      '@deepseek-ai/dsh-llm': file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb)
+      '@deepseek-ai/dsh-scope': file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-session': file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409)
+      '@deepseek-ai/dsh-system-prompt': file:../tarballs/deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-llm@file:../tarballs/deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz(989ff8aaf9f013564db523b6ce8c4ddb))(@deepseek-ai/dsh-scope@file:../tarballs/deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+
+  '@deepseek-ai/dsh-util-crypto@file:../tarballs/deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-invariants': file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)
+
+  '@deepseek-ai/schemastery@file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz':
+    dependencies:
+      '@deepseek-ai/cosmokit': file:../tarballs/deepseek-ai-cosmokit-1.8.2.tgz
+      '@standard-schema/spec': file:../tarballs/standard-schema-spec-1.1.0.tgz
+
+  '@dsh-mobile/e2e-tunnel@file:../tarballs/dsh-mobile-e2e-tunnel-0.1.4.tgz':
+    dependencies:
+      tweetnacl: file:../tarballs/tweetnacl-1.0.3.tgz
+
+  '@dsh-mobile/pairing@file:pairing.tgz(31034ac5fde0584b1ecf3e5b748b06c3)':
+    dependencies:
+      '@deepseek-ai/cordis': file:../tarballs/deepseek-ai-cordis-4.0.1.tgz
+      '@deepseek-ai/dsh-host-webserver': file:../tarballs/deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))
+      '@deepseek-ai/dsh-settings': file:../tarballs/deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-brand@file:../tarballs/deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz)))(@deepseek-ai/dsh-invariants@file:../tarballs/deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz(@deepseek-ai/cordis@file:../tarballs/deepseek-ai-cordis-4.0.1.tgz))(@deepseek-ai/dsh-session@file:../tarballs/deepseek-ai-dsh-session-0.1.2-alpha.1.tgz(574cab04642c83c5e26774f63f8e7409))(@deepseek-ai/schemastery@file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz)
+      '@deepseek-ai/schemastery': file:../tarballs/deepseek-ai-schemastery-3.18.1.tgz
+      '@dsh-mobile/e2e-tunnel': file:../tarballs/dsh-mobile-e2e-tunnel-0.1.4.tgz
+      qrcode: file:../tarballs/qrcode-1.5.4.tgz
+      react: file:../tarballs/react-18.3.1.tgz
+      tweetnacl: file:../tarballs/tweetnacl-1.0.3.tgz
+      werift: file:../tarballs/werift-0.24.4.tgz
+      ws: file:../tarballs/ws-8.21.3.tgz
+    optionalDependencies:
+      '@deepseek-ai/dsh-client-connection': file:../tarballs/deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz(7a5ef30e2670ec0fc8efaaf869a5f31d)
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+
+  '@fidm/asn1@file:../tarballs/fidm-asn1-1.0.4.tgz': {}
+
+  '@fidm/x509@file:../tarballs/fidm-x509-1.2.1.tgz':
+    dependencies:
+      '@fidm/asn1': file:../tarballs/fidm-asn1-1.0.4.tgz
+      tweetnacl: file:../tarballs/tweetnacl-1.0.3.tgz
+
+  '@leichtgewicht/ip-codec@file:../tarballs/leichtgewicht-ip-codec-2.0.5.tgz': {}
+
+  '@noble/curves@file:../tarballs/noble-curves-1.9.7.tgz':
+    dependencies:
+      '@noble/hashes': file:../tarballs/noble-hashes-1.8.0.tgz
+
+  '@noble/hashes@file:../tarballs/noble-hashes-1.8.0.tgz': {}
+
+  '@peculiar/asn1-cms@file:../tarballs/peculiar-asn1-cms-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509': file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      '@peculiar/asn1-x509-attr': file:../tarballs/peculiar-asn1-x509-attr-2.9.4.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-csr@file:../tarballs/peculiar-asn1-csr-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509': file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-ecc@file:../tarballs/peculiar-asn1-ecc-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509': file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-pfx@file:../tarballs/peculiar-asn1-pfx-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-cms': file:../tarballs/peculiar-asn1-cms-2.9.4.tgz
+      '@peculiar/asn1-pkcs8': file:../tarballs/peculiar-asn1-pkcs8-2.9.4.tgz
+      '@peculiar/asn1-rsa': file:../tarballs/peculiar-asn1-rsa-2.9.4.tgz
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-pkcs8@file:../tarballs/peculiar-asn1-pkcs8-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509': file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-pkcs9@file:../tarballs/peculiar-asn1-pkcs9-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-cms': file:../tarballs/peculiar-asn1-cms-2.9.4.tgz
+      '@peculiar/asn1-pfx': file:../tarballs/peculiar-asn1-pfx-2.9.4.tgz
+      '@peculiar/asn1-pkcs8': file:../tarballs/peculiar-asn1-pkcs8-2.9.4.tgz
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509': file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      '@peculiar/asn1-x509-attr': file:../tarballs/peculiar-asn1-x509-attr-2.9.4.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-rsa@file:../tarballs/peculiar-asn1-rsa-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509': file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-schema@file:../tarballs/peculiar-asn1-schema-2.9.4.tgz':
+    dependencies:
+      '@peculiar/utils': file:../tarballs/peculiar-utils-2.0.3.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-x509-attr@file:../tarballs/peculiar-asn1-x509-attr-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509': file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/asn1-x509@file:../tarballs/peculiar-asn1-x509-2.9.4.tgz':
+    dependencies:
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/utils': file:../tarballs/peculiar-utils-2.0.3.tgz
+      asn1js: file:../tarballs/asn1js-3.0.10.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/utils@file:../tarballs/peculiar-utils-2.0.3.tgz':
+    dependencies:
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  '@peculiar/x509@file:../tarballs/peculiar-x509-1.14.3.tgz':
+    dependencies:
+      '@peculiar/asn1-cms': file:../tarballs/peculiar-asn1-cms-2.9.4.tgz
+      '@peculiar/asn1-csr': file:../tarballs/peculiar-asn1-csr-2.9.4.tgz
+      '@peculiar/asn1-ecc': file:../tarballs/peculiar-asn1-ecc-2.9.4.tgz
+      '@peculiar/asn1-pkcs9': file:../tarballs/peculiar-asn1-pkcs9-2.9.4.tgz
+      '@peculiar/asn1-rsa': file:../tarballs/peculiar-asn1-rsa-2.9.4.tgz
+      '@peculiar/asn1-schema': file:../tarballs/peculiar-asn1-schema-2.9.4.tgz
+      '@peculiar/asn1-x509': file:../tarballs/peculiar-asn1-x509-2.9.4.tgz
+      pvtsutils: file:../tarballs/pvtsutils-1.3.6.tgz
+      reflect-metadata: file:../tarballs/reflect-metadata-0.2.2.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+      tsyringe: file:../tarballs/tsyringe-4.10.0.tgz
+
+  '@shinyoshiaki/binary-data@file:../tarballs/shinyoshiaki-binary-data-0.6.1.tgz':
+    dependencies:
+      generate-function: file:../tarballs/generate-function-2.3.1.tgz
+      is-plain-object: file:../tarballs/is-plain-object-2.0.4.tgz
+
+  '@standard-schema/spec@file:../tarballs/standard-schema-spec-1.1.0.tgz': {}
+
+  '@types/dom-mediacapture-transform@file:../tarballs/types-dom-mediacapture-transform-0.1.12.tgz':
+    dependencies:
+      '@types/dom-webcodecs': file:../tarballs/types-dom-webcodecs-0.1.13.tgz
+
+  '@types/dom-webcodecs@file:../tarballs/types-dom-webcodecs-0.1.13.tgz': {}
+
+  ansi-regex@file:../tarballs/ansi-regex-5.0.1.tgz: {}
+
+  ansi-styles@file:../tarballs/ansi-styles-4.3.0.tgz:
+    dependencies:
+      color-convert: file:../tarballs/color-convert-2.0.1.tgz
+
+  asn1js@file:../tarballs/asn1js-3.0.10.tgz:
+    dependencies:
+      pvtsutils: file:../tarballs/pvtsutils-1.3.6.tgz
+      pvutils: file:../tarballs/pvutils-1.2.0.tgz
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  base64-js@file:../tarballs/base64-js-1.5.1.tgz: {}
+
+  buffer@file:../tarballs/buffer-6.0.3.tgz:
+    dependencies:
+      base64-js: file:../tarballs/base64-js-1.5.1.tgz
+      ieee754: file:../tarballs/ieee754-1.2.1.tgz
+
+  bytes@file:../tarballs/bytes-3.1.2.tgz: {}
+
+  camelcase@file:../tarballs/camelcase-5.3.1.tgz: {}
+
+  cliui@file:../tarballs/cliui-6.0.0.tgz:
+    dependencies:
+      string-width: file:../tarballs/string-width-4.2.3.tgz
+      strip-ansi: file:../tarballs/strip-ansi-6.0.1.tgz
+      wrap-ansi: file:../tarballs/wrap-ansi-6.2.0.tgz
+
+  color-convert@file:../tarballs/color-convert-2.0.1.tgz:
+    dependencies:
+      color-name: file:../tarballs/color-name-1.1.4.tgz
+
+  color-name@file:../tarballs/color-name-1.1.4.tgz: {}
+
+  compressible@file:../tarballs/compressible-2.0.18.tgz:
+    dependencies:
+      mime-db: file:../tarballs/mime-db-1.54.0.tgz
+
+  compression@file:../tarballs/compression-1.8.1.tgz:
+    dependencies:
+      bytes: file:../tarballs/bytes-3.1.2.tgz
+      compressible: file:../tarballs/compressible-2.0.18.tgz
+      debug: file:../tarballs/debug-2.6.9.tgz
+      negotiator: file:../tarballs/negotiator-0.6.4.tgz
+      on-headers: file:../tarballs/on-headers-1.1.0.tgz
+      safe-buffer: file:../tarballs/safe-buffer-5.2.1.tgz
+      vary: file:../tarballs/vary-1.1.2.tgz
+    transitivePeerDependencies:
+      - supports-color
+
+  debug@file:../tarballs/debug-2.6.9.tgz:
+    dependencies:
+      ms: file:../tarballs/ms-2.0.0.tgz
+
+  debug@file:../tarballs/debug-4.4.0.tgz:
+    dependencies:
+      ms: file:../tarballs/ms-2.1.3.tgz
+
+  decamelize@file:../tarballs/decamelize-1.2.0.tgz: {}
+
+  dijkstrajs@file:../tarballs/dijkstrajs-1.0.3.tgz: {}
+
+  dns-packet@file:../tarballs/dns-packet-5.6.1.tgz:
+    dependencies:
+      '@leichtgewicht/ip-codec': file:../tarballs/leichtgewicht-ip-codec-2.0.5.tgz
+
+  emoji-regex@file:../tarballs/emoji-regex-8.0.0.tgz: {}
+
+  find-up@file:../tarballs/find-up-4.1.0.tgz:
+    dependencies:
+      locate-path: file:../tarballs/locate-path-5.0.0.tgz
+      path-exists: file:../tarballs/path-exists-4.0.0.tgz
+
+  generate-function@file:../tarballs/generate-function-2.3.1.tgz:
+    dependencies:
+      is-property: file:../tarballs/is-property-1.0.2.tgz
+
+  get-caller-file@file:../tarballs/get-caller-file-2.0.5.tgz: {}
+
+  ieee754@file:../tarballs/ieee754-1.2.1.tgz: {}
+
+  is-fullwidth-code-point@file:../tarballs/is-fullwidth-code-point-3.0.0.tgz: {}
+
+  is-plain-object@file:../tarballs/is-plain-object-2.0.4.tgz:
+    dependencies:
+      isobject: file:../tarballs/isobject-3.0.1.tgz
+
+  is-property@file:../tarballs/is-property-1.0.2.tgz: {}
+
+  isobject@file:../tarballs/isobject-3.0.1.tgz: {}
+
+  js-tokens@file:../tarballs/js-tokens-4.0.0.tgz: {}
+
+  locate-path@file:../tarballs/locate-path-5.0.0.tgz:
+    dependencies:
+      p-locate: file:../tarballs/p-locate-4.1.0.tgz
+
+  loose-envify@file:../tarballs/loose-envify-1.4.0.tgz:
+    dependencies:
+      js-tokens: file:../tarballs/js-tokens-4.0.0.tgz
+
+  mediabunny@file:../tarballs/mediabunny-1.55.2.tgz:
+    dependencies:
+      '@types/dom-mediacapture-transform': file:../tarballs/types-dom-mediacapture-transform-0.1.12.tgz
+      '@types/dom-webcodecs': file:../tarballs/types-dom-webcodecs-0.1.13.tgz
+
+  mime-db@file:../tarballs/mime-db-1.54.0.tgz: {}
+
+  ms@file:../tarballs/ms-2.0.0.tgz: {}
+
+  ms@file:../tarballs/ms-2.1.3.tgz: {}
+
+  multicast-dns@file:../tarballs/multicast-dns-7.2.5.tgz:
+    dependencies:
+      dns-packet: file:../tarballs/dns-packet-5.6.1.tgz
+      thunky: file:../tarballs/thunky-1.1.0.tgz
+
+  negotiator@file:../tarballs/negotiator-0.6.4.tgz: {}
+
+  negotiator@file:../tarballs/negotiator-1.0.0.tgz: {}
+
+  on-headers@file:../tarballs/on-headers-1.1.0.tgz: {}
+
+  p-limit@file:../tarballs/p-limit-2.3.0.tgz:
+    dependencies:
+      p-try: file:../tarballs/p-try-2.2.0.tgz
+
+  p-locate@file:../tarballs/p-locate-4.1.0.tgz:
+    dependencies:
+      p-limit: file:../tarballs/p-limit-2.3.0.tgz
+
+  p-try@file:../tarballs/p-try-2.2.0.tgz: {}
+
+  path-exists@file:../tarballs/path-exists-4.0.0.tgz: {}
+
+  pngjs@file:../tarballs/pngjs-5.0.0.tgz: {}
+
+  pvtsutils@file:../tarballs/pvtsutils-1.3.6.tgz:
+    dependencies:
+      tslib: file:../tarballs/tslib-2.8.1.tgz
+
+  pvutils@file:../tarballs/pvutils-1.2.0.tgz: {}
+
+  qrcode@file:../tarballs/qrcode-1.5.4.tgz:
+    dependencies:
+      dijkstrajs: file:../tarballs/dijkstrajs-1.0.3.tgz
+      pngjs: file:../tarballs/pngjs-5.0.0.tgz
+      yargs: file:../tarballs/yargs-15.4.1.tgz
+
+  react@file:../tarballs/react-18.3.1.tgz:
+    dependencies:
+      loose-envify: file:../tarballs/loose-envify-1.4.0.tgz
+
+  reflect-metadata@file:../tarballs/reflect-metadata-0.2.2.tgz: {}
+
+  require-directory@file:../tarballs/require-directory-2.1.1.tgz: {}
+
+  require-main-filename@file:../tarballs/require-main-filename-2.0.0.tgz: {}
+
+  safe-buffer@file:../tarballs/safe-buffer-5.2.1.tgz: {}
+
+  set-blocking@file:../tarballs/set-blocking-2.0.0.tgz: {}
+
+  string-width@file:../tarballs/string-width-4.2.3.tgz:
+    dependencies:
+      emoji-regex: file:../tarballs/emoji-regex-8.0.0.tgz
+      is-fullwidth-code-point: file:../tarballs/is-fullwidth-code-point-3.0.0.tgz
+      strip-ansi: file:../tarballs/strip-ansi-6.0.1.tgz
+
+  strip-ansi@file:../tarballs/strip-ansi-6.0.1.tgz:
+    dependencies:
+      ansi-regex: file:../tarballs/ansi-regex-5.0.1.tgz
+
+  thunky@file:../tarballs/thunky-1.1.0.tgz: {}
+
+  tslib@file:../tarballs/tslib-1.14.1.tgz: {}
+
+  tslib@file:../tarballs/tslib-2.8.1.tgz: {}
+
+  tsyringe@file:../tarballs/tsyringe-4.10.0.tgz:
+    dependencies:
+      tslib: file:../tarballs/tslib-1.14.1.tgz
+
+  tweetnacl@file:../tarballs/tweetnacl-1.0.3.tgz: {}
+
+  vary@file:../tarballs/vary-1.1.2.tgz: {}
+
+  werift@file:../tarballs/werift-0.24.4.tgz:
+    dependencies:
+      '@fidm/x509': file:../tarballs/fidm-x509-1.2.1.tgz
+      '@noble/curves': file:../tarballs/noble-curves-1.9.7.tgz
+      '@peculiar/x509': file:../tarballs/peculiar-x509-1.14.3.tgz
+      '@shinyoshiaki/binary-data': file:../tarballs/shinyoshiaki-binary-data-0.6.1.tgz
+      buffer: file:../tarballs/buffer-6.0.3.tgz
+      debug: file:../tarballs/debug-4.4.0.tgz
+      mediabunny: file:../tarballs/mediabunny-1.55.2.tgz
+      multicast-dns: file:../tarballs/multicast-dns-7.2.5.tgz
+      tweetnacl: file:../tarballs/tweetnacl-1.0.3.tgz
+    transitivePeerDependencies:
+      - supports-color
+
+  which-module@file:../tarballs/which-module-2.0.1.tgz: {}
+
+  wrap-ansi@file:../tarballs/wrap-ansi-6.2.0.tgz:
+    dependencies:
+      ansi-styles: file:../tarballs/ansi-styles-4.3.0.tgz
+      string-width: file:../tarballs/string-width-4.2.3.tgz
+      strip-ansi: file:../tarballs/strip-ansi-6.0.1.tgz
+
+  ws@file:../tarballs/ws-8.21.3.tgz: {}
+
+  y18n@file:../tarballs/y18n-4.0.3.tgz: {}
+
+  yargs-parser@file:../tarballs/yargs-parser-18.1.3.tgz:
+    dependencies:
+      camelcase: file:../tarballs/camelcase-5.3.1.tgz
+      decamelize: file:../tarballs/decamelize-1.2.0.tgz
+
+  yargs@file:../tarballs/yargs-15.4.1.tgz:
+    dependencies:
+      cliui: file:../tarballs/cliui-6.0.0.tgz
+      decamelize: file:../tarballs/decamelize-1.2.0.tgz
+      find-up: file:../tarballs/find-up-4.1.0.tgz
+      get-caller-file: file:../tarballs/get-caller-file-2.0.5.tgz
+      require-directory: file:../tarballs/require-directory-2.1.1.tgz
+      require-main-filename: file:../tarballs/require-main-filename-2.0.0.tgz
+      set-blocking: file:../tarballs/set-blocking-2.0.0.tgz
+      string-width: file:../tarballs/string-width-4.2.3.tgz
+      which-module: file:../tarballs/which-module-2.0.1.tgz
+      y18n: file:../tarballs/y18n-4.0.3.tgz
+      yargs-parser: file:../tarballs/yargs-parser-18.1.3.tgz
+
+  zod@file:../tarballs/zod-4.4.3.tgz: {}

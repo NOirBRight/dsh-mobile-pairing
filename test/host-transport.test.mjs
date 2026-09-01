@@ -239,7 +239,8 @@ test('a sealed HTTP GET flows through an authenticated in-memory transport (no h
 test('injects the DSH cookie on upstream requests when configured', async (t) => {
   const upstream = await startUpstream()
   t.after(() => upstream.server.close())
-  const { gate, codec, inbox, clientEnd } = attachInMemory(upstream, { upstreamCookie: 'dsh-auth-test=abc123' })
+  let waitCalls = 0
+  const { gate, codec, inbox, clientEnd } = attachInMemory(upstream, { upstreamCookie: 'dsh-auth-test=abc123', waitCookie: async () => { waitCalls++; return 'dsh-auth-fresh=def456' } })
   t.after(() => gate.close())
 
   clientEnd.send(codec.seal({
@@ -252,7 +253,8 @@ test('injects the DSH cookie on upstream requests when configured', async (t) =>
   const res = await inbox.waitFor((m) => m.t === 'http-res' && m.id === 'c1')
   assert.equal(res.status, 200)
   const echo = JSON.parse(Buffer.from(res.body, 'base64').toString('utf8'))
-  assert.equal(echo.cookie, 'dsh-auth-test=abc123', 'host cookie injected')
+  assert.equal(echo.cookie, 'dsh-auth-fresh=def456', 'central cookie wait result injected')
+  assert.equal(waitCalls, 1, 'every upstream HTTP request uses the central cookie wait')
 })
 
 test('strips a client-sent cookie so only the DSH loopback cookie crosses', async (t) => {

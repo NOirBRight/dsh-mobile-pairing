@@ -11,8 +11,14 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src"],
-  "exclude": ["src/client"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/client"
+  ]
 }

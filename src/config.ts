@@ -21,7 +21,7 @@ export interface Config {
   port: number
   /** Upstream dsh web host. The proxy only ever forwards to loopback. */
   dshHost: string
-  /** Upstream dsh web port. */
+  /** Upstream dsh web port; valid Node/URL ports are 1 through 65535. */
   dshPort: number
   /** Harness home; the keypair and device store live under it unless overridden. */
   dshHome: string
@@ -31,6 +31,8 @@ export interface Config {
   tokenStorePath?: string
   /** One-time pairing-code lifetime in milliseconds. */
   codeTtlMs: number
+  /** Delay before retrying a failed DSH browser-session cookie acquisition. */
+  cookieRetryDelayMs: number
   /** Product Public Endpoint mode. Quick Tunnel is the zero-configuration default. */
   endpointMode: 'quick' | 'custom' | 'relay'
   /** Operator-provisioned URL, required only in custom mode. */
@@ -64,11 +66,12 @@ export const Config: z<Config> = z.object({
   bind: z.string().default('0.0.0.0'),
   port: z.natural().max(65535).default(0),
   dshHost: z.string().default('127.0.0.1'),
-  dshPort: z.natural().max(65535).default(3080),
+  dshPort: z.natural().min(1).max(65535).default(3080),
   dshHome: z.string().default(process.env.DSH_HOME ?? join(homedir(), '.dsh')),
   keyStorePath: z.string(),
   tokenStorePath: z.string(),
   codeTtlMs: z.natural().default(300_000),
+  cookieRetryDelayMs: z.natural().min(1).max(60_000).default(3_000),
   endpointMode: z.string().default('quick') as z<'quick' | 'custom' | 'relay'>,
   customEndpointUrl: z.string(),
   relayUrl: z.string(),
@@ -116,6 +119,9 @@ export function resolveConfig(config: Config): ResolvedConfig {
   // machine distinguishable by putting the configured upstream port first.
   let username = ''
   try { username = userInfo().username } catch { /* unavailable user metadata leaves the hostname intact */ }
+  if (!Number.isInteger(config.dshPort) || config.dshPort < 1 || config.dshPort > 65535) {
+    throw new Error('dsh-mobile-pairing: dshPort must be an integer from 1 through 65535')
+  }
   const fallbackHostName = `${config.dshPort} · ${deviceHostName(hostname(), username)}`
   const hostName = (config.hostName ?? fallbackHostName).replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, 64)
   if (hostName === '') throw new Error('dsh-mobile-pairing: hostName must not be empty')
