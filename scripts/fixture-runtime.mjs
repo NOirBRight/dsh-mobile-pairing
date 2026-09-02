@@ -81,7 +81,10 @@ function commandForPnpm(path) {
 
 function pathPnpmCandidates() {
   const path = process.env.PATH ?? ''
-  return path.split(delimiter).filter(Boolean).flatMap((directory) => [join(directory, 'pnpm'), join(directory, 'pnpm.cmd'), join(directory, 'pnpm.exe')])
+  const nvmBin = typeof process.env.NVM_BIN === 'string' && process.env.NVM_BIN.length > 0
+    ? [join(process.env.NVM_BIN, '..', 'lib', 'node_modules', 'pnpm', 'bin', 'pnpm.cjs')]
+    : []
+  return [...nvmBin, ...path.split(delimiter).filter(Boolean).flatMap((directory) => [join(directory, 'pnpm'), join(directory, 'pnpm.cmd'), join(directory, 'pnpm.exe')])]
 }
 
 function cachedPnpmCandidates() {

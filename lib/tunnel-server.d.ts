@@ -9,7 +9,7 @@ export interface TunnelEndpointOptions {
     upstreamPort: number;
     /**
      * DSH browser-session cookie (name=value) minted for the loopback
-     * authority, injected on every upstream request/WebSocket. alpha.1
+     * authority, injected on every upstream request/WebSocket. Alpha.4
      * requires a cookie even on loopback; the phone never sees this value.
      */
     upstreamCookie?: string | (() => string | undefined);

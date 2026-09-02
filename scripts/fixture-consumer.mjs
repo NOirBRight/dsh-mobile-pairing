@@ -66,6 +66,25 @@ function directDependencies(fixtureSet) {
   return dependencies
 }
 
+function writeFixtureWorkspace(consumer, fixtureSet) {
+  const byName = new Map()
+  for (const record of fixtureSet.records.values()) (byName.get(record.name) ?? (byName.set(record.name, []), byName.get(record.name))).push(record)
+  const byId = fixtureSet.records
+  const overrides = {}
+  for (const [name, records] of byName) if (records.length === 1) overrides[name] = 'file:../tarballs/' + records[0].tarball
+  for (const edge of fixtureSet.provenance.edges) {
+    const child = byId.get(edge.child)
+    const parent = byId.get(edge.parent)
+    if (child === undefined || (byName.get(child.name)?.length ?? 0) === 1) continue
+    const parentName = edge.parent.slice(0, edge.parent.lastIndexOf('@'))
+    const parentSelector = parent === undefined || (byName.get(parent.name)?.length ?? 0) === 1 ? parentName : edge.parent
+    overrides[parentSelector + '>' + edge.dependency] = 'file:../tarballs/' + child.tarball
+  }
+  const lines = ['packages:', '  - .', 'overrides:']
+  for (const [key, value] of Object.entries(overrides).sort(([left], [right]) => left.localeCompare(right))) lines.push('  ' + JSON.stringify(key) + ': ' + JSON.stringify(value))
+  writeFileSync(join(consumer, 'pnpm-workspace.yaml'), lines.join('\n') + '\n')
+}
+
 function collectInstalled(tree, result = new Set()) {
   for (const [name, dependency] of Object.entries(tree?.dependencies ?? {})) {
     if (typeof dependency?.version === 'string' && semver.valid(dependency.version) !== null) result.add(name + '@' + dependency.version)
@@ -148,12 +167,19 @@ export async function installConsumer(packed, fixtureSet) {
     const cache = makeTemporary(tmpdir(), 'pairing-cache-')
     copyFileSync(packed.archive, join(consumer, 'pairing.tgz'))
     copyFileSync(join(fixtureSet.root, fixtureSet.provenance.consumer.lockfile), join(consumer, 'pnpm-lock.yaml'))
-    writeFileSync(join(consumer, 'package.json'), JSON.stringify({ name: 'pairing-fixture-consumer', version: '1.0.0', private: true, type: 'module', dependencies: directDependencies(fixtureSet) }, null, 2) + '\n')
+    writeFileSync(join(consumer, 'package.json'), JSON.stringify({
+      name: 'pairing-fixture-consumer',
+      version: '1.0.0',
+      private: true,
+      type: 'module',
+      dependencies: directDependencies(fixtureSet),
+    }, null, 2) + '\n')
+    writeFixtureWorkspace(consumer, fixtureSet)
     const environment = isolatedEnvironment(cache, store)
     writeFileSync(environment.npm_config_globalconfig, '')
     writeFileSync(environment.npm_config_userconfig, '')
-    runPnpm(['install', '--offline', '--frozen-lockfile', '--ignore-scripts', '--store-dir', store, '--config.registry=' + OFFLINE_REGISTRY, '--dir', consumer], { cwd: PROJECT_ROOT, env: environment })
-    const tree = JSON.parse(runPnpm(['list', '--json', '--depth', 'Infinity', '--dir', consumer], { cwd: PROJECT_ROOT, env: environment }))
+    runPnpm(['install', '--offline', '--frozen-lockfile', '--ignore-scripts', '--store-dir', store, '--config.registry=' + OFFLINE_REGISTRY], { cwd: consumer, env: environment })
+    const tree = JSON.parse(runPnpm(['list', '--json', '--depth', 'Infinity'], { cwd: consumer, env: environment }))
     verifyInstalledTree(tree, fixtureSet)
     await smokeInstalledModules(consumer)
   } catch (error) {

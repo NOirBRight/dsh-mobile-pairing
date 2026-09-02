@@ -8,16 +8,16 @@ import { collectRuntimeImports, isBuiltin, packageName, readTarget, verifyArchiv
 import { createChildEnvironment } from './fixture-runtime.mjs'
 
 export const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-export const FIXTURE_ROOT = join(PROJECT_ROOT, 'fixtures', 'alpha1')
+export const FIXTURE_ROOT = join(PROJECT_ROOT, 'fixtures', 'alpha4')
 export const PAIRING_NAME = '@dsh-mobile/pairing'
 export const TUNNEL_NAME = '@dsh-mobile/e2e-tunnel'
-export const TUNNEL_VERSION = '0.1.4'
-export const TUNNEL_COMMIT = '6a3dcee8717bcefff9b71297d5543eadde727122'
+export const TUNNEL_VERSION = '0.1.5'
+export const TUNNEL_COMMIT = '67041eb566319d4c2bdeef1f64b161b191439906'
 export const OFFICIAL_SOURCE = Object.freeze({
   repository: 'https://github.com/deepseek-ai/deepseek-harness.git',
-  checkout: 'dsh-v0.1.2-alpha.1-cd5ef8148158',
-  tag: 'dsh-v0.1.2-alpha.1',
-  commit: 'cd5ef8148158c3a752a658978873241fdf8e2bbc',
+  checkout: 'dsh-v0.1.2-alpha.4-4e84901e6471b79e',
+  tag: 'dsh-v0.1.2-alpha.4',
+  commit: '4e84901e6471b79ec0338099867ebb4606d12bb5',
 })
 
 const CLEAN_EVIDENCE = Object.freeze({
@@ -26,15 +26,15 @@ const CLEAN_EVIDENCE = Object.freeze({
     tag: OFFICIAL_SOURCE.tag,
     commit: OFFICIAL_SOURCE.commit,
     gitStatus: 'clean',
-    archiveCount: 24,
+    archiveCount: 18,
   }),
   e2eCheckout: Object.freeze({
     repository: 'https://github.com/NOirBRight/dsh-e2e-tunnel.git',
-    tag: 'v0.1.4',
+    tag: 'v0.1.5',
     commit: TUNNEL_COMMIT,
     gitStatus: 'clean',
-    tarball: 'dsh-mobile-e2e-tunnel-0.1.4.tgz',
-    sha256: '700576556aa2756a886dc5c3b17b7987e48f7fe3abe4d275a80cca56d348fcc5',
+    tarball: 'dsh-mobile-e2e-tunnel-0.1.5.tgz',
+    sha256: 'd1bfedf3e6b2a614a3e4e70d260867b82ba9d509881e1f12e9b2284506a047a6',
   }),
 })
 
@@ -69,7 +69,7 @@ function validateSource(record, id) {
     return
   }
   if (source.type === 'git') {
-    exactFields(source, { type: 'git', repository: 'https://github.com/NOirBRight/dsh-e2e-tunnel.git', tag: 'v0.1.4', commit: TUNNEL_COMMIT }, id + ' source')
+    exactFields(source, { type: 'git', repository: 'https://github.com/NOirBRight/dsh-e2e-tunnel.git', tag: 'v0.1.5', commit: TUNNEL_COMMIT }, id + ' source')
     return
   }
   if (source.type === 'registry-lock') {
@@ -168,7 +168,7 @@ function parentManifest(parent, rootManifest, fixtureSet) {
 }
 
 function satisfiesChild(dependency, declaredRange, child) {
-  if (dependency === TUNNEL_NAME) return declaredRange === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.4' && child.source.type === 'git' && child.source.commit === TUNNEL_COMMIT
+  if (dependency === TUNNEL_NAME) return declaredRange === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.5' && child.source.type === 'git' && child.source.commit === TUNNEL_COMMIT
   if (/^(?:file:|link:|workspace:|npm:)/u.test(declaredRange)) fail('source alias in dependency declaration: ' + dependency)
   if (semver.validRange(declaredRange) === null || !semver.satisfies(child.version, declaredRange, { includePrerelease: true })) return false
   return true
@@ -221,7 +221,7 @@ export function validatePackageLock(packageRoot = PROJECT_ROOT, fixtureSet = und
   for (const section of ['dependencies', 'optionalDependencies', 'peerDependencies', 'devDependencies']) if (!sameStringMap(manifest[section], root[section])) fail('package-lock root ' + section + ' does not match package manifest')
   for (const [name, spec] of Object.entries({ ...manifest.dependencies, ...manifest.optionalDependencies, ...manifest.peerDependencies, ...manifest.devDependencies })) {
     if (typeof spec !== 'string' || /^(?:file:|link:|workspace:|npm:)/u.test(spec)) fail('package manifest contains a source alias: ' + name)
-    if ((spec.startsWith('git+') || spec.startsWith('github:')) && !(name === TUNNEL_NAME && spec === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.4')) fail('package manifest contains an unapproved Git dependency: ' + name)
+    if ((spec.startsWith('git+') || spec.startsWith('github:')) && !(name === TUNNEL_NAME && spec === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.5')) fail('package manifest contains an unapproved Git dependency: ' + name)
   }
   for (const [path, entry] of Object.entries(lock.packages ?? {})) {
     if (path !== '' && typeof entry === 'object' && entry !== null && typeof entry.version === 'string' && entry.version.startsWith('npm:')) fail('package-lock contains an alias at ' + path)
@@ -231,8 +231,8 @@ export function validatePackageLock(packageRoot = PROJECT_ROOT, fixtureSet = und
   if (tunnel?.version !== TUNNEL_VERSION || tunnel?.resolved !== 'git+ssh://git@github.com/NOirBRight/dsh-e2e-tunnel.git#' + TUNNEL_COMMIT) fail('package-lock does not pin the exact e2e Git commit')
   for (const name of ['@deepseek-ai/dsh-client-connection', '@deepseek-ai/dsh-host-webserver', '@deepseek-ai/dsh-settings']) {
     const entry = lock.packages['node_modules/' + name]
-    if (entry?.version !== '0.1.2-alpha.1') fail('package-lock does not pin alpha.1 for ' + name)
-    if (fixtureSet !== undefined && entry.integrity !== fixtureSet.records.get(name + '@0.1.2-alpha.1')?.integrity) fail('package-lock integrity disagrees with fixture archive for ' + name)
+    if (entry?.version !== '0.1.2-alpha.4') fail('package-lock does not pin Alpha.4 for ' + name)
+    if (fixtureSet !== undefined && entry.integrity !== fixtureSet.records.get(name + '@0.1.2-alpha.4')?.integrity) fail('package-lock integrity disagrees with fixture archive for ' + name)
   }
   if (fixtureSet !== undefined && tunnel.integrity !== fixtureSet.records.get(TUNNEL_NAME + '@' + TUNNEL_VERSION)?.integrity) fail('package-lock integrity disagrees with e2e archive')
   return lock
@@ -242,7 +242,7 @@ export function validatePackageLock(packageRoot = PROJECT_ROOT, fixtureSet = und
 export function assertPublishableManifest(manifest, label = 'package manifest') {
   for (const [name, spec] of Object.entries({ ...manifest.dependencies, ...manifest.optionalDependencies, ...manifest.peerDependencies, ...manifest.devDependencies })) {
     if (typeof spec !== 'string' || /^(?:file:|link:|workspace:|npm:)/u.test(spec)) fail(label + ' contains a source alias: ' + name)
-    if ((spec.startsWith('git+') || spec.startsWith('github:')) && !(name === TUNNEL_NAME && spec === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.4')) fail(label + ' contains an unapproved Git dependency: ' + name)
+    if ((spec.startsWith('git+') || spec.startsWith('github:')) && !(name === TUNNEL_NAME && spec === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.5')) fail(label + ' contains an unapproved Git dependency: ' + name)
   }
 }
 

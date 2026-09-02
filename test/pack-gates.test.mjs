@@ -81,7 +81,7 @@ test('temporary cleanup removes symlink roots without following them', async () 
 
 async function copiedFixtures() {
   const parent = await mkdtemp(join(tmpdir(), 'pairing-fixture-negative-'))
-  const copy = join(parent, 'alpha1')
+  const copy = join(parent, 'alpha4')
   await cp(FIXTURE_ROOT, copy, { recursive: true })
   return { parent, copy }
 }
@@ -108,13 +108,13 @@ async function copiedProject() {
 test('fixture closure uses exact archive records and explicit dependency edges', () => {
   const fixtureSet = loadFixtureSet()
   const edges = validateDependencyGraph(fixtureSet, rootManifest)
-  assert.equal(fixtureSet.records.size, 114)
-  assert.equal(fixtureSet.archives.size, 114)
-  assert.equal(edges.size, 263)
+  assert.equal(fixtureSet.records.size, 109)
+  assert.equal(fixtureSet.archives.size, 109)
+  assert.equal(edges.size, 196)
   assert.equal(fixtureSet.provenance.edges.find(edge => edge.parent === fixtureSet.rootId && edge.dependency === '@deepseek-ai/dsh-client-connection').optional, true)
-  assert.equal(fixtureSet.records.get('@deepseek-ai/dsh-client-connection@0.1.2-alpha.1').source.commit, 'cd5ef8148158c3a752a658978873241fdf8e2bbc')
-  assert.equal(fixtureSet.records.get(tunnelName + '@0.1.4').sha256, '700576556aa2756a886dc5c3b17b7987e48f7fe3abe4d275a80cca56d348fcc5')
-  const archive = inspectArchive(join(FIXTURE_ROOT, 'tarballs', 'deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz'))
+  assert.equal(fixtureSet.records.get('@deepseek-ai/dsh-client-connection@0.1.2-alpha.4').source.commit, '4e84901e6471b79ec0338099867ebb4606d12bb5')
+  assert.equal(fixtureSet.records.get(tunnelName + '@0.1.5').sha256, 'd1bfedf3e6b2a614a3e4e70d260867b82ba9d509881e1f12e9b2284506a047a6')
+  const archive = inspectArchive(join(FIXTURE_ROOT, 'tarballs', 'deepseek-ai-dsh-client-connection-0.1.2-alpha.4.tgz'))
   assert.equal(typeof readTarget(archive, archive.manifest.main), 'string')
   const imports = collectRuntimeImports('const x = require("react/jsx-runtime"); import("@dsh-mobile/e2e-tunnel")')
   assert.deepEqual([...imports].sort(), ['@dsh-mobile/e2e-tunnel', 'react/jsx-runtime'])
@@ -159,7 +159,7 @@ test('duplicate exact dependency claims fail instead of selecting a winner', asy
 test('stale Git provenance fails independently of archive bytes', async () => {
   const { parent, copy } = await copiedFixtures()
   try {
-    await mutateProvenance(copy, provenance => { provenance.packages[tunnelName + '@0.1.4'].source.commit = 'not-the-pinned-commit' })
+    await mutateProvenance(copy, provenance => { provenance.packages[tunnelName + '@0.1.5'].source.commit = 'not-the-pinned-commit' })
     assert.throws(() => loadFixtureSet(copy), /source commit mismatch/)
   } finally { await rm(parent, { recursive: true, force: true }) }
 })
@@ -167,29 +167,29 @@ test('stale Git provenance fails independently of archive bytes', async () => {
 test('ignored fixture paths are rejected', async () => {
   const parent = await mkdtemp(join(tmpdir(), 'pairing-ignore-negative-'))
   try {
-    const root = join(parent, 'fixtures', 'alpha1')
+    const root = join(parent, 'fixtures', 'alpha4')
     await mkdir(join(root, 'tarballs'), { recursive: true })
     await writeFile(join(root, 'PROVENANCE.json'), '{}\n')
     await writeFile(join(root, 'consumer-pnpm-lock.yaml'), '{}\n')
     await writeFile(join(root, 'tarballs', 'fixture.tgz'), 'fixture')
-    await writeFile(join(parent, '.gitignore'), 'fixtures/alpha1/tarballs/*.tgz\n')
+    await writeFile(join(parent, '.gitignore'), 'fixtures/alpha4/tarballs/*.tgz\n')
     execFileSync('git', ['init', '--quiet'], { cwd: parent, env: createChildEnvironment() })
     assert.throws(() => assertFixturePathsNotIgnored(root, parent), /fixture file is ignored/)
   } finally { await rm(parent, { recursive: true, force: true }) }
 })
 
-test('package-lock keeps the pinned e2e identity and official alpha.1 integrities', () => {
+test('package-lock keeps the pinned e2e identity and official Alpha.4 integrities', () => {
   const fixtureSet = loadFixtureSet()
   const lock = validatePackageLock(PROJECT_ROOT, fixtureSet)
-  assert.equal(lock.packages['node_modules/' + tunnelName].version, '0.1.4')
+  assert.equal(lock.packages['node_modules/' + tunnelName].version, '0.1.5')
 })
 
 test('stale package-lock and alias resolutions fail publication checks', async () => {
   const fixtureSet = loadFixtureSet()
   const mutations = [
     { name: 'Git identity', apply: lock => { lock.packages['node_modules/' + tunnelName].resolved = 'git+ssh://git@github.com/NOirBRight/dsh-e2e-tunnel.git#wrong' }, pattern: /exact e2e Git commit/ },
-    { name: 'official version', apply: lock => { lock.packages['node_modules/@deepseek-ai/dsh-client-connection'].version = '0.1.2-alpha.2' }, pattern: /alpha.1/ },
-    { name: 'alias resolution', apply: lock => { lock.packages['node_modules/' + tunnelName].version = 'npm:@dsh-mobile/e2e-tunnel@0.1.4' }, pattern: /alias/ },
+    { name: 'official version', apply: lock => { lock.packages['node_modules/@deepseek-ai/dsh-client-connection'].version = '0.1.2-alpha.2' }, pattern: /Alpha\.4/ },
+    { name: 'alias resolution', apply: lock => { lock.packages['node_modules/' + tunnelName].version = 'npm:@dsh-mobile/e2e-tunnel@0.1.5' }, pattern: /alias/ },
     { name: 'unapproved Git resolution', apply: lock => { lock.packages['node_modules/tweetnacl'].resolved = 'git+https://github.com/example/tweetnacl.git#deadbeef' }, pattern: /unapproved Git/ },
   ]
   for (const mutation of mutations) {

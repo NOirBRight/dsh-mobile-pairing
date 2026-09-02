@@ -13,6 +13,7 @@ import {
   PAIRING_QR_PRESENTATION,
   PAIRING_OFFER_TTL_MS,
   PAIRING_QR_ROTATE_MS,
+  REMOTE_SETTINGS_API,
   REMOTE_SETTINGS_SECTION,
   type PairedDevice,
   type PairingStatus,
@@ -114,9 +115,13 @@ function QrPlaceholder({ text, loading = false, error = false, t, onRetry }: { t
 
 function PairingQr({ src, alt, t, onRetry }: { src: string; alt: string; t: Translate; onRetry: () => void }) {
   const [imageState, setImageState] = useState<'loading' | 'ready' | 'error'>('loading')
+  const [imageSrc, setImageSrc] = useState<string | null>(null)
   const [expired, setExpired] = useState(false)
   useEffect(() => {
+    let disposed = false
+    let objectUrl: string | undefined
     setImageState('loading')
+    setImageSrc(null)
     setExpired(false)
     const mintedAt = Date.now()
     const timer = window.setInterval(() => {
@@ -125,12 +130,30 @@ function PairingQr({ src, alt, t, onRetry }: { src: string; alt: string; t: Tran
         window.clearInterval(timer)
       }
     }, 1000)
-    return () => window.clearInterval(timer)
+    void fetch(src, { credentials: 'same-origin', cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error(`QR request failed: ${response.status}`)
+        return response.blob()
+      })
+      .then(blob => {
+        if (disposed) return
+        objectUrl = URL.createObjectURL(blob)
+        setImageSrc(objectUrl)
+        setImageState('ready')
+      })
+      .catch(() => {
+        if (!disposed) setImageState('error')
+      })
+    return () => {
+      disposed = true
+      window.clearInterval(timer)
+      if (objectUrl !== undefined) URL.revokeObjectURL(objectUrl)
+    }
   }, [src])
   if (expired) return <QrPlaceholder text={t('qrExpired')} error t={t} onRetry={onRetry} />
   if (imageState === 'error') return <QrPlaceholder text={t('qrLoadFailed')} error t={t} onRetry={onRetry} />
-  return <div style={qrBox}>
-    <img src={src} alt={alt} onLoad={() => setImageState('ready')} onError={() => setImageState('error')} style={{
+  return <div className="dsh-mobile-remote-qr" style={qrBox}>
+    <img src={imageSrc ?? undefined} alt={alt} onError={() => setImageState('error')} style={{
       gridArea: '1 / 1', boxSizing: 'border-box', width: '100%', height: '100%', objectFit: 'contain',
       padding: PAIRING_QR_PRESENTATION.padding, background: '#fff', visibility: imageState === 'ready' ? 'visible' : 'hidden',
     }} />
@@ -171,8 +194,8 @@ function DshMobileCard({ t }: { t: Translate }) {
     setFailed(false)
     try {
       const [statusResponse, devicesResponse] = await Promise.all([
-        fetch('/pair/status', { credentials: 'same-origin', cache: 'no-store' }),
-        fetch('/pair/devices', { credentials: 'same-origin', cache: 'no-store' }),
+        fetch(REMOTE_SETTINGS_API.status, { credentials: 'same-origin', cache: 'no-store' }),
+        fetch(REMOTE_SETTINGS_API.devices, { credentials: 'same-origin', cache: 'no-store' }),
       ])
       if (!statusResponse.ok) throw new Error('status unavailable')
       const decoded = decodePairingStatus(await statusResponse.json())
@@ -196,7 +219,7 @@ function DshMobileCard({ t }: { t: Translate }) {
     if ('error' in request) { setSaveMessage(null); setSaveError(t('relayUrl')); return }
     setSaving(true); setSaveMessage(null); setSaveError(null)
     try {
-      const response = await fetch('/pair/endpoint', { method: 'POST', credentials: 'same-origin', cache: 'no-store', headers: { 'content-type': 'application/json' }, body: JSON.stringify(request) })
+      const response = await fetch(REMOTE_SETTINGS_API.endpoint, { method: 'POST', credentials: 'same-origin', cache: 'no-store', headers: { 'content-type': 'application/json' }, body: JSON.stringify(request) })
       const decoded = decodeEndpointSaveResult(await response.json())
       if (decoded === null) throw new Error('invalid save response')
       if (!decoded.ok) {
@@ -220,14 +243,14 @@ function DshMobileCard({ t }: { t: Translate }) {
 
   async function revoke(id: string) {
     if (!window.confirm(t('revokeConfirm'))) return
-    await fetch('/pair/revoke', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ id }) })
+    await fetch(REMOTE_SETTINGS_API.revoke, { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ id }) })
     await loadAll()
   }
 
   async function rename(device: PairedDevice) {
     const next = window.prompt(t('renamePrompt'), device.label || device.id)
     if (next === null) return
-    await fetch('/pair/label', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ id: device.id, label: next }) })
+    await fetch(REMOTE_SETTINGS_API.label, { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ id: device.id, label: next }) })
     await loadAll()
   }
 
@@ -264,6 +287,27 @@ function DshMobileCard({ t }: { t: Translate }) {
 
   return <section className="dsh-mobile-remote-page" style={page}>
     <style>{`
+      .dsh-mobile-remote-page {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+      }
+      .dsh-mobile-remote-page *, .dsh-mobile-remote-page *::before, .dsh-mobile-remote-page *::after { box-sizing: border-box; }
+      .dsh-mobile-remote-page header, .dsh-mobile-remote-page header > * { min-width: 0; }
+      .dsh-mobile-remote-page header p { flex: 1 1 100%; white-space: normal !important; }
+      .dsh-mobile-remote-scan-heading, .dsh-mobile-remote-scan-heading > * { min-width: 0; }
+      .dsh-mobile-remote-scan-heading p { flex: 1 1 100%; white-space: normal !important; }
+      .dsh-mobile-remote-page h2, .dsh-mobile-remote-page h3, .dsh-mobile-remote-page p { max-width: 100%; overflow-wrap: anywhere; }
+      .dsh-mobile-remote-card { width: 100%; max-width: 100%; min-width: 0; }
+      .dsh-mobile-remote-modes { min-width: 0; }
+      .dsh-mobile-remote-input-row { min-width: 0; grid-template-columns: minmax(0, 1fr) auto; }
+      .dsh-mobile-remote-input-row > * { min-width: 0; }
+      .dsh-mobile-remote-qr { width: min(100%, 360px); max-width: 100%; min-width: 0; }
+      .dsh-mobile-remote-device { min-width: 0; grid-template-columns: minmax(0, 1fr) auto; }
+      .dsh-mobile-remote-device-actions { min-width: 0; }
+      .dsh-mobile-remote-device-actions > button { max-width: 100%; }
       .dsh-mobile-remote-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
       .dsh-mobile-remote-modes button { font: inherit; }
       .dsh-mobile-remote-page button:focus-visible { outline: 2px solid var(--dsw-alias-brand-primary, var(--dsw-alias-label-primary)); outline-offset: 2px; }
@@ -271,6 +315,15 @@ function DshMobileCard({ t }: { t: Translate }) {
       .dsh-mobile-text-input:focus-visible { box-shadow: inset 0 0 0 1.5px var(--dsw-alias-label-primary) !important; }
       .dsh-mobile-qr-spinner { width: 30px; height: 30px; box-sizing: border-box; border: 3px solid var(--dsw-alias-border-l2); border-top-color: var(--dsw-alias-label-primary); border-radius: 50%; animation: dsh-mobile-qr-spin .8s linear infinite; }
       @keyframes dsh-mobile-qr-spin { to { transform: rotate(360deg); } }
+      @media (max-width: 560px) {
+        .dsh-mobile-remote-input-row { grid-template-columns: minmax(0, 1fr) !important; }
+        .dsh-mobile-remote-input-row > button { width: 100%; }
+        .dsh-mobile-remote-modes { grid-template-columns: minmax(0, 1fr); }
+        .dsh-mobile-remote-qr { width: min(100%, 260px) !important; height: auto !important; aspect-ratio: 1; }
+        .dsh-mobile-remote-device { grid-template-columns: minmax(0, 1fr) !important; }
+        .dsh-mobile-remote-device-actions { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; justify-content: stretch !important; }
+        .dsh-mobile-remote-device-actions > button { width: 100%; }
+      }
       @media (prefers-reduced-motion: reduce) { .dsh-mobile-qr-spinner { animation-duration: 1.8s; } }
     `}</style>
     <header style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: '2px 12px' }}>
@@ -282,7 +335,7 @@ function DshMobileCard({ t }: { t: Translate }) {
     {failed ? <div style={card}><p style={muted}>{t('loadFailed')}</p><button type="button" style={action} onClick={() => void loadAll()}>{t('retry')}</button></div> : null}
 
     {status ? <>
-      <div style={{ ...card, gap: 10 }}>
+      <div className="dsh-mobile-remote-card" style={{ ...card, gap: 10 }}>
         <div>
           <h3 style={heading}>{t('access')}</h3>
           <div className="dsh-mobile-remote-modes" role="radiogroup" aria-label={t('access')} style={{ marginTop: 10 }}>
@@ -301,11 +354,11 @@ function DshMobileCard({ t }: { t: Translate }) {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gap: 8, padding: 12, borderRadius: 12, background: 'var(--dsw-alias-bg-module-platform)' }}>
+        <div className="dsh-mobile-remote-card" style={{ display: 'grid', gap: 8, padding: 12, borderRadius: 12, background: 'var(--dsw-alias-bg-module-platform)' }}>
           <h3 style={heading}>{t('currentAddress')}</h3>
           {mode === 'relay' ? <form style={{ display: 'grid', gap: 8 }} onSubmit={event => { event.preventDefault(); void saveEndpoint('relay') }}>
             <label style={{ ...muted, margin: 0 }} htmlFor="dsh-mobile-relay-url">{t('relayUrl')}</label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', gap: 8, alignItems: 'center' }}>
+            <div className="dsh-mobile-remote-input-row" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', gap: 8, alignItems: 'center' }}>
               <input id="dsh-mobile-relay-url" className="dsh-mobile-text-input" type="url" inputMode="url" autoCapitalize="none" autoCorrect="off" spellCheck={false} value={relayUrl} placeholder={t('relayPlaceholder')} onChange={event => { setRelayUrl(event.target.value); setSaveMessage(null); setSaveError(null) }} style={input} />
               <button type="submit" style={action} disabled={saving || relayUrl.trim() === '' || !dirty}>{saving ? t('saving') : t('save')}</button>
             </div>
@@ -325,8 +378,8 @@ function DshMobileCard({ t }: { t: Translate }) {
           {saveError ? <p role="alert" style={{ ...muted, margin: 0, color: '#dc2626' }}>{saveError}</p> : null}
         </div>
 
-        <div style={{ display: 'grid', justifyItems: 'center', gap: 8, padding: 12, borderRadius: 12, background: 'var(--dsw-alias-bg-module-platform)' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2px 12px', width: '100%' }}>
+        <div className="dsh-mobile-remote-card" style={{ display: 'grid', justifyItems: 'center', gap: 8, padding: 12, borderRadius: 12, background: 'var(--dsw-alias-bg-module-platform)' }}>
+          <div className="dsh-mobile-remote-scan-heading" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2px 12px', width: '100%' }}>
             <h3 style={heading}>{t('scanTitle')}</h3>
             <p style={{ ...muted, margin: 0 }}>{t('scanHint')}</p>
           </div>
@@ -339,14 +392,14 @@ function DshMobileCard({ t }: { t: Translate }) {
 
       <div>
         <h3 style={heading}>{t('devices')}</h3>
-        <div style={{ display: 'grid', gap: 10, marginTop: 12 }}>
+        <div className="dsh-mobile-remote-devices" style={{ display: 'grid', gap: 10, marginTop: 12 }}>
           {live.length === 0 ? <div style={card}><p style={{ ...muted, margin: 0 }}>{t('noDevices')}</p></div> : null}
-          {live.map(device => <article key={device.id} style={{ ...card, gridTemplateColumns: '1fr auto', alignItems: 'center', minHeight: 72 }}>
+          {live.map(device => <article key={device.id} className="dsh-mobile-remote-device" style={{ ...card, gridTemplateColumns: '1fr auto', alignItems: 'center', minHeight: 72 }}>
             <div style={{ minWidth: 0 }}>
               <strong style={{ display: 'block', fontSize: 14, fontWeight: 600 }}>{device.label || device.id}</strong>
               <p style={{ ...muted, margin: '4px 0 0' }}>{deviceKind(device, t)} · {t('lastSeen')} {formatSeen(device.lastSeenAt, t)}</p>
             </div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+            <div className="dsh-mobile-remote-device-actions" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
               <button type="button" style={action} onClick={() => void rename(device)}>{t('rename')}</button>
               {device.room ? <button type="button" style={action} onClick={() => setRefreshingId(refreshingId === device.id ? null : device.id)}>{t('refreshAddress')}</button> : null}
               <button type="button" style={danger} onClick={() => void revoke(device.id)}>{t('revoke')}</button>

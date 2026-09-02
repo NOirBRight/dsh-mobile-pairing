@@ -1,7 +1,7 @@
 /** Host-owned Public Endpoint and bounded loopback Gateway plugin. */
 import type { Context } from '@deepseek-ai/cordis'
+import type {} from '@deepseek-ai/dsh-settings'
 import type { WebServer } from '@deepseek-ai/dsh-host-webserver'
-import { settingsNamespace } from '@deepseek-ai/dsh-settings'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { randomBytes } from 'node:crypto'
 import { join } from 'node:path'
@@ -26,7 +26,15 @@ import { applyPublicEndpointSelection, loadPublicEndpointOverlay, parseEndpointS
 import { renderPairingSettingsPage } from './settings-page.ts'
 
 export const name = 'dsh-mobile-pairing'
-export const inject = ['webServer', 'settings']
+export const inject = ['webServer']
+const REMOTE_SETTINGS_API = {
+  status: '/api/dsh-mobile/remote/status',
+  devices: '/api/dsh-mobile/remote/devices',
+  endpoint: '/api/dsh-mobile/remote/endpoint',
+  revoke: '/api/dsh-mobile/remote/revoke',
+  label: '/api/dsh-mobile/remote/label',
+  pair: '/api/dsh-mobile/remote/pair',
+} as const
 export { Config, resolveConfig } from './config.ts'
 export { loadOrCreateKeypair } from './keys.ts'; export type { DaemonKeypair } from './keys.ts'
 export { DeviceTokenStore, DeviceLimitError, MAX_LIVE_DEVICES } from './tokens.ts'; export type { DeviceClientType, DeviceRecord } from './tokens.ts'
@@ -49,7 +57,12 @@ export { renderPairingSettingsPage } from './settings-page.ts'; export type { Pa
 
 export function apply(ctx: Context, config: Config): void {
   const webServer: WebServer = ctx.webServer
-  ctx.settings.register(settingsNamespace('dsh-mobile'), z.object({}))
+  ctx.inject(['settings'], (settingsCtx) => {
+    settingsCtx.settings.installSection(ctx, 'dsh-mobile', z.object({}), {}, {
+      setSource: () => {},
+      onChange: () => {},
+    })
+  })
   const resolved = resolveConfig(config)
   const displayName = compactDisplayName(resolved.hostName, 'Host')
   const overlayPath = join(resolved.dshHome, 'mobile', 'public-endpoint.json')
@@ -71,7 +84,7 @@ export function apply(ctx: Context, config: Config): void {
   let endpointError: string | null = null
   let localGateway: string | null = null
   const relayCampaigns = new Map<string, { relayUrl: string; connector: ReturnType<typeof createRelayConnector> }>()
-  // alpha.1 requires the loopback browser-session cookie on every upstream
+  // Alpha.4 requires the loopback browser-session cookie on every upstream
   // request/WebSocket; acquired via the Connection launch token. Read live
   // from the current connection so already-open Relay campaigns pick it up.
   const dshAuthority = formatLoopbackAuthority(resolved.dshHost, resolved.dshPort)
@@ -228,6 +241,16 @@ export function apply(ctx: Context, config: Config): void {
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/devices', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { devices: store.list() }) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/revoke', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const id = (body as Record<string, unknown>).id; const room = typeof id === 'string' ? store.list().find(device => device.id === id)?.room : undefined; const revoked = typeof id === 'string' && store.revoke(id); if (revoked && room !== undefined) { relayCampaigns.get(room)?.connector.close(); relayCampaigns.delete(room) } json(res, revoked ? 200 : 404, { ok: revoked }) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/label', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const record = body as Record<string, unknown>; const renamed = typeof record.id === 'string' && typeof record.label === 'string' && store.rename(record.id, record.label); json(res, renamed ? 200 : 404, { ok: renamed }) } }))
+
+  // The mobile shell reaches the Host through the authenticated tunnel. Keep
+  // the operator-facing /pair/* paths blocked there, and expose only these
+  // explicit remote-settings aliases to the paired device.
+  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.status, handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { endpoint, endpointMode: live.mode, endpointState, endpointError, customEndpointUrl: live.customUrl ?? null, relayUrl: live.relayUrl ?? null, hostIdentity: keypair.publicKeyBase64Url, configuration: { file: 'cordis.patch.yml', entryId: 'dsh-mobile-pairing', customEndpointField: 'customEndpointUrl', relayEndpointField: 'relayUrl', legacyRelayConfigured: resolved.signalingUrl !== undefined, relayConfigured: live.relayUrl !== undefined } }) } }))
+  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.endpoint, handler: (req, res) => { void handleEndpointSave(req, res) } }))
+  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.pair, handler: (req, res) => handleLocalPair(req, res, endpoint, keypair.publicKeyBase64Url, resolved.appUrl, displayName, resolved.stunUrls, offers, store, gateway, ensureRelayRoom) }))
+  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.devices, handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { devices: store.list() }) } }))
+  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.revoke, handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const id = (body as Record<string, unknown>).id; const room = typeof id === 'string' ? store.list().find(device => device.id === id)?.room : undefined; const revoked = typeof id === 'string' && store.revoke(id); if (revoked && room !== undefined) { relayCampaigns.get(room)?.connector.close(); relayCampaigns.delete(room) } json(res, revoked ? 200 : 404, { ok: revoked }) } }))
+  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.label, handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const record = body as Record<string, unknown>; const renamed = typeof record.id === 'string' && typeof record.label === 'string' && store.rename(record.id, record.label); json(res, renamed ? 200 : 404, { ok: renamed }) } }))
 
 }
 async function handleLocalPair(req: IncomingMessage, res: ServerResponse, endpoint: GatewayEndpoint | null, pubkey: string, appUrl: string, hostName: string, stunUrls: string[], offers: PairingOfferManager, store: Pick<DeviceTokenStore, 'hasLiveForRoom'>, gateway: { authorizeRoom(room: string, expiresAtMs?: number): void }, ensureRelayRoom: (room: string, code: string) => void): Promise<void> {

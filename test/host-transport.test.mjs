@@ -315,6 +315,24 @@ test('authenticated sessions cannot reach Host pairing administration paths', as
   assert.deepEqual(hits, [])
 })
 
+test('authenticated sessions can reach only the explicit mobile Remote settings namespace', async (t) => {
+  const hits = []
+  const server = http.createServer((req, res) => {
+    hits.push(req.url)
+    res.writeHead(200)
+    res.end('remote-settings')
+  })
+  t.after(() => server.close())
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve))
+  const { gate, codec, inbox, clientEnd } = attachInMemory({ port: server.address().port })
+  t.after(() => gate.close())
+
+  clientEnd.send(codec.seal({ t: 'http-req', id: 'remote-status', method: 'GET', path: '/api/dsh-mobile/remote/status', headers: {} }))
+  const allowed = await inbox.waitFor((m) => m.t === 'http-res' && m.id === 'remote-status')
+  assert.equal(allowed.status, 200)
+  assert.deepEqual(hits, ['/api/dsh-mobile/remote/status'])
+})
+
 test('http-req paths that are not origin-relative close the session', async (t) => {
   const upstream = await startUpstream()
   t.after(() => upstream.server.close())

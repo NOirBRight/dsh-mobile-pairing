@@ -17,6 +17,16 @@ export function pairingQrNeedsRefresh(mintedAtMs: number, nowMs: number, rotateM
 /** Settings nav id/order: immediately after official General. */
 export const REMOTE_SETTINGS_SECTION = { id: 'remote', order: 5 } as const
 
+/** Authenticated tunnel API for the mobile Remote settings card. */
+export const REMOTE_SETTINGS_API = {
+  status: '/api/dsh-mobile/remote/status',
+  devices: '/api/dsh-mobile/remote/devices',
+  endpoint: '/api/dsh-mobile/remote/endpoint',
+  revoke: '/api/dsh-mobile/remote/revoke',
+  label: '/api/dsh-mobile/remote/label',
+  pair: '/api/dsh-mobile/remote/pair',
+} as const
+
 export type EndpointProvisionState = 'loading' | 'ready' | 'error'
 
 export interface PairingStatus {
@@ -121,7 +131,7 @@ export function pairingQrRevisionOnToggle(revision: number, opening: boolean): n
 }
 
 export function pairingQrUrl(target: PairingTarget, revision: number): string {
-  return `/pair?target=${target}&format=svg&refresh=${revision}`
+  return `${REMOTE_SETTINGS_API.pair}?target=${target}&format=svg&refresh=${revision}`
 }
 
 export interface PairedDevice {
@@ -160,7 +170,7 @@ export function decodePairedDevices(value: unknown): PairedDevice[] | null {
 }
 
 export function pairingRefreshQrUrl(room: string, revision: number): string {
-  return `/pair?format=svg&room=${encodeURIComponent(room)}&refresh=${revision}`
+  return `${REMOTE_SETTINGS_API.pair}?format=svg&room=${encodeURIComponent(room)}&refresh=${revision}`
 }
 
 export function livePairedDevices(devices: readonly PairedDevice[]): PairedDevice[] {

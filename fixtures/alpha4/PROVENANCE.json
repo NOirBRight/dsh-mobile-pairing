@@ -2,479 +2,361 @@
   "schemaVersion": 1,
   "source": {
     "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-    "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-    "tag": "dsh-v0.1.2-alpha.1",
-    "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc"
+    "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+    "tag": "dsh-v0.1.2-alpha.4",
+    "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5"
   },
   "cleanEvidence": {
     "officialCheckout": {
-      "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-      "tag": "dsh-v0.1.2-alpha.1",
-      "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
+      "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+      "tag": "dsh-v0.1.2-alpha.4",
+      "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
       "gitStatus": "clean",
-      "archiveCount": 24
+      "archiveCount": 18
     },
     "e2eCheckout": {
       "repository": "https://github.com/NOirBRight/dsh-e2e-tunnel.git",
-      "tag": "v0.1.4",
-      "commit": "6a3dcee8717bcefff9b71297d5543eadde727122",
+      "tag": "v0.1.5",
+      "commit": "67041eb566319d4c2bdeef1f64b161b191439906",
       "gitStatus": "clean",
-      "tarball": "dsh-mobile-e2e-tunnel-0.1.4.tgz",
-      "sha256": "700576556aa2756a886dc5c3b17b7987e48f7fe3abe4d275a80cca56d348fcc5"
+      "tarball": "dsh-mobile-e2e-tunnel-0.1.5.tgz",
+      "sha256": "d1bfedf3e6b2a614a3e4e70d260867b82ba9d509881e1f12e9b2284506a047a6"
     }
   },
-  "purpose": "Exact repository-owned, unmodified recursive fixture tarballs for the alpha.1 offline publication gate.",
-  "root": "@dsh-mobile/pairing@0.1.12",
+  "purpose": "Exact repository-owned, immutable recursive fixture tarballs for the Alpha.4 offline publication gate.",
+  "root": "@dsh-mobile/pairing@0.1.14",
   "consumer": {
     "lockfile": "consumer-pnpm-lock.yaml",
-    "sha256": "4e608e9a6605a3890b084a78f8eee991dd773cfe9e999fc0cfb2ca469d044ad7"
+    "sha256": "bb1b54a017bf9a329517b18009d4630d43993daebd8086187c2cbde51a8d14ce"
   },
   "rootArtifact": {
     "name": "@dsh-mobile/pairing",
-    "version": "0.1.12",
-    "bytes": 69681,
-    "sha256": "8daddb162bc85d4fe1af484e51eaedd6e747a0f07f809f51f74a4acdebe6674a",
-    "integrity": "sha512-bGrERhXQCIFUU8hJVAVWWnIfFigv+f+5Vm/Cpdxkbt+o2yBcyrit245c08Oxp2Ku1m4uQLXVQgxf2GO4DxVxrA==",
-    "manifestSha256": "3d699c90357d33710fafba7315bdd0b212ba8bf847cde999194f5971934e6175"
+    "version": "0.1.14",
+    "bytes": 70811,
+    "sha256": "ffcf9024ff37020fe29ea524781f9c7bc457e2adbc0427b364c3fded3d41a0a1",
+    "integrity": "sha512-YwjVjrF7ZoHPLPA19JDjL2Mp4xh+RTFScskMXSnS4aYnhG7u/xu4ZPV6styKJHNMBtuQGoCCq7R3D1IRMYWEsQ==",
+    "manifestSha256": "31bab8328507716732d1d79b9b92e38bb8cf9dfd62c75458716c21852edd82a4"
   },
   "packages": {
-    "@deepseek-ai/cordis@4.0.1": {
-      "tarball": "deepseek-ai-cordis-4.0.1.tgz",
+    "@deepseek-ai/cordis-plugin-include@1.0.7": {
+      "tarball": "deepseek-ai-cordis-plugin-include-1.0.7.tgz",
+      "name": "@deepseek-ai/cordis-plugin-include",
+      "version": "1.0.7",
+      "bytes": 9002,
+      "sha256": "51f4de8f417852b2db9596d98a0b773ad69b296d2449e31cfc25d2487a0aa961",
+      "integrity": "sha512-GxzTuogMWRREKfAiUnwtOldvGkkeV90hOHatMMAuz65Z1t5+KmtZsCMMWQVQenA1wQwh+OCWSkB1OaQ54fBpgw==",
+      "manifestSha256": "376d0bd1afbd0b86aa06a9dd2e9377c1651f6aeb18786d103544dc38f2c1230e",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/cordis-plugin-include"
+      }
+    },
+    "@deepseek-ai/cordis-plugin-loader@1.0.3": {
+      "tarball": "deepseek-ai-cordis-plugin-loader-1.0.3.tgz",
+      "name": "@deepseek-ai/cordis-plugin-loader",
+      "version": "1.0.3",
+      "bytes": 25685,
+      "sha256": "e97270f14a32006ceed1909b59f81770313cee6f107c1d693e76b2e9c74b4b0a",
+      "integrity": "sha512-NrdVFiFgWHy9M4AEOTYHsLk8Z4C3DyupPHynRrDbuY4RtOJAtGgo7jXWEOLHICsLeR+8DaSLSjoXj1oS7qB+ng==",
+      "manifestSha256": "dbbf705458c2ee7a7c23f6d21af0fc87e4ab8cac859ba5fd74cd8ec40f515210",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/cordis-plugin-loader"
+      }
+    },
+    "@deepseek-ai/cordis@4.0.2": {
+      "tarball": "deepseek-ai-cordis-4.0.2.tgz",
       "name": "@deepseek-ai/cordis",
-      "version": "4.0.1",
-      "bytes": 55443,
-      "sha256": "31e96b8e13d5c55bfd4316c08ac8925510e0eed86d48a3a9cc86046623074613",
-      "integrity": "sha512-YBdskTU2Po1kru3GgcUWUbkTsPMA9LkSQDAY8rBkFJeajdgcQad3QPJZE26JyK99Xb6HaASvoXg2DSUTeN/0Nw==",
-      "manifestSha256": "905ee8bf60012c7b87386466d89de3eb42eeb5dca5752f840efa4602d35bd609",
+      "version": "4.0.2",
+      "bytes": 63947,
+      "sha256": "8d27d81cabfa464bfa1ce4f7f924b68e070a44bffd10931a64c8e648e5bef436",
+      "integrity": "sha512-a3aoU/XZBsYkG1Xq3msEo6+n+SlgPp1CLGNkgNIwk4hLn0GlUdrBpf8/XMh2HweomYkfRmkx/YY5pfux+CdtXA==",
+      "manifestSha256": "e712c9d3fb4bec7fe20f734d043381b8242f30591d28052e2983065adae47fce",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "vendor/cordis"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/cordis"
       }
     },
-    "@deepseek-ai/cosmokit@1.8.2": {
-      "tarball": "deepseek-ai-cosmokit-1.8.2.tgz",
+    "@deepseek-ai/cosmokit@1.8.3": {
+      "tarball": "deepseek-ai-cosmokit-1.8.3.tgz",
       "name": "@deepseek-ai/cosmokit",
-      "version": "1.8.2",
-      "bytes": 13976,
-      "sha256": "74986e0a5d2b7984607d5913974b083d30efe31ac5c25a8b1efc90b06fa4ec90",
-      "integrity": "sha512-muBOKtSrUKU5m/xpq8ZXWL6hQ/jgd4PhU2PqH97bcxIiLEJfNwZOGQEx4t/aS/GgxRAR+ra9pMHPMtTHU4sqqA==",
-      "manifestSha256": "492373fe08ca0acb4050e210c9ccd68cc839929d95babe9a8eae7b29aa3574e1",
+      "version": "1.8.3",
+      "bytes": 13876,
+      "sha256": "4f7cac066114854934d18f86745aadbdf104ea05771211b4ed488f5796a58c0f",
+      "integrity": "sha512-+3wIIUoEG1Ff+fVbrmxM7Kj0mCa3wjCwmfveDhhIky9+SJsAq604EJKD+PpWEw3LLdtzGY20uLGMGFEpnfzVhg==",
+      "manifestSha256": "107da8ad972f40a836e52acfe1f22ca418ba759b966ed02c2693e6c942a6ef72",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "vendor/cosmokit"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/cosmokit"
       }
     },
-    "@deepseek-ai/dsh-agent@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-agent-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-agent",
-      "version": "0.1.2-alpha.1",
-      "bytes": 43129,
-      "sha256": "74c44f41300223063d8f5b23cc4f8cc6e5d68660d69752aec4225563500f76e6",
-      "integrity": "sha512-yy1PoPEKEn1Er7FKxkwKuNIwqU3C/WgzFmi3OlJVMpD02ZduYopnN7IQH2RHTd2e/ieFUJiPNU82EYx6NTc9lA==",
-      "manifestSha256": "59e7b5e1ffc568c8ace10359708d6b8760a98e17b524ca57719508c26e4f2fec",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/core/agent"
-      }
-    },
-    "@deepseek-ai/dsh-attachment@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-attachment-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-attachment",
-      "version": "0.1.2-alpha.1",
-      "bytes": 17787,
-      "sha256": "2505e9b4ebdc159494fddac9eea0f3b5a31782d7a25a1e075e8a6adf3b56b09d",
-      "integrity": "sha512-wfA4FFgHsWsERSqXaIV4FkXahTZbUFrtB/lpDllVXL1PftHVgJkIXg8MDvxGncyy1cqd1PM7t0oO0s8Ox/MfrQ==",
-      "manifestSha256": "5795647e6c4eae074d2eabf15b9f7b2e002f504e4dd7096389e83e3299d9a783",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/attachment/attachment"
-      }
-    },
-    "@deepseek-ai/dsh-brand@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-brand-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-brand@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-brand-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-brand",
-      "version": "0.1.2-alpha.1",
-      "bytes": 6245,
-      "sha256": "285217a5f5d2dd70bfc1137ba8d88bbde0f0aeae57b8bc8304bec6251eee3778",
-      "integrity": "sha512-qJreQJZOPj9rDwV3L9ZN1roBW/FlQUJjoz9LDe5lXdLTvKSO3USyTzA4LnTtU686dQz3fD9npyLhcDugKgGc2A==",
-      "manifestSha256": "d90b815af804b5b3c61e949511806d4f768fa023c057841203ab2d9a746fc0ba",
+      "version": "0.1.2-alpha.4",
+      "bytes": 5282,
+      "sha256": "996ceb4c1cdedebf4685d95ef72d24c2f61830a727c4d73cd3097d642f86e416",
+      "integrity": "sha512-1i5l25AxGaUK05vnWOLOhKjUh+uSWraEOCM6qg3+XESa6M5N1iI4dWQ6d7BumCZ8qtvl3NWRBnTv80cotleZ5Q==",
+      "manifestSha256": "7f31d36962111b2a5278a0329cddfd8d20f0e9b98e5052ff8b24f6587fc24119",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/util/brand"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-brand"
       }
     },
-    "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-client-connection-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-client-connection@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-client-connection-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-client-connection",
-      "version": "0.1.2-alpha.1",
-      "bytes": 67222,
-      "sha256": "33d49cd9c4f8152160e01925480d41bc98ba4d5a9866018f33738ffd80bf7873",
-      "integrity": "sha512-RLzdZ1IbTo80W2JOg5XnVbNvBzRUc84R1CjLOmr+E62B28XTyeZQgHtxuY8rqRWa6Ss7CJ52UOHpo58jVBecYQ==",
-      "manifestSha256": "8eaa6be7cfad0e6e36b215e8bb496277cd023807196cfbe2603e1acab825ad22",
+      "version": "0.1.2-alpha.4",
+      "bytes": 66578,
+      "sha256": "d93d5b0476620407ad4c0139448d113a70f30f153f3627a08d83f9eef42f8338",
+      "integrity": "sha512-aF66QdxxhATQXgwxvCeFPut/hTVIW0W3bn1VHkP79g9ytuiY3d0Jj/4IRnaoOInhj2FIpmSa10QDima3Tm88gA==",
+      "manifestSha256": "3d8f386ce224257628f2cfac731e065002a0943bbdc13e11f57a8bdd2bdd842f",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/client/connection"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-client-connection"
       }
     },
-    "@deepseek-ai/dsh-code-runtime@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-code-runtime-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-code-runtime",
-      "version": "0.1.2-alpha.1",
-      "bytes": 15152,
-      "sha256": "a057a2811d5554cc917f7ae822701666f0f179eb9c89e72fc3904a5740f5a5a8",
-      "integrity": "sha512-ZoM2iQFBVrJEg1D/vLBMY7tLrfOWZszarv7Eqt3ag+rVjCdEEURSGEMKesqDV+YcSC5Qje+DDmn9irmgGnsGcQ==",
-      "manifestSha256": "625e060cb7199315587ffe42465b692ec1b264f43dffc4084c9daa4cebbe2cb5",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/code-runtime/code-runtime"
-      }
-    },
-    "@deepseek-ai/dsh-commands@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-commands-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-commands",
-      "version": "0.1.2-alpha.1",
-      "bytes": 30684,
-      "sha256": "5f992a063c962ee1effd618e144c5c725505771ae72137cfbdb666f5e05b9897",
-      "integrity": "sha512-QFcYFsnA3z3oXrKMXuWO4O7Ku/u8DZ0nHIaa1oSdTgvc/2Revo5bZqNZMig26f95ND8mCOOCz5z7/E3UNVYO0Q==",
-      "manifestSha256": "f752a0202485670209a8e6d578a05586430744c47fc974a9d37c98e95c6dc197",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/interaction/commands"
-      }
-    },
-    "@deepseek-ai/dsh-credentials@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-credentials-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-credentials@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-credentials-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-credentials",
-      "version": "0.1.2-alpha.1",
-      "bytes": 20031,
-      "sha256": "27982c6dd7ba6a4f1f04c4f6b8033cc1915e6808b9688beadfe1780da0da54a1",
-      "integrity": "sha512-U2vTJQTGaNAnA6uVWy04r7W99OINecMNwHisqiFnYoAHEf0HImx0r4W0mYPZNcRUJGaT+YOpArz7LlOTPhv6Yg==",
-      "manifestSha256": "43c15689821f0bc540f1790fd36133e18764ce41d20fbe8664713416a588fd9b",
+      "version": "0.1.2-alpha.4",
+      "bytes": 17106,
+      "sha256": "7b8a7ce259e47b3ae7d0967346d36803471bad45d36577afb602aca40049f2b8",
+      "integrity": "sha512-b7NQhd5+MsKrHnbDQpZFUQj3hmBFJXfJiD7ERPDLmtqHQ90Ef/cmVkw+tM9BTIy5tu4d1EOrdXrh0upOdC0mJQ==",
+      "manifestSha256": "ab36313187d1a265f8c0aa217c0b1190f8c4ad5d2bef82d2204221777de79e02",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/credentials/credentials"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-credentials"
       }
     },
-    "@deepseek-ai/dsh-host-directory-picker@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-host-directory-picker-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-host-directory-picker",
-      "version": "0.1.2-alpha.1",
-      "bytes": 9931,
-      "sha256": "71d9899ed711e06cffaf91f32b765a783483f4ad3e5caef9e3fb0b1ca291dc32",
-      "integrity": "sha512-lpWTNQk/aqhlMcyRqI7jJEMAG/q+uI35D95rHepd4dhhsyGp9EguIRSPFvrxzwcGooMUFenZXaFGDw6FyCE1nQ==",
-      "manifestSha256": "49fed27ee2785952e3ce0f6eea58182c1617d705f1ea3c9cfe13864420b5187a",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/host/directory-picker"
-      }
-    },
-    "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-host-webserver-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-host-webserver-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-host-webserver",
-      "version": "0.1.2-alpha.1",
-      "bytes": 15516,
-      "sha256": "7a3fe7bd962c850d856f8e50b64582a06e8556a59b57ea9bff396a6e6a8f157e",
-      "integrity": "sha512-RO9X/fF08ttitfFOWv+vojfQz68IiqMEkDfk0vWYIs2YdTG6rnUfqbrgvmIyKgeNBbcjs/tnDr/2O6Sz03mF2w==",
-      "manifestSha256": "be46e97717e4fd4c8fadf65fb9a54de419a657c374d40752d33334bded568cd4",
+      "version": "0.1.2-alpha.4",
+      "bytes": 13360,
+      "sha256": "74445fea3f872fea6fbaceac33512db2d31e96ef34f393c24b98f21d61b781f8",
+      "integrity": "sha512-Hm2iHdCI6VWQSR2nWuu+IvKVhO4suIHGrBIsal/159geK8pOGqJvDeOtBp/LdBl+f6WY2cL3CqGoAiddC8Q9pg==",
+      "manifestSha256": "ed052b6dde5810cdb0400084afcdb666f6ae8f87454c91cc0996eaa6cb9b7520",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/host/webserver"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-host-webserver"
       }
     },
-    "@deepseek-ai/dsh-invariants@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-invariants-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-invariants@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-invariants-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-invariants",
-      "version": "0.1.2-alpha.1",
-      "bytes": 13389,
-      "sha256": "8158af724b80392c1e4aec4dc7e710811a76b61578b40bf59d87592ffc263a47",
-      "integrity": "sha512-4JNDvbYHHky/d1JfEa33uZOqcAx2vxzt2nUXMEWCkhBC/Tw9mIsszGzTl1te4bhKszABxwaejMZd16DcxhBpkg==",
-      "manifestSha256": "b1bce3dd41d9ff584c2eafd239e2dbb46208a7738d38700514bfa41e1cf994f4",
+      "version": "0.1.2-alpha.4",
+      "bytes": 11559,
+      "sha256": "9a0cc9f6796520dc4b5aa590451a154ae40837b9c5358793b2ba687186c8e37e",
+      "integrity": "sha512-oKfxGUMKzBozAzMYKjJGYOjovZWcxkbsGjJMMw/7hOxVZylGvLOeoeTA+/eLx4am1UdPsp3p/pyXy/pA6VpGDQ==",
+      "manifestSha256": "1bd3c11773c2073393b09c0b950e12a28c03fc451ba506d7edae49f785261366",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/runtime-diagnostics/invariants"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-invariants"
       }
     },
-    "@deepseek-ai/dsh-llm@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-llm-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-llm@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-llm-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-llm",
-      "version": "0.1.2-alpha.1",
-      "bytes": 88663,
-      "sha256": "bdcc0c15abed01f21d68ec4895801e20fde831cc19dce3815e9c607161d8d749",
-      "integrity": "sha512-dbe3nlNi+/ad9ukB/NSG3zc8i7CYGF6k+JQXmxzriXP607BRBnWZPMknVF02Ko8foj0VHsKH4RSBYU/2RagBBw==",
-      "manifestSha256": "cffe736b0084f1dd284884cb0c9f1c7ed51353e933c49a77b440445ffaeba992",
+      "version": "0.1.2-alpha.4",
+      "bytes": 87902,
+      "sha256": "37817c3d0fa5f2bd471d08314c9dbaa9b1b2893dec6398f91c862cade04bb6c1",
+      "integrity": "sha512-YGlI3c2nJw1CzZL75vOj6fRgVeVjezezEUf9K3zS7Z/tkdbFDhFBFOjJQKP14MIG4a+++V0jDqqs146PO1FqTQ==",
+      "manifestSha256": "fa1c91d32a8d31ae453d938d6c695ac10c744b9b39d66de865b148d84b0c1898",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/llm/llm"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-llm"
       }
     },
-    "@deepseek-ai/dsh-scope@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-scope-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-scope@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-scope-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-scope",
-      "version": "0.1.2-alpha.1",
-      "bytes": 15116,
-      "sha256": "abe87a14d9ac8840a53b30e047a335e0f9e23f385cf3f87caa482c360a6dd57a",
-      "integrity": "sha512-MBgR/jaT4y2sgeNQcZB3VExfiIMwJ4nr1L6t0CLaq6KQyLeUoIc6DiKnn/Cs7JClv22SDhsdlX8oEO9DjHDDQQ==",
-      "manifestSha256": "93d69e366ceffba2bef0f2c535b3bfcb8dfddd58c7f9ba0e52068f3256cb0825",
+      "version": "0.1.2-alpha.4",
+      "bytes": 13308,
+      "sha256": "a0a31e3f3624e53883b73cc49b5b0f1a4eb3c05c5ead64b1542aa781f2cf40fb",
+      "integrity": "sha512-P/thBlcDIOmcJ3tu2ar1emj7jVo7WJ3KCT/ezf184bN68xz7knQgZ4mgVLqpOFSp3K3WkO9euZyRCuNArjbuFg==",
+      "manifestSha256": "7580c4fbc2e216c02031fc826d3f77807e1804ed4018804ecbff4c130dcdb126",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/core/scope"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-scope"
       }
     },
-    "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-session-projection-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-session-projection",
-      "version": "0.1.2-alpha.1",
-      "bytes": 22161,
-      "sha256": "bc927d8fd32ba4dc610b7514cc3b72f084589c166d1e21ebdf001d71e72cc8f0",
-      "integrity": "sha512-bOr4WdETuF5ZZ9S7A12T7B6ZoB1PyylhyRj9U1dXqtmNbZ0+G29fJC74aWfZF9dUnkmRTj69KdJeAmIewqZmHw==",
-      "manifestSha256": "3b8c429e457df56c617f7fb0f2e8f3af2e449e20ae38cf3ec71b363745a18253",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/session/session-projection"
-      }
-    },
-    "@deepseek-ai/dsh-session@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-session-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-session@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-session-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-session",
-      "version": "0.1.2-alpha.1",
-      "bytes": 85694,
-      "sha256": "5514a35238f8af6d0a29dcd0955d75fd02519f0c561ccabc59df289b7f481f84",
-      "integrity": "sha512-fDGDRvtsLfpUeSXeqbBfzABlViu5V0z7ggQjumfh8iSaElFtStiEM1RDN55BrLaIroXl2Oq84HdraDs3zEsG5g==",
-      "manifestSha256": "2b659ce34755234b5448d2bcbfc1c7124a7efad3cc953bdfe0b7acf4935b587a",
+      "version": "0.1.2-alpha.4",
+      "bytes": 85528,
+      "sha256": "ef1396eb184321076e74c84c9c689584df2642ca6b824080b3bf45321cdf1d26",
+      "integrity": "sha512-ri4cv7VfHMISKvz4JJZoeSBwprR/wF0UHB8Qu6wD/EWfI4eAYthmJjftu5C6ExGdak3a6lNN34pAetYw5s8/wQ==",
+      "manifestSha256": "1c40ad896c99a5d1ecee670dc0850e301e0099c052cdc5e48794fd22c4652e0a",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/core/session"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-session"
       }
     },
-    "@deepseek-ai/dsh-settings@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-settings-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-settings@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-settings-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-settings",
-      "version": "0.1.2-alpha.1",
-      "bytes": 35229,
-      "sha256": "160d32877ee14d468d6c80543ce9ca2c017e873984908532d300f0d8af3ab473",
-      "integrity": "sha512-LSXYC2QWPVIrlm/QgiodnMIxLPE+wOzhArv5ghezQvxA6fhr40pKm7pQuyC3luQGH261OqdgX2CKW6V9K5P37Q==",
-      "manifestSha256": "ae674b8613e917aae56157bb897f93ecb4c88a99bb30f2997f5e319c15d9cc3e",
+      "version": "0.1.2-alpha.4",
+      "bytes": 31250,
+      "sha256": "257a5f10ed8674abc7ca2f09c6c396502f374c2b12a7be061d09bad7f72dad64",
+      "integrity": "sha512-bVDqZJJ8i8a2HcLcuFyzYTBsWs67KNpx6b65hhplpNCbatxSdR50JHCUfWu/XvNGB/GCtCK+PNZfPKFepJuBDQ==",
+      "manifestSha256": "cca03b3487bd16d8d42dd0c99b64f7c568916630cc03bda591bec6dd090709b5",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/settings/settings"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-settings"
       }
     },
-    "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-system-prompt-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-system-prompt",
-      "version": "0.1.2-alpha.1",
-      "bytes": 19262,
-      "sha256": "17bf00c32c2884e43dc2e56c67699917bb8cd3cdd07948c7add734786e1d6b5e",
-      "integrity": "sha512-gkTM672Jwst+cVnr1j3eg2+2nkQrHC5oqmAmDG7hRIvNq00uTtWAILphg7oSU6rwCZUY6JBkZEP9W3+B6qEmXA==",
-      "manifestSha256": "5f82d5606b1c344721ec3f295178580790710e4908733c9aaa10ee0b5c6b02a1",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/core/system-prompt"
-      }
-    },
-    "@deepseek-ai/dsh-timeout@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-timeout-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-timeout@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-timeout-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-timeout",
-      "version": "0.1.2-alpha.1",
-      "bytes": 10892,
-      "sha256": "2abed7a638df6a3650d7e46392d9d7fe731149316b4f564556f6583ed1a400a7",
-      "integrity": "sha512-nZFGEH07l4oyVPrZ/pOOACYt2QXqFXXvj6x890Xrb6UUARsfiuQXAVp60ivoUO6qmHEKum3RJMiKSEUIsky75g==",
-      "manifestSha256": "d209400c6d9fdadd63bb2ec479a081ab3237c87949f7013d0a38b7ff74b2c36e",
+      "version": "0.1.2-alpha.4",
+      "bytes": 9474,
+      "sha256": "ac0de58a12cc4a58fe0bbd8ff3e96b7ac14992ca26f4c848260de1a3081f64d5",
+      "integrity": "sha512-SzdUQI6ZElbLbNQv54nQ7XUH1YOo7Mqz+o/GwizVsq1TbBgwL4WTq/L751kvp628cw+zk9RVG912w6SOHpPoQw==",
+      "manifestSha256": "79ef6b788bb543e02d759826ba15966a2129519c09a01f8c9c4bf024b0d4ff0c",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/util/timeout"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-timeout"
       }
     },
-    "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-tool-todo-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-tool-todo",
-      "version": "0.1.2-alpha.1",
-      "bytes": 18413,
-      "sha256": "556595f5e0ac272b6a7ba5fbaa5edcda4eceb230a0ecb8ccabecf9647492f207",
-      "integrity": "sha512-UIJCa2N/pV/wwarwRp61Y9a/4LF66xPuj8yX/L0mIOwbfQYxeKVFKnVHiF3Ry8U7LAgM/KXCFg/B6glEYhl+ZA==",
-      "manifestSha256": "848ac3dd96c0a1222bb5aa139d1a069ac6d47742df95ae516531e8f3bec02959",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/todo/tool-todo"
-      }
-    },
-    "@deepseek-ai/dsh-tools@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-tools-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-tools",
-      "version": "0.1.2-alpha.1",
-      "bytes": 141036,
-      "sha256": "a153ae5b24562895435b68629f34cf448b12bfc2473579371fa8ac159e98c768",
-      "integrity": "sha512-twV6Oi/j5kFJB3e+MeX9ti+p23L8fS0wrwDrUDIz5GCWhFJ586Li3uQPQJYjYsZs8dil+HbaAjBivKtA7ou4zw==",
-      "manifestSha256": "c6abb2ffbbc955b913c450aedffa53d514af014e272d0736c51744a7bcc6c7de",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/core/tools"
-      }
-    },
-    "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-typert-protocol-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-typert-protocol-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-typert-protocol",
-      "version": "0.1.2-alpha.1",
-      "bytes": 17539,
-      "sha256": "13b17a1105bb3112987a10d1d3a973d7142457bb9955275faeb95bfb03e36ab3",
-      "integrity": "sha512-yv3O4Fa0L0my6I+YvlmSTuHxqTqETTZmY6Ah/kU6HRKqTBfLBAae2qrCsGgMkPslJ2/NgNgT8jSB6yg9lArqTg==",
-      "manifestSha256": "301c11e1badcd5cd700724d38e207951b4d466940f897ca6724f330d0ba8557d",
+      "version": "0.1.2-alpha.4",
+      "bytes": 17604,
+      "sha256": "dc6c3fff8dce32a13a81f284eadaec49504ab5fafe3bee51ccf641ca9f34edfd",
+      "integrity": "sha512-Df+QQRzHQGVyapy6QawDwjEZ55wHAmF+/OVWlZQKHXKzpZkfUgc0GvidsstpWYD8F8g7LuXdTPutLAZ+Aq3TgQ==",
+      "manifestSha256": "5474c7c9f023f8995c05b212bc2c1dd5f170c36cebcf3904cd97a34b6ec9166e",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/typert/protocol"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-typert-protocol"
       }
     },
-    "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-user-approval-0.1.2-alpha.1.tgz",
-      "name": "@deepseek-ai/dsh-user-approval",
-      "version": "0.1.2-alpha.1",
-      "bytes": 19394,
-      "sha256": "d3a8e83b6d6712c163ef8447b312459a5736104b2cefd5aca4432763d183b307",
-      "integrity": "sha512-vFcSXJ3GyHNp0aBezlUG9zH9NkTZ7IIL/0sYh1xhaMoK/vi1v0+v5iIsQ2VokqDm+1ZpJH5TTSwUC3ciETUyvw==",
-      "manifestSha256": "3a74f8a96ef08ec6665f7b924d3f3adb360da19184be01417b961e773fc649cc",
-      "source": {
-        "type": "official-checkout",
-        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/interaction/user-approval"
-      }
-    },
-    "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1": {
-      "tarball": "deepseek-ai-dsh-util-crypto-0.1.2-alpha.1.tgz",
+    "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-util-crypto-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-util-crypto",
-      "version": "0.1.2-alpha.1",
-      "bytes": 5263,
-      "sha256": "bd10d2ca67dadb054c04e427e59504c6f25bbd48bcf65e7503e2914d77068fd6",
-      "integrity": "sha512-vca+yGv6sHrsXraH3pbyejxy/vj3FV3tL96yW2fWOFpLvQWB9unIq923h0KfAKJrBOr3gum4B5/CtIphLN1m2w==",
-      "manifestSha256": "781cc079cb35021670c285d4704c2db44d7a7136c44161ea8eacb304e33f783d",
+      "version": "0.1.2-alpha.4",
+      "bytes": 4215,
+      "sha256": "4eb3381764ff54be1034217013f0d4ccd9365dde9bfffe0f7b0d2ac43b2354f0",
+      "integrity": "sha512-wRR1R5oE3xp82GIzxLxrnCnTO147HhWE3ISXMfkIgvJ4uyjEWru+5hTkn+BHDSLSp2AXtQ5u0GpQ1UueKpt72Q==",
+      "manifestSha256": "e37d74876a634b4a82f6fc24357bdfc5ff1eaecc7b5f98e37beb04a5030b7039",
       "source": {
         "type": "official-checkout",
         "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
-        "checkout": "dsh-v0.1.2-alpha.1-cd5ef8148158",
-        "tag": "dsh-v0.1.2-alpha.1",
-        "commit": "cd5ef8148158c3a752a658978873241fdf8e2bbc",
-        "packagePath": "packages/util/crypto"
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-util-crypto"
       }
     },
-    "@deepseek-ai/schemastery@3.18.1": {
-      "tarball": "deepseek-ai-schemastery-3.18.1.tgz",
-      "name": "@deepseek-ai/schemastery",
-      "version": "3.18.1",
-      "bytes": 25098,
-      "sha256": "a64b5bed661f303cb27a44bc3942142da953460cca44571f89d960f35a74b682",
-      "integrity": "sha512-Qn0FCSwCQnpnj6SB31I6i2sIKgKWnkbJM8O0EU91Gv2UsYVvtZTl6IA0sCwk2e2MZf5S8w5hpq9QkeVvK9qwxg==",
-      "manifestSha256": "ddfb27064e006d4c6db679f76728b08c071079fd28ef6abd6f358477088c9a10",
+    "@deepseek-ai/dsh-util-values@0.1.2-alpha.4": {
+      "tarball": "deepseek-ai-dsh-util-values-0.1.2-alpha.4.tgz",
+      "name": "@deepseek-ai/dsh-util-values",
+      "version": "0.1.2-alpha.4",
+      "bytes": 7174,
+      "sha256": "38af3bd4085b7a194f154adaf12cf7b2c499300930cc7b785f4df5469e7a8e6e",
+      "integrity": "sha512-2g+I8cXV67ZnZ6KlAi4xlM4788+xygEr1jixqCjZorZ+8WFx+saDwg7h3iKf7QRM4Pk41/5YYfwo1tgNysHEPA==",
+      "manifestSha256": "97381cebc59ebdb126c895db69dae73829fe0613096deeb4766e488b34f36b60",
       "source": {
-        "type": "registry-lock",
-        "registry": "https://registry.npmjs.org",
-        "resolved": "https://registry.npmjs.org/@deepseek-ai/schemastery/-/schemastery-3.18.1.tgz",
-        "integrity": "sha512-Qn0FCSwCQnpnj6SB31I6i2sIKgKWnkbJM8O0EU91Gv2UsYVvtZTl6IA0sCwk2e2MZf5S8w5hpq9QkeVvK9qwxg=="
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/dsh-util-values"
       }
     },
-    "@dsh-mobile/e2e-tunnel@0.1.4": {
-      "tarball": "dsh-mobile-e2e-tunnel-0.1.4.tgz",
+    "@deepseek-ai/schemastery@3.18.2": {
+      "tarball": "deepseek-ai-schemastery-3.18.2.tgz",
+      "name": "@deepseek-ai/schemastery",
+      "version": "3.18.2",
+      "bytes": 27062,
+      "sha256": "de949b2419c454b053dc476b567030bc0d47a2b85004d93deb4f041baca92a1d",
+      "integrity": "sha512-aps491kUgFqfwLX/fES+SW3yHmqNtnpEe3Xk3KigGGPNtaF0Kr+NrdGVLXmfUGQ/pyNlcT4tfS1Rhdj6eu6Low==",
+      "manifestSha256": "7e5a651e54b3aa9d0bc4b0278d402f3edef941d24faf808ac939cf74154edac8",
+      "source": {
+        "type": "official-checkout",
+        "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+        "checkout": "dsh-v0.1.2-alpha.4-4e84901e6471b79e",
+        "tag": "dsh-v0.1.2-alpha.4",
+        "commit": "4e84901e6471b79ec0338099867ebb4606d12bb5",
+        "packagePath": "packages/schemastery"
+      }
+    },
+    "@dsh-mobile/e2e-tunnel@0.1.5": {
+      "tarball": "dsh-mobile-e2e-tunnel-0.1.5.tgz",
       "name": "@dsh-mobile/e2e-tunnel",
-      "version": "0.1.4",
-      "bytes": 47148,
-      "sha256": "700576556aa2756a886dc5c3b17b7987e48f7fe3abe4d275a80cca56d348fcc5",
-      "integrity": "sha512-2qUDtYC/1+Kvb3HWeKepISmApZtozLhuP/oU8a5eQ10dbST42CQfbU3typszjac3QjKqboeaDbPWWW1TeOiAZw==",
-      "manifestSha256": "4ca851e42965474319e4afb6c710a46b2a7cd5b485dd28d2c162698320bc4b9b",
+      "version": "0.1.5",
+      "bytes": 47242,
+      "sha256": "d1bfedf3e6b2a614a3e4e70d260867b82ba9d509881e1f12e9b2284506a047a6",
+      "integrity": "sha512-dEw6jOAtyIx1LzsJPtXdFHFdydAO9JVsFt4k02xqN6nPs9eTDvFyVRQoOkPVIBrQFv/OaepGl3RKxJVZfKzYrA==",
+      "manifestSha256": "d9d4157dac8cf299bbdf25363db16315effc581721f59554b712017e3e3d59e5",
       "source": {
         "type": "git",
         "repository": "https://github.com/NOirBRight/dsh-e2e-tunnel.git",
-        "tag": "v0.1.4",
-        "commit": "6a3dcee8717bcefff9b71297d5543eadde727122",
-        "packagePath": "package.json"
+        "tag": "v0.1.5",
+        "commit": "67041eb566319d4c2bdeef1f64b161b191439906"
       }
     },
     "@fidm/asn1@1.0.4": {
@@ -820,6 +702,21 @@
         "registry": "https://registry.npmjs.org",
         "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
         "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg=="
+      }
+    },
+    "argparse@2.0.1": {
+      "tarball": "argparse-2.0.1.tgz",
+      "name": "argparse",
+      "version": "2.0.1",
+      "bytes": 39740,
+      "sha256": "27903847fc8215e6fc5a33e81490f7baba66403f8aade33771b988cca097728c",
+      "integrity": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==",
+      "manifestSha256": "688bace28e14392b3a1c4137eb56bc48b684dbf5cb56278ed7056cd2ece07990",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/argparse/-/argparse-2.0.1.tgz",
+        "integrity": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="
       }
     },
     "asn1js@3.0.10": {
@@ -1195,6 +1092,21 @@
         "registry": "https://registry.npmjs.org",
         "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
         "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
+      }
+    },
+    "js-yaml@4.1.0": {
+      "tarball": "js-yaml-4.1.0.tgz",
+      "name": "js-yaml",
+      "version": "4.1.0",
+      "bytes": 102356,
+      "sha256": "0dae332559cf22b21c26ea70e732afd8303ff99412f9c3d9d209faa8882cf2ca",
+      "integrity": "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==",
+      "manifestSha256": "fbaf61c90088b54dec9d97434c12eb8ffe75d3acd47eacb43910489a7b78336f",
+      "source": {
+        "type": "registry-lock",
+        "registry": "https://registry.npmjs.org",
+        "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz",
+        "integrity": "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA=="
       }
     },
     "locate-path@5.0.0": {
@@ -1800,921 +1712,507 @@
   },
   "edges": [
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "@deepseek-ai/schemastery",
       "declaredRange": "^3.18.1",
       "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
+      "optional": false,
+      "child": "@deepseek-ai/schemastery@3.18.2"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "@dsh-mobile/e2e-tunnel",
-      "declaredRange": "github:NOirBRight/dsh-e2e-tunnel#v0.1.4",
+      "declaredRange": "github:NOirBRight/dsh-e2e-tunnel#v0.1.5",
       "section": "dependencies",
-      "child": "@dsh-mobile/e2e-tunnel@0.1.4"
+      "optional": false,
+      "child": "@dsh-mobile/e2e-tunnel@0.1.5"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "qrcode",
       "declaredRange": "^1.5.4",
       "section": "dependencies",
+      "optional": false,
       "child": "qrcode@1.5.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "tweetnacl",
       "declaredRange": "^1.0.3",
       "section": "dependencies",
+      "optional": false,
       "child": "tweetnacl@1.0.3"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "werift",
       "declaredRange": "^0.24.4",
       "section": "dependencies",
+      "optional": false,
       "child": "werift@0.24.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "ws",
       "declaredRange": "^8.18.0",
       "section": "dependencies",
+      "optional": false,
       "child": "ws@8.21.3"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "@deepseek-ai/dsh-host-webserver",
-      "declaredRange": "0.1.2-alpha.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "@deepseek-ai/dsh-settings",
-      "declaredRange": "0.1.2-alpha.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-settings@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-settings@0.1.2-alpha.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "react",
       "declaredRange": "^18.2.0",
       "section": "peerDependencies",
+      "optional": false,
       "child": "react@18.3.1"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.12",
+      "parent": "@dsh-mobile/pairing@0.1.14",
       "dependency": "@deepseek-ai/dsh-client-connection",
-      "declaredRange": ">=0.1.2-alpha.1 <0.1.3",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "peerDependencies",
       "optional": true,
-      "child": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1"
+      "child": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/cordis@4.0.1",
+      "parent": "@deepseek-ai/cordis-plugin-include@1.0.7",
+      "dependency": "@deepseek-ai/cosmokit",
+      "declaredRange": "1.8.3",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cosmokit@1.8.3"
+    },
+    {
+      "parent": "@deepseek-ai/cordis-plugin-include@1.0.7",
+      "dependency": "js-yaml",
+      "declaredRange": "^4.1.0",
+      "section": "dependencies",
+      "optional": false,
+      "child": "js-yaml@4.1.0"
+    },
+    {
+      "parent": "@deepseek-ai/cordis-plugin-include@1.0.7",
+      "dependency": "@deepseek-ai/cordis-plugin-loader",
+      "declaredRange": "1.0.3",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cordis-plugin-loader@1.0.3"
+    },
+    {
+      "parent": "@deepseek-ai/cordis-plugin-include@1.0.7",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "4.0.2",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
+    },
+    {
+      "parent": "@deepseek-ai/cordis-plugin-loader@1.0.3",
+      "dependency": "@deepseek-ai/cosmokit",
+      "declaredRange": "1.8.3",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cosmokit@1.8.3"
+    },
+    {
+      "parent": "@deepseek-ai/cordis-plugin-loader@1.0.3",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "4.0.2",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
+    },
+    {
+      "parent": "@deepseek-ai/cordis@4.0.2",
       "dependency": "@standard-schema/spec",
       "declaredRange": "^1.1.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@standard-schema/spec@1.1.0"
     },
     {
-      "parent": "@deepseek-ai/cordis@4.0.1",
+      "parent": "@deepseek-ai/cordis@4.0.2",
       "dependency": "@deepseek-ai/cosmokit",
-      "declaredRange": "^1.8.2",
+      "declaredRange": "1.8.3",
       "section": "dependencies",
-      "child": "@deepseek-ai/cosmokit@1.8.2"
+      "optional": false,
+      "child": "@deepseek-ai/cosmokit@1.8.3"
     },
     {
-      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
+      "parent": "@deepseek-ai/cordis@4.0.2",
+      "dependency": "@deepseek-ai/cordis-plugin-include",
+      "declaredRange": "1.0.7",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+      "optional": true,
+      "child": "@deepseek-ai/cordis-plugin-include@1.0.7"
     },
     {
-      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-llm",
-      "declaredRange": "^0.1.2-alpha.1",
+      "parent": "@deepseek-ai/cordis@4.0.2",
+      "dependency": "@deepseek-ai/cordis-plugin-loader",
+      "declaredRange": "1.0.3",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
+      "optional": true,
+      "child": "@deepseek-ai/cordis-plugin-loader@1.0.3"
     },
     {
-      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-scope",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-system-prompt",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-brand@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-agent@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-typert-protocol",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-brand",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-brand@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-brand@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "zod",
-      "declaredRange": "^4.4.3",
-      "section": "dependencies",
-      "child": "zod@4.4.3"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
-      "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-attachment",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-credentials",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-credentials@0.1.2-alpha.1"
+      "declaredRange": "0.1.2-alpha.4",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/dsh-credentials@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-commands",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-commands@0.1.2-alpha.1"
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "3.18.2",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/schemastery@3.18.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-brand",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-host-directory-picker",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-host-directory-picker@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-host-webserver",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-llm",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-settings",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-settings@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-tool-todo",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-code-runtime@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-code-runtime@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.4",
       "dependency": "zod",
       "declaredRange": "^4.4.3",
       "section": "dependencies",
+      "optional": false,
       "child": "zod@4.4.3"
     },
     {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-util-crypto",
-      "declaredRange": "^0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "4.0.2",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/dsh-brand",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "dependencies",
-      "child": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-agent",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-agent@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-brand",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-attachment",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-llm",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-scope",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-typert-protocol",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-commands@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-brand",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-credentials@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "3.18.2",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/schemastery@3.18.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-host-directory-picker@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-host-directory-picker@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.4",
       "dependency": "compression",
       "declaredRange": "^1.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "compression@1.8.1"
     },
     {
-      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.4",
       "dependency": "negotiator",
       "declaredRange": "^1.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "negotiator@1.0.0"
     },
     {
-      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
-      "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-invariants@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
+      "declaredRange": "3.18.2",
       "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
+      "optional": false,
+      "child": "@deepseek-ai/schemastery@3.18.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-invariants@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
-      "dependency": "zod",
-      "declaredRange": "^4.4.3",
-      "section": "dependencies",
-      "child": "zod@4.4.3"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-util-crypto",
-      "declaredRange": "^0.1.2-alpha.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "dependencies",
-      "child": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
+      "declaredRange": "3.18.2",
       "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
+      "optional": false,
+      "child": "@deepseek-ai/schemastery@3.18.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-attachment",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-attachment@0.1.2-alpha.1"
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.4",
+      "dependency": "zod",
+      "declaredRange": "^4.4.3",
+      "section": "dependencies",
+      "optional": false,
+      "child": "zod@4.4.3"
     },
     {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-brand",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-typert-protocol",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-timeout",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-timeout@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-scope@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-scope@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1",
-      "dependency": "zod",
-      "declaredRange": "^4.4.3",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "dependencies",
-      "child": "zod@4.4.3"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-timeout@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-brand",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+      "declaredRange": "0.1.2-alpha.4",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/dsh-util-values",
+      "declaredRange": "0.1.2-alpha.4",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/dsh-util-values@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-scope",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-llm",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-typert-protocol",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1"
+      "declaredRange": "0.1.2-alpha.4",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-llm@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-scope@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session",
-      "declaredRange": "^0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-scope@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/dsh-llm",
+      "declaredRange": "0.1.2-alpha.4",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.4"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-brand",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/dsh-util-values",
+      "declaredRange": "0.1.2-alpha.4",
+      "section": "dependencies",
+      "optional": false,
+      "child": "@deepseek-ai/dsh-util-values@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-scope",
-      "declaredRange": "^0.1.2-alpha.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-session@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-llm",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-timeout@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-timeout@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
-      "dependency": "zod",
-      "declaredRange": "^4.4.3",
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/dsh-util-values",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "dependencies",
-      "child": "zod@4.4.3"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-util-values@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
-      "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-agent",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-agent@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session-projection",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session-projection@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-tools",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-tools@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tool-todo@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
-      "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-agent",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-agent@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-llm",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-scope",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-system-prompt",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-user-approval",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-tools@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-code-runtime",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-code-runtime@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/schemastery",
-      "declaredRange": "^3.18.1",
-      "section": "dependencies",
-      "child": "@deepseek-ai/schemastery@3.18.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-agent",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-agent@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-llm",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-llm@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-session",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-brand",
-      "declaredRange": "^0.1.2-alpha.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-brand@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-scope",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-scope@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/dsh-system-prompt",
-      "declaredRange": "^0.1.2-alpha.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-system-prompt@0.1.2-alpha.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-user-approval@0.1.2-alpha.1",
-      "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
-      "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
-    },
-    {
-      "parent": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/dsh-invariants",
-      "declaredRange": "^0.1.2-alpha.1",
+      "declaredRange": "0.1.2-alpha.4",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.1"
+      "optional": false,
+      "child": "@deepseek-ai/dsh-invariants@0.1.2-alpha.4"
     },
     {
-      "parent": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.1",
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/dsh-session",
+      "declaredRange": "0.1.2-alpha.4",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/dsh-session@0.1.2-alpha.4"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-settings@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/schemastery",
+      "declaredRange": "3.18.2",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/schemastery@3.18.2"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-timeout@0.1.2-alpha.4",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "^4.0.1",
+      "declaredRange": "4.0.2",
       "section": "peerDependencies",
-      "child": "@deepseek-ai/cordis@4.0.1"
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@deepseek-ai/schemastery@3.18.1",
+      "parent": "@deepseek-ai/dsh-typert-protocol@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "4.0.2",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-util-crypto@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "4.0.2",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
+    },
+    {
+      "parent": "@deepseek-ai/dsh-util-values@0.1.2-alpha.4",
+      "dependency": "@deepseek-ai/cordis",
+      "declaredRange": "4.0.2",
+      "section": "peerDependencies",
+      "optional": false,
+      "child": "@deepseek-ai/cordis@4.0.2"
+    },
+    {
+      "parent": "@deepseek-ai/schemastery@3.18.2",
       "dependency": "@standard-schema/spec",
       "declaredRange": "^1.1.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@standard-schema/spec@1.1.0"
     },
     {
-      "parent": "@deepseek-ai/schemastery@3.18.1",
+      "parent": "@deepseek-ai/schemastery@3.18.2",
       "dependency": "@deepseek-ai/cosmokit",
-      "declaredRange": "^1.8.2",
+      "declaredRange": "1.8.3",
       "section": "dependencies",
-      "child": "@deepseek-ai/cosmokit@1.8.2"
+      "optional": false,
+      "child": "@deepseek-ai/cosmokit@1.8.3"
     },
     {
-      "parent": "@dsh-mobile/e2e-tunnel@0.1.4",
+      "parent": "@dsh-mobile/e2e-tunnel@0.1.5",
       "dependency": "tweetnacl",
       "declaredRange": "^1.0.3",
       "section": "dependencies",
+      "optional": false,
       "child": "tweetnacl@1.0.3"
     },
     {
@@ -2722,6 +2220,7 @@
       "dependency": "@fidm/asn1",
       "declaredRange": "^1.0.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@fidm/asn1@1.0.4"
     },
     {
@@ -2729,6 +2228,7 @@
       "dependency": "tweetnacl",
       "declaredRange": "^1.0.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tweetnacl@1.0.3"
     },
     {
@@ -2736,6 +2236,7 @@
       "dependency": "@noble/hashes",
       "declaredRange": "1.8.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@noble/hashes@1.8.0"
     },
     {
@@ -2743,6 +2244,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -2750,6 +2252,7 @@
       "dependency": "@peculiar/asn1-x509",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509@2.9.4"
     },
     {
@@ -2757,6 +2260,7 @@
       "dependency": "@peculiar/asn1-x509-attr",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509-attr@2.9.4"
     },
     {
@@ -2764,6 +2268,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -2771,6 +2276,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -2778,6 +2284,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -2785,6 +2292,7 @@
       "dependency": "@peculiar/asn1-x509",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509@2.9.4"
     },
     {
@@ -2792,6 +2300,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -2799,6 +2308,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -2806,6 +2316,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -2813,6 +2324,7 @@
       "dependency": "@peculiar/asn1-x509",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509@2.9.4"
     },
     {
@@ -2820,6 +2332,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -2827,6 +2340,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -2834,6 +2348,7 @@
       "dependency": "@peculiar/asn1-cms",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-cms@2.9.4"
     },
     {
@@ -2841,6 +2356,7 @@
       "dependency": "@peculiar/asn1-pkcs8",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-pkcs8@2.9.4"
     },
     {
@@ -2848,6 +2364,7 @@
       "dependency": "@peculiar/asn1-rsa",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-rsa@2.9.4"
     },
     {
@@ -2855,6 +2372,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -2862,6 +2380,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -2869,6 +2388,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -2876,6 +2396,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -2883,6 +2404,7 @@
       "dependency": "@peculiar/asn1-x509",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509@2.9.4"
     },
     {
@@ -2890,6 +2412,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -2897,6 +2420,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -2904,6 +2428,7 @@
       "dependency": "@peculiar/asn1-cms",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-cms@2.9.4"
     },
     {
@@ -2911,6 +2436,7 @@
       "dependency": "@peculiar/asn1-pfx",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-pfx@2.9.4"
     },
     {
@@ -2918,6 +2444,7 @@
       "dependency": "@peculiar/asn1-pkcs8",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-pkcs8@2.9.4"
     },
     {
@@ -2925,6 +2452,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -2932,6 +2460,7 @@
       "dependency": "@peculiar/asn1-x509",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509@2.9.4"
     },
     {
@@ -2939,6 +2468,7 @@
       "dependency": "@peculiar/asn1-x509-attr",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509-attr@2.9.4"
     },
     {
@@ -2946,6 +2476,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -2953,6 +2484,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -2960,6 +2492,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -2967,6 +2500,7 @@
       "dependency": "@peculiar/asn1-x509",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509@2.9.4"
     },
     {
@@ -2974,6 +2508,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -2981,6 +2516,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -2988,6 +2524,7 @@
       "dependency": "@peculiar/utils",
       "declaredRange": "^2.0.2",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/utils@2.0.3"
     },
     {
@@ -2995,6 +2532,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -3002,6 +2540,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -3009,6 +2548,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -3016,6 +2556,7 @@
       "dependency": "@peculiar/asn1-x509",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509@2.9.4"
     },
     {
@@ -3023,6 +2564,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -3030,6 +2572,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -3037,6 +2580,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.9.4",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -3044,6 +2588,7 @@
       "dependency": "@peculiar/utils",
       "declaredRange": "^2.0.2",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/utils@2.0.3"
     },
     {
@@ -3051,6 +2596,7 @@
       "dependency": "asn1js",
       "declaredRange": "^3.0.10",
       "section": "dependencies",
+      "optional": false,
       "child": "asn1js@3.0.10"
     },
     {
@@ -3058,6 +2604,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -3065,6 +2612,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -3072,6 +2620,7 @@
       "dependency": "@peculiar/asn1-cms",
       "declaredRange": "^2.6.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-cms@2.9.4"
     },
     {
@@ -3079,6 +2628,7 @@
       "dependency": "@peculiar/asn1-csr",
       "declaredRange": "^2.6.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-csr@2.9.4"
     },
     {
@@ -3086,6 +2636,7 @@
       "dependency": "@peculiar/asn1-ecc",
       "declaredRange": "^2.6.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-ecc@2.9.4"
     },
     {
@@ -3093,6 +2644,7 @@
       "dependency": "@peculiar/asn1-pkcs9",
       "declaredRange": "^2.6.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-pkcs9@2.9.4"
     },
     {
@@ -3100,6 +2652,7 @@
       "dependency": "@peculiar/asn1-rsa",
       "declaredRange": "^2.6.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-rsa@2.9.4"
     },
     {
@@ -3107,6 +2660,7 @@
       "dependency": "@peculiar/asn1-schema",
       "declaredRange": "^2.6.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-schema@2.9.4"
     },
     {
@@ -3114,6 +2668,7 @@
       "dependency": "@peculiar/asn1-x509",
       "declaredRange": "^2.6.0",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/asn1-x509@2.9.4"
     },
     {
@@ -3121,6 +2676,7 @@
       "dependency": "pvtsutils",
       "declaredRange": "^1.3.6",
       "section": "dependencies",
+      "optional": false,
       "child": "pvtsutils@1.3.6"
     },
     {
@@ -3128,6 +2684,7 @@
       "dependency": "reflect-metadata",
       "declaredRange": "^0.2.2",
       "section": "dependencies",
+      "optional": false,
       "child": "reflect-metadata@0.2.2"
     },
     {
@@ -3135,6 +2692,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -3142,6 +2700,7 @@
       "dependency": "tsyringe",
       "declaredRange": "^4.10.0",
       "section": "dependencies",
+      "optional": false,
       "child": "tsyringe@4.10.0"
     },
     {
@@ -3149,6 +2708,7 @@
       "dependency": "generate-function",
       "declaredRange": "^2.3.1",
       "section": "dependencies",
+      "optional": false,
       "child": "generate-function@2.3.1"
     },
     {
@@ -3156,6 +2716,7 @@
       "dependency": "is-plain-object",
       "declaredRange": "^2.0.3",
       "section": "dependencies",
+      "optional": false,
       "child": "is-plain-object@2.0.4"
     },
     {
@@ -3163,6 +2724,7 @@
       "dependency": "@types/dom-webcodecs",
       "declaredRange": "*",
       "section": "dependencies",
+      "optional": false,
       "child": "@types/dom-webcodecs@0.1.13"
     },
     {
@@ -3170,6 +2732,7 @@
       "dependency": "color-convert",
       "declaredRange": "^2.0.1",
       "section": "dependencies",
+      "optional": false,
       "child": "color-convert@2.0.1"
     },
     {
@@ -3177,6 +2740,7 @@
       "dependency": "pvtsutils",
       "declaredRange": "^1.3.6",
       "section": "dependencies",
+      "optional": false,
       "child": "pvtsutils@1.3.6"
     },
     {
@@ -3184,6 +2748,7 @@
       "dependency": "pvutils",
       "declaredRange": "^1.1.5",
       "section": "dependencies",
+      "optional": false,
       "child": "pvutils@1.2.0"
     },
     {
@@ -3191,6 +2756,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -3198,6 +2764,7 @@
       "dependency": "base64-js",
       "declaredRange": "^1.3.1",
       "section": "dependencies",
+      "optional": false,
       "child": "base64-js@1.5.1"
     },
     {
@@ -3205,6 +2772,7 @@
       "dependency": "ieee754",
       "declaredRange": "^1.2.1",
       "section": "dependencies",
+      "optional": false,
       "child": "ieee754@1.2.1"
     },
     {
@@ -3212,6 +2780,7 @@
       "dependency": "string-width",
       "declaredRange": "^4.2.0",
       "section": "dependencies",
+      "optional": false,
       "child": "string-width@4.2.3"
     },
     {
@@ -3219,6 +2788,7 @@
       "dependency": "strip-ansi",
       "declaredRange": "^6.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "strip-ansi@6.0.1"
     },
     {
@@ -3226,6 +2796,7 @@
       "dependency": "wrap-ansi",
       "declaredRange": "^6.2.0",
       "section": "dependencies",
+      "optional": false,
       "child": "wrap-ansi@6.2.0"
     },
     {
@@ -3233,6 +2804,7 @@
       "dependency": "color-name",
       "declaredRange": "~1.1.4",
       "section": "dependencies",
+      "optional": false,
       "child": "color-name@1.1.4"
     },
     {
@@ -3240,6 +2812,7 @@
       "dependency": "mime-db",
       "declaredRange": ">= 1.43.0 < 2",
       "section": "dependencies",
+      "optional": false,
       "child": "mime-db@1.54.0"
     },
     {
@@ -3247,6 +2820,7 @@
       "dependency": "bytes",
       "declaredRange": "3.1.2",
       "section": "dependencies",
+      "optional": false,
       "child": "bytes@3.1.2"
     },
     {
@@ -3254,6 +2828,7 @@
       "dependency": "compressible",
       "declaredRange": "~2.0.18",
       "section": "dependencies",
+      "optional": false,
       "child": "compressible@2.0.18"
     },
     {
@@ -3261,6 +2836,7 @@
       "dependency": "debug",
       "declaredRange": "2.6.9",
       "section": "dependencies",
+      "optional": false,
       "child": "debug@2.6.9"
     },
     {
@@ -3268,6 +2844,7 @@
       "dependency": "negotiator",
       "declaredRange": "~0.6.4",
       "section": "dependencies",
+      "optional": false,
       "child": "negotiator@0.6.4"
     },
     {
@@ -3275,6 +2852,7 @@
       "dependency": "on-headers",
       "declaredRange": "~1.1.0",
       "section": "dependencies",
+      "optional": false,
       "child": "on-headers@1.1.0"
     },
     {
@@ -3282,6 +2860,7 @@
       "dependency": "safe-buffer",
       "declaredRange": "5.2.1",
       "section": "dependencies",
+      "optional": false,
       "child": "safe-buffer@5.2.1"
     },
     {
@@ -3289,6 +2868,7 @@
       "dependency": "vary",
       "declaredRange": "~1.1.2",
       "section": "dependencies",
+      "optional": false,
       "child": "vary@1.1.2"
     },
     {
@@ -3296,6 +2876,7 @@
       "dependency": "ms",
       "declaredRange": "2.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "ms@2.0.0"
     },
     {
@@ -3303,6 +2884,7 @@
       "dependency": "ms",
       "declaredRange": "^2.1.3",
       "section": "dependencies",
+      "optional": false,
       "child": "ms@2.1.3"
     },
     {
@@ -3310,6 +2892,7 @@
       "dependency": "@leichtgewicht/ip-codec",
       "declaredRange": "^2.0.1",
       "section": "dependencies",
+      "optional": false,
       "child": "@leichtgewicht/ip-codec@2.0.5"
     },
     {
@@ -3317,6 +2900,7 @@
       "dependency": "locate-path",
       "declaredRange": "^5.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "locate-path@5.0.0"
     },
     {
@@ -3324,6 +2908,7 @@
       "dependency": "path-exists",
       "declaredRange": "^4.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "path-exists@4.0.0"
     },
     {
@@ -3331,6 +2916,7 @@
       "dependency": "is-property",
       "declaredRange": "^1.0.2",
       "section": "dependencies",
+      "optional": false,
       "child": "is-property@1.0.2"
     },
     {
@@ -3338,13 +2924,23 @@
       "dependency": "isobject",
       "declaredRange": "^3.0.1",
       "section": "dependencies",
+      "optional": false,
       "child": "isobject@3.0.1"
+    },
+    {
+      "parent": "js-yaml@4.1.0",
+      "dependency": "argparse",
+      "declaredRange": "^2.0.1",
+      "section": "dependencies",
+      "optional": false,
+      "child": "argparse@2.0.1"
     },
     {
       "parent": "locate-path@5.0.0",
       "dependency": "p-locate",
       "declaredRange": "^4.1.0",
       "section": "dependencies",
+      "optional": false,
       "child": "p-locate@4.1.0"
     },
     {
@@ -3352,6 +2948,7 @@
       "dependency": "js-tokens",
       "declaredRange": "^3.0.0 || ^4.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "js-tokens@4.0.0"
     },
     {
@@ -3359,6 +2956,7 @@
       "dependency": "@types/dom-mediacapture-transform",
       "declaredRange": "^0.1.11",
       "section": "dependencies",
+      "optional": false,
       "child": "@types/dom-mediacapture-transform@0.1.12"
     },
     {
@@ -3366,6 +2964,7 @@
       "dependency": "@types/dom-webcodecs",
       "declaredRange": "0.1.13",
       "section": "dependencies",
+      "optional": false,
       "child": "@types/dom-webcodecs@0.1.13"
     },
     {
@@ -3373,6 +2972,7 @@
       "dependency": "dns-packet",
       "declaredRange": "^5.2.2",
       "section": "dependencies",
+      "optional": false,
       "child": "dns-packet@5.6.1"
     },
     {
@@ -3380,6 +2980,7 @@
       "dependency": "thunky",
       "declaredRange": "^1.0.2",
       "section": "dependencies",
+      "optional": false,
       "child": "thunky@1.1.0"
     },
     {
@@ -3387,6 +2988,7 @@
       "dependency": "p-try",
       "declaredRange": "^2.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "p-try@2.2.0"
     },
     {
@@ -3394,6 +2996,7 @@
       "dependency": "p-limit",
       "declaredRange": "^2.2.0",
       "section": "dependencies",
+      "optional": false,
       "child": "p-limit@2.3.0"
     },
     {
@@ -3401,6 +3004,7 @@
       "dependency": "tslib",
       "declaredRange": "^2.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@2.8.1"
     },
     {
@@ -3408,6 +3012,7 @@
       "dependency": "dijkstrajs",
       "declaredRange": "^1.0.1",
       "section": "dependencies",
+      "optional": false,
       "child": "dijkstrajs@1.0.3"
     },
     {
@@ -3415,6 +3020,7 @@
       "dependency": "pngjs",
       "declaredRange": "^5.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "pngjs@5.0.0"
     },
     {
@@ -3422,6 +3028,7 @@
       "dependency": "yargs",
       "declaredRange": "^15.3.1",
       "section": "dependencies",
+      "optional": false,
       "child": "yargs@15.4.1"
     },
     {
@@ -3429,6 +3036,7 @@
       "dependency": "loose-envify",
       "declaredRange": "^1.1.0",
       "section": "dependencies",
+      "optional": false,
       "child": "loose-envify@1.4.0"
     },
     {
@@ -3436,6 +3044,7 @@
       "dependency": "emoji-regex",
       "declaredRange": "^8.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "emoji-regex@8.0.0"
     },
     {
@@ -3443,6 +3052,7 @@
       "dependency": "is-fullwidth-code-point",
       "declaredRange": "^3.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "is-fullwidth-code-point@3.0.0"
     },
     {
@@ -3450,6 +3060,7 @@
       "dependency": "strip-ansi",
       "declaredRange": "^6.0.1",
       "section": "dependencies",
+      "optional": false,
       "child": "strip-ansi@6.0.1"
     },
     {
@@ -3457,6 +3068,7 @@
       "dependency": "ansi-regex",
       "declaredRange": "^5.0.1",
       "section": "dependencies",
+      "optional": false,
       "child": "ansi-regex@5.0.1"
     },
     {
@@ -3464,6 +3076,7 @@
       "dependency": "tslib",
       "declaredRange": "^1.9.3",
       "section": "dependencies",
+      "optional": false,
       "child": "tslib@1.14.1"
     },
     {
@@ -3471,6 +3084,7 @@
       "dependency": "@fidm/x509",
       "declaredRange": "^1.2.1",
       "section": "dependencies",
+      "optional": false,
       "child": "@fidm/x509@1.2.1"
     },
     {
@@ -3478,6 +3092,7 @@
       "dependency": "@noble/curves",
       "declaredRange": "^1.8.1",
       "section": "dependencies",
+      "optional": false,
       "child": "@noble/curves@1.9.7"
     },
     {
@@ -3485,6 +3100,7 @@
       "dependency": "@peculiar/x509",
       "declaredRange": "^1.12.3",
       "section": "dependencies",
+      "optional": false,
       "child": "@peculiar/x509@1.14.3"
     },
     {
@@ -3492,6 +3108,7 @@
       "dependency": "@shinyoshiaki/binary-data",
       "declaredRange": "^0.6.1",
       "section": "dependencies",
+      "optional": false,
       "child": "@shinyoshiaki/binary-data@0.6.1"
     },
     {
@@ -3499,6 +3116,7 @@
       "dependency": "buffer",
       "declaredRange": "^6.0.3",
       "section": "dependencies",
+      "optional": false,
       "child": "buffer@6.0.3"
     },
     {
@@ -3506,6 +3124,7 @@
       "dependency": "debug",
       "declaredRange": "4.4.0",
       "section": "dependencies",
+      "optional": false,
       "child": "debug@4.4.0"
     },
     {
@@ -3513,6 +3132,7 @@
       "dependency": "mediabunny",
       "declaredRange": "^1.45.2",
       "section": "dependencies",
+      "optional": false,
       "child": "mediabunny@1.55.2"
     },
     {
@@ -3520,6 +3140,7 @@
       "dependency": "multicast-dns",
       "declaredRange": "^7.2.5",
       "section": "dependencies",
+      "optional": false,
       "child": "multicast-dns@7.2.5"
     },
     {
@@ -3527,6 +3148,7 @@
       "dependency": "tweetnacl",
       "declaredRange": "^1.0.3",
       "section": "dependencies",
+      "optional": false,
       "child": "tweetnacl@1.0.3"
     },
     {
@@ -3534,6 +3156,7 @@
       "dependency": "ansi-styles",
       "declaredRange": "^4.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "ansi-styles@4.3.0"
     },
     {
@@ -3541,6 +3164,7 @@
       "dependency": "string-width",
       "declaredRange": "^4.1.0",
       "section": "dependencies",
+      "optional": false,
       "child": "string-width@4.2.3"
     },
     {
@@ -3548,6 +3172,7 @@
       "dependency": "strip-ansi",
       "declaredRange": "^6.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "strip-ansi@6.0.1"
     },
     {
@@ -3555,6 +3180,7 @@
       "dependency": "camelcase",
       "declaredRange": "^5.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "camelcase@5.3.1"
     },
     {
@@ -3562,6 +3188,7 @@
       "dependency": "decamelize",
       "declaredRange": "^1.2.0",
       "section": "dependencies",
+      "optional": false,
       "child": "decamelize@1.2.0"
     },
     {
@@ -3569,6 +3196,7 @@
       "dependency": "cliui",
       "declaredRange": "^6.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "cliui@6.0.0"
     },
     {
@@ -3576,6 +3204,7 @@
       "dependency": "decamelize",
       "declaredRange": "^1.2.0",
       "section": "dependencies",
+      "optional": false,
       "child": "decamelize@1.2.0"
     },
     {
@@ -3583,6 +3212,7 @@
       "dependency": "find-up",
       "declaredRange": "^4.1.0",
       "section": "dependencies",
+      "optional": false,
       "child": "find-up@4.1.0"
     },
     {
@@ -3590,6 +3220,7 @@
       "dependency": "get-caller-file",
       "declaredRange": "^2.0.1",
       "section": "dependencies",
+      "optional": false,
       "child": "get-caller-file@2.0.5"
     },
     {
@@ -3597,6 +3228,7 @@
       "dependency": "require-directory",
       "declaredRange": "^2.1.1",
       "section": "dependencies",
+      "optional": false,
       "child": "require-directory@2.1.1"
     },
     {
@@ -3604,6 +3236,7 @@
       "dependency": "require-main-filename",
       "declaredRange": "^2.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "require-main-filename@2.0.0"
     },
     {
@@ -3611,6 +3244,7 @@
       "dependency": "set-blocking",
       "declaredRange": "^2.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "set-blocking@2.0.0"
     },
     {
@@ -3618,6 +3252,7 @@
       "dependency": "string-width",
       "declaredRange": "^4.2.0",
       "section": "dependencies",
+      "optional": false,
       "child": "string-width@4.2.3"
     },
     {
@@ -3625,6 +3260,7 @@
       "dependency": "which-module",
       "declaredRange": "^2.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "which-module@2.0.1"
     },
     {
@@ -3632,6 +3268,7 @@
       "dependency": "y18n",
       "declaredRange": "^4.0.0",
       "section": "dependencies",
+      "optional": false,
       "child": "y18n@4.0.3"
     },
     {
@@ -3639,13 +3276,14 @@
       "dependency": "yargs-parser",
       "declaredRange": "^18.1.2",
       "section": "dependencies",
+      "optional": false,
       "child": "yargs-parser@18.1.3"
     }
   ],
   "regeneration": [
-    "Build each official package from the clean alpha.1 checkout at the pinned commit and run pnpm pack without editing package contents.",
-    "Pack the e2e tunnel from Git tag v0.1.4 at the pinned commit without editing package contents.",
-    "Fetch registry tarballs at the package-lock resolved URL and verify each recorded SHA-512 integrity before adding it.",
-    "Update package metadata and dependency edges only when the exact archive bytes and provenance are independently verified."
+    "Build each official package from the clean Alpha.4 checkout at the pinned commit; workspace ranges are normalized only in fixture metadata so the offline graph is exact.",
+    "Pack the e2e tunnel from Git tag v0.1.5 at its pinned commit without editing package contents.",
+    "Reuse registry archives from the archived previous closure and verify every recorded digest before adding it.",
+    "Re-run the pack gate after every source or dependency change; never use workspace links in the published consumer."
   ]
 }

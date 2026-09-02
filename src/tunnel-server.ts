@@ -35,7 +35,7 @@
  *    last:true. Responses mirror the rule: body inline when it fits one
  *    frame, else http-res without body followed by http-data chunks.
  *  - ws-msg preserves the WebSocket text/binary bit in both directions;
- *    alpha.1 /api/remote.mux requires client JSON as text frames.
+ *    Alpha.4 /api/remote.mux requires client JSON as text frames.
  *  - Late ws-msg/ws-close naming an already-closed bridge id are dropped
  *    (normal close race); any other unknown id closes with 4400.
  *  - Close codes (the protocol mandates closing, not codes): 4400 malformed
@@ -100,7 +100,7 @@ export interface TunnelEndpointOptions {
   upstreamPort: number
   /**
    * DSH browser-session cookie (name=value) minted for the loopback
-   * authority, injected on every upstream request/WebSocket. alpha.1
+   * authority, injected on every upstream request/WebSocket. Alpha.4
    * requires a cookie even on loopback; the phone never sees this value.
    */
   upstreamCookie?: string | (() => string | undefined)
