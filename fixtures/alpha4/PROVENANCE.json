@@ -24,27 +24,27 @@
     }
   },
   "purpose": "Exact repository-owned, immutable recursive fixture tarballs for the Alpha.4 offline publication gate.",
-  "root": "@dsh-mobile/pairing@0.1.14",
+  "root": "@dsh-mobile/pairing@0.1.15",
   "consumer": {
     "lockfile": "consumer-pnpm-lock.yaml",
-    "sha256": "bb1b54a017bf9a329517b18009d4630d43993daebd8086187c2cbde51a8d14ce"
+    "sha256": "5220484125162186100d10f87975b6c6f2472759a85b57362d0ac0de4fcfaecc"
   },
   "rootArtifact": {
     "name": "@dsh-mobile/pairing",
-    "version": "0.1.14",
-    "bytes": 70811,
-    "sha256": "ffcf9024ff37020fe29ea524781f9c7bc457e2adbc0427b364c3fded3d41a0a1",
-    "integrity": "sha512-YwjVjrF7ZoHPLPA19JDjL2Mp4xh+RTFScskMXSnS4aYnhG7u/xu4ZPV6styKJHNMBtuQGoCCq7R3D1IRMYWEsQ==",
-    "manifestSha256": "31bab8328507716732d1d79b9b92e38bb8cf9dfd62c75458716c21852edd82a4"
+    "version": "0.1.15",
+    "bytes": 72509,
+    "sha256": "ea11771438589ab13a26d3190c9d183a8e8180141a5705597ebbd980d697eea6",
+    "integrity": "sha512-U8Rk9XrTleycnmPjw0lKqhySvCabXXNwSoIWytVw5fdk6jmR0O8JWqqkhmDtj3Ot9HDoMJCoZ6bhxWu7UK0DbA==",
+    "manifestSha256": "b7f18585a3b0d4fc1e3420e266914f0f20d9caad0b62df2070e489423358506e"
   },
   "packages": {
     "@deepseek-ai/cordis-plugin-include@1.0.7": {
       "tarball": "deepseek-ai-cordis-plugin-include-1.0.7.tgz",
       "name": "@deepseek-ai/cordis-plugin-include",
       "version": "1.0.7",
-      "bytes": 9002,
-      "sha256": "51f4de8f417852b2db9596d98a0b773ad69b296d2449e31cfc25d2487a0aa961",
-      "integrity": "sha512-GxzTuogMWRREKfAiUnwtOldvGkkeV90hOHatMMAuz65Z1t5+KmtZsCMMWQVQenA1wQwh+OCWSkB1OaQ54fBpgw==",
+      "bytes": 8949,
+      "sha256": "e57ecd4cc84e7162ef4318de33e74d1b1051440d695234148b124860aa379453",
+      "integrity": "sha512-n8o2LuHlGx8kcv7UPJPP0ndtVWVD2ShWcwBPyq4fiEMRkoPYihGLaIYH5wcKx9vkDqCJCckA38WH0O/i518HcQ==",
       "manifestSha256": "376d0bd1afbd0b86aa06a9dd2e9377c1651f6aeb18786d103544dc38f2c1230e",
       "source": {
         "type": "official-checkout",
@@ -59,9 +59,9 @@
       "tarball": "deepseek-ai-cordis-plugin-loader-1.0.3.tgz",
       "name": "@deepseek-ai/cordis-plugin-loader",
       "version": "1.0.3",
-      "bytes": 25685,
-      "sha256": "e97270f14a32006ceed1909b59f81770313cee6f107c1d693e76b2e9c74b4b0a",
-      "integrity": "sha512-NrdVFiFgWHy9M4AEOTYHsLk8Z4C3DyupPHynRrDbuY4RtOJAtGgo7jXWEOLHICsLeR+8DaSLSjoXj1oS7qB+ng==",
+      "bytes": 25552,
+      "sha256": "e95ae538c29aad1d1cc4815b04bdc71c453c7c4b74d05a8405f25427e7751e25",
+      "integrity": "sha512-2cFIahC6axRLecq4RcmnF++k3x1mndjLAJnKAIQyasiDaG8/LlcBCGEbSa1s8+6KvK8Bu7SzwkUn6TY0zv6lQQ==",
       "manifestSha256": "dbbf705458c2ee7a7c23f6d21af0fc87e4ab8cac859ba5fd74cd8ec40f515210",
       "source": {
         "type": "official-checkout",
@@ -76,9 +76,9 @@
       "tarball": "deepseek-ai-cordis-4.0.2.tgz",
       "name": "@deepseek-ai/cordis",
       "version": "4.0.2",
-      "bytes": 63947,
-      "sha256": "8d27d81cabfa464bfa1ce4f7f924b68e070a44bffd10931a64c8e648e5bef436",
-      "integrity": "sha512-a3aoU/XZBsYkG1Xq3msEo6+n+SlgPp1CLGNkgNIwk4hLn0GlUdrBpf8/XMh2HweomYkfRmkx/YY5pfux+CdtXA==",
+      "bytes": 63177,
+      "sha256": "26970be7434656243f483ebccbb6011f88ff08f2a7c4c082c9efd57869066b22",
+      "integrity": "sha512-JeCSc25V1j+mWEFfTVzFjF3LHCohw5DYwMGPSd7w7CAh9wmLGhHIj4AhvTzafHoh8OUFdmin8Xq/cSAS06E+QA==",
       "manifestSha256": "e712c9d3fb4bec7fe20f734d043381b8242f30591d28052e2983065adae47fce",
       "source": {
         "type": "official-checkout",
@@ -111,8 +111,8 @@
       "name": "@deepseek-ai/dsh-brand",
       "version": "0.1.2-alpha.4",
       "bytes": 5282,
-      "sha256": "996ceb4c1cdedebf4685d95ef72d24c2f61830a727c4d73cd3097d642f86e416",
-      "integrity": "sha512-1i5l25AxGaUK05vnWOLOhKjUh+uSWraEOCM6qg3+XESa6M5N1iI4dWQ6d7BumCZ8qtvl3NWRBnTv80cotleZ5Q==",
+      "sha256": "c13e5e3b505209518075a44fb2e7b83e87f20a70d8b6a0af0c5b02695c0cd62f",
+      "integrity": "sha512-yaQ5O1sQ4UHpuYeACBXPCfc1YTAG2wMbUnelHjvCJaEKRYgARM2TFd+yj7gDBvp6/019ZvPmRwZ6+0fVmWxAmA==",
       "manifestSha256": "7f31d36962111b2a5278a0329cddfd8d20f0e9b98e5052ff8b24f6587fc24119",
       "source": {
         "type": "official-checkout",
@@ -127,9 +127,9 @@
       "tarball": "deepseek-ai-dsh-client-connection-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-client-connection",
       "version": "0.1.2-alpha.4",
-      "bytes": 66578,
-      "sha256": "d93d5b0476620407ad4c0139448d113a70f30f153f3627a08d83f9eef42f8338",
-      "integrity": "sha512-aF66QdxxhATQXgwxvCeFPut/hTVIW0W3bn1VHkP79g9ytuiY3d0Jj/4IRnaoOInhj2FIpmSa10QDima3Tm88gA==",
+      "bytes": 67125,
+      "sha256": "155fe44a01e6165577ec7ca5f89d2a63e2300ae37495d8a2154e5fdfdacfbf1e",
+      "integrity": "sha512-oKCA3kqUXVfh+HS9OgxPqXrHUqJXsBHhWOdJIZW7KCsMzZQL39CRulw03WKh56MvIRhq1LnowLQ0deQloxOt9g==",
       "manifestSha256": "3d8f386ce224257628f2cfac731e065002a0943bbdc13e11f57a8bdd2bdd842f",
       "source": {
         "type": "official-checkout",
@@ -144,9 +144,9 @@
       "tarball": "deepseek-ai-dsh-credentials-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-credentials",
       "version": "0.1.2-alpha.4",
-      "bytes": 17106,
-      "sha256": "7b8a7ce259e47b3ae7d0967346d36803471bad45d36577afb602aca40049f2b8",
-      "integrity": "sha512-b7NQhd5+MsKrHnbDQpZFUQj3hmBFJXfJiD7ERPDLmtqHQ90Ef/cmVkw+tM9BTIy5tu4d1EOrdXrh0upOdC0mJQ==",
+      "bytes": 17014,
+      "sha256": "dade93f9d1a3c9fadc4b58f1f52da3d8a5d3a7b0e69d80600330365f799fdb48",
+      "integrity": "sha512-0Uh4xGQc/KcE36yMtt2YvKzirszzoT3kTZi1Wlf3G2b9PekuaMydy9oz1JkA+cG6jsOGDrTY1jFjPPRmuiEx9w==",
       "manifestSha256": "ab36313187d1a265f8c0aa217c0b1190f8c4ad5d2bef82d2204221777de79e02",
       "source": {
         "type": "official-checkout",
@@ -161,9 +161,9 @@
       "tarball": "deepseek-ai-dsh-host-webserver-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-host-webserver",
       "version": "0.1.2-alpha.4",
-      "bytes": 13360,
-      "sha256": "74445fea3f872fea6fbaceac33512db2d31e96ef34f393c24b98f21d61b781f8",
-      "integrity": "sha512-Hm2iHdCI6VWQSR2nWuu+IvKVhO4suIHGrBIsal/159geK8pOGqJvDeOtBp/LdBl+f6WY2cL3CqGoAiddC8Q9pg==",
+      "bytes": 13358,
+      "sha256": "1d6f81d32d92330d09f00b45c80e40affb434f2a0b174e453fb20cc5553b3976",
+      "integrity": "sha512-JA40uPz68POBbYGGEkWFHAMhvyVM/3AQZjYJ7rF0ponl07UfuZiS8yOJkXwsOYhEBKC/Iyn7v3i2J8jWJJsrPg==",
       "manifestSha256": "ed052b6dde5810cdb0400084afcdb666f6ae8f87454c91cc0996eaa6cb9b7520",
       "source": {
         "type": "official-checkout",
@@ -178,9 +178,9 @@
       "tarball": "deepseek-ai-dsh-invariants-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-invariants",
       "version": "0.1.2-alpha.4",
-      "bytes": 11559,
-      "sha256": "9a0cc9f6796520dc4b5aa590451a154ae40837b9c5358793b2ba687186c8e37e",
-      "integrity": "sha512-oKfxGUMKzBozAzMYKjJGYOjovZWcxkbsGjJMMw/7hOxVZylGvLOeoeTA+/eLx4am1UdPsp3p/pyXy/pA6VpGDQ==",
+      "bytes": 11564,
+      "sha256": "4d70d434236639792900ce8ed73bf4e1ddfc68e1840f821c5d9f36a6e95ae9fa",
+      "integrity": "sha512-eG3uGYFtdeYrVjPou+4IMenhsTGKzEZ/Oiywlvn+kk7m87alsAdY5mUZLCqoZ08ebhQY6cv3Lc67ezs4AUuEzg==",
       "manifestSha256": "1bd3c11773c2073393b09c0b950e12a28c03fc451ba506d7edae49f785261366",
       "source": {
         "type": "official-checkout",
@@ -195,9 +195,9 @@
       "tarball": "deepseek-ai-dsh-llm-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-llm",
       "version": "0.1.2-alpha.4",
-      "bytes": 87902,
-      "sha256": "37817c3d0fa5f2bd471d08314c9dbaa9b1b2893dec6398f91c862cade04bb6c1",
-      "integrity": "sha512-YGlI3c2nJw1CzZL75vOj6fRgVeVjezezEUf9K3zS7Z/tkdbFDhFBFOjJQKP14MIG4a+++V0jDqqs146PO1FqTQ==",
+      "bytes": 85850,
+      "sha256": "31e4f8d1f8a37d71b058edec7f0e0d9e4cf2460e7b20f9fbbea0e7dbfc2af917",
+      "integrity": "sha512-whiXYmxzaAGac8umqWk5/bw1oqCMiHHaPiAIZrOuLCpGDfOtlo1eCg7und3G8uEsIDnvNgGB0BLGrq73fdF9vQ==",
       "manifestSha256": "fa1c91d32a8d31ae453d938d6c695ac10c744b9b39d66de865b148d84b0c1898",
       "source": {
         "type": "official-checkout",
@@ -212,9 +212,9 @@
       "tarball": "deepseek-ai-dsh-scope-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-scope",
       "version": "0.1.2-alpha.4",
-      "bytes": 13308,
-      "sha256": "a0a31e3f3624e53883b73cc49b5b0f1a4eb3c05c5ead64b1542aa781f2cf40fb",
-      "integrity": "sha512-P/thBlcDIOmcJ3tu2ar1emj7jVo7WJ3KCT/ezf184bN68xz7knQgZ4mgVLqpOFSp3K3WkO9euZyRCuNArjbuFg==",
+      "bytes": 13328,
+      "sha256": "5abc1ac18e46161fcf8ef3248a847919d9f9484166d204e1002eaa06e0a574d1",
+      "integrity": "sha512-umtmCjhH80S3P/FcGfB7+jtSxI43/JFQmRl6u67z5550icSEduCCmAvmfxRIY9w1Y3MP1wr1dbTT3n7wT2DeeA==",
       "manifestSha256": "7580c4fbc2e216c02031fc826d3f77807e1804ed4018804ecbff4c130dcdb126",
       "source": {
         "type": "official-checkout",
@@ -229,9 +229,9 @@
       "tarball": "deepseek-ai-dsh-session-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-session",
       "version": "0.1.2-alpha.4",
-      "bytes": 85528,
-      "sha256": "ef1396eb184321076e74c84c9c689584df2642ca6b824080b3bf45321cdf1d26",
-      "integrity": "sha512-ri4cv7VfHMISKvz4JJZoeSBwprR/wF0UHB8Qu6wD/EWfI4eAYthmJjftu5C6ExGdak3a6lNN34pAetYw5s8/wQ==",
+      "bytes": 84295,
+      "sha256": "751511b5f45d1fa1031beadf93390cbef3a3b4ef8407adb0c369391841e44101",
+      "integrity": "sha512-5R9cwEhtM8YCr+YGWzANXbko1hgYpoiMeXebEjXhb7r3ofJuLipCprvzZhZjAb5K5CaxoIsMBdHp/+SaR+X/1A==",
       "manifestSha256": "1c40ad896c99a5d1ecee670dc0850e301e0099c052cdc5e48794fd22c4652e0a",
       "source": {
         "type": "official-checkout",
@@ -246,9 +246,9 @@
       "tarball": "deepseek-ai-dsh-settings-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-settings",
       "version": "0.1.2-alpha.4",
-      "bytes": 31250,
-      "sha256": "257a5f10ed8674abc7ca2f09c6c396502f374c2b12a7be061d09bad7f72dad64",
-      "integrity": "sha512-bVDqZJJ8i8a2HcLcuFyzYTBsWs67KNpx6b65hhplpNCbatxSdR50JHCUfWu/XvNGB/GCtCK+PNZfPKFepJuBDQ==",
+      "bytes": 31225,
+      "sha256": "11ab9b2ba95d3b9aab4215592a129d26e64c7052de680384d1231ccdca48fdf5",
+      "integrity": "sha512-imPZcw6N3SqBQoWQfo8oDxEk2ps+qyKSYmG+H0VNQbwdyO7i7nRPaO4DMvIv1STaOPeamRIuyBs0cbHB3Lt7ng==",
       "manifestSha256": "cca03b3487bd16d8d42dd0c99b64f7c568916630cc03bda591bec6dd090709b5",
       "source": {
         "type": "official-checkout",
@@ -263,9 +263,9 @@
       "tarball": "deepseek-ai-dsh-timeout-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-timeout",
       "version": "0.1.2-alpha.4",
-      "bytes": 9474,
-      "sha256": "ac0de58a12cc4a58fe0bbd8ff3e96b7ac14992ca26f4c848260de1a3081f64d5",
-      "integrity": "sha512-SzdUQI6ZElbLbNQv54nQ7XUH1YOo7Mqz+o/GwizVsq1TbBgwL4WTq/L751kvp628cw+zk9RVG912w6SOHpPoQw==",
+      "bytes": 9467,
+      "sha256": "206a4c9ceb68c8ae88fffc0e31297454cb5f29fbf30b96a75383aa0bbef3549a",
+      "integrity": "sha512-oIOWyndMCV5aCbhdzHGSl1exYBfNWEUYKJOlarnwog8Z0iDjBFJVCTGgYWZw3VdR/kMLFHqUL4SGKKPLPP3fWA==",
       "manifestSha256": "79ef6b788bb543e02d759826ba15966a2129519c09a01f8c9c4bf024b0d4ff0c",
       "source": {
         "type": "official-checkout",
@@ -280,9 +280,9 @@
       "tarball": "deepseek-ai-dsh-typert-protocol-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-typert-protocol",
       "version": "0.1.2-alpha.4",
-      "bytes": 17604,
-      "sha256": "dc6c3fff8dce32a13a81f284eadaec49504ab5fafe3bee51ccf641ca9f34edfd",
-      "integrity": "sha512-Df+QQRzHQGVyapy6QawDwjEZ55wHAmF+/OVWlZQKHXKzpZkfUgc0GvidsstpWYD8F8g7LuXdTPutLAZ+Aq3TgQ==",
+      "bytes": 17627,
+      "sha256": "83cb882a6b34333ac7fbe3dc2b56af0d8ecbaf6174c9372a790f67aae16edfab",
+      "integrity": "sha512-WU4MYgCl99IISypftk4bQYRaDB7LLq+IRfU3KeWrxdQBkoP6xVa0M8ACzaqtQuxnQgQrTY0bkdt0a0DEtIiJ5g==",
       "manifestSha256": "5474c7c9f023f8995c05b212bc2c1dd5f170c36cebcf3904cd97a34b6ec9166e",
       "source": {
         "type": "official-checkout",
@@ -297,9 +297,9 @@
       "tarball": "deepseek-ai-dsh-util-crypto-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-util-crypto",
       "version": "0.1.2-alpha.4",
-      "bytes": 4215,
-      "sha256": "4eb3381764ff54be1034217013f0d4ccd9365dde9bfffe0f7b0d2ac43b2354f0",
-      "integrity": "sha512-wRR1R5oE3xp82GIzxLxrnCnTO147HhWE3ISXMfkIgvJ4uyjEWru+5hTkn+BHDSLSp2AXtQ5u0GpQ1UueKpt72Q==",
+      "bytes": 4218,
+      "sha256": "181b0d71bbe36681cd6dc0cfebe67d4fd91ecaaa5e975727476d259b254d05dd",
+      "integrity": "sha512-yafXKPTTww+PUCYlLiepb0TNwurQXamAu6zs8PvMewR7q7Ptol+8jNhNM76ClQtdDAjovqv7zPL/rxyDpaDUYQ==",
       "manifestSha256": "e37d74876a634b4a82f6fc24357bdfc5ff1eaecc7b5f98e37beb04a5030b7039",
       "source": {
         "type": "official-checkout",
@@ -314,9 +314,9 @@
       "tarball": "deepseek-ai-dsh-util-values-0.1.2-alpha.4.tgz",
       "name": "@deepseek-ai/dsh-util-values",
       "version": "0.1.2-alpha.4",
-      "bytes": 7174,
-      "sha256": "38af3bd4085b7a194f154adaf12cf7b2c499300930cc7b785f4df5469e7a8e6e",
-      "integrity": "sha512-2g+I8cXV67ZnZ6KlAi4xlM4788+xygEr1jixqCjZorZ+8WFx+saDwg7h3iKf7QRM4Pk41/5YYfwo1tgNysHEPA==",
+      "bytes": 7173,
+      "sha256": "c91333d65134fb6dac4a370ec7beae94e4e1d67ad5a358f17cb70632e88dd975",
+      "integrity": "sha512-wv4Bb5Di613cYsfwZF2sXCKcKRufgncCbdq0Ft6TMs4DYoYd2v9nvqXZbQmIbjTtX48SrYNXgLC45x95uueRMA==",
       "manifestSha256": "97381cebc59ebdb126c895db69dae73829fe0613096deeb4766e488b34f36b60",
       "source": {
         "type": "official-checkout",
@@ -331,9 +331,9 @@
       "tarball": "deepseek-ai-schemastery-3.18.2.tgz",
       "name": "@deepseek-ai/schemastery",
       "version": "3.18.2",
-      "bytes": 27062,
-      "sha256": "de949b2419c454b053dc476b567030bc0d47a2b85004d93deb4f041baca92a1d",
-      "integrity": "sha512-aps491kUgFqfwLX/fES+SW3yHmqNtnpEe3Xk3KigGGPNtaF0Kr+NrdGVLXmfUGQ/pyNlcT4tfS1Rhdj6eu6Low==",
+      "bytes": 25438,
+      "sha256": "6e74eaec1ea50454182af66e98344ed0ed099dc5c0cdc2d76ee073ca20fdae5f",
+      "integrity": "sha512-1l7xAN/CdxdUtuQehivqL24o+VbtUx35PE33FEMhXipeCI+6kCKZapR1EepThLL2vpT383tlDJmHs7noZiMZuQ==",
       "manifestSha256": "7e5a651e54b3aa9d0bc4b0278d402f3edef941d24faf808ac939cf74154edac8",
       "source": {
         "type": "official-checkout",
@@ -1712,7 +1712,7 @@
   },
   "edges": [
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "@deepseek-ai/schemastery",
       "declaredRange": "^3.18.1",
       "section": "dependencies",
@@ -1720,7 +1720,7 @@
       "child": "@deepseek-ai/schemastery@3.18.2"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "@dsh-mobile/e2e-tunnel",
       "declaredRange": "github:NOirBRight/dsh-e2e-tunnel#v0.1.5",
       "section": "dependencies",
@@ -1728,7 +1728,7 @@
       "child": "@dsh-mobile/e2e-tunnel@0.1.5"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "qrcode",
       "declaredRange": "^1.5.4",
       "section": "dependencies",
@@ -1736,7 +1736,7 @@
       "child": "qrcode@1.5.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "tweetnacl",
       "declaredRange": "^1.0.3",
       "section": "dependencies",
@@ -1744,7 +1744,7 @@
       "child": "tweetnacl@1.0.3"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "werift",
       "declaredRange": "^0.24.4",
       "section": "dependencies",
@@ -1752,7 +1752,7 @@
       "child": "werift@0.24.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "ws",
       "declaredRange": "^8.18.0",
       "section": "dependencies",
@@ -1760,31 +1760,31 @@
       "child": "ws@8.21.3"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "4.0.2",
+      "declaredRange": ">=4.0.2 <5.0.0",
       "section": "peerDependencies",
       "optional": false,
       "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "@deepseek-ai/dsh-host-webserver",
-      "declaredRange": "0.1.2-alpha.4",
+      "declaredRange": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1",
       "section": "peerDependencies",
       "optional": false,
       "child": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "@deepseek-ai/dsh-settings",
-      "declaredRange": "0.1.2-alpha.4",
+      "declaredRange": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1",
       "section": "peerDependencies",
       "optional": false,
       "child": "@deepseek-ai/dsh-settings@0.1.2-alpha.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "react",
       "declaredRange": "^18.2.0",
       "section": "peerDependencies",
@@ -1792,9 +1792,9 @@
       "child": "react@18.3.1"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.14",
+      "parent": "@dsh-mobile/pairing@0.1.15",
       "dependency": "@deepseek-ai/dsh-client-connection",
-      "declaredRange": "0.1.2-alpha.4",
+      "declaredRange": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1",
       "section": "peerDependencies",
       "optional": true,
       "child": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.4"

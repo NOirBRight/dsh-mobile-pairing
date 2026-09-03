@@ -16,6 +16,7 @@ import { PairingOfferManager, buildCompactPublicOfferUrl, buildOfferUrl } from '
 import { attachHandshakeTransport, attachRelaySocket } from './tunnel-server.ts'
 import { bindConnectionCookie } from './connection-lifecycle.ts'
 import { formatLoopbackAuthority } from './dsh-cookie.ts'
+import { allowDshRuntime } from './compatibility.ts'
 import { createRelayConnector } from './relay-connector.ts'
 import { attachDirectSignaling } from './direct-signaling.ts'
 import { WeriftDataChannelTransport } from './webrtc-transport.ts'
@@ -56,6 +57,8 @@ export type { PublicEndpointApplyResult, PublicEndpointSelection } from './endpo
 export { renderPairingSettingsPage } from './settings-page.ts'; export type { PairingSettingsPageOptions } from './settings-page.ts'
 
 export function apply(ctx: Context, config: Config): void {
+  if (!allowDshRuntime(ctx.logger, 'dsh-mobile-pairing', ['@deepseek-ai/dsh-host-webserver'])) return
+
   const webServer: WebServer = ctx.webServer
   ctx.inject(['settings'], (settingsCtx) => {
     settingsCtx.settings.installSection(ctx, 'dsh-mobile', z.object({}), {}, {
