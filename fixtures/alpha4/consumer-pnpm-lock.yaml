@@ -582,15 +582,15 @@ packages:
     engines: {node: '>=22.19'}
 
   '@dsh-mobile/pairing@file:pairing.tgz':
-    resolution: {integrity: sha512-U8Rk9XrTleycnmPjw0lKqhySvCabXXNwSoIWytVw5fdk6jmR0O8JWqqkhmDtj3Ot9HDoMJCoZ6bhxWu7UK0DbA==, tarball: file:pairing.tgz}
+    resolution: {integrity: sha512-rX3Tj69CWuov5ByjzPOzclxYn6JY5VURjX1euyKbuhdH4WTdnXLJtS402OTgZT1U9gP0xSZW/lYlThlXynkanA==, tarball: file:pairing.tgz}
     version: 0.1.15
     engines: {node: '>=22.19'}
     hasBin: true
     peerDependencies:
       '@deepseek-ai/cordis': '>=4.0.2 <5.0.0'
-      '@deepseek-ai/dsh-client-connection': '>=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1'
-      '@deepseek-ai/dsh-host-webserver': '>=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1'
-      '@deepseek-ai/dsh-settings': '>=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1'
+      '@deepseek-ai/dsh-client-connection': '>=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1'
+      '@deepseek-ai/dsh-host-webserver': '>=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1'
+      '@deepseek-ai/dsh-settings': '>=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1'
       react: ^18.2.0
     peerDependenciesMeta:
       '@deepseek-ai/dsh-client-connection':

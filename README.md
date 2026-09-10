@@ -4,7 +4,7 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 
 ## Compatibility
 
-Verified runtimes are DeepSeek Harness `0.1.2-alpha.4` and `0.1.2-rc.1` on Cordis `4.0.2`; this record is evidence, not an allowlist.
+Verified runtimes are DeepSeek Harness `0.1.2-alpha.4`, `0.1.2-rc.1`, and `0.1.5-rc.1` on Cordis `4.0.2`; this record is evidence, not an allowlist.
 
 Unknown newer runtimes are attempted on a best-effort basis after one warning, and the plugin keeps its normal mount path.
 
@@ -114,7 +114,7 @@ npm pack --dry-run
 
 ## Release installation (Latest)
 
-Host pairing gateway, QR/device management, WebRTC Direct, and encrypted tunnel fallback. The release artifact targets DeepSeek Harness 0.1.2-alpha.4 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
+Host pairing gateway, QR/device management, WebRTC Direct, and encrypted tunnel fallback. The release artifact targets DeepSeek Harness 0.1.2-alpha.4 through 0.1.5-rc.1 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
 
 Latest installation (the URL never contains a version):
 

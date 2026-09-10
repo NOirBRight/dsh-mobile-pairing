@@ -20,6 +20,15 @@ export const OFFICIAL_SOURCE = Object.freeze({
   commit: '4e84901e6471b79ec0338099867ebb4606d12bb5',
 })
 
+// Ceiling dev-tree: the Host packages tsc compiles against. The fixture closure
+// above pins the Alpha.4 floor (offline consumer + smoke); this table pins the
+// exact registry bytes the developer tree must install, so neither side floats.
+// Values are `npm view <name>@0.1.5-rc.1 dist.integrity` (registry truth).
+const RC1_DEV_TREE = Object.freeze({
+  '@deepseek-ai/dsh-host-webserver': Object.freeze({ version: '0.1.5-rc.1', integrity: 'sha512-5kOu9kb0AuRN60/zwPTRcki801ozgnWAFwS1QtQ4ZNgCYIbAiU8gwJHY1//qEpUOuHS+26k+Tqq5/WCJmLGE6Q==' }),
+  '@deepseek-ai/dsh-settings': Object.freeze({ version: '0.1.5-rc.1', integrity: 'sha512-9t6JlHwnMu7qTHpMVVRLyzfi7yWKlDozmh7Xbjjd5mmzY+dSdKTPsoRGSdGgTLvBMQBi0X2O8Kj2moDp30XKGg==' }),
+  '@deepseek-ai/dsh-client-connection': Object.freeze({ version: '0.1.5-rc.1', integrity: 'sha512-mBHCF/WT5kAn4fHJDe0mL5TcVUEIRWGUAwPzr32xitQrIAM6jh5G+pPVJLDtTk+ZbHGkGusN0+nQh2gCJpGHjQ==' }),
+})
 const CLEAN_EVIDENCE = Object.freeze({
   officialCheckout: Object.freeze({
     checkout: OFFICIAL_SOURCE.checkout,
@@ -231,8 +240,8 @@ export function validatePackageLock(packageRoot = PROJECT_ROOT, fixtureSet = und
   if (tunnel?.version !== TUNNEL_VERSION || tunnel?.resolved !== 'git+ssh://git@github.com/NOirBRight/dsh-e2e-tunnel.git#' + TUNNEL_COMMIT) fail('package-lock does not pin the exact e2e Git commit')
   for (const name of ['@deepseek-ai/dsh-client-connection', '@deepseek-ai/dsh-host-webserver', '@deepseek-ai/dsh-settings']) {
     const entry = lock.packages['node_modules/' + name]
-    if (entry?.version !== '0.1.2-alpha.4') fail('package-lock does not pin Alpha.4 for ' + name)
-    if (fixtureSet !== undefined && entry.integrity !== fixtureSet.records.get(name + '@0.1.2-alpha.4')?.integrity) fail('package-lock integrity disagrees with fixture archive for ' + name)
+    if (entry?.version !== RC1_DEV_TREE[name].version) fail('package-lock does not pin RC.1 for ' + name)
+    if (entry.integrity !== RC1_DEV_TREE[name].integrity) fail('package-lock integrity disagrees with the RC.1 registry bytes for ' + name)
   }
   if (fixtureSet !== undefined && tunnel.integrity !== fixtureSet.records.get(TUNNEL_NAME + '@' + TUNNEL_VERSION)?.integrity) fail('package-lock integrity disagrees with e2e archive')
   return lock

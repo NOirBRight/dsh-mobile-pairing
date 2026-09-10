@@ -6,12 +6,17 @@ const packageJson = JSON.parse(await readFile(new URL('../package.json', import.
 const source = await readFile(new URL('../src/index.ts', import.meta.url), 'utf8')
 const lifecycleSource = await readFile(new URL('../src/connection-lifecycle.ts', import.meta.url), 'utf8')
 
-const DSH_RANGE = '>=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1'
+const DSH_RANGE = '>=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1'
 
 test('declares a forward-compatible Host Webserver and Settings range', () => {
   for (const service of ['@deepseek-ai/dsh-host-webserver', '@deepseek-ai/dsh-settings']) {
     assert.equal(packageJson.peerDependencies[service], DSH_RANGE)
-    assert.equal(packageJson.devDependencies[service], '0.1.2-alpha.4')
+    assert.equal(packageJson.devDependencies[service], '0.1.5-rc.1')
+  }
+  // The RC.1 Settings peers are explicit devDeps so the typecheck resolves
+  // the exact ceiling tree instead of floating npm peer placement.
+  for (const peer of ['@deepseek-ai/dsh-brand', '@deepseek-ai/dsh-invariants', '@deepseek-ai/dsh-session']) {
+    assert.equal(packageJson.devDependencies[peer], '0.1.5-rc.1')
   }
   assert.equal(JSON.stringify(packageJson).includes('0.1.1-rc.'), false)
   assert.equal(JSON.stringify(packageJson).includes('0.1.2-alpha.2'), false)
@@ -27,7 +32,7 @@ test('uses official Cordis service augmentation instead of masking Context misma
 
 test('marks Host Connection as optional peer and owns its injection transaction', () => {
   assert.equal(packageJson.peerDependencies['@deepseek-ai/dsh-client-connection'], DSH_RANGE)
-  assert.equal(packageJson.devDependencies['@deepseek-ai/dsh-client-connection'], '0.1.2-alpha.4')
+  assert.equal(packageJson.devDependencies['@deepseek-ai/dsh-client-connection'], '0.1.5-rc.1')
   assert.deepEqual(packageJson.peerDependenciesMeta['@deepseek-ai/dsh-client-connection'], { optional: true })
   assert.match(lifecycleSource, /import type \{ HostConnectionHandle \} from '@deepseek-ai\/dsh-client-connection'/)
   assert.match(lifecycleSource, /const connection = connectionCtx\.get\('connection'\) as HostConnectionHandle/)
