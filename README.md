@@ -120,14 +120,14 @@ Latest installation (the URL never contains a version):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.15.tgz
 ~~~
 
 Fixed-version installation:
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.15/dsh-mobile-pairing.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.15-015rc1b/dsh-mobile-pairing-0.1.15.tgz
 ~~~
 
 Update, uninstall, and verify:
@@ -135,7 +135,7 @@ Update, uninstall, and verify:
 ~~~sh
 # Update to the latest Release
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.15.tgz
 # Verify the loaded version
 dsh plugin --profile web list
 dsh plugin --profile web doctor
@@ -145,6 +145,6 @@ dsh plugin --profile web remove @dsh-mobile/pairing
 
 Configuration: use the plugin section in Settings for Web UI plugins, or the profile dsh.profile.bundles entry for Host-only plugins. Start with this README's minimal YAML/JSON example and provide credentials/backend addresses explicitly.
 
-Rollback: rerun the fixed v0.1.15 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
+Rollback: rerun the fixed v0.1.15-015rc1b command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
 
-Release and integrity: [v0.1.15](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.15) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.15/SHA256SUMS).
+Release and integrity: [v0.1.15-015rc1b](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.15-015rc1b) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.15-015rc1b/SHA256SUMS).
