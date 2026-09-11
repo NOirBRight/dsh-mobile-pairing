@@ -178,7 +178,7 @@ test('ignored fixture paths are rejected', async () => {
   } finally { await rm(parent, { recursive: true, force: true }) }
 })
 
-test('package-lock keeps the pinned e2e identity and official Alpha.4 integrities', () => {
+test('package-lock keeps the pinned e2e identity and official RC.1 integrities', () => {
   const fixtureSet = loadFixtureSet()
   const lock = validatePackageLock(PROJECT_ROOT, fixtureSet)
   assert.equal(lock.packages['node_modules/' + tunnelName].version, '0.1.5')
