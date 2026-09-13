@@ -582,8 +582,8 @@ packages:
     engines: {node: '>=22.19'}
 
   '@dsh-mobile/pairing@file:pairing.tgz':
-    resolution: {integrity: sha512-rX3Tj69CWuov5ByjzPOzclxYn6JY5VURjX1euyKbuhdH4WTdnXLJtS402OTgZT1U9gP0xSZW/lYlThlXynkanA==, tarball: file:pairing.tgz}
-    version: 0.1.15
+    resolution: {integrity: sha512-4GO/8V3uBwJ4QFkJ8kAB6sqOr9qlqYvboH+JTyCnXQUGLNCV//s4Eg7VosFQ9QPDSoRy+85MfL2AhNKaHiS0LA==, tarball: file:pairing.tgz}
+    version: 0.1.16
     engines: {node: '>=22.19'}
     hasBin: true
     peerDependencies:

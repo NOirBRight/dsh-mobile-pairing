@@ -179,6 +179,7 @@ function parentManifest(parent, rootManifest, fixtureSet) {
 function satisfiesChild(dependency, declaredRange, child) {
   if (dependency === TUNNEL_NAME) return declaredRange === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.5' && child.source.type === 'git' && child.source.commit === TUNNEL_COMMIT
   if (/^(?:file:|link:|workspace:|npm:)/u.test(declaredRange)) fail('source alias in dependency declaration: ' + dependency)
+  if (declaredRange === '*') return true
   if (semver.validRange(declaredRange) === null || !semver.satisfies(child.version, declaredRange, { includePrerelease: true })) return false
   return true
 }

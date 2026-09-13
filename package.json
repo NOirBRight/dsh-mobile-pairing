@@ -1,6 +1,6 @@
 {
   "name": "@dsh-mobile/pairing",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "type": "module",
   "description": "DSH Mobile Remote plugin: Host Gateway, Public Endpoint pairing, WebRTC Direct, encrypted Tunnel Fallback",
   "license": "MIT",
@@ -67,10 +67,10 @@
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": ">=4.0.2 <5.0.0",
-    "@deepseek-ai/dsh-host-webserver": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1",
-    "@deepseek-ai/dsh-settings": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1",
+    "@deepseek-ai/dsh-host-webserver": "*",
+    "@deepseek-ai/dsh-settings": "*",
     "react": "^18.2.0",
-    "@deepseek-ai/dsh-client-connection": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1"
+    "@deepseek-ai/dsh-client-connection": "*"
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "4.0.2",
@@ -91,6 +91,12 @@
   },
   "peerDependenciesMeta": {
     "@deepseek-ai/dsh-client-connection": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-host-webserver": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-settings": {
       "optional": true
     }
   }

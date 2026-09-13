@@ -24,18 +24,18 @@
     }
   },
   "purpose": "Exact repository-owned, immutable recursive fixture tarballs for the Alpha.4 offline publication gate.",
-  "root": "@dsh-mobile/pairing@0.1.15",
+  "root": "@dsh-mobile/pairing@0.1.16",
   "consumer": {
     "lockfile": "consumer-pnpm-lock.yaml",
-    "sha256": "359ffa93740526ec69a137875e921051e5d774cf97235b01886eeda70ec932ae"
+    "sha256": "76387090303fbef41ac2ee5bd4b83ffb8d88e10482151a4ef8fc74914ff175e0"
   },
   "rootArtifact": {
     "name": "@dsh-mobile/pairing",
-    "version": "0.1.15",
-    "bytes": 72570,
-    "sha256": "5343603bfcac588782ed724e38f6ced1e4a349b45a9e5784f136dd73f23c96aa",
-    "integrity": "sha512-rX3Tj69CWuov5ByjzPOzclxYn6JY5VURjX1euyKbuhdH4WTdnXLJtS402OTgZT1U9gP0xSZW/lYlThlXynkanA==",
-    "manifestSha256": "8b0f40fd2b37c28b95f3363345945cae8bfd1c222ecdf56037edadbac07b102c"
+    "version": "0.1.16",
+    "bytes": 72576,
+    "sha256": "39ac7bb519efc2e5c9b8e6f61b20b8e91af111e699fb8dfe50a0468b5b5d6d5c",
+    "integrity": "sha512-4GO/8V3uBwJ4QFkJ8kAB6sqOr9qlqYvboH+JTyCnXQUGLNCV//s4Eg7VosFQ9QPDSoRy+85MfL2AhNKaHiS0LA==",
+    "manifestSha256": "e712ddb3bedc76263476ea225224a8178b77c2028e42091a8e8732f6fd67173c"
   },
   "packages": {
     "@deepseek-ai/cordis-plugin-include@1.0.7": {
@@ -1712,7 +1712,7 @@
   },
   "edges": [
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "@deepseek-ai/schemastery",
       "declaredRange": "^3.18.1",
       "section": "dependencies",
@@ -1720,7 +1720,7 @@
       "child": "@deepseek-ai/schemastery@3.18.2"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "@dsh-mobile/e2e-tunnel",
       "declaredRange": "github:NOirBRight/dsh-e2e-tunnel#v0.1.5",
       "section": "dependencies",
@@ -1728,7 +1728,7 @@
       "child": "@dsh-mobile/e2e-tunnel@0.1.5"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "qrcode",
       "declaredRange": "^1.5.4",
       "section": "dependencies",
@@ -1736,7 +1736,7 @@
       "child": "qrcode@1.5.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "tweetnacl",
       "declaredRange": "^1.0.3",
       "section": "dependencies",
@@ -1744,7 +1744,7 @@
       "child": "tweetnacl@1.0.3"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "werift",
       "declaredRange": "^0.24.4",
       "section": "dependencies",
@@ -1752,7 +1752,7 @@
       "child": "werift@0.24.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "ws",
       "declaredRange": "^8.18.0",
       "section": "dependencies",
@@ -1760,7 +1760,7 @@
       "child": "ws@8.21.3"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "@deepseek-ai/cordis",
       "declaredRange": ">=4.0.2 <5.0.0",
       "section": "peerDependencies",
@@ -1768,23 +1768,23 @@
       "child": "@deepseek-ai/cordis@4.0.2"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "@deepseek-ai/dsh-host-webserver",
-      "declaredRange": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1",
+      "declaredRange": "*",
       "section": "peerDependencies",
-      "optional": false,
+      "optional": true,
       "child": "@deepseek-ai/dsh-host-webserver@0.1.2-alpha.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "@deepseek-ai/dsh-settings",
-      "declaredRange": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1",
+      "declaredRange": "*",
       "section": "peerDependencies",
-      "optional": false,
+      "optional": true,
       "child": "@deepseek-ai/dsh-settings@0.1.2-alpha.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "react",
       "declaredRange": "^18.2.0",
       "section": "peerDependencies",
@@ -1792,9 +1792,9 @@
       "child": "react@18.3.1"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.15",
+      "parent": "@dsh-mobile/pairing@0.1.16",
       "dependency": "@deepseek-ai/dsh-client-connection",
-      "declaredRange": ">=0.1.2-alpha.4 <1.0.0 || 0.1.2-alpha.5 || 0.1.2-rc.1 || 0.1.5-rc.1",
+      "declaredRange": "*",
       "section": "peerDependencies",
       "optional": true,
       "child": "@deepseek-ai/dsh-client-connection@0.1.2-alpha.4"

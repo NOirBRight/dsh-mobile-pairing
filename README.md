@@ -2,14 +2,17 @@
 
 DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082` web profile 中；每个 DSH 进程独立提供配对管理、回环 Host Gateway、WebRTC Direct 与加密 Tunnel Fallback。
 
+## Changelog
+
+### 0.1.16
+
+DSH Host packages are no longer version-locked. `@deepseek-ai/dsh-*` peers are `*` and optional.
+
 ## Compatibility
 
-Verified runtimes are DeepSeek Harness `0.1.2-alpha.4`, `0.1.2-rc.1`, and `0.1.5-rc.1` on Cordis `4.0.2`; this record is evidence, not an allowlist.
+Host `@deepseek-ai/dsh-*` packages are not version-locked: peers are `*` and optional. `devDependencies` pin the compile target (`0.1.5-rc.1`). Cordis stays `>=4.0.2 <5.0.0`.
 
-Unknown newer runtimes are attempted on a best-effort basis after one warning, and the plugin keeps its normal mount path.
-
-A reproduced failure is blocklisted only afterward; see the [compatibility records](package.json) for the affected version, reason, and evidence.
-
+Verified Hosts in `package.json#dsh.compatibility.dshReleases` are evidence, not an allowlist. Unknown newer Hosts warn once and keep the normal mount path. Only a reproduced failure is blocklisted.
 
 ## 数据路径
 
@@ -35,7 +38,7 @@ A reproduced failure is blocklisted only afterward; see the [compatibility recor
 正式版安装：
 
 ~~~sh
-pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.15
+pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.16
 ~~~
 
 然后把 `@dsh-mobile/pairing` 加入 profile 的 `dsh.profile.bundles`。包内的 `cordis.patch.yml` 会插入 Remote loader；默认配置面向日常 `:3080`：
@@ -120,14 +123,14 @@ Latest installation (the URL never contains a version):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.15.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.16.tgz
 ~~~
 
 Fixed-version installation:
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.15-015rc1b/dsh-mobile-pairing-0.1.15.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.16/dsh-mobile-pairing-0.1.16.tgz
 ~~~
 
 Update, uninstall, and verify:
@@ -135,7 +138,7 @@ Update, uninstall, and verify:
 ~~~sh
 # Update to the latest Release
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.15.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.16.tgz
 # Verify the loaded version
 dsh plugin --profile web list
 dsh plugin --profile web doctor
@@ -145,6 +148,6 @@ dsh plugin --profile web remove @dsh-mobile/pairing
 
 Configuration: use the plugin section in Settings for Web UI plugins, or the profile dsh.profile.bundles entry for Host-only plugins. Start with this README's minimal YAML/JSON example and provide credentials/backend addresses explicitly.
 
-Rollback: rerun the fixed v0.1.15-015rc1b command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
+Rollback: rerun the fixed v0.1.16 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
 
-Release and integrity: [v0.1.15-015rc1b](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.15-015rc1b) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.15-015rc1b/SHA256SUMS).
+Release and integrity: [v0.1.16](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.16) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.16/SHA256SUMS).
