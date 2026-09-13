@@ -117,7 +117,7 @@ npm pack --dry-run
 
 ## Release installation (Latest)
 
-Host pairing gateway, QR/device management, WebRTC Direct, and encrypted tunnel fallback. The release artifact targets DeepSeek Harness 0.1.2-alpha.4 through 0.1.5-rc.1 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
+Host pairing gateway, QR/device management, WebRTC Direct, and encrypted tunnel fallback. The release artifact targets DeepSeek Harness 0.1.2-alpha.4 through 0.1.5-rc.2 and contains built Host/Client files only; it has no sibling-repository source, workstation path, link:, or workspace: dependency.
 
 Latest installation (the URL never contains a version):
 
