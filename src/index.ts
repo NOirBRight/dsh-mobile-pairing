@@ -18,6 +18,8 @@ import { bindConnectionCookie } from './connection-lifecycle.ts'
 import { formatLoopbackAuthority } from './dsh-cookie.ts'
 import { allowDshRuntime } from './compatibility.ts'
 import { createRelayConnector } from './relay-connector.ts'
+import { shouldReuseRelayCampaign } from './relay-campaign.ts'
+import { clearGatewayPort, writeGatewayPort } from './gateway-port.ts'
 import { attachDirectSignaling } from './direct-signaling.ts'
 import { WeriftDataChannelTransport } from './webrtc-transport.ts'
 import { createHostGateway, type GatewayEndpoint } from './gateway.ts'
@@ -45,6 +47,7 @@ export { createAuthProxy, WS_AUTH_PREFIX } from './proxy.ts'; export type { Auth
 export { hostHandshake } from './handshake.ts'; export type { HandshakeDeps, HandshakeOutcome } from './handshake.ts'
 /** Legacy compatibility export only; product runtime never instantiates it. */
 export { createRelayConnector } from './relay-connector.ts'; export type { RelayConnector, RelayConnectorOptions } from './relay-connector.ts'
+export { clearGatewayPort, gatewayPortPath, readGatewayPort, writeGatewayPort } from './gateway-port.ts'
 export { attachHandshakeTransport, attachRelaySocket } from './tunnel-server.ts'; export type { RelaySocketGate, TunnelEndpointOptions } from './tunnel-server.ts'
 export { attachDirectSignaling, encodeSignalDescription } from './direct-signaling.ts'; export type { DirectSignalingGate, DirectSignalingOptions } from './direct-signaling.ts'
 export { WeriftDataChannelTransport } from './webrtc-transport.ts'
@@ -114,7 +117,7 @@ export function apply(ctx: Context, config: Config): void {
   function ensureRelayRoom(room: string, code: string): void {
     if (live.mode !== 'relay' || live.relayUrl === undefined) return
     const previous = relayCampaigns.get(room)
-    if (previous?.relayUrl === live.relayUrl) return
+    if (code === '' && shouldReuseRelayCampaign(previous, live.relayUrl)) return
     previous?.connector.close()
     const relayUrl = live.relayUrl
     const connector = createRelayConnector({
@@ -170,6 +173,7 @@ export function apply(ctx: Context, config: Config): void {
   }
   ctx.effect(() => {
     void gateway.listen().then(port => {
+      writeGatewayPort(resolved.dshHome, port)
       const local = 'http://' + formatLoopbackAuthority(resolved.gatewayBind, port)
       ctx.logger.info('dsh-mobile-pairing: bounded Host Gateway on ' + local)
       localGateway = local
@@ -191,7 +195,15 @@ export function apply(ctx: Context, config: Config): void {
       void retained?.stop()
       startQuickTunnel(local)
     }, error => ctx.logger.error(error instanceof Error ? error : new Error(String(error))))
-    return () => { quick?.detach(); return gateway.close() }
+    const reseat = setInterval(() => restartRelayRooms(), 15_000)
+    reseat.unref()
+    return () => {
+      clearInterval(reseat)
+      closeRelayRooms()
+      clearGatewayPort(resolved.dshHome)
+      quick?.detach()
+      return gateway.close()
+    }
   })
   async function handleEndpointSave(req: IncomingMessage, res: ServerResponse): Promise<void> {
     if (req.method !== 'POST') return methodNotAllowed(res)

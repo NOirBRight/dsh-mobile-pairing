@@ -4,6 +4,10 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 
 ## Changelog
 
+### 0.1.17
+
+Empty Relay rooms reseat themselves: a stopped campaign is not reused, plugin dispose vacates Host seats, and live rooms are rechecked on a short interval. `dsh-pair-mux` follows `$DSH_HOME/mobile/gateway-port` via `DSH_PAIR_MUX_BACKEND_HOMES` so `gatewayPort: 0` no longer leaves the mux pointing at dead loopback ports.
+
 ### 0.1.16
 
 DSH Host packages are no longer version-locked. `@deepseek-ai/dsh-*` peers are `*` and optional.
@@ -38,7 +42,7 @@ Verified Hosts in `package.json#dsh.compatibility.dshReleases` are evidence, not
 正式版安装：
 
 ~~~sh
-pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.16
+pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.17
 ~~~
 
 然后把 `@dsh-mobile/pairing` 加入 profile 的 `dsh.profile.bundles`。包内的 `cordis.patch.yml` 会插入 Remote loader；默认配置面向日常 `:3080`：
@@ -52,7 +56,7 @@ pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.16
     gatewayPort: 0
 ~~~
 
-lab profile 使用 `:3082` 时，将该 profile 的配置覆盖为 `dshPort: 3082` 和独立的 `gatewayPort`。产品默认是一台 Host 一个 Gateway（`gatewayPort: 0`）；手机只连接二维码里的 Public Endpoint，不会连到维护者机器。可选的 `dsh-pair-mux` 只跑在操作者自己的 Host 上回环，后端端口必须由环境变量显式给出。
+lab profile 使用 `:3082` 时，将该 profile 的配置覆盖为 `dshPort: 3082` 和独立的 `gatewayPort`。产品默认是一台 Host 一个 Gateway（`gatewayPort: 0`）；手机只连接二维码里的 Public Endpoint，不会连到维护者机器。可选的 `dsh-pair-mux` 只跑在操作者自己的 Host 上回环。Gateway 在 listen 后把实际端口写入 `$DSH_HOME/mobile/gateway-port`；mux 通过 `DSH_PAIR_MUX_BACKEND_HOMES` 每次请求重读这些文件，不必把 `gatewayPort: 0` 钉死成历史端口。仍可用 `DSH_PAIR_MUX_BACKENDS` 列出静态端口，两者可并用。
 
 | 键 | 默认 | 说明 |
 |---|---|---|
@@ -123,14 +127,14 @@ Latest installation (the URL never contains a version):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.16.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.17.tgz
 ~~~
 
 Fixed-version installation:
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.16/dsh-mobile-pairing-0.1.16.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.17/dsh-mobile-pairing-0.1.17.tgz
 ~~~
 
 Update, uninstall, and verify:
@@ -138,7 +142,7 @@ Update, uninstall, and verify:
 ~~~sh
 # Update to the latest Release
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.16.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.17.tgz
 # Verify the loaded version
 dsh plugin --profile web list
 dsh plugin --profile web doctor
@@ -148,6 +152,6 @@ dsh plugin --profile web remove @dsh-mobile/pairing
 
 Configuration: use the plugin section in Settings for Web UI plugins, or the profile dsh.profile.bundles entry for Host-only plugins. Start with this README's minimal YAML/JSON example and provide credentials/backend addresses explicitly.
 
-Rollback: rerun the fixed v0.1.16 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
+Rollback: rerun the fixed v0.1.17 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
 
-Release and integrity: [v0.1.16](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.16) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.16/SHA256SUMS).
+Release and integrity: [v0.1.17](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.17) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.17/SHA256SUMS).
