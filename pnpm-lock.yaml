@@ -12,8 +12,8 @@ importers:
         specifier: ^3.18.1
         version: 3.18.2
       '@dsh-mobile/e2e-tunnel':
-        specifier: github:NOirBRight/dsh-e2e-tunnel#v0.1.5
-        version: https://codeload.github.com/NOirBRight/dsh-e2e-tunnel/tar.gz/67041eb566319d4c2bdeef1f64b161b191439906
+        specifier: github:NOirBRight/dsh-e2e-tunnel#v0.1.6
+        version: https://codeload.github.com/NOirBRight/dsh-e2e-tunnel/tar.gz/b9c36009dea33f4553b87863f76b41f5f5f6ed17
       qrcode:
         specifier: ^1.5.4
         version: 1.5.4
@@ -170,9 +170,9 @@ packages:
   '@deepseek-ai/schemastery@3.18.2':
     resolution: {integrity: sha512-njDtZsznjYxok7KLLlHOPyuv2efdWVbSflAHgztSfbMsg+CVraEoRe2DjOCgClYv3ZCSm7WXoaUkbB/+RY7tWQ==}
 
-  '@dsh-mobile/e2e-tunnel@https://codeload.github.com/NOirBRight/dsh-e2e-tunnel/tar.gz/67041eb566319d4c2bdeef1f64b161b191439906':
-    resolution: {tarball: https://codeload.github.com/NOirBRight/dsh-e2e-tunnel/tar.gz/67041eb566319d4c2bdeef1f64b161b191439906}
-    version: 0.1.5
+  '@dsh-mobile/e2e-tunnel@https://codeload.github.com/NOirBRight/dsh-e2e-tunnel/tar.gz/b9c36009dea33f4553b87863f76b41f5f5f6ed17':
+    resolution: {tarball: https://codeload.github.com/NOirBRight/dsh-e2e-tunnel/tar.gz/b9c36009dea33f4553b87863f76b41f5f5f6ed17}
+    version: 0.1.6
     engines: {node: '>=22.19'}
 
   '@fidm/asn1@1.0.4':
@@ -1034,7 +1034,7 @@ snapshots:
       '@deepseek-ai/cosmokit': 1.8.3
       '@standard-schema/spec': 1.1.0
 
-  '@dsh-mobile/e2e-tunnel@https://codeload.github.com/NOirBRight/dsh-e2e-tunnel/tar.gz/67041eb566319d4c2bdeef1f64b161b191439906':
+  '@dsh-mobile/e2e-tunnel@https://codeload.github.com/NOirBRight/dsh-e2e-tunnel/tar.gz/b9c36009dea33f4553b87863f76b41f5f5f6ed17':
     dependencies:
       tweetnacl: 1.0.3
 
