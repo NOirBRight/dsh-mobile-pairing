@@ -6,8 +6,8 @@
  * live resume tokens (README §M3 interpretations).
  *
  * Socket ownership: a connected socket is handed to the session layer via
- * onSocket and thereafter belongs to it; {@link RelayConnector.close} stops
- * retries and reaps only a pre-handoff socket (one still in connect/wait).
+ * onSocket. {@link RelayConnector.close} stops retries and closes the current
+ * socket so revoke, endpoint migration, and plugin reload can vacate the room.
  */
 import WebSocket from 'ws'
 
@@ -19,7 +19,7 @@ export interface RelayConnectorOptions {
   room: string
   /** Retry predicate, consulted after every disconnect. */
   shouldRetry: () => boolean
-  /** Called once per established socket; ownership transfers to the callee. */
+  /** Called once per established socket. close() still terminates this socket. */
   onSocket: (ws: WebSocket) => void
   /** Optional status logger. */
   logger?: (msg: string) => void
@@ -29,7 +29,7 @@ export interface RelayConnectorOptions {
 export interface RelayConnector {
   /** @returns whether the connector is still live (not closed). */
   readonly active: boolean
-  /** Stop retrying and close a not-yet-handed-off socket; handed-off sockets stay with the session layer. */
+  /** Stop retrying and close the current host-role socket, including after handoff. */
   close(): void
 }
 
@@ -46,27 +46,38 @@ export function createRelayConnector(options: RelayConnectorOptions): RelayConne
   let closed = false
   let attempts = 0
   let current: WebSocket | null = null
-  let handedOff = false
   let timer: ReturnType<typeof setTimeout> | null = null
+  let pingTimer: ReturnType<typeof setInterval> | null = null
 
   const log = (msg: string): void => options.logger?.(msg)
 
+  const stopPing = (): void => {
+    if (pingTimer === null) return
+    clearInterval(pingTimer)
+    pingTimer = null
+  }
+
   const connect = (): void => {
     if (closed) return
-    handedOff = false
     const ws = new WebSocket(url)
     current = ws
     ws.on('open', () => {
       attempts = 0
-      handedOff = true
       log('relay connector: connected to room ' + options.room.slice(0, 8) + '…')
+      stopPing()
+      pingTimer = setInterval(() => {
+        if (ws.readyState === WebSocket.OPEN) ws.ping()
+      }, 25_000)
+      pingTimer.unref()
       options.onSocket(ws)
     })
     ws.on('error', () => {}) // a close event always follows; retry logic lives there
     ws.on('close', (code: number) => {
+      stopPing()
       if (current === ws) current = null
       if (closed) return
       if (!options.shouldRetry()) {
+        closed = true
         log('relay connector: pairing window ended, stopping')
         return
       }
@@ -85,8 +96,7 @@ export function createRelayConnector(options: RelayConnectorOptions): RelayConne
     close() {
       closed = true
       if (timer !== null) clearTimeout(timer)
-      // The session layer owns the socket after handoff, but the campaign
-      // manager still needs a hard close for revoke and endpoint migration.
+      stopPing()
       if (current !== null) current.close()
       current = null
     },

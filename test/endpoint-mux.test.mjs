@@ -2,9 +2,13 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { once } from 'node:events'
 import { WebSocket } from 'ws'
+import { mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { createHostGateway } from '../src/gateway.ts'
 import { createEndpointMux } from '../src/endpoint-mux.ts'
-import { parseMuxCliOptions } from '../src/mux-cli.ts'
+import { parseMuxCliOptions, resolveMuxBackends } from '../src/mux-cli.ts'
+import { writeGatewayPort } from '../src/gateway-port.ts'
 
 test('a shared Public Endpoint mux routes two Hosts and lists both identities', async (t) => {
   const daily = createHostGateway({
@@ -100,11 +104,24 @@ test('a shared Public Endpoint mux upgrades /signal/check and omits a down backe
   assert.equal(health.hostIdentity, 'daily-host')
 })
 
-test('mux CLI requires this Host\'s Gateway ports and does not default to a maintainer topology', () => {
-  assert.throws(() => parseMuxCliOptions({}), /DSH_PAIR_MUX_BACKENDS/)
+test('mux CLI requires this Host\'s Gateway ports or Home files and does not default to a maintainer topology', () => {
+  assert.throws(() => parseMuxCliOptions({}), /DSH_PAIR_MUX_BACKENDS or DSH_PAIR_MUX_BACKEND_HOMES/)
   assert.throws(() => parseMuxCliOptions({ DSH_PAIR_MUX_BIND: '0.0.0.0', DSH_PAIR_MUX_BACKENDS: '4001,4002' }), /loopback/)
-  assert.deepEqual(parseMuxCliOptions({ DSH_PAIR_MUX_BACKENDS: '4001,4002' }), { bind: '127.0.0.1', port: 0, backends: [4001, 4002] })
+  assert.deepEqual(parseMuxCliOptions({ DSH_PAIR_MUX_BACKENDS: '4001,4002' }), { bind: '127.0.0.1', port: 0, backends: [4001, 4002], backendHomes: [] })
   assert.deepEqual(parseMuxCliOptions({ DSH_PAIR_MUX_BIND: '127.0.0.1', DSH_PAIR_MUX_PORT: '4000', DSH_PAIR_MUX_BACKENDS: '4001,4002' }), {
-    bind: '127.0.0.1', port: 4000, backends: [4001, 4002],
+    bind: '127.0.0.1', port: 4000, backends: [4001, 4002], backendHomes: [],
   })
+  assert.deepEqual(parseMuxCliOptions({ DSH_PAIR_MUX_BACKEND_HOMES: '/tmp/a,/tmp/b' }), {
+    bind: '127.0.0.1', port: 0, backends: [], backendHomes: ['/tmp/a', '/tmp/b'],
+  })
+})
+
+test('mux CLI rereads Gateway ports published under DSH Homes', () => {
+  const home = mkdtempSync(join(tmpdir(), 'dsh-mux-home-'))
+  try {
+    writeGatewayPort(home, 38497)
+    assert.deepEqual(resolveMuxBackends({ backends: [38813], backendHomes: [home] }), [38813, 38497])
+  } finally {
+    rmSync(home, { recursive: true, force: true })
+  }
 })

@@ -17,6 +17,7 @@ export type { HandshakeDeps, HandshakeOutcome } from './handshake.ts';
 /** Legacy compatibility export only; product runtime never instantiates it. */
 export { createRelayConnector } from './relay-connector.ts';
 export type { RelayConnector, RelayConnectorOptions } from './relay-connector.ts';
+export { clearGatewayPort, gatewayPortPath, readGatewayPort, writeGatewayPort } from './gateway-port.ts';
 export { attachHandshakeTransport, attachRelaySocket } from './tunnel-server.ts';
 export type { RelaySocketGate, TunnelEndpointOptions } from './tunnel-server.ts';
 export { attachDirectSignaling, encodeSignalDescription } from './direct-signaling.ts';

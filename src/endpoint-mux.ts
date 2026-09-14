@@ -6,7 +6,7 @@ import type { Duplex } from 'node:stream'
 export interface EndpointMuxOptions {
   bind: '127.0.0.1' | '::1' | 'localhost'
   port: number
-  backends: number[]
+  backends: number[] | (() => number[])
 }
 
 export interface EndpointMux {
@@ -19,7 +19,7 @@ const CAPABILITIES = { browser: false, direct: true, tunnel: true, endpointRefre
 
 export function createEndpointMux(options: EndpointMuxOptions): EndpointMux {
   if (!['127.0.0.1', '::1', 'localhost'].includes(options.bind)) throw new Error('Endpoint mux must bind to loopback')
-  if (options.backends.length === 0) throw new Error('Endpoint mux requires at least one backend port')
+  const listBackends = (): number[] => typeof options.backends === 'function' ? options.backends() : options.backends
   let listenedPort: number | null = null
   const server = createServer((req, res) => { void handleHttp(req, res).catch(() => json(res, 500, { error: 'internal mux error' })) })
 
@@ -27,7 +27,7 @@ export function createEndpointMux(options: EndpointMuxOptions): EndpointMux {
     const url = new URL(req.url ?? '/', 'http://mux')
     if (req.method === 'GET' && (url.pathname === '/healthz' || url.pathname === '/capabilities' || url.pathname === '/.well-known/dsh-mobile')) {
       const hostIdentities: string[] = []
-      for (const port of options.backends) {
+      for (const port of listBackends()) {
         const identity = await readBackendIdentity(port)
         if (identity !== null && !hostIdentities.includes(identity)) hostIdentities.push(identity)
       }
@@ -43,7 +43,7 @@ export function createEndpointMux(options: EndpointMuxOptions): EndpointMux {
   }
 
   server.on('upgrade', (req, socket, head) => {
-    void proxyUpgrade(req, socket, head, options.backends).catch(() => {
+    void proxyUpgrade(req, socket, head, listBackends()).catch(() => {
       if (!socket.destroyed) {
         socket.write(['HTTP/1.1 502 Bad Gateway', 'connection: close', '', ''].join('\r\n'))
         socket.destroy()
