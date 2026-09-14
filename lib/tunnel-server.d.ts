@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 import type { HandshakeDeps } from './handshake.ts';
-import type { HostFrameTransport } from './host-transport.ts';
+import type { FrameTransport } from '@dsh-mobile/e2e-tunnel';
 /** Everything attachRelaySocket needs beyond the socket itself. */
 export interface TunnelEndpointOptions {
     /** Upstream dsh web host — loopback in every supported deployment. */
@@ -52,13 +52,13 @@ export interface RelaySocketGate {
  * Attach the host tunnel endpoint to an already-authenticated frame carrier
  * (e.g. a direct WebRTC DataChannel whose peer was verified out of band).
  * No hello handshake runs: the session starts immediately under peerPub.
- * @param transport - the carrier; see {@link HostFrameTransport}.
+ * @param transport - the carrier; see {@link FrameTransport}.
  * @param peerPub - the authenticated peer's X25519 public key (32 bytes).
  * @param options - see {@link AuthenticatedTunnelOptions}.
  * @returns a gate handle; close() is idempotent.
  */
-export declare function attachAuthenticatedTransport(transport: HostFrameTransport, peerPub: Uint8Array, options: AuthenticatedTunnelOptions): RelaySocketGate;
+export declare function attachAuthenticatedTransport(transport: FrameTransport, peerPub: Uint8Array, options: AuthenticatedTunnelOptions): RelaySocketGate;
 /** Attach a pre-authentication carrier and run the NaCl hello/ack on it. */
-export declare function attachHandshakeTransport(transport: HostFrameTransport, options: TunnelEndpointOptions): RelaySocketGate;
+export declare function attachHandshakeTransport(transport: FrameTransport, options: TunnelEndpointOptions): RelaySocketGate;
 /** Preserve the relay entry point as a thin WebSocket adapter. */
 export declare function attachRelaySocket(socket: WebSocket, options: TunnelEndpointOptions): RelaySocketGate;

@@ -2,7 +2,7 @@
  * Host tunnel endpoint (docs/tunnel-protocol.md §3), built on a
  * transport-neutral frame carrier (host-transport.ts). The session mux below
  * knows nothing about WebSockets or DataChannels: it sees a
- * HostFrameTransport plus an authenticated peer key. Every session frame is a
+ * FrameTransport plus an authenticated peer key. Every session frame is a
  * sealed message — nonce(24B) || box(json, peerPub, ownSec) — with a
  * per-direction seq from 0, strictly consecutive. A seq gap/duplicate closes
  * the connection (relay replay/injection defense).
@@ -51,8 +51,8 @@ import WebSocket from 'ws'
 import nacl from 'tweetnacl'
 import { hostHandshake } from './handshake.ts'
 import type { HandshakeDeps } from './handshake.ts'
+import type { FrameTransport } from '@dsh-mobile/e2e-tunnel'
 import { WsRelayTransport } from './host-transport.ts'
-import type { HostFrameTransport } from './host-transport.ts'
 
 const MAX_PLAINTEXT_BYTES = 200 * 1024
 const MAX_BODY_BYTES = 8 * 1024 * 1024
@@ -181,7 +181,7 @@ const decoder = new TextDecoder()
  * loopback WS bridging all live here; the carrier only moves opaque frames.
  */
 function startHostSession(
-  transport: HostFrameTransport,
+  transport: FrameTransport,
   peerPub: Uint8Array,
   options: { upstreamHost: string; upstreamPort: number; ownSec: Uint8Array; upstreamCookie?: string | (() => string | undefined); logger?: (msg: string) => void; onUnauthorized?: () => void; waitCookie?: () => Promise<string | undefined> },
 ): HostTunnelSession {
@@ -514,13 +514,13 @@ function startHostSession(
  * Attach the host tunnel endpoint to an already-authenticated frame carrier
  * (e.g. a direct WebRTC DataChannel whose peer was verified out of band).
  * No hello handshake runs: the session starts immediately under peerPub.
- * @param transport - the carrier; see {@link HostFrameTransport}.
+ * @param transport - the carrier; see {@link FrameTransport}.
  * @param peerPub - the authenticated peer's X25519 public key (32 bytes).
  * @param options - see {@link AuthenticatedTunnelOptions}.
  * @returns a gate handle; close() is idempotent.
  */
 export function attachAuthenticatedTransport(
-  transport: HostFrameTransport,
+  transport: FrameTransport,
   peerPub: Uint8Array,
   options: AuthenticatedTunnelOptions,
 ): RelaySocketGate {
@@ -563,7 +563,7 @@ export function attachAuthenticatedTransport(
 
 /** Attach a pre-authentication carrier and run the NaCl hello/ack on it. */
 export function attachHandshakeTransport(
-  transport: HostFrameTransport,
+  transport: FrameTransport,
   options: TunnelEndpointOptions,
 ): RelaySocketGate {
   const log = (msg: string): void => options.logger?.(msg)

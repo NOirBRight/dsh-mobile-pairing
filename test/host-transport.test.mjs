@@ -1,8 +1,8 @@
-// Host transport seam tests. The new seam: tunnel-server.ts rides a
-// HostFrameTransport (host-transport.ts), so an already-authenticated carrier
-// (here: an in-memory frame pair) runs the §3 session mux under a known
-// peerPub with NO hello handshake. The relay path keeps its §2 gated
-// behavior — covered here as regression through a real WebSocket pair.
+// Host transport seam tests. tunnel-server.ts rides e2e-tunnel's
+// FrameTransport, so an already-authenticated carrier (here: an in-memory
+// frame pair) runs the §3 session mux under a known peerPub with NO hello
+// handshake. The relay path keeps its §2 gated behavior — covered here as
+// regression through a real WebSocket pair.
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import http from 'node:http'
@@ -106,43 +106,93 @@ function createInbox() {
   }
 }
 
-class FakeRelaySocket {
-  constructor() {
-    this.handlers = { message: [], close: [], error: [] }
-    this.sent = []
-    this.closed = false
+async function waitFor(cond, timeoutMs = 5000) {
+  const start = Date.now()
+  while (!cond()) {
+    if (Date.now() - start > timeoutMs) throw new Error('waitFor timed out')
+    await new Promise((resolve) => setTimeout(resolve, 1))
   }
-  on(type, cb) { this.handlers[type].push(cb) }
-  send(frame) { this.sent.push(new Uint8Array(frame).slice()) }
-  close() { this.closed = true; for (const cb of this.handlers.close) cb() }
-  deliver(frame) { for (const cb of this.handlers.message) cb(Buffer.from(frame), true) }
 }
 
-test('Relay host transport fragments and reassembles multi-megabyte sealed frames', () => {
-  const socket = new FakeRelaySocket()
-  const transport = new WsRelayTransport(socket)
+async function nodeRelayPair(t) {
+  const wss = new WebSocketServer({ port: 0, host: '127.0.0.1', perMessageDeflate: false })
+  t.after(() => wss.close())
+  await new Promise((resolve) => wss.on('listening', resolve))
+  const client = new WebSocket('ws://127.0.0.1:' + wss.address().port, { perMessageDeflate: false })
+  const serverSocket = await new Promise((resolve) => wss.on('connection', resolve))
+  await new Promise((resolve, reject) => {
+    client.on('open', resolve)
+    client.on('error', reject)
+  })
+  t.after(() => { if (client.readyState === WebSocket.OPEN) client.close() })
+  return { client, serverSocket, transport: new WsRelayTransport(serverSocket) }
+}
+
+test('Relay host transport fragments and reassembles multi-megabyte sealed frames', async (t) => {
+  const { client, transport } = await nodeRelayPair(t)
   const big = new Uint8Array(2 * 1024 * 1024 - 123)
   for (let index = 0; index < big.length; index++) big[index] = (index * 29 + 7) & 0xff
 
+  const sent = []
+  client.on('message', (data, isBinary) => {
+    assert.equal(isBinary, true)
+    sent.push(new Uint8Array(data))
+  })
   transport.send(big)
-
-  assert.ok(socket.sent.length > 1)
-  for (const message of socket.sent) assert.ok(message.length <= MAX_RELAY_MESSAGE_BYTES)
+  await waitFor(() => sent.length > 1)
+  for (const message of sent) assert.ok(message.length <= MAX_RELAY_MESSAGE_BYTES)
   const clientReassembler = new RelayFrameReassembler()
   let fromHost = null
-  for (const message of socket.sent) fromHost = clientReassembler.push(message) ?? fromHost
+  for (const message of sent) fromHost = clientReassembler.push(message) ?? fromHost
   assert.deepEqual(fromHost, big)
 
   const received = []
   transport.onFrame(frame => received.push(frame))
-  for (const message of fragmentRelayFrame(big, 19)) socket.deliver(message)
-  assert.equal(received.length, 1)
+  for (const message of fragmentRelayFrame(big, 19)) client.send(message)
+  await waitFor(() => received.length === 1)
   assert.deepEqual(received[0], big)
+})
+
+test('Relay host transport keeps legacy-sized frames unmarked', async (t) => {
+  const { client, transport } = await nodeRelayPair(t)
+  const small = new Uint8Array(1024)
+  for (let index = 0; index < small.length; index++) small[index] = (index * 11) & 0xff
+  const received = []
+  transport.onFrame(frame => received.push(frame))
+  client.send(small)
+  await waitFor(() => received.length === 1)
+  assert.deepEqual(received[0], small)
+})
+
+test('Relay host transport closes 1008 on a malformed fragment stream', async (t) => {
+  const { client, serverSocket, transport } = await nodeRelayPair(t)
+  const closed = new Promise((resolve) => serverSocket.on('close', (code) => resolve(code)))
+  transport.onFrame(() => {})
+  const huge = new Uint8Array(300 * 1024)
+  const parts = fragmentRelayFrame(huge, 1)
+  assert.ok(parts.length > 1)
+  client.send(parts[1])
+  assert.equal(await closed, 1008)
+})
+
+test('Relay host transport delivers queued frames before onClose', async (t) => {
+  const { client, transport } = await nodeRelayPair(t)
+  const received = []
+  let closed = false
+  transport.onFrame(frame => received.push(frame))
+  transport.onClose(() => {
+    assert.equal(received.length, 1)
+    closed = true
+  })
+  client.send(Buffer.from('legacy-raw'))
+  await waitFor(() => received.length === 1)
+  client.close()
+  await waitFor(() => closed)
 })
 
 // ── in-memory transport pair (the new seam, no sockets at all) ─────────────
 
-/** A connected HostFrameTransport pair; close(code) propagates to both ends. */
+/** A connected FrameTransport pair; close(code) propagates to both ends. */
 function transportPair() {
   const make = () => ({
     peer: null,

@@ -6,14 +6,14 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 import { randomBytes } from 'node:crypto'
 import { join } from 'node:path'
 import { spawn } from 'node:child_process'
-import { renderPairingQrSvg } from './qr.js'
+import { renderPairingQrSvg } from './qr.ts'
 import z from '@deepseek-ai/schemastery'
 import { compactDisplayName } from '@dsh-mobile/e2e-tunnel'
 import { Config, resolveConfig } from './config.ts'
 import { loadOrCreateKeypair } from './keys.ts'
 import { DeviceTokenStore } from './tokens.ts'
 import { PairingOfferManager, buildCompactPublicOfferUrl, buildOfferUrl } from './pairing.ts'
-import { attachHandshakeTransport, attachRelaySocket } from './tunnel-server.ts'
+import { attachHandshakeTransport, attachRelaySocket, type RelaySocketGate } from './tunnel-server.ts'
 import { bindConnectionCookie } from './connection-lifecycle.ts'
 import { formatLoopbackAuthority } from './dsh-cookie.ts'
 import { allowDshRuntime } from './compatibility.ts'
@@ -86,7 +86,63 @@ export function apply(ctx: Context, config: Config): void {
   let endpointState: 'loading' | 'ready' | 'error' = endpoint === null ? 'loading' : 'ready'
   let endpointError: string | null = null
   let localGateway: string | null = null
-  const relayCampaigns = new Map<string, { relayUrl: string; connector: ReturnType<typeof createRelayConnector> }>()
+  type RelayCampaign = { relayUrl: string; connector: ReturnType<typeof createRelayConnector>; gate?: RelaySocketGate }
+  const relayCampaigns = new Map<string, RelayCampaign>()
+  const closeCampaign = (room: string): void => {
+    const campaign = relayCampaigns.get(room)
+    if (campaign === undefined) return
+    relayCampaigns.delete(room)
+    try {
+      campaign.connector.close()
+    } finally {
+      try {
+        campaign.gate?.close()
+      } catch {
+        // Gate close can throw after the socket is already gone; retry is already stopped.
+      }
+    }
+  }
+  type RoomGate = { close(): void }
+  const roomGates = new Map<string, Set<RoomGate>>()
+  function trackRoomGate(room: string, socket: { once(type: 'close', listener: () => void): unknown }, gate: RoomGate): void {
+    const gates = roomGates.get(room) ?? new Set<RoomGate>()
+    roomGates.set(room, gates)
+    let active = true
+    const release = (): void => {
+      if (!active) return
+      active = false
+      gates.delete(tracked)
+      if (gates.size === 0 && roomGates.get(room) === gates) roomGates.delete(room)
+    }
+    const tracked: RoomGate = {
+      close: () => {
+        if (!active) return
+        release()
+        try {
+          gate.close()
+        } catch (error) {
+          ctx.logger.error(error instanceof Error ? error : new Error(String(error)))
+        }
+      },
+    }
+    gates.add(tracked)
+    // Closing the carrier must also close an attached WebRTC peer/session.
+    socket.once('close', tracked.close)
+  }
+  function closeRoomGates(room: string): void {
+    const gates = roomGates.get(room)
+    if (gates === undefined) return
+    for (const gate of [...gates]) gate.close()
+  }
+  function closeAllRoomGates(): void {
+    for (const room of [...roomGates.keys()]) closeRoomGates(room)
+  }
+  function closeGatewayRoom(room: string): void {
+    closeRoomGates(room)
+    // Expire the temporary authorization already minted for this room. The
+    // persistent-room predicate is checked only after this entry is removed.
+    if (/^[0-9a-f]{32}$/.test(room)) gateway.authorizeRoom(room, Date.now() - 1)
+  }
   // Alpha.4 requires the loopback browser-session cookie on every upstream
   // request/WebSocket; acquired via the Connection launch token. Read live
   // from the current connection so already-open Relay campaigns pick it up.
@@ -94,8 +150,8 @@ export function apply(ctx: Context, config: Config): void {
   const cookieBinding = bindConnectionCookie(ctx, 'http://' + dshAuthority + '/', dshAuthority, resolved.cookieRetryDelayMs)
   function followDeviceRoom(previousRoom: string | undefined, room: string): void {
     if (previousRoom !== undefined && previousRoom !== room && !store.hasLiveForRoom(previousRoom)) {
-      relayCampaigns.get(previousRoom)?.connector.close()
-      relayCampaigns.delete(previousRoom)
+      closeCampaign(previousRoom)
+      closeGatewayRoom(previousRoom)
     }
     if (live.mode === 'relay') ensureRelayRoom(room, '')
     else gateway.authorizeRoom(room)
@@ -115,30 +171,69 @@ export function apply(ctx: Context, config: Config): void {
     if (live.mode !== 'relay' || live.relayUrl === undefined) return
     const previous = relayCampaigns.get(room)
     if (previous?.relayUrl === live.relayUrl) return
-    previous?.connector.close()
+    if (previous !== undefined) closeCampaign(room)
     const relayUrl = live.relayUrl
-    const connector = createRelayConnector({
+    const campaign: RelayCampaign = {
       relayUrl,
-      room,
-      shouldRetry: () => store.hasLiveForRoom(room) || offers.validate(code) === 'ok',
-      onSocket: socket => { attachRelaySocket(socket, tunnelOptions(room)) },
-      logger: message => ctx.logger.info('dsh-mobile-pairing: ' + message),
-    })
-    relayCampaigns.set(room, { relayUrl, connector })
+      connector: createRelayConnector({
+        relayUrl,
+        room,
+        shouldRetry: () => store.hasLiveForRoom(room) || offers.validate(code) === 'ok',
+        onSocket: socket => {
+          if (relayCampaigns.get(room) !== campaign) {
+            socket.close()
+            return
+          }
+          const previous = campaign.gate
+          campaign.gate = attachRelaySocket(socket, tunnelOptions(room))
+          try {
+            previous?.close()
+          } catch {
+            // Replaced gate; the new socket already owns the room.
+          }
+        },
+        logger: message => ctx.logger.info('dsh-mobile-pairing: ' + message),
+      }),
+    }
+    relayCampaigns.set(room, campaign)
   }
   function closeRelayRooms(): void {
-    for (const campaign of relayCampaigns.values()) campaign.connector.close()
-    relayCampaigns.clear()
+    for (const room of [...relayCampaigns.keys()]) closeCampaign(room)
   }
   function restartRelayRooms(): void {
-    if (live.mode !== 'relay' || live.relayUrl === undefined) return
-    for (const room of store.liveRooms()) ensureRelayRoom(room, '')
+    if (live.mode !== 'relay' || live.relayUrl === undefined) {
+      closeRelayRooms()
+      return
+    }
+    const rooms = new Set(store.liveRooms())
+    for (const room of [...relayCampaigns.keys()]) {
+      if (!rooms.has(room)) closeCampaign(room)
+    }
+    for (const room of rooms) ensureRelayRoom(room, '')
   }
+  ctx.effect(() => () => closeRelayRooms())
   const gateway = createHostGateway({
     bind: resolved.gatewayBind, port: resolved.gatewayPort, hostIdentity: keypair.publicKeyBase64Url,
     isPersistentRoom: room => store.hasLiveForRoom(room),
-    onSignal: (socket, room) => { attachDirectSignaling(socket, { iceServers: resolved.stunUrls.map(url => ({ urls: url })), onChannel: channel => { attachHandshakeTransport(new WeriftDataChannelTransport(channel), tunnelOptions(room)) }, onError: error => ctx.logger.error(error) }) },
-    onTunnel: (socket, room) => { attachRelaySocket(socket, tunnelOptions(room)) },
+    onSignal: (socket, room) => {
+      let tunnelGate: RelaySocketGate | null = null
+      const signalGate = attachDirectSignaling(socket, {
+        iceServers: resolved.stunUrls.map(url => ({ urls: url })),
+        onChannel: channel => {
+          tunnelGate?.close()
+          tunnelGate = attachHandshakeTransport(new WeriftDataChannelTransport(channel), tunnelOptions(room))
+        },
+        onError: error => ctx.logger.error(error),
+      })
+      trackRoomGate(room, socket, {
+        close: () => {
+          tunnelGate?.close()
+          tunnelGate = null
+          signalGate.close()
+        },
+      })
+    },
+    onTunnel: (socket, room) => { trackRoomGate(room, socket, attachRelaySocket(socket, tunnelOptions(room))) },
   })
   if (live.mode === 'relay') {
     for (const room of store.liveRooms()) ensureRelayRoom(room, '')
@@ -191,7 +286,7 @@ export function apply(ctx: Context, config: Config): void {
       void retained?.stop()
       startQuickTunnel(local)
     }, error => ctx.logger.error(error instanceof Error ? error : new Error(String(error))))
-    return () => { quick?.detach(); return gateway.close() }
+    return () => { closeRelayRooms(); closeAllRoomGates(); quick?.detach(); return gateway.close() }
   })
   async function handleEndpointSave(req: IncomingMessage, res: ServerResponse): Promise<void> {
     if (req.method !== 'POST') return methodNotAllowed(res)
@@ -242,7 +337,20 @@ export function apply(ctx: Context, config: Config): void {
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/endpoint', handler: (req, res) => { void handleEndpointSave(req, res) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair', handler: (req, res) => handleLocalPair(req, res, endpoint, keypair.publicKeyBase64Url, resolved.appUrl, displayName, resolved.stunUrls, offers, store, gateway, ensureRelayRoom) }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/devices', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { devices: store.list() }) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/revoke', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const id = (body as Record<string, unknown>).id; const room = typeof id === 'string' ? store.list().find(device => device.id === id)?.room : undefined; const revoked = typeof id === 'string' && store.revoke(id); if (revoked && room !== undefined) { relayCampaigns.get(room)?.connector.close(); relayCampaigns.delete(room) } json(res, revoked ? 200 : 404, { ok: revoked }) } }))
+  async function handleRevoke(req: IncomingMessage, res: ServerResponse): Promise<void> {
+    if (req.method !== 'POST') return methodNotAllowed(res)
+    const body = await readJsonBody(req, res)
+    if (body === null) return
+    const id = (body as Record<string, unknown>).id
+    const room = typeof id === 'string' ? store.list().find(device => device.id === id)?.room : undefined
+    const revoked = typeof id === 'string' && store.revoke(id)
+    if (revoked && room !== undefined && !store.hasLiveForRoom(room)) {
+      closeCampaign(room)
+      closeGatewayRoom(room)
+    }
+    json(res, revoked ? 200 : 404, { ok: revoked })
+  }
+  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/revoke', handler: (req, res) => { void handleRevoke(req, res) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/label', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const record = body as Record<string, unknown>; const renamed = typeof record.id === 'string' && typeof record.label === 'string' && store.rename(record.id, record.label); json(res, renamed ? 200 : 404, { ok: renamed }) } }))
 
   // The mobile shell reaches the Host through the authenticated tunnel. Keep
@@ -252,7 +360,7 @@ export function apply(ctx: Context, config: Config): void {
   ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.endpoint, handler: (req, res) => { void handleEndpointSave(req, res) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.pair, handler: (req, res) => handleLocalPair(req, res, endpoint, keypair.publicKeyBase64Url, resolved.appUrl, displayName, resolved.stunUrls, offers, store, gateway, ensureRelayRoom) }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.devices, handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { devices: store.list() }) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.revoke, handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const id = (body as Record<string, unknown>).id; const room = typeof id === 'string' ? store.list().find(device => device.id === id)?.room : undefined; const revoked = typeof id === 'string' && store.revoke(id); if (revoked && room !== undefined) { relayCampaigns.get(room)?.connector.close(); relayCampaigns.delete(room) } json(res, revoked ? 200 : 404, { ok: revoked }) } }))
+  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.revoke, handler: (req, res) => { void handleRevoke(req, res) } }))
   ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.label, handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const record = body as Record<string, unknown>; const renamed = typeof record.id === 'string' && typeof record.label === 'string' && store.rename(record.id, record.label); json(res, renamed ? 200 : 404, { ok: renamed }) } }))
 
 }

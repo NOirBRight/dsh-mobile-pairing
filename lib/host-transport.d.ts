@@ -1,21 +1,15 @@
+/**
+ * Host relay carrier: Node `ws` already implements send/close/addEventListener,
+ * so the host hands that socket to e2e-tunnel's WsFrameTransport. Incoming text
+ * is delivered as a string so the session layer can reject it (close 4400).
+ */
+import { WsFrameTransport, type FrameTransport } from '@dsh-mobile/e2e-tunnel';
 import type WebSocket from 'ws';
-/** The frame pipe a host tunnel session (or relay gate) rides. See the module header for the contract. */
-export interface HostFrameTransport {
-    send(frame: Uint8Array | string): void;
-    onFrame(cb: (frame: Uint8Array | string) => void): void;
-    onClose(cb: () => void): void;
-    close(code?: number, reason?: string): void;
-}
-/** Relay-room WebSocket adapter (the M3 wire). Construct once the socket is connected. */
-export declare class WsRelayTransport implements HostFrameTransport {
-    private frameHandler;
-    private closeHandler;
-    private readonly socket;
-    private readonly reassembler;
-    private nextFrameId;
+export type { FrameTransport as HostFrameTransport };
+/** Relay-room WebSocket adapter. Binary frames go through e2e-tunnel's codec. */
+export declare class WsRelayTransport extends WsFrameTransport {
+    /**
+     * @param socket - connected Node `ws` socket for one relay room.
+     */
     constructor(socket: WebSocket);
-    send(frame: Uint8Array | string): void;
-    onFrame(cb: (frame: Uint8Array | string) => void): void;
-    onClose(cb: () => void): void;
-    close(code?: number, reason?: string): void;
 }

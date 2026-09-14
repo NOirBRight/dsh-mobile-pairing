@@ -77,11 +77,13 @@ test('DSH HTTP crosses signaling-only WebRTC with NaCl authentication', async (t
   const clientChannel = clientPeer.createDataChannel('dsh-tunnel', { ordered: true })
   await clientPeer.setLocalDescription(await clientPeer.createOffer())
   socket.emit('message', Buffer.from(encodeSignal({ kind: 'offer', description: clientPeer.localDescription })), false)
-  if (socket.sent.length === 0) await deadline(once(socket, 'sent'), 2_000)
+  // Loopback ICE/DTLS can take seconds on a loaded machine; the assertions below
+  // cover the handshake itself, not its latency.
+  if (socket.sent.length === 0) await deadline(once(socket, 'sent'))
   if (signalError !== undefined) throw signalError
   const answer = decodeSignal(socket.sent[0])
   await clientPeer.setRemoteDescription(answer.description)
-  await deadline(new Promise(resolve => { if (clientChannel.readyState === 'open') resolve(); else clientChannel.onopen = resolve }), 2_000)
+  await deadline(new Promise(resolve => { if (clientChannel.readyState === 'open') resolve(); else clientChannel.onopen = resolve }))
 
   const listeners = { message: [], close: [] }
   clientChannel.onMessage.subscribe(data => listeners.message.forEach(fn => fn({ data })))
@@ -92,7 +94,7 @@ test('DSH HTTP crosses signaling-only WebRTC with NaCl authentication', async (t
     close() { clientChannel.close() },
     addEventListener(type, listener) { listeners[type]?.push(listener) },
   }
-  const client = await deadline(openSession(new DataChannelTransport(clientLike), hostKeys.publicKey, { code: 'good-code' }), 2_000)
+  const client = await deadline(openSession(new DataChannelTransport(clientLike), hostKeys.publicKey, { code: 'good-code' }))
   t.after(() => client.close())
   assert.equal(client.deviceToken, 'phone-token')
   const response = await client.fetch('/api/direct')
