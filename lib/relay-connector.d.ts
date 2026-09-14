@@ -6,8 +6,8 @@
  * live resume tokens (README §M3 interpretations).
  *
  * Socket ownership: a connected socket is handed to the session layer via
- * onSocket and thereafter belongs to it; {@link RelayConnector.close} stops
- * retries and reaps only a pre-handoff socket (one still in connect/wait).
+ * onSocket. {@link RelayConnector.close} stops retries and closes the current
+ * socket so revoke, endpoint migration, and plugin reload can vacate the room.
  */
 import WebSocket from 'ws';
 /** Connector construction options. */
@@ -18,7 +18,7 @@ export interface RelayConnectorOptions {
     room: string;
     /** Retry predicate, consulted after every disconnect. */
     shouldRetry: () => boolean;
-    /** Called once per established socket; ownership transfers to the callee. */
+    /** Called once per established socket. close() still terminates this socket. */
     onSocket: (ws: WebSocket) => void;
     /** Optional status logger. */
     logger?: (msg: string) => void;
@@ -27,7 +27,7 @@ export interface RelayConnectorOptions {
 export interface RelayConnector {
     /** @returns whether the connector is still live (not closed). */
     readonly active: boolean;
-    /** Stop retrying and close a not-yet-handed-off socket; handed-off sockets stay with the session layer. */
+    /** Stop retrying and close the current host-role socket, including after handoff. */
     close(): void;
 }
 /**
