@@ -4,6 +4,10 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 
 ## Changelog
 
+### 0.1.19
+
+Relay reseat keeps the Host in an unexpired QR room when no device is authorized yet. A fresh Host no longer vacates the offer room every 15s before handshake can finish.
+
 ### 0.1.17
 
 Empty Relay rooms reseat themselves: a stopped campaign is not reused, plugin dispose vacates Host seats, and live rooms are rechecked on a short interval. `dsh-pair-mux` follows `$DSH_HOME/mobile/gateway-port` via `DSH_PAIR_MUX_BACKEND_HOMES` so `gatewayPort: 0` no longer leaves the mux pointing at dead loopback ports.
@@ -42,7 +46,7 @@ Verified Hosts in `package.json#dsh.compatibility.dshReleases` are evidence, not
 正式版安装：
 
 ~~~sh
-pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.18
+pnpm add github:NOirBRight/dsh-mobile-pairing#v0.1.19
 ~~~
 
 然后把 `@dsh-mobile/pairing` 加入 profile 的 `dsh.profile.bundles`。包内的 `cordis.patch.yml` 会插入 Remote loader；默认配置面向日常 `:3080`：
@@ -127,14 +131,14 @@ Latest installation (the URL never contains a version):
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.18.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.19.tgz
 ~~~
 
 Fixed-version installation:
 
 ~~~sh
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.18/dsh-mobile-pairing-0.1.18.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.19/dsh-mobile-pairing-0.1.19.tgz
 ~~~
 
 Update, uninstall, and verify:
@@ -142,7 +146,7 @@ Update, uninstall, and verify:
 ~~~sh
 # Update to the latest Release
 dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.18.tgz
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.19.tgz
 # Verify the loaded version
 dsh plugin --profile web list
 dsh plugin --profile web doctor
@@ -152,6 +156,6 @@ dsh plugin --profile web remove @dsh-mobile/pairing
 
 Configuration: use the plugin section in Settings for Web UI plugins, or the profile dsh.profile.bundles entry for Host-only plugins. Start with this README's minimal YAML/JSON example and provide credentials/backend addresses explicitly.
 
-Rollback: rerun the fixed v0.1.18 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
+Rollback: rerun the fixed v0.1.19 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
 
-Release and integrity: [v0.1.18](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.18) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.18/SHA256SUMS).
+Release and integrity: [v0.1.19](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.19) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.19/SHA256SUMS).

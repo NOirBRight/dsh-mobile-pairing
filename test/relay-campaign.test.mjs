@@ -3,13 +3,13 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
 import { once } from 'node:events'
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs'
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs'
 import { createServer } from 'node:https'
 import { createServer as createNetServer } from 'node:net'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { Readable } from 'node:stream'
-import test from 'node:test'
+import test, { mock } from 'node:test'
 import { Context } from '@deepseek-ai/cordis'
 import { WebSocket, WebSocketServer } from 'ws'
 import { apply, Config } from '../src/index.ts'
@@ -52,6 +52,28 @@ function invoke(handler, { method = 'POST', body } = {}) {
     const req = Readable.from([Buffer.from(JSON.stringify(body ?? {}))])
     req.method = method
     req.url = '/pair/revoke'
+    req.headers = {}
+    let status = 0
+    const chunks = []
+    const res = {
+      writeHead(code) { status = code },
+      end(data) {
+        if (data !== undefined) chunks.push(data)
+        const text = chunks.join('')
+        let parsed = text
+        try { parsed = text === '' ? null : JSON.parse(text) } catch { /* keep raw */ }
+        resolve({ status, body: parsed })
+      },
+    }
+    Promise.resolve(handler(req, res)).catch(reject)
+  })
+}
+
+function invokeGet(handler, url = '/pair') {
+  return new Promise((resolve, reject) => {
+    const req = Readable.from([])
+    req.method = 'GET'
+    req.url = url
     req.headers = {}
     let status = 0
     const chunks = []
@@ -196,4 +218,53 @@ test('revoke closes an existing custom Gateway session and removes its room auth
 
   const rejected = new WebSocket('ws://127.0.0.1:' + port + '/tunnel/' + room)
   await assert.rejects(once(rejected, 'open'), /401/)
+})
+
+test('reseat keeps an unexpired QR offer room when no device is authorized', async (t) => {
+  mock.timers.enable({ apis: ['setInterval'] })
+  t.after(() => mock.timers.reset())
+
+  const previousTls = process.env.NODE_TLS_REJECT_UNAUTHORIZED
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+  t.after(() => {
+    if (previousTls === undefined) delete process.env.NODE_TLS_REJECT_UNAUTHORIZED
+    else process.env.NODE_TLS_REJECT_UNAUTHORIZED = previousTls
+  })
+
+  const relay = await startTlsRelay()
+  t.after(() => relay.close())
+
+  const dir = mkdtempSync(join(tmpdir(), 'dsh-pending-reseat-'))
+  t.after(() => rmSync(dir, { recursive: true, force: true }))
+
+  const handlers = new Map()
+  const ctx = new Context()
+  ctx.provide('webServer', {
+    register(route) {
+      handlers.set(route.path, route.handler)
+      return () => handlers.delete(route.path)
+    },
+  })
+  apply(ctx, Config({
+    dshHome: dir,
+    dshPort: 18789,
+    endpointMode: 'relay',
+    relayUrl: 'wss://127.0.0.1:' + relay.port,
+    gatewayPort: 0,
+    cookieRetryDelayMs: 60_000,
+  }))
+  t.after(() => { if (ctx.fiber.uid !== null) return ctx.fiber.dispose() })
+
+  await waitFor(() => existsSync(join(dir, 'mobile', 'gateway-port')))
+  const minted = await invokeGet(handlers.get('/pair'))
+  assert.equal(minted.status, 200)
+  const room = minted.body.room
+  assert.match(room, /^[0-9a-f]{32}$/)
+  await waitFor(() => (relay.rooms.get(room)?.sockets.length ?? 0) >= 1)
+  const connects = relay.rooms.get(room).connects
+
+  mock.timers.tick(15_000)
+  await new Promise((resolve) => setTimeout(resolve, 200))
+  assert.equal(relay.rooms.get(room).sockets.length, 1, 'QR room must stay seated across reseat')
+  assert.equal(relay.rooms.get(room).connects, connects, 'QR room must not be torn down and reconnected')
 })

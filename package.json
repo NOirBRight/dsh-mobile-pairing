@@ -1,6 +1,6 @@
 {
   "name": "@dsh-mobile/pairing",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "type": "module",
   "description": "DSH Mobile Remote plugin: Host Gateway, Public Endpoint pairing, WebRTC Direct, encrypted Tunnel Fallback",
   "license": "MIT",

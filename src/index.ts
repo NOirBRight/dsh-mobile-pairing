@@ -18,7 +18,7 @@ import { bindConnectionCookie } from './connection-lifecycle.ts'
 import { formatLoopbackAuthority } from './dsh-cookie.ts'
 import { allowDshRuntime } from './compatibility.ts'
 import { createRelayConnector } from './relay-connector.ts'
-import { shouldReuseRelayCampaign } from './relay-campaign.ts'
+import { shouldKeepPendingRelaySeat, shouldReuseRelayCampaign } from './relay-campaign.ts'
 import { clearGatewayPort, writeGatewayPort } from './gateway-port.ts'
 import { attachDirectSignaling } from './direct-signaling.ts'
 import { WeriftDataChannelTransport } from './webrtc-transport.ts'
@@ -89,7 +89,7 @@ export function apply(ctx: Context, config: Config): void {
   let endpointState: 'loading' | 'ready' | 'error' = endpoint === null ? 'loading' : 'ready'
   let endpointError: string | null = null
   let localGateway: string | null = null
-  type RelayCampaign = { relayUrl: string; connector: ReturnType<typeof createRelayConnector>; gate?: RelaySocketGate }
+  type RelayCampaign = { relayUrl: string; code: string; connector: ReturnType<typeof createRelayConnector>; gate?: RelaySocketGate }
   const relayCampaigns = new Map<string, RelayCampaign>()
   const closeCampaign = (room: string): void => {
     const campaign = relayCampaigns.get(room)
@@ -178,6 +178,7 @@ export function apply(ctx: Context, config: Config): void {
     const relayUrl = live.relayUrl
     const campaign: RelayCampaign = {
       relayUrl,
+      code,
       connector: createRelayConnector({
         relayUrl,
         room,
@@ -210,7 +211,9 @@ export function apply(ctx: Context, config: Config): void {
     }
     const rooms = new Set(store.liveRooms())
     for (const room of [...relayCampaigns.keys()]) {
-      if (!rooms.has(room)) closeCampaign(room)
+      const campaign = relayCampaigns.get(room)
+      const pending = shouldKeepPendingRelaySeat(campaign, campaign === undefined ? 'unknown' : offers.validate(campaign.code))
+      if (!rooms.has(room) && !pending) closeCampaign(room)
     }
     for (const room of rooms) ensureRelayRoom(room, '')
   }
