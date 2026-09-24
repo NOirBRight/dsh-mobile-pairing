@@ -86,7 +86,7 @@ function archiveName(name, version) {
   return stem + '-' + version + '.tgz'
 }
 
-function sourceRecord(name, version, oldRecords, rootLock, info, requireRootLock = false) {
+function sourceRecord(name, version, oldRecords, rootLock, info) {
   const id = name + '@' + version
   if (name === TUNNEL_NAME) {
     return {
@@ -102,7 +102,7 @@ function sourceRecord(name, version, oldRecords, rootLock, info, requireRootLock
     const packagePath = 'node_modules/' + name
     return (path === packagePath || path.endsWith('/' + packagePath)) && record.version === version && record.integrity === info.integrity && typeof record.resolved === 'string' && record.resolved.startsWith('https://registry.npmjs.org/')
   })
-  const resolved = lockEntry?.[1].resolved ?? (requireRootLock ? undefined : previous)
+  const resolved = lockEntry?.[1].resolved ?? previous
   if (resolved === undefined) fail('no immutable registry lock entry matches ' + id)
   return { type: 'registry-lock', registry: 'https://registry.npmjs.org', resolved, integrity: info.integrity }
 }
@@ -235,7 +235,7 @@ function main() {
     const info = inspectArchive(source)
     const expected = ALPHA2_DEV_TREE[manifest.name]
     if (expected !== undefined && (manifest.version !== expected.version || info.integrity !== expected.integrity)) fail('Alpha.2 registry archive does not match the pinned package-lock integrity: ' + manifest.name)
-    candidates.push({ file: source, manifest, info, requireRootLock: true })
+    candidates.push({ file: source, manifest })
   }
   const historicalTarballs = join(HISTORICAL_FIXTURE_ROOT, 'tarballs')
   const thirdParty = readdirSync(historicalTarballs).filter(file => file.endsWith('.tgz')).sort().map(file => join(historicalTarballs, file))
@@ -247,13 +247,13 @@ function main() {
     if (oldRecord === undefined) fail('historical archive lacks provenance: ' + id)
     verifyArchive(oldRecord, historicalTarballs)
     if (manifest.name.startsWith('@deepseek-ai/') || candidates.some(candidate => candidate.manifest.name === manifest.name && candidate.manifest.version === manifest.version)) continue
-    candidates.push({ file: source, manifest, requireRootLock: false })
+    candidates.push({ file: source, manifest })
   }
-  candidates.push({ file: tunnelArtifact.archive, manifest: tunnelArtifact.info.manifest, requireRootLock: false })
+  candidates.push({ file: tunnelArtifact.archive, manifest: tunnelArtifact.info.manifest })
   for (const source of (existsSync(EXTRA_FIXTURE_ROOT) ? readdirSync(EXTRA_FIXTURE_ROOT).filter(file => file.endsWith('.tgz')).sort().map(file => join(EXTRA_FIXTURE_ROOT, file)) : [])) {
     const manifest = readManifest(source)
     if (candidates.some(candidate => candidate.manifest.name === manifest.name && candidate.manifest.version === manifest.version)) continue
-    candidates.push({ file: source, manifest, requireRootLock: false })
+    candidates.push({ file: source, manifest })
   }
   const byName = new Map()
   for (const candidate of candidates) (byName.get(candidate.manifest.name) ?? (byName.set(candidate.manifest.name, []), byName.get(candidate.manifest.name))).push(candidate)
@@ -282,7 +282,7 @@ function main() {
     const destination = join(TARBALL_ROOT, tarball)
     copyFileSync(candidate.file, destination)
     const info = inspectArchive(destination)
-    const source = sourceRecord(name, version, oldRecords, packageLock, info, candidate.requireRootLock === true)
+    const source = sourceRecord(name, version, oldRecords, packageLock, info)
     records.push({
       id,
       name,

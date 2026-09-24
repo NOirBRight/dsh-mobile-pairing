@@ -4,9 +4,9 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 
 ## Changelog
 
-### 0.1.20 candidate (not released)
+### 0.1.21
 
-Requires `@dsh-mobile/e2e-tunnel@0.1.6` as a non-optional peer. The release package has no Git runtime subdependency; the exact Git tag is retained only as this repository's build dependency. Tunnel is a library, not a DSH bundle, and needs no DSH core changes.
+Supports DSH `0.1.7-rc.1` with open-ended Host dependency ranges. Requires `@dsh-mobile/e2e-tunnel@0.1.6` as a non-optional peer. The release package has no Git runtime subdependency; the exact Git tag is retained only as this repository's build dependency. Tunnel is a library, not a DSH bundle, and needs no DSH core changes.
 
 ### 0.1.19
 
@@ -22,7 +22,7 @@ DSH Host packages are no longer version-locked. `@deepseek-ai/dsh-*` peers are `
 
 ## Compatibility
 
-Host integration packages remain optional wildcard peers. The 0.1.20 candidate also requires `@dsh-mobile/e2e-tunnel@0.1.6` as a non-optional peer; its Git tag is used only by this repository's build. `devDependencies` pin the compile target to DSH `0.1.7-alpha.2` and Cordis `4.0.4`; the Cordis peer is `~4.0.4`. Only alpha2 is verified in the manifest; unknown runtimes still follow the best-effort mount path.
+Host integration packages remain optional peers with no upper version bound. The 0.1.21 release also requires `@dsh-mobile/e2e-tunnel@0.1.6` as a non-optional peer; its Git tag is used only by this repository's build. `devDependencies` accept DSH `0.1.7-alpha.2` and later releases; the lock targets `0.1.7-rc.1` with Cordis `4.0.4`. Cordis peers support `>=4.0.4 <5.0.0`. DSH `0.1.7-alpha.2` and `0.1.7-rc.1` are verified in `package.json#dsh.compatibility.dshReleases`; unknown runtimes still follow the best-effort mount path.
 
 Verified Hosts in `package.json#dsh.compatibility.dshReleases` are evidence, not an allowlist. Unknown runtimes warn once and still use the best-effort mount path; only reproduced failures are blocklisted.
 
@@ -47,13 +47,14 @@ Verified Hosts in `package.json#dsh.compatibility.dshReleases` are evidence, not
 
 ## 配置位置
 
-### 0.1.20 候选包安装（尚未发布）
+### v0.1.21 发布包安装
 
-在独立 CLI profile 中按顺序执行；先把不可选的 Tunnel peer 安装为顶级包，再安装候选归档。不要在日常 `~/.dsh` / 3080 profile 中试装；3082 lab profile 继续使用本地 Pairing Link。
+按顺序安装：先把必需的 Tunnel peer 安装为顶级包，再安装 Pairing 发布归档。
 
 ~~~sh
-dsh plugin --profile web add --offline github:NOirBRight/dsh-e2e-tunnel#v0.1.6
-dsh plugin --profile web add --offline ./fixtures/alpha2/dsh-mobile-pairing-0.1.20.tgz
+dsh plugin --profile web add --force github:NOirBRight/dsh-e2e-tunnel#v0.1.6
+dsh plugin --profile web add --force \
+  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.21/dsh-mobile-pairing-0.1.21.tgz
 ~~~
 
 只把 `@dsh-mobile/pairing` 映射到 profile 的 `dsh.profile.bundles`；Tunnel 是 peer 库，没有 `dsh.bundle` entry。包内 `cordis.patch.yml` 会插入 Remote loader；默认配置面向日常 `:3080`：
@@ -130,42 +131,12 @@ npm pack --dry-run
 
 `verify:packed` requires pnpm 11.7.0. It checks the selected executable before installation and fails on any other version; when the default differs, set `PNPM_BIN` to an installed 11.7.0 executable, for example `PNPM_BIN=/absolute/path/to/pnpm.cjs npm run verify:packed`. The offline frozen-lockfile install and SHA-512 package integrity checks remain enabled; do not bypass supply-chain verification.
 
-The gate consumes committed `fixtures/alpha2/tarballs/*.tgz` and `PROVENANCE.json`, which pin clean DSH `dsh-v0.1.7-alpha.2` and e2e-tunnel `v0.1.6` sources plus the Pairing 0.1.20 candidate tarball. The source graph requires Tunnel as a non-optional exact-version peer; the packed Pairing manifest has no Git runtime child. It checks archive safety, hashes, manifests, exports, entry points, and recursive dependency closure, then installs only immutable archives and smoke-tests Host Webserver, Connection, Pairing, and their ModuleLoader client entries. No network or source `node_modules` is required.
+The gate consumes committed `fixtures/alpha2/tarballs/*.tgz` and `PROVENANCE.json`, which pin clean DSH `dsh-v0.1.7-alpha.2` and e2e-tunnel `v0.1.6` sources plus the Pairing 0.1.21 tarball. The source graph requires Tunnel as a non-optional exact-version peer; the packed Pairing manifest has no Git runtime child. It checks archive safety, hashes, manifests, exports, entry points, and recursive dependency closure, then installs only immutable archives and smoke-tests Host Webserver, Connection, Pairing, and their ModuleLoader client entries. No network or source `node_modules` is required.
 
-## Release installation (Latest)
-The latest published artifact remains v0.1.19. The 0.1.20 instructions above describe an unreleased candidate and its required offline peer-install order.
+## Release
 
-Host pairing gateway, QR/device management, WebRTC Direct, and encrypted tunnel fallback. The published v0.1.19 artifact targets DeepSeek Harness 0.1.2-alpha.4 through 0.1.5-rc.2; this source checkout targets 0.1.7-alpha.2 and does not change or supersede that release. It contains built Host/Client files only, with no sibling-repository source, workstation path, link:, or workspace: dependency.
+[v0.1.21](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.21) · [SHA-256](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.21/dsh-mobile-pairing-0.1.21.tgz.sha256)
 
-Latest installation (the URL never contains a version):
+更新时按上述顺序安装 Tunnel 与 Pairing，然后运行 `dsh plugin --profile web list` 和 `dsh plugin --profile web doctor` 验证。卸载使用 `dsh plugin --profile web remove @dsh-mobile/pairing`。
 
-~~~sh
-dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.19.tgz
-~~~
-
-Fixed-version installation:
-
-~~~sh
-dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.19/dsh-mobile-pairing-0.1.19.tgz
-~~~
-
-Update, uninstall, and verify:
-
-~~~sh
-# Update to the latest Release
-dsh plugin --profile web add --force \
-  https://github.com/NOirBRight/dsh-mobile-pairing/releases/latest/download/dsh-mobile-pairing-0.1.19.tgz
-# Verify the loaded version
-dsh plugin --profile web list
-dsh plugin --profile web doctor
-# Uninstall only this plugin
-dsh plugin --profile web remove @dsh-mobile/pairing
-~~~
-
-Configuration: use the plugin section in Settings for Web UI plugins, or the profile dsh.profile.bundles entry for Host-only plugins. Start with this README's minimal YAML/JSON example and provide credentials/backend addresses explicitly.
-
-Rollback: rerun the fixed v0.1.19 command, verify the profile list, then restart the Web service once. Inspect journalctl --user -u dsh-web.service and dsh plugin --profile web doctor; never put a source checkout in the production profile.
-
-Release and integrity: [v0.1.19](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.19) · [SHA256SUMS](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.19/SHA256SUMS).
+回滚到 v0.1.20：重新安装 [v0.1.20 发布归档](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.20/dsh-mobile-pairing-0.1.20.tgz)，检查 profile 列表，然后重启 Web 服务。

@@ -23,19 +23,19 @@
     }
   },
   "purpose": "Exact repository-owned, immutable recursive fixture tarballs for the Alpha.2 offline publication gate.",
-  "root": "@dsh-mobile/pairing@0.1.20",
+  "root": "@dsh-mobile/pairing@0.1.21",
   "consumer": {
     "lockfile": "consumer-pnpm-lock.yaml",
-    "sha256": "e4a36793b784cad8065e124dffa532fc51adaee0b104eb4621f4d53b2fd33943"
+    "sha256": "fb60078200ecbb27dd01a87fcfa6e7c2004223f14af0fbee5008e1c522c13275"
   },
   "rootArtifact": {
-    "tarball": "dsh-mobile-pairing-0.1.20.tgz",
+    "tarball": "dsh-mobile-pairing-0.1.21.tgz",
     "name": "@dsh-mobile/pairing",
-    "version": "0.1.20",
-    "bytes": 76105,
-    "sha256": "8a34b54bc1a1c942bbc93ddbdc1c0190b4ef97ba7783d4eab20611b92490b420",
-    "integrity": "sha512-G1/bHtw28sciGkytW2JasJ7bosEkmGPoSTOcpCdQNFVWvqFXz5MaO8gP217mT2OsFXIci5dHa2W1C/H9EHcYCw==",
-    "manifestSha256": "916eecaac68ece6f25e117ff2369ccb2126ad3a116144bc6be05d6dc9587f956",
+    "version": "0.1.21",
+    "bytes": 75651,
+    "sha256": "049ee1c51095ebbbd012ef63556264b8c890b2c6cc50889818c449533b2b4ca4",
+    "integrity": "sha512-vIsi55HqOhgVsCc1lyhsIWIix8L9CUUFeYGhslh3swJRZbnRYE6++8tGP8JmkrJ2V/gF0Dz4oXvarPohsCfqJQ==",
+    "manifestSha256": "632c768bf43eb3572ff5ff73ccb715e3f862bdee664b5e084e47235fbab8f3e7",
     "npmVersion": "11.19.1"
   },
   "packages": {
@@ -1527,7 +1527,7 @@
   },
   "edges": [
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "@deepseek-ai/schemastery",
       "declaredRange": "~3.18.4",
       "section": "dependencies",
@@ -1535,7 +1535,7 @@
       "child": "@deepseek-ai/schemastery@3.18.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "qrcode",
       "declaredRange": "^1.5.4",
       "section": "dependencies",
@@ -1543,7 +1543,7 @@
       "child": "qrcode@1.5.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "tweetnacl",
       "declaredRange": "^1.0.3",
       "section": "dependencies",
@@ -1551,7 +1551,7 @@
       "child": "tweetnacl@1.0.3"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "werift",
       "declaredRange": "^0.24.4",
       "section": "dependencies",
@@ -1559,7 +1559,7 @@
       "child": "werift@0.24.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "ws",
       "declaredRange": "^8.18.0",
       "section": "dependencies",
@@ -1567,23 +1567,23 @@
       "child": "ws@8.21.3"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "@deepseek-ai/cordis",
-      "declaredRange": "~4.0.4",
+      "declaredRange": ">=4.0.4 <5.0.0",
       "section": "peerDependencies",
       "optional": false,
       "child": "@deepseek-ai/cordis@4.0.4"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "@deepseek-ai/dsh-host-webserver",
-      "declaredRange": "*",
+      "declaredRange": ">=0.1.7-alpha.2",
       "section": "peerDependencies",
       "optional": true,
       "child": "@deepseek-ai/dsh-host-webserver@0.1.7-alpha.2"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "react",
       "declaredRange": "^18.2.0",
       "section": "peerDependencies",
@@ -1591,15 +1591,15 @@
       "child": "react@18.3.1"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "@deepseek-ai/dsh-client-connection",
-      "declaredRange": "*",
+      "declaredRange": ">=0.1.7-alpha.2",
       "section": "peerDependencies",
       "optional": true,
       "child": "@deepseek-ai/dsh-client-connection@0.1.7-alpha.2"
     },
     {
-      "parent": "@dsh-mobile/pairing@0.1.20",
+      "parent": "@dsh-mobile/pairing@0.1.21",
       "dependency": "@dsh-mobile/e2e-tunnel",
       "declaredRange": "0.1.6",
       "section": "peerDependencies",

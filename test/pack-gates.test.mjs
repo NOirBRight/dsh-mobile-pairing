@@ -99,7 +99,7 @@ test('ignored fixture paths are rejected', async () => {
   } finally { await rm(parent, { recursive: true, force: true }) }
 })
 
-test('package-lock pins the required e2e peer, build source, and official alpha2 integrities', () => {
+test('package-lock pins the required e2e peer, build source, and official rc1 integrities', () => {
   const lock = validatePackageLock(PROJECT_ROOT)
   const root = lock.packages['']
   assert.equal(root.peerDependencies?.[tunnelName], '0.1.6')
@@ -112,7 +112,7 @@ test('package-lock pins the required e2e peer, build source, and official alpha2
 test('stale package-lock and alias resolutions fail publication checks', async () => {
   const mutations = [
     { name: 'Git identity', apply: lock => { lock.packages['node_modules/' + tunnelName].resolved = 'git+ssh://git@github.com/NOirBRight/dsh-e2e-tunnel.git#wrong' }, pattern: /exact e2e Git commit/ },
-    { name: 'official version', apply: lock => { lock.packages['node_modules/@deepseek-ai/dsh-client-connection'].version = '0.1.2-alpha.2' }, pattern: /alpha2/ },
+    { name: 'official version', apply: lock => { lock.packages['node_modules/@deepseek-ai/dsh-client-connection'].version = '0.1.2-alpha.2' }, pattern: /rc1/ },
     { name: 'alias resolution', apply: lock => { lock.packages['node_modules/' + tunnelName].version = 'npm:@dsh-mobile/e2e-tunnel@0.1.5' }, pattern: /alias/ },
     { name: 'unapproved Git resolution', apply: lock => { lock.packages['node_modules/tweetnacl'].resolved = 'git+https://github.com/example/tweetnacl.git#deadbeef' }, pattern: /unapproved Git/ },
   ]

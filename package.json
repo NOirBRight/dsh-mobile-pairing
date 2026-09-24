@@ -1,6 +1,6 @@
 {
   "name": "@dsh-mobile/pairing",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "type": "module",
   "description": "DSH Mobile Remote plugin: Host Gateway, Public Endpoint pairing, WebRTC Direct, encrypted Tunnel Fallback",
   "license": "MIT",
@@ -33,7 +33,8 @@
     },
     "compatibility": {
       "dshReleases": {
-        "0.1.7-alpha.2": "compatible"
+        "0.1.7-alpha.2": "compatible",
+        "0.1.7-rc.1": "compatible"
       }
     }
   },
@@ -63,23 +64,23 @@
     "ws": "^8.18.0"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "~4.0.4",
-    "@deepseek-ai/dsh-host-webserver": "*",
+    "@deepseek-ai/cordis": ">=4.0.4 <5.0.0",
+    "@deepseek-ai/dsh-host-webserver": ">=0.1.7-alpha.2",
     "react": "^18.2.0",
-    "@deepseek-ai/dsh-client-connection": "*",
+    "@deepseek-ai/dsh-client-connection": ">=0.1.7-alpha.2",
     "@dsh-mobile/e2e-tunnel": "0.1.6"
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "4.0.4",
-    "@deepseek-ai/dsh-brand": "0.1.7-alpha.2",
-    "@deepseek-ai/dsh-invariants": "0.1.7-alpha.2",
-    "@deepseek-ai/dsh-session": "0.1.7-alpha.2",
-    "@deepseek-ai/dsh-host-webserver": "0.1.7-alpha.2",
-    "@deepseek-ai/dsh-scope": "0.1.7-alpha.2",
-    "@deepseek-ai/dsh-client-locale": "0.1.7-alpha.2",
-    "@deepseek-ai/dsh-client-ui-renderer": "0.1.7-alpha.2",
-    "@deepseek-ai/dsh-client-ui-settings": "0.1.7-alpha.2",
-    "@deepseek-ai/dsh-client-ui-slots": "0.1.7-alpha.2",
+    "@deepseek-ai/dsh-brand": ">=0.1.7-alpha.2",
+    "@deepseek-ai/dsh-invariants": ">=0.1.7-alpha.2",
+    "@deepseek-ai/dsh-session": ">=0.1.7-alpha.2",
+    "@deepseek-ai/dsh-host-webserver": ">=0.1.7-alpha.2",
+    "@deepseek-ai/dsh-scope": ">=0.1.7-alpha.2",
+    "@deepseek-ai/dsh-client-locale": ">=0.1.7-alpha.2",
+    "@deepseek-ai/dsh-client-ui-renderer": ">=0.1.7-alpha.2",
+    "@deepseek-ai/dsh-client-ui-settings": ">=0.1.7-alpha.2",
+    "@deepseek-ai/dsh-client-ui-slots": ">=0.1.7-alpha.2",
     "@dsh-mobile/e2e-tunnel": "github:NOirBRight/dsh-e2e-tunnel#v0.1.6",
     "@types/node": "^22.0.0",
     "@types/qrcode": "^1.5.5",
@@ -89,7 +90,7 @@
     "semver": "^7.7.4",
     "tsdown": "^0.22.2",
     "typescript": "^5.9.3",
-    "@deepseek-ai/dsh-client-connection": "0.1.7-alpha.2"
+    "@deepseek-ai/dsh-client-connection": ">=0.1.7-alpha.2"
   },
   "peerDependenciesMeta": {
     "@deepseek-ai/dsh-client-connection": {

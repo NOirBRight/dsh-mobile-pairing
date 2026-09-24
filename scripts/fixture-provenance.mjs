@@ -10,7 +10,7 @@ import { createChildEnvironment } from './fixture-runtime.mjs'
 export const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 export const FIXTURE_ROOT = join(PROJECT_ROOT, 'fixtures', 'alpha2')
 export const PAIRING_NAME = '@dsh-mobile/pairing'
-export const PAIRING_VERSION = '0.1.20'
+export const PAIRING_VERSION = '0.1.21'
 export const TUNNEL_NAME = '@dsh-mobile/e2e-tunnel'
 export const TUNNEL_VERSION = '0.1.6'
 export const TUNNEL_COMMIT = 'b9c36009dea33f4553b87863f76b41f5f5f6ed17'
@@ -25,6 +25,18 @@ export const OFFICIAL_SOURCE = Object.freeze({
 export const ALPHA2_DEV_TREE = Object.freeze({
   '@deepseek-ai/dsh-host-webserver': Object.freeze({ version: '0.1.7-alpha.2', integrity: 'sha512-H97nDYHfWD238ayeOogFowC2v7Tm1R6hM6scIsFxcstu+Xz4B1em/Zw5NVzV6zBherCoEqmtvUDhM3ZEDLKSmg==' }),
   '@deepseek-ai/dsh-client-connection': Object.freeze({ version: '0.1.7-alpha.2', integrity: 'sha512-fymg/MniqtZ4yM1oVvLrXRpHxYDiAuuMRXJYL9Pa8neFOrWUl7aFxgaW1dsfWryx3rSDVlcdM5OLVpldwewnQw==' }),
+})
+export const RC1_DEV_TREE = Object.freeze({
+  '@deepseek-ai/dsh-brand': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-KvfCuVAiosEyqb37LbGwi2Li90VZXcIDaqM+CxV9qNoyQmGezh8UjFkNQENieT2hPzfQ4CiADbA3vJeLpeQm/g==' }),
+  '@deepseek-ai/dsh-invariants': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-YpV5n0THgTw98raUaqblDYNWxraX5A7oxOIHcr8w8eJyWE+XEJLePITeAwxZfwD+ElonZIvijZbk2twqFANNhg==' }),
+  '@deepseek-ai/dsh-session': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-5R3g4UQ7KoezqHJ9LxqMgaGZWw0R3zZCypPm4R5dPxSB8xHCQvjfgaCrHYdPBT63B4coxollWupjyQTOdiWSKQ==' }),
+  '@deepseek-ai/dsh-host-webserver': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-av/dIbhYjR3OEwvKQTSXuSVLf+lPS3a4FKEDK9A89TdzY0VrI5g4lwMQ93StROrX/GOOR/oa1U3TyJpD4qfcfw==' }),
+  '@deepseek-ai/dsh-scope': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-douIAb+JNUHa6NoLvrgxY3f04NYfR6ZWcdmRnng5KTu+dbR/RrQLsxcG5unOJod1bn6aHQI3PLQ+FOP0zPaZTg==' }),
+  '@deepseek-ai/dsh-client-locale': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-7DmI05k+FUZaDk0SEqJahDQn75SoENuUeoFjPG1nzXXxU8xq1KsE5kWgKlwtbOTCpbvn/ax4F5FhRjZnpJZQkg==' }),
+  '@deepseek-ai/dsh-client-ui-renderer': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-16hZTlTJbnHis8WfAZW4tIYeoULac7dG/onM1M7e2FWNeTEISUGBKPSAJYhxrym5FK3yEma2vn/udxQSXC0P2g==' }),
+  '@deepseek-ai/dsh-client-ui-settings': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-FrcpAwLUxzI3nkgWj1OEzRbIC9Sf+O+FH8EFDTLozg0tlrMPpI/z5dEpHir1Amae/CPUa7dCG3OJN+RYy9m+Wg==' }),
+  '@deepseek-ai/dsh-client-ui-slots': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-w6rj/Jl8Q3RUJMVxrN6xea1CjdyXomAm7M2/CVbbxXMf582ap20lfK/Hj9qL/WTorri8kRVg78AxS+6AiUJOKw==' }),
+  '@deepseek-ai/dsh-client-connection': Object.freeze({ version: '0.1.7-rc.1', integrity: 'sha512-lEH9Aw+rlQJIzlYl53tNZ6Zz60H/6CuBMmLO+f0K2kuBqgD4wbHzG8iMNPTrf6k4puPtoLM4/bNEIaSi8adehA==' }),
 })
 
 const CLEAN_EVIDENCE = Object.freeze({
@@ -251,10 +263,10 @@ export function validatePackageLock(packageRoot = PROJECT_ROOT) {
   }
   const tunnel = lock.packages['node_modules/' + TUNNEL_NAME]
   if (tunnel?.version !== TUNNEL_VERSION || tunnel?.resolved !== 'git+ssh://git@github.com/NOirBRight/dsh-e2e-tunnel.git#' + TUNNEL_COMMIT) fail('package-lock does not pin the exact e2e Git commit')
-  for (const name of ['@deepseek-ai/dsh-client-connection', '@deepseek-ai/dsh-host-webserver']) {
+  for (const [name, expected] of Object.entries(RC1_DEV_TREE)) {
     const entry = lock.packages['node_modules/' + name]
-    if (entry?.version !== ALPHA2_DEV_TREE[name].version) fail('package-lock does not pin alpha2 for ' + name)
-    if (entry.integrity !== ALPHA2_DEV_TREE[name].integrity) fail('package-lock integrity disagrees with the alpha2 registry bytes for ' + name)
+    if (entry?.version !== expected.version) fail('package-lock does not pin rc1 for ' + name)
+    if (entry.integrity !== expected.integrity) fail('package-lock integrity disagrees with the rc1 registry bytes for ' + name)
   }
   return lock
 }

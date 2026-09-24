@@ -220,7 +220,7 @@ function DshMobileCard({ t }: { t: Translate }) {
       const response = await fetch(REMOTE_SETTINGS_API.endpoint, { method: 'POST', credentials: 'same-origin', cache: 'no-store', headers: { 'content-type': 'application/json' }, body: JSON.stringify(request) })
       const decoded = decodeEndpointSaveResult(await response.json())
       if (decoded === null) throw new Error('invalid save response')
-      if (!decoded.ok) {
+      if (decoded.ok === false) {
         setSaveError(t(({ endpoint: 'stageEndpoint', tls: 'stageTls', identity: 'stageIdentity', protocol: 'stageProtocol', capabilities: 'stageCapabilities', websocket: 'stageWebsocket', relay: 'stageRelay' } as const)[decoded.stage]))
         return
       }
