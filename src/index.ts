@@ -1,13 +1,12 @@
 /** Host-owned Public Endpoint and bounded loopback Gateway plugin. */
 import type { Context } from '@deepseek-ai/cordis'
-import type {} from '@deepseek-ai/dsh-settings'
+import type { ConnectionFetchRoute } from '@deepseek-ai/dsh-client-connection'
 import type { WebServer } from '@deepseek-ai/dsh-host-webserver'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { randomBytes } from 'node:crypto'
 import { join } from 'node:path'
 import { spawn } from 'node:child_process'
 import { renderPairingQrSvg } from './qr.ts'
-import z from '@deepseek-ai/schemastery'
 import { compactDisplayName } from '@dsh-mobile/e2e-tunnel'
 import { Config, resolveConfig } from './config.ts'
 import { loadOrCreateKeypair } from './keys.ts'
@@ -27,17 +26,10 @@ import { QuickTunnelController, type QuickTunnelStatus } from './quick-tunnel.ts
 import { validateCustomEndpoint, validateRelayEndpoint, createNodeCustomEndpointAdapters } from './public-endpoint.ts'
 import { applyPublicEndpointSelection, loadPublicEndpointOverlay, parseEndpointSelection, savePublicEndpointOverlay } from './endpoint-settings.ts'
 import { renderPairingSettingsPage } from './settings-page.ts'
+import { registerAuthenticatedPairRoutes, REMOTE_SETTINGS_ROUTES } from './pairing-routes.ts'
 
 export const name = 'dsh-mobile-pairing'
 export const inject = ['webServer']
-const REMOTE_SETTINGS_API = {
-  status: '/api/dsh-mobile/remote/status',
-  devices: '/api/dsh-mobile/remote/devices',
-  endpoint: '/api/dsh-mobile/remote/endpoint',
-  revoke: '/api/dsh-mobile/remote/revoke',
-  label: '/api/dsh-mobile/remote/label',
-  pair: '/api/dsh-mobile/remote/pair',
-} as const
 export { Config, resolveConfig } from './config.ts'
 export { loadOrCreateKeypair } from './keys.ts'; export type { DaemonKeypair } from './keys.ts'
 export { DeviceTokenStore, DeviceLimitError, MAX_LIVE_DEVICES } from './tokens.ts'; export type { DeviceClientType, DeviceRecord } from './tokens.ts'
@@ -63,12 +55,6 @@ export function apply(ctx: Context, config: Config): void {
   if (!allowDshRuntime(ctx.logger, 'dsh-mobile-pairing', ['@deepseek-ai/dsh-host-webserver'])) return
 
   const webServer: WebServer = ctx.webServer
-  ctx.inject(['settings'], (settingsCtx) => {
-    settingsCtx.settings.installSection(ctx, 'dsh-mobile', z.object({}), {}, {
-      setSource: () => {},
-      onChange: () => {},
-    })
-  })
   const resolved = resolveConfig(config)
   const displayName = compactDisplayName(resolved.hostName, 'Host')
   const overlayPath = join(resolved.dshHome, 'mobile', 'public-endpoint.json')
@@ -304,14 +290,14 @@ export function apply(ctx: Context, config: Config): void {
       return gateway.close()
     }
   })
-  async function handleEndpointSave(req: IncomingMessage, res: ServerResponse): Promise<void> {
-    if (req.method !== 'POST') return methodNotAllowed(res)
-    const body = await readJsonBody(req, res)
-    if (body === null) return
-    const selection = parseEndpointSelection(body)
-    if ('error' in selection) { json(res, 400, { ok: false, stage: 'endpoint', error: selection.error }); return }
+  async function handleEndpointSave(req: PairingRequest): Promise<Response> {
+    if (req.method !== 'POST') return methodNotAllowedResponse()
+    const input = await readJsonBody(req)
+    if (!input.ok) return input.response
+    const selection = parseEndpointSelection(input.value)
+    if ('error' in selection) return jsonResponse(400, { ok: false, stage: 'endpoint', error: selection.error })
     const applied = await applyPublicEndpointSelection(selection, { hostIdentity: keypair.publicKeyBase64Url, adapters: createNodeCustomEndpointAdapters() })
-    if (!applied.ok) { json(res, 422, applied); return }
+    if (!applied.ok) return jsonResponse(422, applied)
     savePublicEndpointOverlay(overlayPath, selection)
     live.mode = selection.endpointMode
     live.customUrl = selection.customEndpointUrl
@@ -346,46 +332,81 @@ export function apply(ctx: Context, config: Config): void {
         }
       }
     }
-    json(res, 200, { ok: true, endpoint, endpointMode: live.mode, endpointState, endpointError, customEndpointUrl: live.customUrl ?? null, relayUrl: live.relayUrl ?? null, ...(applied.endpointMode === 'custom' ? { check: applied.check } : {}) })
+    return jsonResponse(200, { ok: true, endpoint, endpointMode: live.mode, endpointState, endpointError, customEndpointUrl: live.customUrl ?? null, relayUrl: live.relayUrl ?? null, ...(applied.endpointMode === 'custom' ? { check: applied.check } : {}) })
   }
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/ui', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' }); res.end(renderPairingSettingsPage({ hostIdentity: keypair.publicKeyBase64Url, endpoint, endpointMode: live.mode, endpointState, endpointError, customEndpointUrl: live.customUrl, relayUrl: live.relayUrl })) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/status', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { endpoint, endpointMode: live.mode, endpointState, endpointError, customEndpointUrl: live.customUrl ?? null, relayUrl: live.relayUrl ?? null, hostIdentity: keypair.publicKeyBase64Url, configuration: { file: 'cordis.patch.yml', entryId: 'dsh-mobile-pairing', customEndpointField: 'customEndpointUrl', relayEndpointField: 'relayUrl', legacyRelayConfigured: resolved.signalingUrl !== undefined, relayConfigured: live.relayUrl !== undefined } }) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/endpoint', handler: (req, res) => { void handleEndpointSave(req, res) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair', handler: (req, res) => handleLocalPair(req, res, endpoint, keypair.publicKeyBase64Url, resolved.appUrl, displayName, resolved.stunUrls, offers, store, gateway, ensureRelayRoom) }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/devices', handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { devices: store.list() }) } }))
-  async function handleRevoke(req: IncomingMessage, res: ServerResponse): Promise<void> {
-    if (req.method !== 'POST') return methodNotAllowed(res)
-    const body = await readJsonBody(req, res)
-    if (body === null) return
-    const id = (body as Record<string, unknown>).id
+  async function handleRevoke(req: PairingRequest): Promise<Response> {
+    if (req.method !== 'POST') return methodNotAllowedResponse()
+    const input = await readJsonBody(req)
+    if (!input.ok) return input.response
+    const record = input.value as Record<string, unknown> | null
+    const id = record !== null && typeof record === 'object' ? record.id : undefined
     const room = typeof id === 'string' ? store.list().find(device => device.id === id)?.room : undefined
     const revoked = typeof id === 'string' && store.revoke(id)
     if (revoked && room !== undefined && !store.hasLiveForRoom(room)) {
       closeCampaign(room)
       closeGatewayRoom(room)
     }
-    json(res, revoked ? 200 : 404, { ok: revoked })
+    return jsonResponse(revoked ? 200 : 404, { ok: revoked })
   }
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/revoke', handler: (req, res) => { void handleRevoke(req, res) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: '/pair/label', handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const record = body as Record<string, unknown>; const renamed = typeof record.id === 'string' && typeof record.label === 'string' && store.rename(record.id, record.label); json(res, renamed ? 200 : 404, { ok: renamed }) } }))
+  async function handleLabel(req: PairingRequest): Promise<Response> {
+    if (req.method !== 'POST') return methodNotAllowedResponse()
+    const input = await readJsonBody(req)
+    if (!input.ok) return input.response
+    const record = input.value as Record<string, unknown> | null
+    const renamed = record !== null && typeof record === 'object'
+      && typeof record.id === 'string' && typeof record.label === 'string'
+      && store.rename(record.id, record.label)
+    return jsonResponse(renamed ? 200 : 404, { ok: renamed })
+  }
+  function statusResponse(): Response {
+    return jsonResponse(200, { endpoint, endpointMode: live.mode, endpointState, endpointError, customEndpointUrl: live.customUrl ?? null, relayUrl: live.relayUrl ?? null, hostIdentity: keypair.publicKeyBase64Url, configuration: { file: 'cordis.patch.yml', entryId: 'dsh-mobile-pairing', customEndpointField: 'customEndpointUrl', relayEndpointField: 'relayUrl', legacyRelayConfigured: resolved.signalingUrl !== undefined, relayConfigured: live.relayUrl !== undefined } })
+  }
+  function devicesResponse(): Response {
+    return jsonResponse(200, { devices: store.list() })
+  }
+  function handlePair(req: PairingRequest): Promise<Response> {
+    return handleLocalPair(req, endpoint, keypair.publicKeyBase64Url, resolved.appUrl, displayName, resolved.stunUrls, offers, store, gateway, ensureRelayRoom)
+  }
 
-  // The mobile shell reaches the Host through the authenticated tunnel. Keep
-  // the operator-facing /pair/* paths blocked there, and expose only these
-  // explicit remote-settings aliases to the paired device.
-  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.status, handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { endpoint, endpointMode: live.mode, endpointState, endpointError, customEndpointUrl: live.customUrl ?? null, relayUrl: live.relayUrl ?? null, hostIdentity: keypair.publicKeyBase64Url, configuration: { file: 'cordis.patch.yml', entryId: 'dsh-mobile-pairing', customEndpointField: 'customEndpointUrl', relayEndpointField: 'relayUrl', legacyRelayConfigured: resolved.signalingUrl !== undefined, relayConfigured: live.relayUrl !== undefined } }) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.endpoint, handler: (req, res) => { void handleEndpointSave(req, res) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.pair, handler: (req, res) => handleLocalPair(req, res, endpoint, keypair.publicKeyBase64Url, resolved.appUrl, displayName, resolved.stunUrls, offers, store, gateway, ensureRelayRoom) }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.devices, handler: (req, res) => { if (req.method !== 'GET') return methodNotAllowed(res); json(res, 200, { devices: store.list() }) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.revoke, handler: (req, res) => { void handleRevoke(req, res) } }))
-  ctx.effect(() => webServer.register({ kind: 'exact', path: REMOTE_SETTINGS_API.label, handler: async (req, res) => { if (req.method !== 'POST') return methodNotAllowed(res); const body = await readJsonBody(req, res); if (body === null) return; const record = body as Record<string, unknown>; const renamed = typeof record.id === 'string' && typeof record.label === 'string' && store.rename(record.id, record.label); json(res, renamed ? 200 : 404, { ok: renamed }) } }))
+  const fetchRoutes: ConnectionFetchRoute[] = [
+    { path: REMOTE_SETTINGS_ROUTES.status, methods: ['GET'], requestBody: 'buffered', fetch: safeFetch(statusResponse) },
+    { path: REMOTE_SETTINGS_ROUTES.devices, methods: ['GET'], requestBody: 'buffered', fetch: safeFetch(devicesResponse) },
+    { path: REMOTE_SETTINGS_ROUTES.endpoint, methods: ['POST'], requestBody: 'buffered', fetch: safeFetch(handleEndpointSave) },
+    { path: REMOTE_SETTINGS_ROUTES.pair, methods: ['GET'], requestBody: 'buffered', fetch: safeFetch(handlePair) },
+    { path: REMOTE_SETTINGS_ROUTES.revoke, methods: ['POST'], requestBody: 'buffered', fetch: safeFetch(handleRevoke) },
+    { path: REMOTE_SETTINGS_ROUTES.label, methods: ['POST'], requestBody: 'buffered', fetch: safeFetch(handleLabel) },
+  ]
+  const adminRoutes = [
+    { path: '/pair/ui', handler: webServerHandler(async req => req.method === 'GET'
+      ? new Response(renderPairingSettingsPage({ hostIdentity: keypair.publicKeyBase64Url, endpoint, endpointMode: live.mode, endpointState, endpointError, customEndpointUrl: live.customUrl, relayUrl: live.relayUrl }), { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } })
+      : methodNotAllowedResponse()) },
+    { path: '/pair/status', handler: webServerHandler(async req => req.method === 'GET' ? statusResponse() : methodNotAllowedResponse()) },
+    { path: '/pair/endpoint', handler: webServerHandler(handleEndpointSave) },
+    { path: '/pair/devices', handler: webServerHandler(async req => req.method === 'GET' ? devicesResponse() : methodNotAllowedResponse()) },
+    { path: '/pair/revoke', handler: webServerHandler(handleRevoke) },
+    { path: '/pair/label', handler: webServerHandler(handleLabel) },
+  ]
 
+  ctx.effect(() => {
+    const connectionFiber = ctx.inject(['connection', 'webServer'], connectionCtx => {
+      registerAuthenticatedPairRoutes(connectionCtx, connectionCtx.webServer, connectionCtx.connection, fetchRoutes, adminRoutes)
+    })
+    return () => connectionFiber.dispose()
+  }, 'dsh-mobile-pairing: authenticated routes')
+  ctx.effect(() => webServer.register({
+    kind: 'exact',
+    path: '/pair',
+    handler: webServerHandler(handlePair),
+  }), 'dsh-mobile-pairing: public pairing route')
 }
-async function handleLocalPair(req: IncomingMessage, res: ServerResponse, endpoint: GatewayEndpoint | null, pubkey: string, appUrl: string, hostName: string, stunUrls: string[], offers: PairingOfferManager, store: Pick<DeviceTokenStore, 'hasLiveForRoom'>, gateway: { authorizeRoom(room: string, expiresAtMs?: number): void }, ensureRelayRoom: (room: string, code: string) => void): Promise<void> {
-  if (req.method !== 'GET') return methodNotAllowed(res)
-  if (endpoint === null) { json(res, 503, { error: 'Public Endpoint is not ready' }); return }
-  const params = new URL(req.url ?? '/', 'http://loopback').searchParams
+type PairingRequest = Request | IncomingMessage
+async function handleLocalPair(req: PairingRequest, endpoint: GatewayEndpoint | null, pubkey: string, appUrl: string, hostName: string, stunUrls: string[], offers: PairingOfferManager, store: Pick<DeviceTokenStore, 'hasLiveForRoom'>, gateway: { authorizeRoom(room: string, expiresAtMs?: number): void }, ensureRelayRoom: (room: string, code: string) => void): Promise<Response> {
+  if (req.method !== 'GET') return methodNotAllowedResponse()
+  if (endpoint === null) return jsonResponse(503, { error: 'Public Endpoint is not ready' })
+  const url = req instanceof Request ? req.url : req.url ?? '/'
+  const params = new URL(url, 'http://loopback').searchParams
   const requestedRoom = params.get('room')
-  if (requestedRoom !== null && !store.hasLiveForRoom(requestedRoom)) { json(res, 404, { error: 'unknown authorized device room' }); return }
+  if (requestedRoom !== null && !store.hasLiveForRoom(requestedRoom)) return jsonResponse(404, { error: 'unknown authorized device room' })
   const room = requestedRoom ?? randomBytes(16).toString('hex')
   if (endpoint.kind === 'relay') {
     const offer = offers.mint('relay', endpoint.url, room, pubkey, undefined, hostName)
@@ -393,10 +414,9 @@ async function handleLocalPair(req: IncomingMessage, res: ServerResponse, endpoi
     const nativeOfferUrl = buildOfferUrl(appUrl, offer)
     if (params.get('format') === 'svg') {
       const svg = await renderPairingQrSvg(nativeOfferUrl)
-      res.writeHead(200, { 'content-type': 'image/svg+xml', 'cache-control': 'no-store' }); res.end(svg); return
+      return new Response(svg, { headers: { 'content-type': 'image/svg+xml', 'cache-control': 'no-store' } })
     }
-    json(res, 200, { ...offer, offerUrl: nativeOfferUrl, nativeOfferUrl })
-    return
+    return jsonResponse(200, { ...offer, offerUrl: nativeOfferUrl, nativeOfferUrl })
   }
   const offer = offers.mintPublic({ endpoint: endpoint.url, endpointKind: endpoint.kind, room, pubkey, hostName, ice: stunUrls })
   gateway.authorizeRoom(room, offer.exp * 1000)
@@ -404,9 +424,9 @@ async function handleLocalPair(req: IncomingMessage, res: ServerResponse, endpoi
   if (params.get('format') === 'svg') {
     const compactUrl = buildCompactPublicOfferUrl(appUrl, offer)
     const svg = await renderPairingQrSvg(compactUrl)
-    res.writeHead(200, { 'content-type': 'image/svg+xml', 'cache-control': 'no-store' }); res.end(svg); return
+    return new Response(svg, { headers: { 'content-type': 'image/svg+xml', 'cache-control': 'no-store' } })
   }
-  json(res, 200, { ...offer, offerUrl: nativeOfferUrl, nativeOfferUrl })
+  return jsonResponse(200, { ...offer, offerUrl: nativeOfferUrl, nativeOfferUrl })
 }
 const RETAINED_QUICK = Symbol.for('dsh-mobile.quick-tunnel')
 function retainQuickTunnel(controller?: QuickTunnelController | null): QuickTunnelController | null {
@@ -415,6 +435,68 @@ function retainQuickTunnel(controller?: QuickTunnelController | null): QuickTunn
   if (controller !== undefined) holder[RETAINED_QUICK] = controller
   return holder[RETAINED_QUICK] ?? null
 }
-function methodNotAllowed(res: ServerResponse): void { res.writeHead(405); res.end() }
-function json(res: ServerResponse, status: number, body: unknown): void { res.writeHead(status, { 'content-type': 'application/json', 'cache-control': 'no-store' }); res.end(JSON.stringify(body)) }
-async function readJsonBody(req: IncomingMessage, res: ServerResponse): Promise<unknown | null> { const chunks: Buffer[] = []; let size = 0; for await (const chunk of req) { size += (chunk as Buffer).length; if (size > 64 * 1024) { res.writeHead(413); res.end(); return null }; chunks.push(chunk as Buffer) }; try { return JSON.parse(Buffer.concat(chunks).toString()) } catch { json(res, 400, { error: 'invalid JSON body' }); return null } }
+function methodNotAllowedResponse(): Response {
+  return new Response(null, { status: 405 })
+}
+function jsonResponse(status: number, body: unknown): Response {
+  return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } })
+}
+async function readJsonBody(req: PairingRequest): Promise<{ ok: true; value: unknown } | { ok: false; response: Response }> {
+  const chunks: Uint8Array[] = []
+  let size = 0
+  if (req instanceof Request) {
+    const reader = req.body?.getReader()
+    if (reader !== undefined) {
+      try {
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          size += value.byteLength
+          if (size > 64 * 1024) {
+            await reader.cancel().catch(() => {})
+            return { ok: false, response: new Response(null, { status: 413 }) }
+          }
+          chunks.push(value)
+        }
+      } finally {
+        reader.releaseLock()
+      }
+    }
+  } else {
+    for await (const chunk of req) {
+      const bytes = chunk as Uint8Array
+      size += bytes.byteLength
+      if (size > 64 * 1024) return { ok: false, response: new Response(null, { status: 413 }) }
+      chunks.push(bytes)
+    }
+  }
+  const bytes = Buffer.concat(chunks.map(chunk => Buffer.from(chunk.buffer, chunk.byteOffset, chunk.byteLength)))
+  try {
+    return { ok: true, value: JSON.parse(bytes.toString()) }
+  } catch {
+    return { ok: false, response: jsonResponse(400, { error: 'invalid JSON body' }) }
+  }
+}
+function safeFetch(handler: (req: Request) => Response | Promise<Response>): (req: Request) => Promise<Response> {
+  return async req => {
+    try {
+      return await handler(req)
+    } catch {
+      return jsonResponse(500, { error: 'internal server error' })
+    }
+  }
+}
+function webServerHandler(handler: (req: PairingRequest) => Promise<Response>): (req: IncomingMessage, res: ServerResponse) => Promise<void> {
+  return async (req, res) => {
+    let response: Response
+    try {
+      response = await handler(req)
+    } catch {
+      response = jsonResponse(500, { error: 'internal server error' })
+    }
+    const headers: Record<string, string> = {}
+    response.headers.forEach((value, key) => { headers[key] = value })
+    res.writeHead(response.status, headers)
+    res.end(Buffer.from(await response.arrayBuffer()))
+  }
+}

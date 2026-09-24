@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { shouldMountDshRuntime } from '../src/compatibility.ts'
 
-const VERIFIED = new Set(['0.1.2-alpha.4', '0.1.2-rc.1'])
+const VERIFIED = new Set(['0.1.7-alpha.2'])
 
 test('warns and still attempts an unverified future runtime', () => {
   const warnings = []
@@ -24,6 +24,6 @@ test('blocks only an explicitly reproduced version with a visible reason', () =>
 
 test('does not warn for a verified runtime', () => {
   const warnings = []
-  assert.equal(shouldMountDshRuntime({ warn: message => warnings.push(message) }, 'test-plugin', '0.1.2-rc.1', VERIFIED), true)
+  assert.equal(shouldMountDshRuntime({ warn: message => warnings.push(message) }, 'test-plugin', '0.1.7-alpha.2', VERIFIED), true)
   assert.deepEqual(warnings, [])
 })

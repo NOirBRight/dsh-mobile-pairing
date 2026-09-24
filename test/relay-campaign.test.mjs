@@ -47,12 +47,12 @@ async function openGatewaySocket(port, room) {
   throw new Error('Gateway did not start')
 }
 
-function invoke(handler, { method = 'POST', body } = {}) {
+function invoke(handler, { method = 'POST', body, authorized = true } = {}) {
   return new Promise((resolve, reject) => {
     const req = Readable.from([Buffer.from(JSON.stringify(body ?? {}))])
     req.method = method
     req.url = '/pair/revoke'
-    req.headers = {}
+    req.headers = authorized ? { authorization: 'Bearer test' } : {}
     let status = 0
     const chunks = []
     const res = {
@@ -66,6 +66,13 @@ function invoke(handler, { method = 'POST', body } = {}) {
       },
     }
     Promise.resolve(handler(req, res)).catch(reject)
+  })
+}
+
+function provideConnection(ctx) {
+  ctx.provide('connection', {
+    admit: req => req.headers.authorization === 'Bearer test' ? {} : { rejection: 401 },
+    fetch: { register: () => () => {} },
   })
 }
 
@@ -154,6 +161,7 @@ test('revoke stops the matching relay campaign and unmount tears the rest down',
       return () => handlers.delete(route.path)
     },
   })
+  provideConnection(ctx)
   apply(ctx, Config({
     dshHome: dir,
     dshPort: 18789,
@@ -167,6 +175,9 @@ test('revoke stops the matching relay campaign and unmount tears the rest down',
   await waitFor(() => (relay.rooms.get(roomA)?.sockets.length ?? 0) >= 1 && (relay.rooms.get(roomB)?.sockets.length ?? 0) >= 1)
   const connectsA = relay.rooms.get(roomA).connects
   const connectsB = relay.rooms.get(roomB).connects
+  const denied = await invoke(handlers.get('/pair/revoke'), { body: { id: deviceA.id }, authorized: false })
+  assert.equal(denied.status, 401)
+  assert.equal(relay.rooms.get(roomA).sockets.length, 1, 'unauthorized revoke must not stop a room')
 
   const revoked = await invoke(handlers.get('/pair/revoke'), { body: { id: deviceA.id } })
   assert.equal(revoked.status, 200)
@@ -198,6 +209,7 @@ test('revoke closes an existing custom Gateway session and removes its room auth
       return () => handlers.delete(route.path)
     },
   })
+  provideConnection(ctx)
   apply(ctx, Config({
     dshHome: dir,
     dshPort: 18789,

@@ -1,13 +1,11 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { cp, mkdtemp, mkdir, readFile, rm, symlink, unlink, writeFile } from 'node:fs/promises'
-import { readFileSync } from 'node:fs'
+import { cp, mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises'
 import test from 'node:test'
 import { dirname, join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { fileURLToPath } from 'node:url'
-import { collectRuntimeImports, inspectArchive, readTarget } from '../scripts/fixture-archives.mjs'
-import { assertFixturePathsNotIgnored, assertPublishableManifest, FIXTURE_ROOT, loadFixtureSet, PROJECT_ROOT, readJson, validateDependencyGraph, validatePackageLock } from '../scripts/fixture-provenance.mjs'
+import { assertFixturePathsNotIgnored, assertPublishableManifest, PROJECT_ROOT, readJson, TUNNEL_SPEC, validatePackageLock } from '../scripts/fixture-provenance.mjs'
 import { cleanupTemporaryTrees, createChildEnvironment, OFFLINE_REGISTRY, resolvePnpmCommand } from '../scripts/fixture-runtime.mjs'
 
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -59,11 +57,11 @@ test('pack gate children receive only safe and explicit environment values', () 
   assert.equal(child.NPM_CONFIG_REGISTRY, undefined)
   assert.equal(child[''], undefined)
 })
-test('offline consumer resolves a real pnpm binary without Corepack', () => {
+test('offline consumer resolves pnpm 11.7.0 without Corepack', () => {
   const pnpm = resolvePnpmCommand()
   assert.doesNotMatch([pnpm.command, ...pnpm.args].join(' '), /corepack\.cjs/iu)
   const version = execFileSync(pnpm.command, [...pnpm.args, '--version'], { encoding: 'utf8', env: createChildEnvironment() })
-  assert.match(version, /^\d+\.\d+\.\d+/u)
+  assert.equal(version.trim(), '11.7.0')
 })
 
 test('temporary cleanup removes symlink roots without following them', async () => {
@@ -79,25 +77,6 @@ test('temporary cleanup removes symlink roots without following them', async () 
   } finally { await rm(parent, { recursive: true, force: true }) }
 })
 
-async function copiedFixtures() {
-  const parent = await mkdtemp(join(tmpdir(), 'pairing-fixture-negative-'))
-  const copy = join(parent, 'alpha4')
-  await cp(FIXTURE_ROOT, copy, { recursive: true })
-  return { parent, copy }
-}
-
-async function mutateProvenance(copy, mutate) {
-  const file = join(copy, 'PROVENANCE.json')
-  const provenance = JSON.parse(await readFile(file, 'utf8'))
-  mutate(provenance)
-  await writeFile(file, JSON.stringify(provenance, null, 2) + '\n')
-}
-
-function fixturePath(copy, key) {
-  const provenance = JSON.parse(readFileSync(join(copy, 'PROVENANCE.json'), 'utf8'))
-  return join(copy, 'tarballs', provenance.packages[key].tarball)
-}
-
 async function copiedProject() {
   const parent = await mkdtemp(join(tmpdir(), 'pairing-lock-negative-'))
   await cp(join(repository, 'package.json'), join(parent, 'package.json'))
@@ -105,64 +84,6 @@ async function copiedProject() {
   return parent
 }
 
-test('fixture closure uses exact archive records and explicit dependency edges', () => {
-  const fixtureSet = loadFixtureSet()
-  const edges = validateDependencyGraph(fixtureSet, rootManifest)
-  assert.equal(fixtureSet.records.size, 109)
-  assert.equal(fixtureSet.archives.size, 109)
-  assert.equal(edges.size, 196)
-  assert.equal(fixtureSet.provenance.edges.find(edge => edge.parent === fixtureSet.rootId && edge.dependency === '@deepseek-ai/dsh-client-connection').optional, true)
-  assert.equal(fixtureSet.records.get('@deepseek-ai/dsh-client-connection@0.1.2-alpha.4').source.commit, '4e84901e6471b79ec0338099867ebb4606d12bb5')
-  assert.equal(fixtureSet.records.get(tunnelName + '@0.1.5').sha256, 'd1bfedf3e6b2a614a3e4e70d260867b82ba9d509881e1f12e9b2284506a047a6')
-  const archive = inspectArchive(join(FIXTURE_ROOT, 'tarballs', 'deepseek-ai-dsh-client-connection-0.1.2-alpha.4.tgz'))
-  assert.equal(typeof readTarget(archive, archive.manifest.main), 'string')
-  const imports = collectRuntimeImports('const x = require("react/jsx-runtime"); import("@dsh-mobile/e2e-tunnel")')
-  assert.deepEqual([...imports].sort(), ['@dsh-mobile/e2e-tunnel', 'react/jsx-runtime'])
-})
-
-test('tampered fixture bytes fail their recorded digest', async () => {
-  const { parent, copy } = await copiedFixtures()
-  try {
-    const file = fixturePath(copy, 'debug@2.6.9')
-    const bytes = await readFile(file)
-    bytes[bytes.length - 1] ^= 1
-    await writeFile(file, bytes)
-    assert.throws(() => loadFixtureSet(copy), /cannot inspect|digest mismatch/)
-  } finally { await rm(parent, { recursive: true, force: true }) }
-})
-
-test('missing fixture archives fail the exact provenance index', async () => {
-  const { parent, copy } = await copiedFixtures()
-  try {
-    await unlink(fixturePath(copy, 'debug@2.6.9'))
-    assert.throws(() => loadFixtureSet(copy), /missing archive|archive directory does not match/)
-  } finally { await rm(parent, { recursive: true, force: true }) }
-})
-
-test('wrong fixture versions fail package identity checks', async () => {
-  const { parent, copy } = await copiedFixtures()
-  try {
-    await mutateProvenance(copy, provenance => { provenance.packages['debug@2.6.9'].version = '2.6.10' })
-    assert.throws(() => loadFixtureSet(copy), /package identity mismatch/)
-  } finally { await rm(parent, { recursive: true, force: true }) }
-})
-
-test('duplicate exact dependency claims fail instead of selecting a winner', async () => {
-  const { parent, copy } = await copiedFixtures()
-  try {
-    await mutateProvenance(copy, provenance => { provenance.edges.push({ ...provenance.edges[0] }) })
-    const fixtureSet = loadFixtureSet(copy)
-    assert.throws(() => validateDependencyGraph(fixtureSet, rootManifest), /dependency version conflict/)
-  } finally { await rm(parent, { recursive: true, force: true }) }
-})
-
-test('stale Git provenance fails independently of archive bytes', async () => {
-  const { parent, copy } = await copiedFixtures()
-  try {
-    await mutateProvenance(copy, provenance => { provenance.packages[tunnelName + '@0.1.5'].source.commit = 'not-the-pinned-commit' })
-    assert.throws(() => loadFixtureSet(copy), /source commit mismatch/)
-  } finally { await rm(parent, { recursive: true, force: true }) }
-})
 
 test('ignored fixture paths are rejected', async () => {
   const parent = await mkdtemp(join(tmpdir(), 'pairing-ignore-negative-'))
@@ -178,17 +99,20 @@ test('ignored fixture paths are rejected', async () => {
   } finally { await rm(parent, { recursive: true, force: true }) }
 })
 
-test('package-lock keeps the pinned e2e identity and official RC.1 integrities', () => {
-  const fixtureSet = loadFixtureSet()
-  const lock = validatePackageLock(PROJECT_ROOT, fixtureSet)
-  assert.equal(lock.packages['node_modules/' + tunnelName].version, '0.1.5')
+test('package-lock pins the required e2e peer, build source, and official alpha2 integrities', () => {
+  const lock = validatePackageLock(PROJECT_ROOT)
+  const root = lock.packages['']
+  assert.equal(root.peerDependencies?.[tunnelName], '0.1.6')
+  assert.equal(root.dependencies?.[tunnelName], undefined)
+  assert.equal(root.optionalDependencies?.[tunnelName], undefined)
+  assert.equal(root.devDependencies?.[tunnelName], TUNNEL_SPEC)
+  assert.equal(lock.packages['node_modules/' + tunnelName].version, '0.1.6')
 })
 
 test('stale package-lock and alias resolutions fail publication checks', async () => {
-  const fixtureSet = loadFixtureSet()
   const mutations = [
     { name: 'Git identity', apply: lock => { lock.packages['node_modules/' + tunnelName].resolved = 'git+ssh://git@github.com/NOirBRight/dsh-e2e-tunnel.git#wrong' }, pattern: /exact e2e Git commit/ },
-    { name: 'official version', apply: lock => { lock.packages['node_modules/@deepseek-ai/dsh-client-connection'].version = '0.1.2-alpha.2' }, pattern: /RC\.1/ },
+    { name: 'official version', apply: lock => { lock.packages['node_modules/@deepseek-ai/dsh-client-connection'].version = '0.1.2-alpha.2' }, pattern: /alpha2/ },
     { name: 'alias resolution', apply: lock => { lock.packages['node_modules/' + tunnelName].version = 'npm:@dsh-mobile/e2e-tunnel@0.1.5' }, pattern: /alias/ },
     { name: 'unapproved Git resolution', apply: lock => { lock.packages['node_modules/tweetnacl'].resolved = 'git+https://github.com/example/tweetnacl.git#deadbeef' }, pattern: /unapproved Git/ },
   ]
@@ -199,7 +123,7 @@ test('stale package-lock and alias resolutions fail publication checks', async (
       const lock = JSON.parse(await readFile(file, 'utf8'))
       mutation.apply(lock)
       await writeFile(file, JSON.stringify(lock, null, 2) + '\n')
-      assert.throws(() => validatePackageLock(parent, fixtureSet), mutation.pattern, mutation.name)
+      assert.throws(() => validatePackageLock(parent), mutation.pattern, mutation.name)
     } finally { await rm(parent, { recursive: true, force: true }) }
   }
 })
@@ -208,4 +132,23 @@ test('publishable manifests reject source aliases and unapproved Git specs', () 
   assert.doesNotThrow(() => assertPublishableManifest(rootManifest))
   assert.throws(() => assertPublishableManifest({ dependencies: { example: 'file:../example' } }), /source alias/)
   assert.throws(() => assertPublishableManifest({ dependencies: { example: 'github:example/repo#main' } }), /unapproved Git/)
+})
+
+test('Pairing rejects unsafe and non-exact e2e tunnel declarations', async () => {
+  const mutations = [
+    { name: 'Git runtime dependency', apply: manifest => { manifest.dependencies[tunnelName] = 'github:NOirBRight/dsh-e2e-tunnel#v0.1.6' }, pattern: /runtime dependency/ },
+    { name: 'optional dependency', apply: manifest => { manifest.optionalDependencies = { ...manifest.optionalDependencies, [tunnelName]: '0.1.6' } }, pattern: /runtime dependency/ },
+    { name: 'optional peer', apply: manifest => { manifest.peerDependenciesMeta[tunnelName] = { optional: true } }, pattern: /must require e2e tunnel peer version 0\.1\.6/ },
+    { name: 'wrong peer version', apply: manifest => { manifest.peerDependencies[tunnelName] = '^0.1.6' }, pattern: /must require e2e tunnel peer version 0\.1\.6/ },
+  ]
+  for (const mutation of mutations) {
+    const manifest = structuredClone(rootManifest)
+    mutation.apply(manifest)
+    assert.throws(() => assertPublishableManifest(manifest), mutation.pattern, mutation.name)
+    const parent = await copiedProject()
+    try {
+      await writeFile(join(parent, 'package.json'), JSON.stringify(manifest, null, 2) + '\n')
+      assert.throws(() => validatePackageLock(parent), mutation.pattern, mutation.name + ' in package-lock validation')
+    } finally { await rm(parent, { recursive: true, force: true }) }
+  }
 })

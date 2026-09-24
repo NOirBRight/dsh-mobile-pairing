@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import type { Context as ClientContext } from '@deepseek-ai/cordis'
 import { installRemoteNavIcon } from './nav-icon.ts'
+import type {} from '@deepseek-ai/dsh-client-locale/client'
+import type {} from '@deepseek-ai/dsh-client-ui-renderer/client'
+import type {} from '@deepseek-ai/dsh-client-ui-settings/client'
+import type { LocaleNamespaceMap, TranslateNS } from '@deepseek-ai/dsh-client-ui-slots'
 import {
   buildEndpointSaveRequest,
   decodeEndpointSaveResult,
@@ -22,19 +26,7 @@ import {
 export const name = 'dsh-mobile-pairing-client'
 export const inject = ['slots', 'locale']
 
-type Translate = (key: string) => string
-
-// Published client service packages are not available in the rc.1 dev matrix;
-// augment the official Cordis Context rather than inventing a parallel Context type.
-declare module '@deepseek-ai/cordis' {
-  interface Context {
-    locale: { register(namespace: string, dictionaries: Record<string, Record<string, string>>): () => void; bind(namespace: string): Translate }
-    slots: {
-      inject(name: string, factory: () => unknown): void
-      register(options: Record<string, unknown>, render: (props: { t: Translate }) => JSX.Element): unknown
-    }
-  }
-}
+type Translate = TranslateNS<'settings.dsh-mobile'>
 
 const zh = {
   nav: '远程', title: '远程', intro: '用手机 App 或相机扫码，连到这台电脑。',
@@ -77,6 +69,12 @@ const en = {
   save: 'Generate code', saving: 'Checking and generating…', saved: 'Code generated',
   stageEndpoint: 'Invalid address', stageTls: 'Address unreachable', stageIdentity: 'Wrong computer',
   stageProtocol: 'Protocol mismatch', stageCapabilities: 'Capabilities mismatch', stageWebsocket: 'Could not connect', stageRelay: 'Connection service unavailable',
+}
+
+declare module '@deepseek-ai/dsh-client-ui-slots' {
+  interface LocaleNamespaceMap {
+    'settings.dsh-mobile': keyof typeof en
+  }
 }
 
 const page: CSSProperties = { display: 'grid', gap: 16, minWidth: 0, color: 'var(--dsw-alias-label-primary)' }
@@ -425,7 +423,6 @@ export function apply(ctx: ClientContext): void {
     order: REMOTE_SETTINGS_SECTION.order,
     label: () => t('nav'),
     locale: namespace,
-    inject: () => ({ t }),
   }, DshMobileCard))
   ctx.effect(installRemoteNavIcon, 'dsh-mobile-pairing: settings nav icon')
 }

@@ -8,42 +8,38 @@ import { collectRuntimeImports, isBuiltin, packageName, readTarget, verifyArchiv
 import { createChildEnvironment } from './fixture-runtime.mjs'
 
 export const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-export const FIXTURE_ROOT = join(PROJECT_ROOT, 'fixtures', 'alpha4')
+export const FIXTURE_ROOT = join(PROJECT_ROOT, 'fixtures', 'alpha2')
 export const PAIRING_NAME = '@dsh-mobile/pairing'
+export const PAIRING_VERSION = '0.1.20'
 export const TUNNEL_NAME = '@dsh-mobile/e2e-tunnel'
-export const TUNNEL_VERSION = '0.1.5'
-export const TUNNEL_COMMIT = '67041eb566319d4c2bdeef1f64b161b191439906'
+export const TUNNEL_VERSION = '0.1.6'
+export const TUNNEL_COMMIT = 'b9c36009dea33f4553b87863f76b41f5f5f6ed17'
+export const TUNNEL_SPEC = 'github:NOirBRight/dsh-e2e-tunnel#v0.1.6'
+export const PAIRING_TARBALL = 'dsh-mobile-pairing-' + PAIRING_VERSION + '.tgz'
 export const OFFICIAL_SOURCE = Object.freeze({
   repository: 'https://github.com/deepseek-ai/deepseek-harness.git',
-  checkout: 'dsh-v0.1.2-alpha.4-4e84901e6471b79e',
-  tag: 'dsh-v0.1.2-alpha.4',
-  commit: '4e84901e6471b79ec0338099867ebb4606d12bb5',
+  checkout: 'dsh-v0.1.7-alpha.2-00102833dfaee1da',
+  tag: 'dsh-v0.1.7-alpha.2',
+  commit: '00102833dfaee1da9f48a3a8eae9d34005a75218',
+})
+export const ALPHA2_DEV_TREE = Object.freeze({
+  '@deepseek-ai/dsh-host-webserver': Object.freeze({ version: '0.1.7-alpha.2', integrity: 'sha512-H97nDYHfWD238ayeOogFowC2v7Tm1R6hM6scIsFxcstu+Xz4B1em/Zw5NVzV6zBherCoEqmtvUDhM3ZEDLKSmg==' }),
+  '@deepseek-ai/dsh-client-connection': Object.freeze({ version: '0.1.7-alpha.2', integrity: 'sha512-fymg/MniqtZ4yM1oVvLrXRpHxYDiAuuMRXJYL9Pa8neFOrWUl7aFxgaW1dsfWryx3rSDVlcdM5OLVpldwewnQw==' }),
 })
 
-// Ceiling dev-tree: the Host packages tsc compiles against. The fixture closure
-// above pins the Alpha.4 floor (offline consumer + smoke); this table pins the
-// exact registry bytes the developer tree must install, so neither side floats.
-// Values are `npm view <name>@0.1.5-rc.1 dist.integrity` (registry truth).
-const RC1_DEV_TREE = Object.freeze({
-  '@deepseek-ai/dsh-host-webserver': Object.freeze({ version: '0.1.5-rc.1', integrity: 'sha512-5kOu9kb0AuRN60/zwPTRcki801ozgnWAFwS1QtQ4ZNgCYIbAiU8gwJHY1//qEpUOuHS+26k+Tqq5/WCJmLGE6Q==' }),
-  '@deepseek-ai/dsh-settings': Object.freeze({ version: '0.1.5-rc.1', integrity: 'sha512-9t6JlHwnMu7qTHpMVVRLyzfi7yWKlDozmh7Xbjjd5mmzY+dSdKTPsoRGSdGgTLvBMQBi0X2O8Kj2moDp30XKGg==' }),
-  '@deepseek-ai/dsh-client-connection': Object.freeze({ version: '0.1.5-rc.1', integrity: 'sha512-mBHCF/WT5kAn4fHJDe0mL5TcVUEIRWGUAwPzr32xitQrIAM6jh5G+pPVJLDtTk+ZbHGkGusN0+nQh2gCJpGHjQ==' }),
-})
 const CLEAN_EVIDENCE = Object.freeze({
   officialCheckout: Object.freeze({
     checkout: OFFICIAL_SOURCE.checkout,
     tag: OFFICIAL_SOURCE.tag,
     commit: OFFICIAL_SOURCE.commit,
     gitStatus: 'clean',
-    archiveCount: 18,
   }),
   e2eCheckout: Object.freeze({
     repository: 'https://github.com/NOirBRight/dsh-e2e-tunnel.git',
-    tag: 'v0.1.5',
+    tag: 'v0.1.6',
     commit: TUNNEL_COMMIT,
     gitStatus: 'clean',
-    tarball: 'dsh-mobile-e2e-tunnel-0.1.5.tgz',
-    sha256: 'd1bfedf3e6b2a614a3e4e70d260867b82ba9d509881e1f12e9b2284506a047a6',
+    tarball: 'dsh-mobile-e2e-tunnel-0.1.6.tgz',
   }),
 })
 
@@ -57,6 +53,12 @@ export function readJson(file) {
 
 export function fixtureKey(name, version) { return name + '@' + version }
 
+export function assertTunnelManifestContract(manifest, label = 'Pairing manifest') {
+  if (Object.hasOwn(manifest.dependencies ?? {}, TUNNEL_NAME) || Object.hasOwn(manifest.optionalDependencies ?? {}, TUNNEL_NAME)) fail(label + ' declares e2e tunnel as a runtime dependency')
+  if (manifest.peerDependencies?.[TUNNEL_NAME] !== TUNNEL_VERSION || manifest.peerDependenciesMeta?.[TUNNEL_NAME]?.optional === true) fail(label + ' must require e2e tunnel peer version ' + TUNNEL_VERSION)
+  if (manifest.devDependencies?.[TUNNEL_NAME] !== TUNNEL_SPEC) fail(label + ' does not pin the e2e tunnel build dependency to v0.1.6')
+}
+
 function exactFields(value, expected, label) {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) fail(label + ' must be an object')
   for (const [key, expectedValue] of Object.entries(expected)) if (value[key] !== expectedValue) fail(label + ' ' + key + ' mismatch')
@@ -67,18 +69,14 @@ function validateCleanEvidence(provenance) {
   if (evidence === null || typeof evidence !== 'object' || Array.isArray(evidence)) fail('clean fixture evidence is missing')
   exactFields(evidence.officialCheckout, CLEAN_EVIDENCE.officialCheckout, 'official clean checkout evidence')
   exactFields(evidence.e2eCheckout, CLEAN_EVIDENCE.e2eCheckout, 'e2e clean checkout evidence')
+  if (!/^[0-9a-f]{64}$/u.test(evidence.e2eCheckout.sha256)) fail('e2e clean checkout digest is invalid')
 }
 
 function validateSource(record, id) {
   const source = record.source
   if (source === null || typeof source !== 'object' || Array.isArray(source)) fail('missing source provenance for ' + id)
-  if (source.type === 'official-checkout') {
-    exactFields(source, { type: 'official-checkout', ...OFFICIAL_SOURCE }, id + ' source')
-    if (typeof source.packagePath !== 'string' || source.packagePath.startsWith('/') || source.packagePath.split('/').includes('..')) fail('invalid official package path for ' + id)
-    return
-  }
   if (source.type === 'git') {
-    exactFields(source, { type: 'git', repository: 'https://github.com/NOirBRight/dsh-e2e-tunnel.git', tag: 'v0.1.5', commit: TUNNEL_COMMIT }, id + ' source')
+    exactFields(source, { type: 'git', repository: 'https://github.com/NOirBRight/dsh-e2e-tunnel.git', tag: 'v0.1.6', commit: TUNNEL_COMMIT }, id + ' source')
     return
   }
   if (source.type === 'registry-lock') {
@@ -92,8 +90,8 @@ function validateSource(record, id) {
 
 function validateRootArtifact(rootArtifact, rootId) {
   if (rootArtifact === null || typeof rootArtifact !== 'object' || Array.isArray(rootArtifact)) fail('root artifact provenance is invalid')
-  if (rootArtifact.name !== PAIRING_NAME || fixtureKey(rootArtifact.name, rootArtifact.version) !== rootId) fail('root artifact identity mismatch')
-  if (!Number.isSafeInteger(rootArtifact.bytes) || rootArtifact.bytes <= 0 || !/^[0-9a-f]{64}$/u.test(rootArtifact.sha256) || !/^[0-9a-f]{64}$/u.test(rootArtifact.manifestSha256) || !/^sha512-[A-Za-z0-9+/]+=*$/u.test(rootArtifact.integrity)) fail('root artifact digest is invalid')
+  if (rootArtifact.name !== PAIRING_NAME || fixtureKey(rootArtifact.name, rootArtifact.version) !== rootId || rootArtifact.tarball !== PAIRING_TARBALL) fail('root artifact identity mismatch')
+  if (typeof rootArtifact.npmVersion !== 'string' || rootArtifact.npmVersion.length === 0 || !Number.isSafeInteger(rootArtifact.bytes) || rootArtifact.bytes <= 0 || !/^[0-9a-f]{64}$/u.test(rootArtifact.sha256) || !/^[0-9a-f]{64}$/u.test(rootArtifact.manifestSha256) || !/^sha512-[A-Za-z0-9+/]+=*$/u.test(rootArtifact.integrity)) fail('root artifact digest is invalid')
 }
 
 function verifyConsumerLock(root) {
@@ -112,7 +110,12 @@ function verifyConsumerLock(root) {
 export function assertFixturePathsNotIgnored(root = FIXTURE_ROOT, cwd = PROJECT_ROOT) {
   const archive = readdirSync(join(root, 'tarballs')).find(file => file.endsWith('.tgz'))
   if (archive === undefined) fail('fixture archive directory is empty')
-  for (const file of [join(root, 'PROVENANCE.json'), join(root, 'consumer-pnpm-lock.yaml'), join(root, 'tarballs', archive)]) {
+  for (const file of [
+    join(root, 'PROVENANCE.json'),
+    join(root, 'consumer-pnpm-lock.yaml'),
+    join(root, 'tarballs', archive),
+    join(root, PAIRING_TARBALL),
+  ]) {
     const path = relative(cwd, file)
     const result = spawnSync('git', ['check-ignore', '--no-index', '-q', '--', path], { cwd, encoding: 'utf8', env: createChildEnvironment() })
     if (result.status === 0) fail('fixture file is ignored: ' + path)
@@ -128,10 +131,14 @@ export function loadFixtureSet(root = FIXTURE_ROOT, packageRoot = PROJECT_ROOT) 
   exactFields(provenance.source, OFFICIAL_SOURCE, 'fixture source')
   validateCleanEvidence(provenance)
   if (typeof provenance.purpose !== 'string' || provenance.purpose.length === 0) fail('fixture purpose is missing')
+  if (manifest.name !== PAIRING_NAME || manifest.version !== PAIRING_VERSION) fail('package manifest is not the pinned Pairing release')
+  assertTunnelManifestContract(manifest)
   const rootId = fixtureKey(manifest.name, manifest.version)
   if (provenance.root !== rootId) fail('fixture root identity mismatch')
   validateRootArtifact(provenance.rootArtifact, rootId)
   verifyConsumerLock({ ...provenance, directory: root })
+  const rootArchive = verifyArchive(provenance.rootArtifact, root)
+  assertTunnelManifestContract(rootArchive.manifest, 'root artifact manifest')
   if (provenance.packages === null || typeof provenance.packages !== 'object' || Array.isArray(provenance.packages)) fail('fixture packages must be an object')
   const records = new Map()
   const archives = new Map()
@@ -146,17 +153,18 @@ export function loadFixtureSet(root = FIXTURE_ROOT, packageRoot = PROJECT_ROOT) 
     archives.set(id, info)
     archiveNames.add(record.tarball)
   }
-  const officialCount = [...records.values()].filter(record => record.source?.type === 'official-checkout').length
-  if (officialCount !== provenance.cleanEvidence.officialCheckout.archiveCount) fail('official clean evidence archive count mismatch')
   const tunnel = records.get(TUNNEL_NAME + '@' + TUNNEL_VERSION)
-  if (tunnel?.sha256 !== provenance.cleanEvidence.e2eCheckout.sha256 || tunnel?.tarball !== provenance.cleanEvidence.e2eCheckout.tarball) fail('e2e clean evidence does not match its fixture archive')
+  if (tunnel === undefined || tunnel.tarball !== CLEAN_EVIDENCE.e2eCheckout.tarball || tunnel.sha256 !== provenance.cleanEvidence.e2eCheckout.sha256) fail('e2e clean evidence does not match its fixture archive')
+  for (const [name, expectedRecord] of Object.entries(ALPHA2_DEV_TREE)) {
+    const record = records.get(name + '@' + expectedRecord.version)
+    if (record?.integrity !== expectedRecord.integrity) fail('fixture closure does not contain the pinned alpha2 registry archive for ' + name)
+  }
   const actual = readdirSync(join(root, 'tarballs')).filter(file => file.endsWith('.tgz')).sort()
   const expected = [...archiveNames].sort()
   if (actual.length !== expected.length || actual.some((file, index) => file !== expected[index])) fail('fixture archive directory does not match provenance')
   if (resolve(root) === FIXTURE_ROOT) assertFixturePathsNotIgnored(root)
-  return { root, provenance, records, archives, rootId }
+  return { root, provenance, records, archives, rootArchive, rootId }
 }
-
 function dependencyEntries(manifest) {
   const entries = []
   for (const section of ['dependencies', 'optionalDependencies', 'peerDependencies']) {
@@ -177,8 +185,7 @@ function parentManifest(parent, rootManifest, fixtureSet) {
 }
 
 function satisfiesChild(dependency, declaredRange, child) {
-  if (dependency === TUNNEL_NAME) return declaredRange === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.5' && child.source.type === 'git' && child.source.commit === TUNNEL_COMMIT
-  if (/^(?:file:|link:|workspace:|npm:)/u.test(declaredRange)) fail('source alias in dependency declaration: ' + dependency)
+  if (dependency === TUNNEL_NAME) return declaredRange === TUNNEL_VERSION && child.version === TUNNEL_VERSION && child.source.type === 'git' && child.source.commit === TUNNEL_COMMIT
   if (declaredRange === '*') return true
   if (semver.validRange(declaredRange) === null || !semver.satisfies(child.version, declaredRange, { includePrerelease: true })) return false
   return true
@@ -187,6 +194,7 @@ function satisfiesChild(dependency, declaredRange, child) {
 /** Validate exact dependency edges without resolving through source node_modules. */
 export function validateDependencyGraph(fixtureSet, rootManifest) {
   const { provenance, records, rootId } = fixtureSet
+  assertTunnelManifestContract(rootManifest, 'root package manifest')
   if (provenance.root !== rootId || !Array.isArray(provenance.edges)) fail('fixture dependency edge list is invalid')
   const byEdge = new Map()
   const adjacency = new Map()
@@ -223,15 +231,19 @@ function sameStringMap(left, right) {
 }
 
 /** Validate root package-lock identity and reject unpinned source references. */
-export function validatePackageLock(packageRoot = PROJECT_ROOT, fixtureSet = undefined) {
+export function validatePackageLock(packageRoot = PROJECT_ROOT) {
   const manifest = readJson(join(packageRoot, 'package.json'))
   const lock = readJson(join(packageRoot, 'package-lock.json'))
   const root = lock.packages?.['']
+  if (manifest.name !== PAIRING_NAME || manifest.version !== PAIRING_VERSION) fail('package manifest is not the pinned Pairing release')
+  assertTunnelManifestContract(manifest, 'package manifest')
   if (lock.name !== manifest.name || lock.version !== manifest.version || root?.name !== manifest.name || root?.version !== manifest.version) fail('package-lock identity does not match package manifest')
   for (const section of ['dependencies', 'optionalDependencies', 'peerDependencies', 'devDependencies']) if (!sameStringMap(manifest[section], root[section])) fail('package-lock root ' + section + ' does not match package manifest')
-  for (const [name, spec] of Object.entries({ ...manifest.dependencies, ...manifest.optionalDependencies, ...manifest.peerDependencies, ...manifest.devDependencies })) {
-    if (typeof spec !== 'string' || /^(?:file:|link:|workspace:|npm:)/u.test(spec)) fail('package manifest contains a source alias: ' + name)
-    if ((spec.startsWith('git+') || spec.startsWith('github:')) && !(name === TUNNEL_NAME && spec === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.5')) fail('package manifest contains an unapproved Git dependency: ' + name)
+  for (const section of ['dependencies', 'optionalDependencies', 'peerDependencies', 'devDependencies']) {
+    for (const [name, spec] of Object.entries(manifest[section] ?? {})) {
+      if (typeof spec !== 'string' || /^(?:file:|link:|workspace:|npm:)/u.test(spec)) fail('package manifest contains a source alias: ' + name)
+      if ((spec.startsWith('git+') || spec.startsWith('github:')) && !(section === 'devDependencies' && name === TUNNEL_NAME && spec === TUNNEL_SPEC)) fail('package manifest contains an unapproved Git dependency: ' + name)
+    }
   }
   for (const [path, entry] of Object.entries(lock.packages ?? {})) {
     if (path !== '' && typeof entry === 'object' && entry !== null && typeof entry.version === 'string' && entry.version.startsWith('npm:')) fail('package-lock contains an alias at ' + path)
@@ -239,20 +251,22 @@ export function validatePackageLock(packageRoot = PROJECT_ROOT, fixtureSet = und
   }
   const tunnel = lock.packages['node_modules/' + TUNNEL_NAME]
   if (tunnel?.version !== TUNNEL_VERSION || tunnel?.resolved !== 'git+ssh://git@github.com/NOirBRight/dsh-e2e-tunnel.git#' + TUNNEL_COMMIT) fail('package-lock does not pin the exact e2e Git commit')
-  for (const name of ['@deepseek-ai/dsh-client-connection', '@deepseek-ai/dsh-host-webserver', '@deepseek-ai/dsh-settings']) {
+  for (const name of ['@deepseek-ai/dsh-client-connection', '@deepseek-ai/dsh-host-webserver']) {
     const entry = lock.packages['node_modules/' + name]
-    if (entry?.version !== RC1_DEV_TREE[name].version) fail('package-lock does not pin RC.1 for ' + name)
-    if (entry.integrity !== RC1_DEV_TREE[name].integrity) fail('package-lock integrity disagrees with the RC.1 registry bytes for ' + name)
+    if (entry?.version !== ALPHA2_DEV_TREE[name].version) fail('package-lock does not pin alpha2 for ' + name)
+    if (entry.integrity !== ALPHA2_DEV_TREE[name].integrity) fail('package-lock integrity disagrees with the alpha2 registry bytes for ' + name)
   }
-  if (fixtureSet !== undefined && tunnel.integrity !== fixtureSet.records.get(TUNNEL_NAME + '@' + TUNNEL_VERSION)?.integrity) fail('package-lock integrity disagrees with e2e archive')
   return lock
 }
 
 /** Reject source aliases from a package that claims to be publishable. */
 export function assertPublishableManifest(manifest, label = 'package manifest') {
-  for (const [name, spec] of Object.entries({ ...manifest.dependencies, ...manifest.optionalDependencies, ...manifest.peerDependencies, ...manifest.devDependencies })) {
-    if (typeof spec !== 'string' || /^(?:file:|link:|workspace:|npm:)/u.test(spec)) fail(label + ' contains a source alias: ' + name)
-    if ((spec.startsWith('git+') || spec.startsWith('github:')) && !(name === TUNNEL_NAME && spec === 'github:NOirBRight/dsh-e2e-tunnel#v0.1.5')) fail(label + ' contains an unapproved Git dependency: ' + name)
+  if (manifest.name === PAIRING_NAME) assertTunnelManifestContract(manifest, label)
+  for (const section of ['dependencies', 'optionalDependencies', 'peerDependencies', 'devDependencies']) {
+    for (const [name, spec] of Object.entries(manifest[section] ?? {})) {
+      if (typeof spec !== 'string' || /^(?:file:|link:|workspace:|npm:)/u.test(spec)) fail(label + ' contains a source alias: ' + name)
+      if ((spec.startsWith('git+') || spec.startsWith('github:')) && !(section === 'devDependencies' && name === TUNNEL_NAME && spec === TUNNEL_SPEC)) fail(label + ' contains an unapproved Git dependency: ' + name)
+    }
   }
 }
 

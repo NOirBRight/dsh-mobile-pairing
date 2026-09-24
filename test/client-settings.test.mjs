@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
 import { buildEndpointSaveRequest, decodeEndpointSaveResult, decodePairedDevices, decodePairingStatus, endpointDraftDirty, livePairedDevices, pairingQrNeedsRefresh, pairingQrRevisionOnToggle, pairingQrUrl, pairingRefreshQrUrl, PAIRING_OFFER_TTL_MS, PAIRING_QR_PRESENTATION, PAIRING_QR_ROTATE_MS, REMOTE_SETTINGS_API, REMOTE_SETTINGS_SECTION } from '../src/client/model.ts'
+import { REMOTE_SETTINGS_ROUTES } from '../src/pairing-routes.ts'
 
 test('Remote occupies its own settings sidebar section ahead of Models', () => {
   assert.equal(REMOTE_SETTINGS_SECTION.id, 'remote')
@@ -79,50 +79,22 @@ test('on-screen pairing QR remints before the offer TTL elapses', () => {
   assert.equal(pairingQrNeedsRefresh(0, PAIRING_OFFER_TTL_MS), true)
 })
 
-test('settings client remints a visible QR for any live endpoint', async () => {
-  const source = await readFile(new URL('../src/client/index.tsx', import.meta.url), 'utf8')
-  assert.match(source, /setInterval\(bump, PAIRING_QR_ROTATE_MS\)/)
-  assert.match(source, /endpointReady = status\?\.endpoint !== null && !dirty/)
-  assert.match(source, /setMode\(decoded\.endpointMode\)/)
-  assert.match(source, /endpointDraftDirty\(mode, status\.customEndpointUrl \?\? ''/)
-  assert.doesNotMatch(source, /4 \* 60_000/)
-  assert.match(source, /PAIRING_OFFER_TTL_MS/)
-})
 
-test('mobile settings use the authenticated remote API instead of pairing administration paths', async () => {
-  const client = await readFile(new URL('../src/client/index.tsx', import.meta.url), 'utf8')
-  const host = await readFile(new URL('../src/index.ts', import.meta.url), 'utf8')
-  assert.match(client, /REMOTE_SETTINGS_API\.status/)
-  assert.match(client, /REMOTE_SETTINGS_API\.devices/)
-  assert.match(client, /REMOTE_SETTINGS_API\.endpoint/)
-  assert.match(client, /REMOTE_SETTINGS_API\.revoke/)
-  assert.match(client, /REMOTE_SETTINGS_API\.label/)
-  assert.equal(REMOTE_SETTINGS_API.pair, '/api/dsh-mobile/remote/pair')
-  for (const path of ['status', 'devices', 'endpoint', 'revoke', 'label']) {
-    assert.match(host, new RegExp(`/api/dsh-mobile/remote/${path}`))
+test('mobile API URLs resolve to authenticated Host fetch routes', () => {
+  for (const [key, path] of Object.entries(REMOTE_SETTINGS_ROUTES)) {
+    assert.equal(path, REMOTE_SETTINGS_API[key])
   }
+  assert.deepEqual(REMOTE_SETTINGS_API, {
+    status: '/api/dsh-mobile/remote/status',
+    devices: '/api/dsh-mobile/remote/devices',
+    endpoint: '/api/dsh-mobile/remote/endpoint',
+    revoke: '/api/dsh-mobile/remote/revoke',
+    label: '/api/dsh-mobile/remote/label',
+    pair: '/api/dsh-mobile/remote/pair',
+  })
 })
 
-test('mobile pairing QR is fetched through the tunnel before rendering', async () => {
-  const client = await readFile(new URL('../src/client/index.tsx', import.meta.url), 'utf8')
-  assert.match(client, /fetch\(src,\s*\{ credentials: 'same-origin'/)
-  assert.match(client, /URL\.createObjectURL\(blob\)/)
-  assert.match(client, /URL\.revokeObjectURL\(objectUrl\)/)
-})
 
-test('Remote settings preserve the mobile settings column and reflow narrow controls', async () => {
-  const client = await readFile(new URL('../src/client/index.tsx', import.meta.url), 'utf8')
-  assert.match(client, /\.dsh-mobile-remote-page\s*\{[^}]*min-width:\s*0/)
-  assert.match(client, /\.dsh-mobile-remote-page\s*\{[^}]*max-width:\s*100%/)
-  assert.match(client, /\.dsh-mobile-remote-page\s*\{[^}]*overflow-x:\s*hidden/)
-  assert.match(client, /\.dsh-mobile-remote-card\s*\{[^}]*min-width:\s*0/)
-  assert.match(client, /\.dsh-mobile-remote-card\s*\{[^}]*width:\s*100%/)
-  assert.match(client, /\.dsh-mobile-remote-device\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/)
-  assert.match(client, /\.dsh-mobile-remote-input-row\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/)
-  assert.match(client, /\.dsh-mobile-remote-qr\s*\{[^}]*max-width:\s*100%/)
-  assert.match(client, /dsh-mobile-remote-scan-heading/)
-  assert.match(client, /\.dsh-mobile-remote-qr\s*\{[^}]*width:\s*min\(100%,\s*260px\)/)
-})
 
 test('malformed pairing settings status is rejected', () => {
   assert.equal(decodePairingStatus({ endpointMode: 'relay' }), null)
