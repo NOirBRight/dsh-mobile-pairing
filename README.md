@@ -4,6 +4,10 @@ DSH Mobile 的 Host 插件。正式版可安装在日常 `:3080` 或 lab `:3082`
 
 ## Changelog
 
+### 0.1.22
+
+Accept `@dsh-mobile/e2e-tunnel` releases from `0.1.6` onward; the build and compatibility checks still target the verified `v0.1.6` release.
+
 ### 0.1.21
 
 Supports DSH `0.1.7-rc.1` with open-ended Host dependency ranges. Requires `@dsh-mobile/e2e-tunnel@0.1.6` as a non-optional peer. The release package has no Git runtime subdependency; the exact Git tag is retained only as this repository's build dependency. Tunnel is a library, not a DSH bundle, and needs no DSH core changes.
@@ -22,7 +26,7 @@ DSH Host packages are no longer version-locked. `@deepseek-ai/dsh-*` peers are `
 
 ## Compatibility
 
-Host integration packages remain optional peers with no upper version bound. The 0.1.21 release also requires `@dsh-mobile/e2e-tunnel@0.1.6` as a non-optional peer; its Git tag is used only by this repository's build. `devDependencies` accept DSH `0.1.7-alpha.2` and later releases; the lock targets `0.1.7-rc.1` with Cordis `4.0.4`. Cordis peers support `>=4.0.4 <5.0.0`. DSH `0.1.7-alpha.2` and `0.1.7-rc.1` are verified in `package.json#dsh.compatibility.dshReleases`; unknown runtimes still follow the best-effort mount path.
+Host integration packages and the required Tunnel peer accept versions from their earliest supported releases without an upper bound. Tunnel `v0.1.6` remains the locked build and compatibility-test target. `devDependencies` accept DSH `0.1.7-alpha.2` and later releases; the lock targets `0.1.7-rc.1` with Cordis `4.0.4`. Cordis peers support `>=4.0.4 <5.0.0`. DSH `0.1.7-alpha.2` and `0.1.7-rc.1` are verified in `package.json#dsh.compatibility.dshReleases`; unknown runtimes still follow the best-effort mount path.
 
 Verified Hosts in `package.json#dsh.compatibility.dshReleases` are evidence, not an allowlist. Unknown runtimes warn once and still use the best-effort mount path; only reproduced failures are blocklisted.
 
@@ -131,12 +135,12 @@ npm pack --dry-run
 
 `verify:packed` requires pnpm 11.7.0. It checks the selected executable before installation and fails on any other version; when the default differs, set `PNPM_BIN` to an installed 11.7.0 executable, for example `PNPM_BIN=/absolute/path/to/pnpm.cjs npm run verify:packed`. The offline frozen-lockfile install and SHA-512 package integrity checks remain enabled; do not bypass supply-chain verification.
 
-The gate consumes committed `fixtures/alpha2/tarballs/*.tgz` and `PROVENANCE.json`, which pin clean DSH `dsh-v0.1.7-alpha.2` and e2e-tunnel `v0.1.6` sources plus the Pairing 0.1.21 tarball. The source graph requires Tunnel as a non-optional exact-version peer; the packed Pairing manifest has no Git runtime child. It checks archive safety, hashes, manifests, exports, entry points, and recursive dependency closure, then installs only immutable archives and smoke-tests Host Webserver, Connection, Pairing, and their ModuleLoader client entries. No network or source `node_modules` is required.
+The gate consumes committed `fixtures/alpha2/tarballs/*.tgz` and `PROVENANCE.json`, which pin clean DSH `dsh-v0.1.7-alpha.2` and e2e-tunnel `v0.1.6` sources plus the Pairing 0.1.22 tarball. The source graph requires Tunnel at `>=0.1.6`; the fixture resolves that range to the locked v0.1.6 build baseline. The packed Pairing manifest has no Git runtime child. It checks archive safety, hashes, manifests, exports, entry points, and recursive dependency closure, then installs only immutable archives and smoke-tests Host Webserver, Connection, Pairing, and their ModuleLoader client entries. No network or source `node_modules` is required.
 
 ## Release
 
-[v0.1.21](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.21) · [SHA-256](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.21/dsh-mobile-pairing-0.1.21.tgz.sha256)
+[v0.1.22](https://github.com/NOirBRight/dsh-mobile-pairing/releases/tag/v0.1.22) · [SHA-256](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.22/dsh-mobile-pairing-0.1.22.tgz.sha256)
 
-更新时按上述顺序安装 Tunnel 与 Pairing，然后运行 `dsh plugin --profile web list` 和 `dsh plugin --profile web doctor` 验证。卸载使用 `dsh plugin --profile web remove @dsh-mobile/pairing`。
+更新时按上述顺序安装 Tunnel 与 Pairing，然后运行 `dsh plugin --profile web list` 检查依赖。卸载使用 `dsh plugin --profile web remove @dsh-mobile/pairing`。
 
-回滚到 v0.1.20：重新安装 [v0.1.20 发布归档](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.20/dsh-mobile-pairing-0.1.20.tgz)，检查 profile 列表，然后重启 Web 服务。
+回滚到 v0.1.21：重新安装 [v0.1.21 发布归档](https://github.com/NOirBRight/dsh-mobile-pairing/releases/download/v0.1.21/dsh-mobile-pairing-0.1.21.tgz)，检查 profile 列表，然后重启 Web 服务。

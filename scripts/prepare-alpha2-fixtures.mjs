@@ -246,7 +246,7 @@ function main() {
     const oldRecord = oldRecords.get(id)
     if (oldRecord === undefined) fail('historical archive lacks provenance: ' + id)
     verifyArchive(oldRecord, historicalTarballs)
-    if (manifest.name.startsWith('@deepseek-ai/') || candidates.some(candidate => candidate.manifest.name === manifest.name && candidate.manifest.version === manifest.version)) continue
+    if (manifest.name.startsWith('@deepseek-ai/dsh-') || candidates.some(candidate => candidate.manifest.name === manifest.name && candidate.manifest.version === manifest.version)) continue
     candidates.push({ file: source, manifest })
   }
   candidates.push({ file: tunnelArtifact.archive, manifest: tunnelArtifact.info.manifest })

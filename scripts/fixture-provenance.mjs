@@ -10,9 +10,10 @@ import { createChildEnvironment } from './fixture-runtime.mjs'
 export const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 export const FIXTURE_ROOT = join(PROJECT_ROOT, 'fixtures', 'alpha2')
 export const PAIRING_NAME = '@dsh-mobile/pairing'
-export const PAIRING_VERSION = '0.1.21'
+export const PAIRING_VERSION = '0.1.22'
 export const TUNNEL_NAME = '@dsh-mobile/e2e-tunnel'
 export const TUNNEL_VERSION = '0.1.6'
+export const TUNNEL_PEER_RANGE = '>=0.1.6'
 export const TUNNEL_COMMIT = 'b9c36009dea33f4553b87863f76b41f5f5f6ed17'
 export const TUNNEL_SPEC = 'github:NOirBRight/dsh-e2e-tunnel#v0.1.6'
 export const PAIRING_TARBALL = 'dsh-mobile-pairing-' + PAIRING_VERSION + '.tgz'
@@ -67,8 +68,18 @@ export function fixtureKey(name, version) { return name + '@' + version }
 
 export function assertTunnelManifestContract(manifest, label = 'Pairing manifest') {
   if (Object.hasOwn(manifest.dependencies ?? {}, TUNNEL_NAME) || Object.hasOwn(manifest.optionalDependencies ?? {}, TUNNEL_NAME)) fail(label + ' declares e2e tunnel as a runtime dependency')
-  if (manifest.peerDependencies?.[TUNNEL_NAME] !== TUNNEL_VERSION || manifest.peerDependenciesMeta?.[TUNNEL_NAME]?.optional === true) fail(label + ' must require e2e tunnel peer version ' + TUNNEL_VERSION)
+  if (manifest.peerDependencies?.[TUNNEL_NAME] !== TUNNEL_PEER_RANGE || manifest.peerDependenciesMeta?.[TUNNEL_NAME]?.optional === true) fail(label + ' must require e2e tunnel peer range ' + TUNNEL_PEER_RANGE)
   if (manifest.devDependencies?.[TUNNEL_NAME] !== TUNNEL_SPEC) fail(label + ' does not pin the e2e tunnel build dependency to v0.1.6')
+}
+
+function assertOpenDshHostRanges(manifest, label) {
+  for (const section of ['dependencies', 'optionalDependencies', 'devDependencies', 'peerDependencies']) {
+    for (const [name, range] of Object.entries(manifest[section] ?? {})) {
+      if (name !== '@deepseek-ai/dsh' && !name.startsWith('@deepseek-ai/dsh-')) continue
+      const parsed = typeof range === 'string' && semver.validRange(range) !== null ? new semver.Range(range) : undefined
+      if (parsed?.set.length !== 1 || parsed.set[0]?.length !== 1 || parsed.set[0][0]?.operator !== '>=') fail(label + ' must declare DSH Host ' + name + ' with an open lower-bound range')
+    }
+  }
 }
 
 function exactFields(value, expected, label) {
@@ -197,7 +208,7 @@ function parentManifest(parent, rootManifest, fixtureSet) {
 }
 
 function satisfiesChild(dependency, declaredRange, child) {
-  if (dependency === TUNNEL_NAME) return declaredRange === TUNNEL_VERSION && child.version === TUNNEL_VERSION && child.source.type === 'git' && child.source.commit === TUNNEL_COMMIT
+  if (dependency === TUNNEL_NAME) return semver.satisfies(child.version, declaredRange, { includePrerelease: true }) && child.version === TUNNEL_VERSION && child.source.type === 'git' && child.source.commit === TUNNEL_COMMIT
   if (declaredRange === '*') return true
   if (semver.validRange(declaredRange) === null || !semver.satisfies(child.version, declaredRange, { includePrerelease: true })) return false
   return true
@@ -250,6 +261,8 @@ export function validatePackageLock(packageRoot = PROJECT_ROOT) {
   if (manifest.name !== PAIRING_NAME || manifest.version !== PAIRING_VERSION) fail('package manifest is not the pinned Pairing release')
   assertTunnelManifestContract(manifest, 'package manifest')
   if (lock.name !== manifest.name || lock.version !== manifest.version || root?.name !== manifest.name || root?.version !== manifest.version) fail('package-lock identity does not match package manifest')
+  assertOpenDshHostRanges(manifest, 'package manifest')
+  assertOpenDshHostRanges(root, 'package-lock root')
   for (const section of ['dependencies', 'optionalDependencies', 'peerDependencies', 'devDependencies']) if (!sameStringMap(manifest[section], root[section])) fail('package-lock root ' + section + ' does not match package manifest')
   for (const section of ['dependencies', 'optionalDependencies', 'peerDependencies', 'devDependencies']) {
     for (const [name, spec] of Object.entries(manifest[section] ?? {})) {
@@ -274,6 +287,7 @@ export function validatePackageLock(packageRoot = PROJECT_ROOT) {
 /** Reject source aliases from a package that claims to be publishable. */
 export function assertPublishableManifest(manifest, label = 'package manifest') {
   if (manifest.name === PAIRING_NAME) assertTunnelManifestContract(manifest, label)
+  assertOpenDshHostRanges(manifest, label)
   for (const section of ['dependencies', 'optionalDependencies', 'peerDependencies', 'devDependencies']) {
     for (const [name, spec] of Object.entries(manifest[section] ?? {})) {
       if (typeof spec !== 'string' || /^(?:file:|link:|workspace:|npm:)/u.test(spec)) fail(label + ' contains a source alias: ' + name)

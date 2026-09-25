@@ -29,6 +29,11 @@ test('keeps Host integrations optional and accepts the verified DSH releases', (
   assert.equal(packageJson.devDependencies['@deepseek-ai/dsh-settings'], undefined)
 })
 
+test('keeps Tunnel compatibility open while pinning the tested build source', () => {
+  assert.equal(packageJson.peerDependencies['@dsh-mobile/e2e-tunnel'], '>=0.1.6')
+  assert.equal(packageJson.devDependencies['@dsh-mobile/e2e-tunnel'], 'github:NOirBRight/dsh-e2e-tunnel#v0.1.6')
+})
+
 test('Host Connection remains an optional peer with an rc1 compile target', () => {
   assert.equal(packageJson.peerDependencies['@deepseek-ai/dsh-client-connection'], '>=0.1.7-alpha.2')
   assert.equal(packageJson.devDependencies['@deepseek-ai/dsh-client-connection'], '>=0.1.7-alpha.2')

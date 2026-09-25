@@ -5,7 +5,7 @@ import test from 'node:test'
 import { dirname, join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { fileURLToPath } from 'node:url'
-import { assertFixturePathsNotIgnored, assertPublishableManifest, PROJECT_ROOT, readJson, TUNNEL_SPEC, validatePackageLock } from '../scripts/fixture-provenance.mjs'
+import { assertFixturePathsNotIgnored, assertPublishableManifest, PROJECT_ROOT, readJson, TUNNEL_PEER_RANGE, TUNNEL_SPEC, validatePackageLock } from '../scripts/fixture-provenance.mjs'
 import { cleanupTemporaryTrees, createChildEnvironment, OFFLINE_REGISTRY, resolvePnpmCommand } from '../scripts/fixture-runtime.mjs'
 
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -99,10 +99,10 @@ test('ignored fixture paths are rejected', async () => {
   } finally { await rm(parent, { recursive: true, force: true }) }
 })
 
-test('package-lock pins the required e2e peer, build source, and official rc1 integrities', () => {
+test('package-lock keeps an open e2e peer range and pins the verified build source', () => {
   const lock = validatePackageLock(PROJECT_ROOT)
   const root = lock.packages['']
-  assert.equal(root.peerDependencies?.[tunnelName], '0.1.6')
+  assert.equal(root.peerDependencies?.[tunnelName], TUNNEL_PEER_RANGE)
   assert.equal(root.dependencies?.[tunnelName], undefined)
   assert.equal(root.optionalDependencies?.[tunnelName], undefined)
   assert.equal(root.devDependencies?.[tunnelName], TUNNEL_SPEC)
@@ -134,12 +134,39 @@ test('publishable manifests reject source aliases and unapproved Git specs', () 
   assert.throws(() => assertPublishableManifest({ dependencies: { example: 'github:example/repo#main' } }), /unapproved Git/)
 })
 
-test('Pairing rejects unsafe and non-exact e2e tunnel declarations', async () => {
+test('DSH Host ranges have no upper bound in every manifest dependency section', async () => {
+  const declarations = [
+    { section: 'dependencies', name: '@deepseek-ai/dsh' },
+    { section: 'optionalDependencies', name: '@deepseek-ai/dsh-future' },
+    { section: 'devDependencies', name: '@deepseek-ai/dsh-brand' },
+    { section: 'peerDependencies', name: '@deepseek-ai/dsh-client-connection' },
+  ]
+  for (const { section, name } of declarations) {
+    const manifest = structuredClone(rootManifest)
+    const range = '>=0.1.7-alpha.2 <1.0.0'
+    manifest[section] = { ...manifest[section], [name]: range }
+    assert.throws(() => assertPublishableManifest(manifest), /must declare DSH Host .* with an open lower-bound range/)
+
+    const parent = await copiedProject()
+    try {
+      const packageFile = join(parent, 'package.json')
+      const lockFile = join(parent, 'package-lock.json')
+      const lock = JSON.parse(await readFile(lockFile, 'utf8'))
+      lock.packages[''][section] = { ...lock.packages[''][section], [name]: range }
+      await writeFile(packageFile, JSON.stringify(manifest, null, 2) + '\n')
+      await writeFile(lockFile, JSON.stringify(lock, null, 2) + '\n')
+      assert.throws(() => validatePackageLock(parent), /must declare DSH Host .* with an open lower-bound range/)
+    } finally { await rm(parent, { recursive: true, force: true }) }
+  }
+})
+
+test('Pairing rejects unsafe and closed e2e tunnel peer ranges', async () => {
   const mutations = [
     { name: 'Git runtime dependency', apply: manifest => { manifest.dependencies[tunnelName] = 'github:NOirBRight/dsh-e2e-tunnel#v0.1.6' }, pattern: /runtime dependency/ },
     { name: 'optional dependency', apply: manifest => { manifest.optionalDependencies = { ...manifest.optionalDependencies, [tunnelName]: '0.1.6' } }, pattern: /runtime dependency/ },
-    { name: 'optional peer', apply: manifest => { manifest.peerDependenciesMeta[tunnelName] = { optional: true } }, pattern: /must require e2e tunnel peer version 0\.1\.6/ },
-    { name: 'wrong peer version', apply: manifest => { manifest.peerDependencies[tunnelName] = '^0.1.6' }, pattern: /must require e2e tunnel peer version 0\.1\.6/ },
+    { name: 'optional peer', apply: manifest => { manifest.peerDependenciesMeta[tunnelName] = { optional: true } }, pattern: /must require e2e tunnel peer range >=0\.1\.6/ },
+    { name: 'exact peer version', apply: manifest => { manifest.peerDependencies[tunnelName] = '0.1.6' }, pattern: /must require e2e tunnel peer range >=0\.1\.6/ },
+    { name: 'upper-bounded peer range', apply: manifest => { manifest.peerDependencies[tunnelName] = '>=0.1.6 <1.0.0' }, pattern: /must require e2e tunnel peer range >=0\.1\.6/ },
   ]
   for (const mutation of mutations) {
     const manifest = structuredClone(rootManifest)

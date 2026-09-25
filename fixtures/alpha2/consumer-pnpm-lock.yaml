@@ -479,15 +479,15 @@ packages:
     engines: {node: '>=22.19'}
 
   '@dsh-mobile/pairing@file:pairing.tgz':
-    resolution: {integrity: sha512-vIsi55HqOhgVsCc1lyhsIWIix8L9CUUFeYGhslh3swJRZbnRYE6++8tGP8JmkrJ2V/gF0Dz4oXvarPohsCfqJQ==, tarball: file:pairing.tgz}
-    version: 0.1.21
+    resolution: {integrity: sha512-7Yi/Aq9W3ws7Q724RVQSemi6xEnUPjfitBtUwMzChpksmaE4d37p9RE/dB/Rej/PfuFGdlRsAFY8dA3bDf81iQ==, tarball: file:pairing.tgz}
+    version: 0.1.22
     engines: {node: '>=22.19'}
     hasBin: true
     peerDependencies:
       '@deepseek-ai/cordis': '>=4.0.4 <5.0.0'
       '@deepseek-ai/dsh-client-connection': '>=0.1.7-alpha.2'
       '@deepseek-ai/dsh-host-webserver': '>=0.1.7-alpha.2'
-      '@dsh-mobile/e2e-tunnel': 0.1.6
+      '@dsh-mobile/e2e-tunnel': '>=0.1.6'
       react: ^18.2.0
     peerDependenciesMeta:
       '@deepseek-ai/dsh-client-connection':
